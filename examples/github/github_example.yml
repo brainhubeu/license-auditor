@@ -1,0 +1,59 @@
+# Example implementation of fully working pipeline with License Auditor on Github.
+
+# In this example project consists of two packages Web and Server
+# To validate licenses you need to create separate steps for each
+# package. As in the example below.
+
+# In order License Auditor to work, dependencies in package needs
+# to be installed before running the step with License Auditor
+
+# Github Access Token is required for posting comments to MR. You can use any account
+# but is advised to create a separate "bot" account that is going to do that.
+
+name: CheckLicense
+
+on: [ pull_request ]
+jobs:
+  LicenseCheck:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Create local environment
+        uses: actions/checkout@v2
+
+      - name: Use Node.js 10.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+
+      - name: Install web dependencies
+        run: npm install
+        working-directory: ./packages/web/
+
+      - name: Install server dependencies
+        run: npm install
+        working-directory: ./packages/server/
+
+      # Check licenses in Web package
+      - name: Check web licenses
+        run: |
+          npm install -g yarn
+          yarn add -D danger license-checker
+          yarn danger ci --failOnErrors --verbose --id Web
+        env:
+          DANGER_GITHUB_API_TOKEN: ${{ secrets.HAL_ACCESS_TOKEN }} # Github Access Token stored in Github secrets.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PROJECT_PATH: ./packages/web/ # Relative to dangerfile/project root
+
+      # Check licenses in Server package
+      - name: Check server licenses
+        run: |
+          npm install -g yarn
+          yarn add -D danger license-checker
+          yarn danger ci --failOnErrors --verbose --id Server
+        env:
+          DANGER_GITHUB_API_TOKEN: ${{ secrets.HAL_ACCESS_TOKEN }} # Github Access Token stored in Github secrets.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PROJECT_PATH: ./packages/server/ # Relative to dangerfile/project root
