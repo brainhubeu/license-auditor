@@ -49,9 +49,9 @@ and the basic structure for **Github Actions**:
 
 You can find more examples in examples directory for [GitLab](./examples/gitlab) and [GitHub](./examples/github).
 
-To allow automatic comments posting on MR's, you need to create either ```Gitlab Access Token``` or ```Github Access Token``` in a profile that is going to post comments
+To allow automatic comments posting on MRs/PRs, you need to create either ```Gitlab Access Token``` or ```Github Access Token``` in a profile that is going to post comments
 under MRs/ PRs. Then you need to specify environmental variables with key ```DANGER_GITLAB_API_TOKEN``` or ```DANGER_GITHUB_API_TOKEN``` and value being the acquired token.
-Access Token needs to have the ability to use the Github/Gitlab API and write discussions for MR's.
+The Access Token needs to have the ability to use the Github/Gitlab API and write discussions for MRs/PRs.
 
 #### Gitlab:
 ![Gitlab Access Token](./assets/gitlab_access_token_screenshot.png)
@@ -59,7 +59,7 @@ Access Token needs to have the ability to use the Github/Gitlab API and write di
 #### Github:
 ![Github Access Token](./assets/github_access_token_screenshot.png)
 
-In provided examples, the new Gitlab and Github accounts were created to act as a "bot", that was posting MR comments based on license information. Both of them were named [HAL9002](https://en.wikipedia.org/wiki/HAL_9000).
+In provided examples, the new Gitlab and Github accounts were created to act as a "bot", that was posting MR/PR comments based on license information. Both of them were named [HAL9002](https://en.wikipedia.org/wiki/HAL_9000).
 
 The comments should look similar to:
 
