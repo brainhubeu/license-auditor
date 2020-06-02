@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
+    "coveralls": "^3.1.0",
     "eslint": "^7.1.0",
     "eslint-config-brainhub": "^1.13.0",
     "jest": "^25.1.0"

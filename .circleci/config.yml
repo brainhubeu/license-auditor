@@ -23,12 +23,18 @@ jobs:
       - checkout
       - run: yarn install --non-interactive
       - run: yarn lint
-      - run: yarn test
+      - run: yarn test --coverage
+      - run:
+          name: Generate coveralls config
+          command: "echo repo_token: $COVERALLS_REPO_TOKEN > ./.coveralls.yml"
   publish_package:
     docker:
       - image: circleci/node:13.14.0
     steps:
       - checkout
+      - run:
+          name: Upload coverage to coveralls
+          command: cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
       - run:
           name: configure GitHub user
           command: |
