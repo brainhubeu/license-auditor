@@ -64,12 +64,9 @@ workflows:
   build_and_test:
     jobs:
       - check_branch_name
-      - build:
-          requires:
-            - check_branch_name
       - test:
           requires:
-            - build
+            - check_branch_name
       - publish_package:
           requires:
             - test
