@@ -22,6 +22,7 @@ jobs:
     steps:
       - checkout
       - run: yarn install --non-interactive
+      - run: yarn lint
       - run: yarn test
   publish_package:
     docker:
