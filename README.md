@@ -33,9 +33,13 @@ License Auditor helps you track and validate licenses inside your project. Preve
 
 # Getting started
 
-To start using the **License Auditor**, install its package with npm:
+To start using the **License Auditor**, install its package with NPM:
 ```command
-npm install license-auditor
+npm install @brainhubeu/license-auditor
+```
+or Yarn:
+```command
+yarn add @brainhubeu/license-auditor
 ```
 
 In the next step, copy `license` directory with `licenses.js`, `blacklist.js`, and `whitelist.js` files. The first one contains a full list of all currently acknowledged, depreciated, and exceptional software licenses. To whitelist or blacklist the license, you must copy selected licenses from the main file into them.
@@ -55,7 +59,7 @@ check_foo_licenses:
   stage: CheckFooLicenses
   image: node:alpine
   script:
-    - yarn add -D danger license-auditor
+    - yarn add -D danger @brainhubeu/license-auditor
     - yarn danger ci --failOnErrors --id Foo
   variables:
     DANGER_GITLAB_API_TOKEN: $GITLAB_ACCESS_TOKEN
@@ -68,7 +72,7 @@ and the basic structure for **Github Actions**:
 ```yaml
   - name: CheckBarLicenses
         run: |
-          yarn add -D danger license-auditor
+          yarn add -D danger @brainhubeu/license-auditor
           yarn danger ci --failOnErrors --verbose --id Bar
         env:
           DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_ACCESS_TOKEN }}

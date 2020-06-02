@@ -46,7 +46,7 @@ check_web_licenses:
   stage: CheckWebLicenses
   image: node:alpine
   script:
-    - yarn add -D danger license-auditor
+    - yarn add -D danger @brainhubeu/license-auditor
     - yarn danger ci --verbose --id Web
   variables:
     DANGER_GITLAB_API_TOKEN: $HAL9002AccessToken # Gitlab Access Token stored in Gitlab env variable.
@@ -59,7 +59,7 @@ check_server_licenses:
   stage: CheckServerLicenses
   image: node:alpine
   script:
-    - yarn add -D danger license-auditor
+    - yarn add -D danger @brainhubeu/license-auditor
     - yarn danger ci --verbose --id Server
   variables:
     DANGER_GITLAB_API_TOKEN: $HAL9002AccessToken # Gitlab Access Token stored in Gitlab env variable.
