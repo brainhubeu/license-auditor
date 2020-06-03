@@ -44,6 +44,7 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/app
+      - run: git checkout .
       - run:
           name: Upload coverage to coveralls
           command: cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
@@ -56,7 +57,6 @@ jobs:
             git remote remove origin
             git remote add origin https://$GIT_TOKEN@github.com/brainhubeu/license-auditor
             git remote -v
-      - run: git checkout .
       - run:
           name: bump NPM version
           command: |
