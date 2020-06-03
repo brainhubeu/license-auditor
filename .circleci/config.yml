@@ -1,4 +1,10 @@
-version: 2
+version: 2.1
+executors:
+  node-executor:
+    docker:
+      - image: circleci/node:13.14.0
+    working_directory: ~/app
+
 jobs:
   check_branch_name:
     docker:
@@ -17,8 +23,7 @@ jobs:
               exit 1
             fi
   test:
-    docker:
-      - image: circleci/node:13.14.0
+    executor: node-executor
     steps:
       - checkout
       - run: yarn install --non-interactive
@@ -27,11 +32,18 @@ jobs:
       - run:
           name: Generate coveralls config
           command: "echo repo_token: $COVERALLS_REPO_TOKEN > ./.coveralls.yml"
+      - persist_to_workspace:
+          root: ~/app
+          paths:
+            - .git
+            - node_modules
+            - .coveralls.yml
+            - coverage
   publish_package:
-    docker:
-      - image: circleci/node:13.14.0
+    executor: node-executor
     steps:
-      - checkout
+      - attach_workspace:
+          at: ~/app
       - run:
           name: Upload coverage to coveralls
           command: cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
@@ -44,6 +56,7 @@ jobs:
             git remote remove origin
             git remote add origin https://$GIT_TOKEN@github.com/brainhubeu/license-auditor
             git remote -v
+      - run: git checkout .
       - run:
           name: bump NPM version
           command: |
