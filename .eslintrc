@@ -1,0 +1,9 @@
+{
+  "root": true,
+  "extends": [
+    "brainhub",
+  ],
+  "env": {
+    "jest": true,
+  },
+}
