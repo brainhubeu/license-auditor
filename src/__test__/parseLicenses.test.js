@@ -1,7 +1,7 @@
 const parse = require('../parseLicenses');
 
 describe('parseLicenses', () => {
-  test('Should not call create warning or error notification methods', () => {
+  test('should not call createWarnNotification', () => {
     const parseLicensesDependencies = {
       whitelistedLicenses: ['MIT'],
       blacklistedLicenses: [],
@@ -15,7 +15,7 @@ describe('parseLicenses', () => {
     expect(parseLicensesDependencies.createWarnNotification).not.toHaveBeenCalled();
   });
 
-  test('Should call create warning notification method', () => {
+  test('should call createWarnNotification', () => {
     const parseLicensesDependencies = {
       whitelistedLicenses: [],
       blacklistedLicenses: [],
@@ -29,7 +29,7 @@ describe('parseLicenses', () => {
     expect(parseLicensesDependencies.createWarnNotification).toHaveBeenCalledWith(`MODULE : ${licenses[0].repository} | LICENSE : ${licenses[0].licenses}`);
   });
 
-  test('Should call create error notification method', () => {
+  test('should call createWarnNotification', () => {
     const parseLicensesDependencies = {
       whitelistedLicenses: [],
       blacklistedLicenses: ['MIT'],
@@ -43,7 +43,7 @@ describe('parseLicenses', () => {
     expect(parseLicensesDependencies.createErrorNotification).toHaveBeenCalledWith(`MODULE : ${licenses[0].repository} | LICENSE : ${licenses[0].licenses}`);
   });
 
-  test('Should fail on missing licenses', () => {
+  test('should fail on missing licenses', () => {
     const parseLicensesDependencies = {
       // eslint-disable-next-line no-undefined
       whitelistedLicenses: undefined,

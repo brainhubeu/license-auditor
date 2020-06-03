@@ -1,13 +1,13 @@
-# Example implementation of fully working pipeline with License Auditor on Gitlab.
+# An example implementation of a fully working pipeline with License Auditor on Gitlab.
 
-# In this example project consists of two packages Web and Server
+# In this example, project consists of two packages: Web and Server
 # To validate licenses you need to create separate steps for each
 # package. As in the example below.
 
-# In order License Auditor to work, dependencies in package needs
-# to be installed before running the step with License Auditor
+# In order License Auditor to work, dependencies in the package need
+# to be installed before running the step with the License Auditor.
 
-# Gitlab Access Token is required for posting comments to MR. You can use any account
+# A Gitlab Access Token is required for posting comments to a MR. You can use any account
 # but is advised to create a separate "bot" account that is going to do that.
 
 # Name of stages
@@ -46,7 +46,7 @@ check_web_licenses:
   stage: CheckWebLicenses
   image: node:alpine
   script:
-    - yarn add -D danger license-auditor
+    - yarn add -D danger @brainhubeu/license-auditor
     - yarn danger ci --verbose --id Web
   variables:
     DANGER_GITLAB_API_TOKEN: $HAL9002AccessToken # Gitlab Access Token stored in Gitlab env variable.
@@ -59,7 +59,7 @@ check_server_licenses:
   stage: CheckServerLicenses
   image: node:alpine
   script:
-    - yarn add -D danger license-auditor
+    - yarn add -D danger @brainhubeu/license-auditor
     - yarn danger ci --verbose --id Server
   variables:
     DANGER_GITLAB_API_TOKEN: $HAL9002AccessToken # Gitlab Access Token stored in Gitlab env variable.

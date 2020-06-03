@@ -1,0 +1,8 @@
+.circleci/
+.coveralls.yml
+assets/
+coverage/
+examples/
+src/__test__/
+.gitignore
+.eslintrc
