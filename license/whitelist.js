@@ -1,4 +1,4 @@
-/* Provide a list of blacklisted licenses for the project below */
+/* Provide a list of whitelisted licenses for the project below */
 const whitelist = [
 
 ];
