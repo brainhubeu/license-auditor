@@ -46,6 +46,8 @@ In the next step, copy `license` directory with `licenses.js`, `blacklist.js`, a
 
 Whitelisting stops **License Auditor** from analyzing and displaying any notifications for a given package with whitelisted license type. Blacklisting a license leads to the generation of fail notification log or causes CI job to fail if the blacklisted license is found, which prevents the developer from merging unwanted dependencies into the destination branch. Any license that is included in neither `blacklist.js` nor `whitelist.js`, but is found during packages analyze or merge request, becomes a warning, which developer should address during merge process or further development.
 
+If a given dependency has no license specified, it's marked with `UNKNOWN` and thus the default blacklist contains `UNKNOWN`.
+
 For **License Auditor** to work, all project dependencies have to be installed before an audit. **License Auditor** iterates through the `node_modules` and retrieves the license information from them. List of licenses is also available at [spdx site](https://spdx.org/licenses/).
 
 # Usage and examples
