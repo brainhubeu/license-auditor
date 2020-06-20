@@ -8,6 +8,7 @@ const licenses = [
   'AFL-1.2',
   'AFL-2.0',
   'AFL-2.1',
+  'AFLv2.1',
   'AFL-3.0',
   'AGPL-1.0-only',
   'AGPL-1.0-or-later',
