@@ -1,6 +1,5 @@
-/* eslint-disable import/no-unresolved */
+/* eslint-disable import/no-unresolved, no-undef, import/no-extraneous-dependencies */
 const licenseAuditor = require('@brainhubeu/license-auditor');
-const { warn, fail } = require('danger');
 
 const whitelist = require('./license/whitelist');
 const blacklist = require('./license/blacklist');
