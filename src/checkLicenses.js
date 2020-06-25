@@ -25,7 +25,7 @@ const checkLicenses = ({
 
     const licenses = Object.values(result);
 
-    if (licenses.length <= 0) {
+    if (!licenses || licenses.length <= 0) {
       return createWarnNotification(messages.noLicenses);
     }
 
