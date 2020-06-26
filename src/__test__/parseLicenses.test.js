@@ -1,35 +1,36 @@
 const parse = require('../parseLicenses');
 
-const licenses = [
-  {
-    licenses: ['MIT', 'Apache2'],
-    repository: 'https://github.com/X',
-    publisher: 'John Doe',
-    email: 'john.doe@gmail.com',
-    url: 'johndoe.com',
-    path: '/path/to/project/node_modules/X',
-    licenseFile: '/path/to/file/node_modules/X/LICENSE',
-  },
-  {
-    licenses: ['BSD', 'AFL'],
-    repository: 'https://github.com/Y',
-    publisher: 'Foo Bar',
-    email: 'foo.bar@gmail.com',
-    url: 'foobar.com',
-    path: '/path/to/project/node_modules/Y',
-    licenseFile: '/path/to/file/node_modules/Y/LICENSE',
-  },
-];
+const licenses
+  = {
+    MIT_APACHE: {
+      licenses: ['MIT', 'Apache'],
+      repository: 'https://github.com/X',
+      publisher: 'John Doe',
+      email: 'john.doe@gmail.com',
+      url: 'johndoe.com',
+      path: '/path/to/project/node_modules/X',
+      licenseFile: '/path/to/file/node_modules/X/LICENSE',
+    },
+    BSD_AFL: {
+      licenses: ['BSD', 'AFL'],
+      repository: 'https://github.com/Y',
+      publisher: 'Foo Bar',
+      email: 'foo.bar@gmail.com',
+      url: 'foobar.com',
+      path: '/path/to/project/node_modules/Y',
+      licenseFile: '/path/to/file/node_modules/Y/LICENSE',
+    },
+  };
 
 describe('parseLicenses', () => {
   test('should not call createWarnNotification or createErrorNotification', () => {
     const parseLicensesDependencies = {
-      whitelistedLicenses: ['MIT', 'Apache2', 'BSD', 'AFL'],
+      whitelistedLicenses: ['MIT', 'Apache', 'BSD', 'AFL'],
       blacklistedLicenses: [],
       createWarnNotification: jest.fn(),
       createErrorNotification: jest.fn(),
     };
-    parse(parseLicensesDependencies)(licenses);
+    parse(parseLicensesDependencies)([licenses.MIT_APACHE, licenses.BSD_AFL]);
 
     expect(parseLicensesDependencies.createErrorNotification).not.toHaveBeenCalled();
     expect(parseLicensesDependencies.createWarnNotification).not.toHaveBeenCalled();
@@ -43,17 +44,17 @@ describe('parseLicenses', () => {
       // eslint-disable-next-line no-empty-function
       createErrorNotification: () => { },
     };
-    parse(parseLicensesDependencies)(licenses);
+    parse(parseLicensesDependencies)([licenses.MIT_APACHE, licenses.BSD_AFL]);
 
     expect(parseLicensesDependencies.createWarnNotification).toHaveBeenCalledWith(
-      `MODULE : ${licenses[1].path.substr(licenses[1].path.indexOf('node_modules'),
+      `MODULE : ${licenses.MIT_APACHE.path.substr(licenses.MIT_APACHE.path.indexOf('node_modules'),
       )}\n | LICENSE : ${
-        licenses[1].licenses
-      }\n | LICENSE_FILE : ${licenses[1].licenseFile.substr(
-        licenses[1].licenseFile.indexOf('node_modules'),
-      )}\n | REPOSITORY: ${licenses[1].repository}\n | PUBLISHER : ${
-        licenses[1].publisher
-      }\n | EMAIL : ${licenses[1].email}\n | URL : ${licenses[1].url}\n`);
+        licenses.MIT_APACHE.licenses
+      }\n | LICENSE_FILE : ${licenses.MIT_APACHE.licenseFile.substr(
+        licenses.MIT_APACHE.licenseFile.indexOf('node_modules'),
+      )}\n | REPOSITORY: ${licenses.MIT_APACHE.repository}\n | PUBLISHER : ${
+        licenses.MIT_APACHE.publisher
+      }\n | EMAIL : ${licenses.MIT_APACHE.email}\n | URL : ${licenses.MIT_APACHE.url}\n`);
   });
 
   test('should call createErrorNotification', () => {
@@ -64,17 +65,17 @@ describe('parseLicenses', () => {
       createWarnNotification: () => { },
       createErrorNotification: jest.fn(),
     };
-    parse(parseLicensesDependencies)(licenses);
+    parse(parseLicensesDependencies)([licenses.MIT_APACHE, licenses.BSD_AFL]);
 
     expect(parseLicensesDependencies.createErrorNotification).toHaveBeenCalledWith(
-      `MODULE : ${licenses[1].path.substr(licenses[1].path.indexOf('node_modules'),
+      `MODULE : ${licenses.BSD_AFL.path.substr(licenses.BSD_AFL.path.indexOf('node_modules'),
       )}\n | LICENSE : ${
-        licenses[1].licenses
-      }\n | LICENSE_FILE : ${licenses[1].licenseFile.substr(
-        licenses[1].licenseFile.indexOf('node_modules'),
-      )}\n | REPOSITORY: ${licenses[1].repository}\n | PUBLISHER : ${
-        licenses[1].publisher
-      }\n | EMAIL : ${licenses[1].email}\n | URL : ${licenses[1].url}\n`);
+        licenses.BSD_AFL.licenses
+      }\n | LICENSE_FILE : ${licenses.BSD_AFL.licenseFile.substr(
+        licenses.BSD_AFL.licenseFile.indexOf('node_modules'),
+      )}\n | REPOSITORY: ${licenses.BSD_AFL.repository}\n | PUBLISHER : ${
+        licenses.BSD_AFL.publisher
+      }\n | EMAIL : ${licenses.BSD_AFL.email}\n | URL : ${licenses.BSD_AFL.url}\n`);
   });
 
   test('should fail on missing licenses', () => {
@@ -89,6 +90,6 @@ describe('parseLicenses', () => {
       createErrorNotification: () => {},
     };
 
-    expect(() => parse(parseLicensesDependencies)(licenses)).toThrow(TypeError);
+    expect(() => parse(parseLicensesDependencies)([licenses.MIT_APACHE, licenses.BSD_AFL])).toThrow(TypeError);
   });
 });
