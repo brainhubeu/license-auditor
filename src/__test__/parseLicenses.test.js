@@ -8,8 +8,8 @@ const licenses
       publisher: 'John Doe',
       email: 'john.doe@gmail.com',
       url: 'johndoe.com',
-      path: '/path/to/project/node_modules/X',
-      licenseFile: '/path/to/file/node_modules/X/LICENSE',
+      path: 'node_modules/X',
+      licenseFile: 'node_modules/X/LICENSE',
     },
     BSD_AFL: {
       licenses: ['BSD', 'AFL'],
@@ -17,8 +17,8 @@ const licenses
       publisher: 'Foo Bar',
       email: 'foo.bar@gmail.com',
       url: 'foobar.com',
-      path: '/path/to/project/node_modules/Y',
-      licenseFile: '/path/to/file/node_modules/Y/LICENSE',
+      path: 'node_modules/Y',
+      licenseFile: 'node_modules/Y/LICENSE',
     },
   };
 
@@ -47,14 +47,7 @@ describe('parseLicenses', () => {
     parse(parseLicensesDependencies)([licenses.MIT_APACHE, licenses.BSD_AFL]);
 
     expect(parseLicensesDependencies.createWarnNotification).toHaveBeenCalledWith(
-      `MODULE : ${licenses.MIT_APACHE.path.substr(licenses.MIT_APACHE.path.indexOf('node_modules'),
-      )}\n | LICENSE : ${
-        licenses.MIT_APACHE.licenses
-      }\n | LICENSE_FILE : ${licenses.MIT_APACHE.licenseFile.substr(
-        licenses.MIT_APACHE.licenseFile.indexOf('node_modules'),
-      )}\n | REPOSITORY: ${licenses.MIT_APACHE.repository}\n | PUBLISHER : ${
-        licenses.MIT_APACHE.publisher
-      }\n | EMAIL : ${licenses.MIT_APACHE.email}\n | URL : ${licenses.MIT_APACHE.url}\n`);
+      `MODULE : ${licenses.MIT_APACHE.path}\n | LICENSE : ${licenses.MIT_APACHE.licenses}\n | LICENSE_FILE : ${licenses.MIT_APACHE.licenseFile}\n | REPOSITORY: ${licenses.MIT_APACHE.repository}\n | PUBLISHER : ${licenses.MIT_APACHE.publisher}\n | EMAIL : ${licenses.MIT_APACHE.email}\n | URL : ${licenses.MIT_APACHE.url}\n`);
   });
 
   test('should call createErrorNotification', () => {
@@ -68,14 +61,7 @@ describe('parseLicenses', () => {
     parse(parseLicensesDependencies)([licenses.MIT_APACHE, licenses.BSD_AFL]);
 
     expect(parseLicensesDependencies.createErrorNotification).toHaveBeenCalledWith(
-      `MODULE : ${licenses.BSD_AFL.path.substr(licenses.BSD_AFL.path.indexOf('node_modules'),
-      )}\n | LICENSE : ${
-        licenses.BSD_AFL.licenses
-      }\n | LICENSE_FILE : ${licenses.BSD_AFL.licenseFile.substr(
-        licenses.BSD_AFL.licenseFile.indexOf('node_modules'),
-      )}\n | REPOSITORY: ${licenses.BSD_AFL.repository}\n | PUBLISHER : ${
-        licenses.BSD_AFL.publisher
-      }\n | EMAIL : ${licenses.BSD_AFL.email}\n | URL : ${licenses.BSD_AFL.url}\n`);
+      `MODULE : ${licenses.BSD_AFL.path}\n | LICENSE : ${licenses.BSD_AFL.licenses}\n | LICENSE_FILE : ${licenses.BSD_AFL.licenseFile}\n | REPOSITORY: ${licenses.BSD_AFL.repository}\n | PUBLISHER : ${licenses.BSD_AFL.publisher}\n | EMAIL : ${licenses.BSD_AFL.email}\n | URL : ${licenses.BSD_AFL.url}\n`);
   });
 
   test('should fail on missing licenses', () => {
