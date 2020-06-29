@@ -15,18 +15,18 @@
 
 <div align="center">
 
-[![CircleCI](https://circleci.com/gh/brainhubeu/license-auditor.svg?style=svg)](https://circleci.com/gh/brainhubeu/license-auditor)
-[![Last commit](https://img.shields.io/github/last-commit/brainhubeu/license-auditor.svg)](https://github.com/brainhubeu/license-auditor/commits/master)
-[![license](https://img.shields.io/npm/l/@brainhubeu/license-auditor.svg)](https://github.com/brainhubeu/license-auditor/blob/master/LICENSE.md)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
-[![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
+  [![CircleCI](https://circleci.com/gh/brainhubeu/license-auditor.svg?style=svg)](https://circleci.com/gh/brainhubeu/license-auditor)
+  [![Last commit](https://img.shields.io/github/last-commit/brainhubeu/license-auditor.svg)](https://github.com/brainhubeu/license-auditor/commits/master)
+  [![license](https://img.shields.io/npm/l/@brainhubeu/license-auditor.svg)](https://github.com/brainhubeu/license-auditor/blob/master/LICENSE.md)
+  [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+  [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com/)
 
-[![Coveralls github](https://img.shields.io/coveralls/github/brainhubeu/license-auditor.svg)](https://coveralls.io/github/brainhubeu/license-auditor?branch=master)
-[![Downloads](https://img.shields.io/npm/dm/@brainhubeu/license-auditor?color=blue)](https://www.npmjs.com/package/@brainhubeu/license-auditor)
-[![Activity](https://img.shields.io/github/commit-activity/m/brainhubeu/license-auditor.svg)](https://github.com/brainhubeu/license-auditor/commits/master)
-[![Minified](https://img.shields.io/bundlephobia/min/@brainhubeu/license-auditor?label=minified)](https://www.npmjs.com/package/@brainhubeu/license-auditor)
-[![npm](https://img.shields.io/npm/v/@brainhubeu/license-auditor.svg)](https://www.npmjs.com/package/@brainhubeu/license-auditor)
-[![Contributors](https://img.shields.io/github/contributors/brainhubeu/license-auditor?color=blue)](https://github.com/brainhubeu/license-auditor/graphs/contributors)
+  [![Coveralls github](https://img.shields.io/coveralls/github/brainhubeu/license-auditor.svg)](https://coveralls.io/github/brainhubeu/license-auditor?branch=master)
+  [![Downloads](https://img.shields.io/npm/dm/@brainhubeu/license-auditor?color=blue)](https://www.npmjs.com/package/@brainhubeu/license-auditor)
+  [![Activity](https://img.shields.io/github/commit-activity/m/brainhubeu/license-auditor.svg)](https://github.com/brainhubeu/license-auditor/commits/master)
+  [![Minified](https://img.shields.io/bundlephobia/min/@brainhubeu/license-auditor?label=minified)](https://www.npmjs.com/package/@brainhubeu/license-auditor)
+  [![npm](https://img.shields.io/npm/v/@brainhubeu/license-auditor.svg)](https://www.npmjs.com/package/@brainhubeu/license-auditor)
+  [![Contributors](https://img.shields.io/github/contributors/brainhubeu/license-auditor?color=blue)](https://github.com/brainhubeu/license-auditor/graphs/contributors)
 
 </div>
 
