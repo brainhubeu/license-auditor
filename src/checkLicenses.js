@@ -1,13 +1,21 @@
 const licenseChecker = require('license-checker');
 
+const messages = require('./messages');
 const ciNotification = require('./ciNotifications');
 const parseLicensesFactory = require('./parseLicenses');
 
-const checkLicenses = ({ whitelistedLicenses, blacklistedLicenses, projectPath, ciManager }) => {
-  const { createWarnNotification, createErrorNotification } = ciNotification(ciManager);
+const checkLicenses = ({
+  whitelistedLicenses,
+  blacklistedLicenses,
+  projectPath,
+  ciManager,
+}) => {
+  const { createWarnNotification, createErrorNotification } = ciNotification(
+    ciManager,
+  );
 
   if (!projectPath) {
-    return createErrorNotification('Path is not specified.');
+    return createErrorNotification(messages.noPathSpecified);
   }
 
   licenseChecker.init({ start: projectPath }, (err, result) => {
@@ -17,15 +25,16 @@ const checkLicenses = ({ whitelistedLicenses, blacklistedLicenses, projectPath, 
 
     const licenses = Object.values(result);
 
-    if (licenses.length <= 0) {
-      return createWarnNotification('There are no licenses to check');
+    if (!licenses || licenses.length <= 0) {
+      return createWarnNotification(messages.noLicenses);
     }
 
     const parse = parseLicensesFactory({
       whitelistedLicenses,
       blacklistedLicenses,
       createWarnNotification,
-      createErrorNotification });
+      createErrorNotification,
+    });
 
     parse(licenses);
   });
