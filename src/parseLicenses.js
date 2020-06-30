@@ -1,3 +1,5 @@
+const messages = require('./messages');
+
 const parseLicenses = ({
   whitelistedLicenses,
   blacklistedLicenses,
@@ -5,20 +7,30 @@ const parseLicenses = ({
   createErrorNotification,
 }) => licenses => {
   licenses.forEach(licenseObj => {
-    const isWhitelisted = whitelistedLicenses.includes(licenseObj.licenses);
+    const isWhitelisted
+      = typeof licenseObj.licenses === 'object'
+        ? licenseObj.licenses.every(license =>
+          whitelistedLicenses.includes(license),
+        )
+        : whitelistedLicenses.includes(licenseObj.licenses);
 
     if (isWhitelisted) {
       return;
     }
 
-    const isBlacklisted = blacklistedLicenses.includes(licenseObj.licenses);
+    const isBlacklisted
+      = typeof licenseObj.licenses === 'object'
+        ? licenseObj.licenses.some(license =>
+          blacklistedLicenses.includes(license),
+        )
+        : blacklistedLicenses.includes(licenseObj.licenses);
 
     if (!isWhitelisted && !isBlacklisted) {
-      return createWarnNotification(`MODULE : ${licenseObj.repository} | LICENSE : ${licenseObj.licenses}`);
+      return createWarnNotification(messages.moduleInfo(licenseObj));
     }
 
     if (isBlacklisted) {
-      return createErrorNotification(`MODULE : ${licenseObj.repository} | LICENSE : ${licenseObj.licenses}`);
+      return createErrorNotification(messages.moduleInfo(licenseObj));
     }
   });
 };

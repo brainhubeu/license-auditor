@@ -6,7 +6,7 @@ const blacklist = require('./license/blacklist');
 
 const warn = msg => {
   // eslint-disable-next-line no-console
-  console.log('\x1b[40m\x1b[33m%s\x1b[0m', `LICENSE WARRNING AT ${msg}`);
+  console.log('\x1b[40m\x1b[33m%s\x1b[0m', `LICENSE WARNING AT ${msg}`);
 };
 
 const fail = msg => {
@@ -23,4 +23,3 @@ licenseAuditor({
     fail,
   },
 });
-
