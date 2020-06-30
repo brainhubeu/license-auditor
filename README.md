@@ -54,7 +54,7 @@ If a given dependency has no license specified, it's marked with `UNKNOWN` and t
 
 For **License Auditor** to work, all project dependencies have to be installed before an audit. **License Auditor** iterates through the `node_modules` and retrieves the license information from them. List of licenses is also available at [spdx site](https://spdx.org/licenses/).
 
-The order of files in which the license information is retrieved from is: `package.json`, `LICENSE`, `LICENCE`, `COPYING`, `README`. Warning and Error notifications specifies the license file that it has been read from. In some cases, license files may not provide license directly. The asterisk `*` symbol next to shown license name indicates that it is the closest possible, but not fully confirmed license.
+The order of files in which the license information is retrieved from is: `package.json`, `LICENSE`, `LICENCE`, `COPYING`, `README`. Warning and Error notifications specify the license file that it has been read from. In some cases, license files may not provide the license directly. The asterisk `*` symbol next to shown license name indicates that it is the closest possible, but not fully confirmed license.
 
 # Usage and examples
 
