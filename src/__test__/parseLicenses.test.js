@@ -47,7 +47,14 @@ describe('parseLicenses', () => {
     parse(parseLicensesDependencies)([licenses.MIT_APACHE, licenses.BSD_AFL]);
 
     expect(parseLicensesDependencies.createWarnNotification).toHaveBeenCalledWith(
-      `MODULE : ${licenses.MIT_APACHE.path}\n | LICENSE : ${licenses.MIT_APACHE.licenses}\n | LICENSE_FILE : ${licenses.MIT_APACHE.licenseFile}\n | REPOSITORY: ${licenses.MIT_APACHE.repository}\n | PUBLISHER : ${licenses.MIT_APACHE.publisher}\n | EMAIL : ${licenses.MIT_APACHE.email}\n | URL : ${licenses.MIT_APACHE.url}\n`);
+      `MODULE : ${licenses.MIT_APACHE.path}
+ | LICENSE : ${licenses.MIT_APACHE.licenses}
+ | LICENSE_FILE : ${licenses.MIT_APACHE.licenseFile}
+ | REPOSITORY: ${licenses.MIT_APACHE.repository}
+ | PUBLISHER : ${licenses.MIT_APACHE.publisher}
+ | EMAIL : ${licenses.MIT_APACHE.email}
+ | URL : ${licenses.MIT_APACHE.url}
+`);
   });
 
   test('should call createErrorNotification', () => {
@@ -61,7 +68,14 @@ describe('parseLicenses', () => {
     parse(parseLicensesDependencies)([licenses.MIT_APACHE, licenses.BSD_AFL]);
 
     expect(parseLicensesDependencies.createErrorNotification).toHaveBeenCalledWith(
-      `MODULE : ${licenses.BSD_AFL.path}\n | LICENSE : ${licenses.BSD_AFL.licenses}\n | LICENSE_FILE : ${licenses.BSD_AFL.licenseFile}\n | REPOSITORY: ${licenses.BSD_AFL.repository}\n | PUBLISHER : ${licenses.BSD_AFL.publisher}\n | EMAIL : ${licenses.BSD_AFL.email}\n | URL : ${licenses.BSD_AFL.url}\n`);
+      `MODULE : ${licenses.BSD_AFL.path}
+ | LICENSE : ${licenses.BSD_AFL.licenses}
+ | LICENSE_FILE : ${licenses.BSD_AFL.licenseFile}
+ | REPOSITORY: ${licenses.BSD_AFL.repository}
+ | PUBLISHER : ${licenses.BSD_AFL.publisher}
+ | EMAIL : ${licenses.BSD_AFL.email}
+ | URL : ${licenses.BSD_AFL.url}
+`);
   });
 
   test('should fail on missing licenses', () => {
