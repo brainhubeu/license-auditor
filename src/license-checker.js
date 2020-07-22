@@ -7,6 +7,7 @@ const _ = require('lodash');
 
 const templates = {
   'BSD 2-Clause': fs.readFileSync(`${__dirname}/license-checker-templates/BSD-2-Clause.txt`).toString(),
+  MIT: fs.readFileSync(`${__dirname}/license-checker-templates/MIT.txt`).toString(),
 };
 
 const licenseMap = {
@@ -46,7 +47,7 @@ const retrieveLicenseFromLicenseFile = filename => {
 
 const retrieveLicenseFromRepo = async url => {
   const content = await request(url.replace(/\/\/\//, '//'))
-    .set('Authorization', `token ${GITHUB_TOKEN}`)
+    .set('Authorization', `token ${process.env.GITHUB_TOKEN}`)
     .set('user-agent', 'bot')
     .then(({ text }) => text);
   const license = retrieveLicenseFromLicenseFileContent(content);
