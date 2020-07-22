@@ -40,7 +40,7 @@ jobs:
       - name: Check web licenses
         run: |
           npm install -g yarn
-          yarn add -D danger license-checker
+          yarn add -D danger
           yarn danger ci --failOnErrors --verbose --id Web
         env:
           DANGER_GITHUB_API_TOKEN: ${{ secrets.HAL_ACCESS_TOKEN }} # Github Access Token stored in Github secrets.
@@ -51,7 +51,7 @@ jobs:
       - name: Check server licenses
         run: |
           npm install -g yarn
-          yarn add -D danger license-checker
+          yarn add -D danger
           yarn danger ci --failOnErrors --verbose --id Server
         env:
           DANGER_GITHUB_API_TOKEN: ${{ secrets.HAL_ACCESS_TOKEN }} # Github Access Token stored in Github secrets.

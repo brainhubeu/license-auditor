@@ -136,7 +136,6 @@ You can also create your own implementation of `warn` and `fail` methods behavio
 `license-auditor` was built using:
 
 - [Danger.js](https://danger.systems/js/)
-- [License-Checker](https://github.com/davglass/license-checker)
 
 `license-auditor` is maintained by [@jkthomas](https://github.com/jkthomas), [@nikodemwrona](https://github.com/NikodemWrona) and the Brainhub development team. It is funded by Brainhub and the names and logos for Brainhub are trademarks of Brainhub Sp. z o.o.. You can check other open-source projects supported/developed by our teammates [here](https://brainhub.eu/?utm_source=github).
 
