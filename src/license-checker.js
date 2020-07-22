@@ -45,7 +45,10 @@ const retrieveLicenseFromLicenseFile = filename => {
 };
 
 const retrieveLicenseFromRepo = async url => {
-  const content = await request(url.replace(/\/\/\//, '//')).then(({ text }) => text);
+  const content = await request(url.replace(/\/\/\//, '//'))
+    .set('Authorization', `token ${GITHUB_TOKEN}`)
+    .set('user-agent', 'bot')
+    .then(({ text }) => text);
   const license = retrieveLicenseFromLicenseFileContent(content);
   console.log('license retrieved from repo', { license, url });
   return license;
