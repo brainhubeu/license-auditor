@@ -7,6 +7,10 @@ const parseLicenses = ({
   createErrorNotification,
 }) => licenses => {
   licenses.forEach(licenseObj => {
+    const isWhitelistedByPath = whitelistedLicenses.some(({ path }) => licenseObj.path === path);
+    if (isWhitelistedByPath) {
+      return;
+    }
     const isWhitelisted
       = typeof licenseObj.licenses === 'object'
         ? licenseObj.licenses.every(license =>
