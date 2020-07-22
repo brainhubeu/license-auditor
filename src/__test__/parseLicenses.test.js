@@ -49,7 +49,6 @@ describe('parseLicenses', () => {
     expect(parseLicensesDependencies.createWarnNotification).toHaveBeenCalledWith(
       `MODULE : ${licenses.MIT_APACHE.path}
  | LICENSE : ${licenses.MIT_APACHE.licenses}
- | LICENSE_FILE : ${licenses.MIT_APACHE.licenseFile}
  | REPOSITORY: ${licenses.MIT_APACHE.repository}
  | PUBLISHER : ${licenses.MIT_APACHE.publisher}
  | EMAIL : ${licenses.MIT_APACHE.email}
@@ -70,7 +69,6 @@ describe('parseLicenses', () => {
     expect(parseLicensesDependencies.createErrorNotification).toHaveBeenCalledWith(
       `MODULE : ${licenses.BSD_AFL.path}
  | LICENSE : ${licenses.BSD_AFL.licenses}
- | LICENSE_FILE : ${licenses.BSD_AFL.licenseFile}
  | REPOSITORY: ${licenses.BSD_AFL.repository}
  | PUBLISHER : ${licenses.BSD_AFL.publisher}
  | EMAIL : ${licenses.BSD_AFL.email}
