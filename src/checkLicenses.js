@@ -1,5 +1,4 @@
-const licenseChecker = require('license-checker');
-
+const licenseChecker = require('./license-checker');
 const messages = require('./messages');
 const ciNotification = require('./ciNotifications');
 const parseLicensesFactory = require('./parseLicenses');

@@ -4,9 +4,7 @@ const moduleInfo = licenseObj => `MODULE : ${licenseObj.path.substr(
   licenseObj.path.indexOf('node_modules'),
 )}\n | LICENSE : ${
   licenseObj.licenses
-}\n | LICENSE_FILE : ${licenseObj.licenseFile.substr(
-  licenseObj.licenseFile.indexOf('node_modules'),
-)}\n | REPOSITORY: ${licenseObj.repository}\n | PUBLISHER : ${
+}\n | REPOSITORY: ${licenseObj.repository}\n | PUBLISHER : ${
   licenseObj.publisher
 }\n | EMAIL : ${licenseObj.email}\n | URL : ${licenseObj.url}\n`;
 
