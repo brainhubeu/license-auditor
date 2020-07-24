@@ -9,7 +9,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "jest ./src/__test__/*"
+    "test": "jest ./src/__test__/* ./src/license-checker/__test__/*"
   },
   "repository": {
     "type": "git",

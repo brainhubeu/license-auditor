@@ -1,13 +1,16 @@
 const { exec } = require('child_process');
 const fs = require('fs');
 
+
 const bluebird = require('bluebird');
 const request = require('superagent');
 const _ = require('lodash');
 
+const retrieveLicenseFromLicenseFileContent = require('./retrieveLicenseFromLicenseFileContent');
+
 const templates = {
-  'BSD 2-Clause': fs.readFileSync(`${__dirname}/license-checker-templates/BSD-2-Clause.txt`).toString(),
-  MIT: fs.readFileSync(`${__dirname}/license-checker-templates/MIT.txt`).toString(),
+  'BSD 2-Clause': fs.readFileSync(`${__dirname}/templates/BSD-2-Clause.txt`).toString(),
+  MIT: fs.readFileSync(`${__dirname}/templates/MIT.txt`).toString(),
 };
 
 const licenseMap = {
@@ -22,27 +25,12 @@ const licenseMap = {
   'This software is released under the MIT license:': 'MIT',
 };
 
-const retrieveLicenseFromLicenseFileContent = content => {
-  const lines = content.split('\n');
-  const license = lines.find(line => /license/i.test(line));
-  const mapped = licenseMap[license];
-  if (mapped) {
-    return mapped;
-  }
-  const withoutFirstLine = lines.slice(1).filter(line => line.length).join('\n');
-  const pair = Object.entries(templates).find(([, value]) => withoutFirstLine === value.split('\n').filter(line => line.length).join('\n'));
-  if (pair.length) {
-    return pair[0];
-  }
-  return '';
-};
-
 const retrieveLicenseFromLicenseFile = filename => {
   if (!fs.existsSync(filename)) {
     return '';
   }
   const content = fs.readFileSync(filename).toString();
-  return retrieveLicenseFromLicenseFileContent(content);
+  return retrieveLicenseFromLicenseFileContent(content, licenseMap, templates);
 };
 
 const retrieveLicenseFromRepo = async url => {
@@ -50,7 +38,7 @@ const retrieveLicenseFromRepo = async url => {
     .set('Authorization', `token ${process.env.GITHUB_TOKEN}`)
     .set('user-agent', 'bot')
     .then(({ text }) => text);
-  const license = retrieveLicenseFromLicenseFileContent(content);
+  const license = retrieveLicenseFromLicenseFileContent(content, licenseMap, templates);
   console.log('license retrieved from repo', { license, url });
   return license;
 };
