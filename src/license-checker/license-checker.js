@@ -161,9 +161,14 @@ const findLicense = async item => {
 };
 
 const licenseChecker = {
-  init: (params, callback) => {
+  findAllLicenses: () => new Promise((resolve, reject) => {
     exec('find node_modules -name "package.json"', async (err, stdout, stderr) => {
-      console.error(stderr);
+      if (err) {
+        reject(err);
+      }
+      if (stderr) {
+        console.error(stderr);
+      }
       const packages = stdout.split('\n')
         .filter(x => x)
         .filter(x => /node_modules\/[0-9A-Za-z-]*\/package\.json$/.test(x)
@@ -178,9 +183,9 @@ const licenseChecker = {
         publisher: _.get(item, 'author.name', item.author),
         email: _.get(item, 'author.email'),
       }));
-      callback(null, licenseData);
+      resolve(licenseData);
     });
-  },
+  }),
 };
 
 module.exports = licenseChecker;
