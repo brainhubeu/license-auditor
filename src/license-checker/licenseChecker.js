@@ -25,6 +25,25 @@ const licenseMap = {
   'This software is released under the MIT license:': 'MIT',
 };
 
+const licenseFiles = [
+  'LICENSE',
+  'LICENCE',
+  'LICENSE.md',
+  'LICENCE.md',
+];
+
+const readmeFiles = [
+  'README',
+  'readme',
+  'Readme',
+  'README.md',
+  'readme.md',
+  'Readme.md',
+  'README.markdown',
+  'readme.markdown',
+  'Readme.markdown',
+];
+
 const retrieveLicenseFromLicenseFile = filename => {
   if (!fs.existsSync(filename)) {
     return '';
@@ -77,85 +96,35 @@ const findLicense = async item => {
   if (fs.existsSync(item.path.replace(/package\.json$/, 'LICENSE-MIT'))) {
     return 'MIT';
   }
-  try {
-    const license = retrieveLicenseFromLicenseFile(item.path.replace(/package\.json$/, 'LICENSE'));
-    if (license) {
-      return license;
+  for (const licenseFile of licenseFiles) {
+    try {
+      const license = retrieveLicenseFromLicenseFile(item.path.replace(/package\.json$/, licenseFile));
+      if (license) {
+        return license;
+      }
+    } catch (error) {
+      console.error(error);
     }
-  } catch (error) {
-    console.error(error);
   }
-  try {
-    const license = retrieveLicenseFromLicenseFile(item.path.replace(/package\.json$/, 'LICENSE.md'));
-    if (license) {
-      return license;
+  for (const readmeFile of readmeFiles) {
+    try {
+      const license = retrieveLicenseFromReadme(item.path.replace(/package\.json$/, readmeFile));
+      if (license) {
+        return license;
+      }
+    } catch (error) {
+      console.error(error);
     }
-  } catch (error) {
-    console.error(error);
   }
-  try {
-    const license = retrieveLicenseFromLicenseFile(item.path.replace(/package\.json$/, 'LICENCE'));
-    if (license) {
-      return license;
+  for (const licenseFile of licenseFiles) {
+    try {
+      const license = await retrieveLicenseFromRepo(`${_.get(item, 'repository.url', item.repository).replace(/github.com/, '/raw.githubusercontent.com').replace(/\.git$/, '').replace(/^git:\/\/\//, 'https://')}/master/${licenseFile}`);
+      if (license) {
+        return license;
+      }
+    } catch (error) {
+      console.error(error);
     }
-  } catch (error) {
-    console.error(error);
-  }
-  try {
-    const license = retrieveLicenseFromReadme(item.path.replace(/package\.json$/, 'README'));
-    if (license) {
-      return license;
-    }
-  } catch (error) {
-    console.error(error);
-  }
-  try {
-    const license = retrieveLicenseFromReadme(item.path.replace(/package\.json$/, 'readme'));
-    if (license) {
-      return license;
-    }
-  } catch (error) {
-    console.error(error);
-  }
-  try {
-    const license = retrieveLicenseFromReadme(item.path.replace(/package\.json$/, 'README.md'));
-    if (license) {
-      return license;
-    }
-  } catch (error) {
-    console.error(error);
-  }
-  try {
-    const license = retrieveLicenseFromReadme(item.path.replace(/package\.json$/, 'readme.md'));
-    if (license) {
-      return license;
-    }
-  } catch (error) {
-    console.error(error);
-  }
-  try {
-    const license = retrieveLicenseFromReadme(item.path.replace(/package\.json$/, 'Readme.md'));
-    if (license) {
-      return license;
-    }
-  } catch (error) {
-    console.error(error);
-  }
-  try {
-    const license = retrieveLicenseFromReadme(item.path.replace(/package\.json$/, 'readme.markdown'));
-    if (license) {
-      return license;
-    }
-  } catch (error) {
-    console.error(error);
-  }
-  try {
-    const license = await retrieveLicenseFromRepo(`${_.get(item, 'repository.url', item.repository).replace(/github.com/, '/raw.githubusercontent.com').replace(/\.git$/, '').replace(/^git:\/\/\//, 'https://')}/master/LICENSE`);
-    if (license) {
-      return license;
-    }
-  } catch (error) {
-    console.error(error);
   }
   return 'UNKNOWN';
 };
