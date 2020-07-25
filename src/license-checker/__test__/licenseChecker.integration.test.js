@@ -1,6 +1,6 @@
 /* eslint-disable no-undefined */
 
-const licenseChecker = require('../license-checker');
+const licenseChecker = require('../licenseChecker');
 
 describe('licenseChecker', () => {
   test('should find licenses', async () => {

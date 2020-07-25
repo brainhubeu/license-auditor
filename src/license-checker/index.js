@@ -1,3 +1,3 @@
-const licenseChecker = require('./license-checker');
+const licenseChecker = require('./licenseChecker');
 
 module.exports = licenseChecker;
