@@ -6,7 +6,7 @@ const retrieveLicenseFromLicenseFileContent = (content, licenseMap, templates) =
     return mapped;
   }
   const withoutFirstLine = lines.slice(1).filter(line => line.length).join('\n');
-  return templates[withoutFirstLine];
+  return templates[withoutFirstLine] || content;
 };
 
 module.exports = retrieveLicenseFromLicenseFileContent;

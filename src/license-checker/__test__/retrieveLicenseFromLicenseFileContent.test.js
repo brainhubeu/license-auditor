@@ -30,4 +30,20 @@ foo bar baz`;
 
     expect(result).toBe('FOO');
   });
+
+  test('should return the license content if no known license is matched', () => {
+    const content = `custom license
+foo bar baz`;
+    const licenseMap = {
+      'MIT license': 'MIT',
+    };
+    const templates = {
+      'foo bar': 'FOO',
+    };
+
+    const result = retrieveLicenseFromLicenseFileContent(content, licenseMap, templates);
+
+    expect(result).toBe(`custom license
+foo bar baz`);
+  });
 });
