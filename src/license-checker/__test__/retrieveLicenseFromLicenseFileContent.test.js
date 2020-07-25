@@ -23,7 +23,7 @@ foo bar baz`;
       'MIT license': 'MIT',
     };
     const templates = {
-      FOO: `foo bar baz`,
+      'foo bar baz': 'FOO',
     };
 
     const result = retrieveLicenseFromLicenseFileContent(content, licenseMap, templates);

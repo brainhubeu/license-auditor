@@ -9,8 +9,8 @@ const _ = require('lodash');
 const retrieveLicenseFromLicenseFileContent = require('./retrieveLicenseFromLicenseFileContent');
 
 const templates = {
-  'BSD 2-Clause': fs.readFileSync(`${__dirname}/templates/BSD-2-Clause.txt`).toString(),
-  MIT: fs.readFileSync(`${__dirname}/templates/MIT.txt`).toString(),
+  [fs.readFileSync(`${__dirname}/templates/BSD-2-Clause.txt`).toString()]: 'BSD 2-Clause',
+  [fs.readFileSync(`${__dirname}/templates/MIT.txt`).toString()]: 'MIT',
 };
 
 const licenseMap = {
