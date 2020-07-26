@@ -58,8 +58,7 @@ const retrieveLicenseFromRepo = async url => {
     .set('user-agent', 'bot')
     .then(({ text }) => text);
   const license = retrieveLicenseFromLicenseFileContent(content, licenseMap, templates);
-  console.log('license retrieved from repo', { license, url });
-  return license;
+  return { license, licensePath: url };
 };
 
 const retrieveLicenseFromReadme = filename => {
@@ -72,35 +71,36 @@ const retrieveLicenseFromReadme = filename => {
     return '';
   }
   const license = lines[licenseWordIndex + 1].trim();
-  return licenseMap[license] || license;
+  return { license: licenseMap[license] || license, licensePath: filename };
 };
 
 const findLicense = async item => {
   if (typeof item.license === 'object') {
     if (Array.isArray(item.license)) {
-      return item.license.map(x => x.type);
+      return { license: item.license.map(x => x.type), licensePath: item.path };
     }
-    return item.license.type;
+    return { license: item.license.type, licensePath: item.path };
   }
   if (item.license && item.license !== 'SEE LICENSE IN LICENSE') {
-    return licenseMap[item.license] || item.license;
+    return { license: licenseMap[item.license] || item.license, licensePath: item.path };
   }
   if (item.licenses) {
     if (typeof item.licenses === 'object') {
       if (Array.isArray(item.licenses)) {
-        return item.licenses.map(x => x.type);
+        return { license: item.licenses.map(x => x.type), licensePath: item.path };
       }
-      return item.licenses.type;
+      return { license: item.licenses.type, licensePath: item.path };
     }
   }
-  if (fs.existsSync(item.path.replace(/package\.json$/, 'LICENSE-MIT'))) {
-    return 'MIT';
+  if (fs.existsSync(item.path.replace(/package\.json$/, 'license-mit'))) {
+    return { license: 'MIT', licensePath: item.path.replace(/package\.json$/, 'license-mit') };
   }
   for (const licenseFile of licenseFiles) {
     try {
-      const license = retrieveLicenseFromLicenseFile(item.path.replace(/package\.json$/, licenseFile));
+      const licensePath = item.path.replace(/package\.json$/, licenseFile);
+      const license = retrieveLicenseFromLicenseFile();
       if (license) {
-        return license;
+        return { license, licensePath };
       }
     } catch (error) {
       console.error(error);
@@ -108,9 +108,10 @@ const findLicense = async item => {
   }
   for (const readmeFile of readmeFiles) {
     try {
-      const license = retrieveLicenseFromReadme(item.path.replace(/package\.json$/, readmeFile));
+      const licensePath = item.path.replace(/package\.json$/, readmeFile);
+      const license = retrieveLicenseFromReadme();
       if (license) {
-        return license;
+        return { license, licensePath };
       }
     } catch (error) {
       console.error(error);
@@ -118,15 +119,16 @@ const findLicense = async item => {
   }
   for (const licenseFile of licenseFiles) {
     try {
-      const license = await retrieveLicenseFromRepo(`${_.get(item, 'repository.url', item.repository).replace(/github.com/, '/raw.githubusercontent.com').replace(/\.git$/, '').replace(/^git:\/\/\//, 'https://')}/master/${licenseFile}`);
+      const licensePath = `${_.get(item, 'repository.url', item.repository).replace(/github.com/, '/raw.githubusercontent.com').replace(/\.git$/, '').replace(/^git:\/\/\//, 'https://')}/master/${licenseFile}`;
+      const license = await retrieveLicenseFromRepo();
       if (license) {
-        return license;
+        return { license, licensePath };
       }
     } catch (error) {
       console.error(error);
     }
   }
-  return 'UNKNOWN';
+  return { license: 'UNKNOWN', licensePath: 'UNKNOWN' };
 };
 
 const licenseChecker = {
@@ -146,7 +148,7 @@ const licenseChecker = {
         .map(path => ({ path, ...JSON.parse(fs.readFileSync(path).toString()) }))
         .filter(item => item.name);
       const licenseData = await bluebird.mapSeries(data, async item => ({
-        licenses: await findLicense(item),
+        ...(await findLicense(item)),
         path: item.path,
         repository: _.get(item, 'repository.url'),
         publisher: _.get(item, 'author.name', item.author),
