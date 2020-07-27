@@ -1,3 +1,4 @@
+/* eslint-disable no-empty */
 const { exec } = require('child_process');
 const fs = require('fs');
 
@@ -23,6 +24,10 @@ const licenseMap = {
   'The MIT License (MIT)^M': 'MIT',
   'The MIT License': 'MIT',
   'This software is released under the MIT license:': 'MIT',
+};
+
+const customLicenceFiles = {
+  'LICENSE-MIT': 'MIT',
 };
 
 const licenseFiles = [
@@ -58,7 +63,7 @@ const retrieveLicenseFromRepo = async url => {
     .set('user-agent', 'bot')
     .then(({ text }) => text);
   const license = retrieveLicenseFromLicenseFileContent(content, licenseMap, templates);
-  return { license, licensePath: url };
+  return license;
 };
 
 const retrieveLicenseFromReadme = filename => {
@@ -92,8 +97,12 @@ const findLicense = async item => {
       return { license: item.licenses.type, licensePath: item.path };
     }
   }
-  if (fs.existsSync(item.path.replace(/package\.json$/, 'license-mit'))) {
-    return { license: 'MIT', licensePath: item.path.replace(/package\.json$/, 'license-mit') };
+  for (const entry of Object.entries(customLicenceFiles)) {
+    const [customLicenceFile, license] = entry;
+    const licensePath = item.path.replace(/package\.json$/, customLicenceFile);
+    if (fs.existsSync(licensePath)) {
+      return { license, licensePath };
+    }
   }
   for (const licenseFile of licenseFiles) {
     try {
@@ -103,7 +112,6 @@ const findLicense = async item => {
         return { license, licensePath };
       }
     } catch (error) {
-      console.error(error);
     }
   }
   for (const readmeFile of readmeFiles) {
@@ -114,18 +122,19 @@ const findLicense = async item => {
         return { license, licensePath };
       }
     } catch (error) {
-      console.error(error);
     }
   }
   for (const licenseFile of licenseFiles) {
     try {
-      const licensePath = `${_.get(item, 'repository.url', item.repository).replace(/github.com/, '/raw.githubusercontent.com').replace(/\.git$/, '').replace(/^git:\/\/\//, 'https://')}/master/${licenseFile}`;
-      const license = await retrieveLicenseFromRepo();
-      if (license) {
-        return { license, licensePath };
+      const url = _.get(item, 'repository.url', item.repository);
+      if (url) {
+        const licensePath = `${url.replace(/github.com/, '/raw.githubusercontent.com').replace(/\.git$/, '').replace(/^git:\/\/\//, 'https://')}/master/${licenseFile}`;
+        const license = await retrieveLicenseFromRepo(licensePath);
+        if (license) {
+          return { license, licensePath };
+        }
       }
     } catch (error) {
-      console.error(error);
     }
   }
   return { license: 'UNKNOWN', licensePath: 'UNKNOWN' };
@@ -153,6 +162,7 @@ const licenseChecker = {
         repository: _.get(item, 'repository.url'),
         publisher: _.get(item, 'author.name', item.author),
         email: _.get(item, 'author.email'),
+        version: item.version,
       }));
       resolve(licenseData);
     });

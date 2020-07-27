@@ -1,7 +1,7 @@
 const retrieveLicenseFromLicenseFileContent = (content, licenseMap, templates) => {
   const lines = content.split('\n');
   const license = lines.find(line => /license/i.test(line));
-  const mapped = licenseMap[('' || license).trim()];
+  const mapped = licenseMap[(license || '').trim()];
   if (mapped) {
     return mapped;
   }

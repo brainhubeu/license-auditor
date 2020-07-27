@@ -1,11 +1,12 @@
 const noPathSpecified = 'Project path is not specified.';
 const noLicenses = 'There are no licenses to check';
-const moduleInfo = licenseObj => `MODULE : ${licenseObj.path.substr(
-  licenseObj.path.indexOf('node_modules'),
-)}\n | LICENSE : ${
-  licenseObj.licenses
-}\n | REPOSITORY: ${licenseObj.repository}\n | PUBLISHER : ${
-  licenseObj.publisher
-}\n | EMAIL : ${licenseObj.email}\n | URL : ${licenseObj.url}\n`;
+const moduleInfo = licenseItem => `MODULE PATH: ${licenseItem.path}
+| LICENSE: ${licenseItem.license}
+| LICENSE PATH: ${licenseItem.licensePath}
+| REPOSITORY: ${licenseItem.repository}
+| PUBLISHER: ${licenseItem.publisher}
+| EMAIL: ${licenseItem.email}
+| VERSION: ${licenseItem.version}
+`;
 
 module.exports = { noPathSpecified, noLicenses, moduleInfo };

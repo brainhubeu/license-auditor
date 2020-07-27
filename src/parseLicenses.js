@@ -7,27 +7,23 @@ const parseLicenses = ({
   createErrorNotification,
 }) => licenses => {
   licenses.forEach(licenseObj => {
-    const isWhitelistedByPath = whitelistedLicenses.some(({ path }) => licenseObj.path === path);
-    if (isWhitelistedByPath) {
-      return;
-    }
     const isWhitelisted
-      = typeof licenseObj.licenses === 'object'
-        ? licenseObj.licenses.every(license =>
+      = typeof licenseObj.license === 'object'
+        ? licenseObj.license.every(license =>
           whitelistedLicenses.includes(license),
         )
-        : whitelistedLicenses.includes(licenseObj.licenses);
+        : whitelistedLicenses.includes(licenseObj.license);
 
     if (isWhitelisted) {
       return;
     }
 
     const isBlacklisted
-      = typeof licenseObj.licenses === 'object'
-        ? licenseObj.licenses.some(license =>
+      = typeof licenseObj.license === 'object'
+        ? licenseObj.license.some(license =>
           blacklistedLicenses.includes(license),
         )
-        : blacklistedLicenses.includes(licenseObj.licenses);
+        : blacklistedLicenses.includes(licenseObj.license);
 
     if (!isWhitelisted && !isBlacklisted) {
       return createWarnNotification(messages.moduleInfo(licenseObj));
