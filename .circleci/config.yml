@@ -27,6 +27,7 @@ jobs:
     steps:
       - checkout
       - run: yarn install --non-interactive
+      - run: cd src/license-checker/__test__/ && yarn install --non-interactive
       - run: yarn lint
       - run: yarn test --coverage
       - run:

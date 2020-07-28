@@ -18,7 +18,7 @@ const checkLicenses = async ({
   }
 
   try {
-    const licenses = await licenseChecker.findAllLicenses({ start: projectPath });
+    const licenses = await licenseChecker.findAllLicenses({ projectPath });
 
     if (!licenses || licenses.length <= 0) {
       return createWarnNotification(messages.noLicenses);

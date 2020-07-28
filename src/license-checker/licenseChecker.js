@@ -2,12 +2,12 @@
 const { exec } = require('child_process');
 const fs = require('fs');
 
-
 const bluebird = require('bluebird');
-const request = require('superagent');
 const _ = require('lodash');
 
-const retrieveLicenseFromLicenseFileContent = require('./retrieveLicenseFromLicenseFileContent');
+const retrieveLicenseFromLicenseFile = require('./retrieveLicenseFromLicenseFile');
+const retrieveLicenseFromReadme = require('./retrieveLicenseFromReadme');
+const retrieveLicenseFromRepo = require('./retrieveLicenseFromRepo');
 
 const templates = {
   [fs.readFileSync(`${__dirname}/templates/BSD-2-Clause.txt`).toString()]: 'BSD 2-Clause',
@@ -49,36 +49,6 @@ const readmeFiles = [
   'Readme.markdown',
 ];
 
-const retrieveLicenseFromLicenseFile = filename => {
-  if (!fs.existsSync(filename)) {
-    return '';
-  }
-  const content = fs.readFileSync(filename).toString();
-  return retrieveLicenseFromLicenseFileContent(content, licenseMap, templates);
-};
-
-const retrieveLicenseFromRepo = async url => {
-  const content = await request(url.replace(/\/\/\//, '//'))
-    .set('Authorization', `token ${process.env.GITHUB_TOKEN}`)
-    .set('user-agent', 'bot')
-    .then(({ text }) => text);
-  const license = retrieveLicenseFromLicenseFileContent(content, licenseMap, templates);
-  return license;
-};
-
-const retrieveLicenseFromReadme = filename => {
-  if (!fs.existsSync(filename)) {
-    return '';
-  }
-  const lines = fs.readFileSync(filename).toString().split('\n').filter(line => line);
-  const licenseWordIndex = lines.findIndex(line => /#* *License *$/.test(line));
-  if (licenseWordIndex < 0) {
-    return '';
-  }
-  const license = lines[licenseWordIndex + 1].trim();
-  return { license: licenseMap[license] || license, licensePath: filename };
-};
-
 const findLicense = async item => {
   // first, we check the "license" field which can be a string, an array or an object
   // if the "license" field does not exist, we check the "licenses" field
@@ -109,7 +79,7 @@ const findLicense = async item => {
   for (const licenseFile of licenseFiles) {
     try {
       const licensePath = item.path.replace(/package\.json$/, licenseFile);
-      const license = retrieveLicenseFromLicenseFile();
+      const license = retrieveLicenseFromLicenseFile(licensePath, licenseMap, templates);
       if (license) {
         return { license, licensePath };
       }
@@ -119,7 +89,7 @@ const findLicense = async item => {
   for (const readmeFile of readmeFiles) {
     try {
       const licensePath = item.path.replace(/package\.json$/, readmeFile);
-      const license = retrieveLicenseFromReadme();
+      const license = retrieveLicenseFromReadme(licensePath, licenseMap, templates);
       if (license) {
         return { license, licensePath };
       }
@@ -131,7 +101,7 @@ const findLicense = async item => {
       const url = _.get(item, 'repository.url', item.repository);
       if (url) {
         const licensePath = `${url.replace(/github.com/, '/raw.githubusercontent.com').replace(/\.git$/, '').replace(/^git:\/\/\//, 'https://')}/master/${licenseFile}`;
-        const license = await retrieveLicenseFromRepo(licensePath);
+        const license = await retrieveLicenseFromRepo(licensePath, licenseMap, templates);
         if (license) {
           return { license, licensePath };
         }
@@ -143,8 +113,8 @@ const findLicense = async item => {
 };
 
 const licenseChecker = {
-  findAllLicenses: () => new Promise((resolve, reject) => {
-    exec('find node_modules -name "package.json"', async (err, stdout, stderr) => {
+  findAllLicenses: ({ projectPath }) => new Promise((resolve, reject) => {
+    exec(`find ${projectPath}/node_modules -name "package.json"`, async (err, stdout, stderr) => {
       if (err) {
         reject(err);
       }
