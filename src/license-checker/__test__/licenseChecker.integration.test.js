@@ -4,7 +4,7 @@ const licenseChecker = require('../licenseChecker');
 
 describe('licenseChecker', () => {
   test('should find licenses', async () => {
-    jest.setTimeout(60000);
+    jest.setTimeout(120000);
     const result = await licenseChecker.findAllLicenses();
 
     result.forEach(item => {
@@ -21,7 +21,6 @@ describe('licenseChecker', () => {
         license: 'MIT',
         licensePath: 'node_modules/slash/package.json',
         path: 'node_modules/slash/package.json',
-        repository: undefined,
         publisher: 'Sindre Sorhus',
         email: 'sindresorhus@gmail.com',
         version: '3.0.0',

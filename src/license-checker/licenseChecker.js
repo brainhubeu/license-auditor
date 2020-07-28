@@ -80,6 +80,8 @@ const retrieveLicenseFromReadme = filename => {
 };
 
 const findLicense = async item => {
+  // first, we check the "license" field which can be a string, an array or an object
+  // if the "license" field does not exist, we check the "licenses" field
   if (typeof item.license === 'object') {
     if (Array.isArray(item.license)) {
       return { license: item.license.map(x => x.type), licensePath: item.path };
