@@ -1,4 +1,4 @@
-const retrieveLicenseFromLicenseFileContent = require('../retrieveLicenseFromLicenseFileContent');
+const Retriever = require('../Retriever');
 
 describe('retrieveLicenseFromLicenseFileContent', () => {
   test('should find a mapped license', () => {
@@ -10,8 +10,9 @@ describe('retrieveLicenseFromLicenseFileContent', () => {
       'MIT license': 'MIT',
     };
     const templates = {};
+    const retriever = Retriever(licenseMap, templates);
 
-    const result = retrieveLicenseFromLicenseFileContent(content, licenseMap, templates);
+    const result = retriever.retrieveLicenseFromLicenseFileContent(content);
 
     expect(result).toBe('MIT');
   });
@@ -25,8 +26,9 @@ foo bar baz`;
     const templates = {
       'foo bar baz': 'FOO',
     };
+    const retriever = Retriever(licenseMap, templates);
 
-    const result = retrieveLicenseFromLicenseFileContent(content, licenseMap, templates);
+    const result = retriever.retrieveLicenseFromLicenseFileContent(content);
 
     expect(result).toBe('FOO');
   });
@@ -40,8 +42,9 @@ foo bar baz`;
     const templates = {
       'foo bar': 'FOO',
     };
+    const retriever = Retriever(licenseMap, templates);
 
-    const result = retrieveLicenseFromLicenseFileContent(content, licenseMap, templates);
+    const result = retriever.retrieveLicenseFromLicenseFileContent(content);
 
     expect(result).toBe(`custom license
 foo bar baz`);

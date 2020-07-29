@@ -5,9 +5,7 @@ const fs = require('fs');
 const bluebird = require('bluebird');
 const _ = require('lodash');
 
-const retrieveLicenseFromLicenseFile = require('./retrieveLicenseFromLicenseFile');
-const retrieveLicenseFromReadme = require('./retrieveLicenseFromReadme');
-const retrieveLicenseFromRepo = require('./retrieveLicenseFromRepo');
+const Retriever = require('./Retriever');
 
 const templates = {
   [fs.readFileSync(`${__dirname}/templates/BSD-2-Clause.txt`).toString()]: 'BSD 2-Clause',
@@ -50,6 +48,7 @@ const readmeFiles = [
 ];
 
 const findLicense = async item => {
+  const retriever = Retriever(licenseMap, templates);
   // first, we check the "license" field which can be a string, an array or an object
   // if the "license" field does not exist, we check the "licenses" field
   if (typeof item.license === 'object') {
@@ -79,7 +78,7 @@ const findLicense = async item => {
   for (const licenseFile of licenseFiles) {
     try {
       const licensePath = item.path.replace(/package\.json$/, licenseFile);
-      const license = retrieveLicenseFromLicenseFile(licensePath, licenseMap, templates);
+      const license = retriever.retrieveLicenseFromLicenseFile(licensePath);
       if (license) {
         return { license, licensePath };
       }
@@ -89,7 +88,7 @@ const findLicense = async item => {
   for (const readmeFile of readmeFiles) {
     try {
       const licensePath = item.path.replace(/package\.json$/, readmeFile);
-      const license = retrieveLicenseFromReadme(licensePath, licenseMap, templates);
+      const license = retriever.retrieveLicenseFromReadme(licensePath);
       if (license) {
         return { license, licensePath };
       }
@@ -101,7 +100,7 @@ const findLicense = async item => {
       const url = _.get(item, 'repository.url', item.repository);
       if (url) {
         const licensePath = `${url.replace(/github.com/, '/raw.githubusercontent.com').replace(/\.git$/, '').replace(/^git:\/\/\//, 'https://')}/master/${licenseFile}`;
-        const license = await retrieveLicenseFromRepo(licensePath, licenseMap, templates);
+        const license = await retriever.retrieveLicenseFromRepo(licensePath);
         if (license) {
           return { license, licensePath };
         }
