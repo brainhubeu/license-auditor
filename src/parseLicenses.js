@@ -8,22 +8,22 @@ const parseLicenses = ({
 }) => licenses => {
   licenses.forEach(licenseObj => {
     const isWhitelisted
-      = typeof licenseObj.license === 'object'
-        ? licenseObj.license.every(license =>
+      = typeof licenseObj.licenses === 'object'
+        ? licenseObj.licenses.every(license =>
           whitelistedLicenses.includes(license),
         )
-        : whitelistedLicenses.includes(licenseObj.license);
+        : whitelistedLicenses.includes(licenseObj.licenses);
 
     if (isWhitelisted) {
       return;
     }
 
     const isBlacklisted
-      = typeof licenseObj.license === 'object'
-        ? licenseObj.license.some(license =>
+      = typeof licenseObj.licenses === 'object'
+        ? licenseObj.licenses.some(license =>
           blacklistedLicenses.includes(license),
         )
-        : blacklistedLicenses.includes(licenseObj.license);
+        : blacklistedLicenses.includes(licenseObj.licenses);
 
     if (!isWhitelisted && !isBlacklisted) {
       return createWarnNotification(messages.moduleInfo(licenseObj));

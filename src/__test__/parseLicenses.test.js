@@ -3,7 +3,7 @@ const parse = require('../parseLicenses');
 const licenses
   = {
     MIT_APACHE: {
-      license: ['MIT', 'Apache'],
+      licenses: ['MIT', 'Apache'],
       repository: 'https://github.com/X',
       publisher: 'John Doe',
       email: 'john.doe@gmail.com',
@@ -12,7 +12,7 @@ const licenses
       version: '0.0.1',
     },
     BSD_AFL: {
-      license: ['BSD', 'AFL'],
+      licenses: ['BSD', 'AFL'],
       repository: 'https://github.com/Y',
       publisher: 'Foo Bar',
       email: 'foo.bar@gmail.com',

@@ -20,32 +20,32 @@ const findLicense = async item => {
   // if the "license" field does not exist, we check the "licenses" field
   if (typeof item.license === 'object') {
     if (Array.isArray(item.license)) {
-      return { license: item.license.map(x => x.type || x), licensePath: item.path };
+      return { licenses: item.license.map(x => x.type || x), licensePath: item.path };
     }
-    return { license: item.license.type, licensePath: item.path };
+    return { licenses: item.license.type, licensePath: item.path };
   }
   if (item.license && item.license !== 'SEE LICENSE IN LICENSE') {
-    return { license: licenseMap[item.license] || item.license, licensePath: item.path };
+    return { licenses: licenseMap[item.license] || item.license, licensePath: item.path };
   }
   if (item.licenses && typeof item.licenses === 'object') {
     if (Array.isArray(item.licenses)) {
-      return { license: item.licenses.map(x => x.type || x), licensePath: item.path };
+      return { licenses: item.licenses.map(x => x.type || x), licensePath: item.path };
     }
-    return { license: item.licenses.type, licensePath: item.path };
+    return { licenses: item.licenses.type, licensePath: item.path };
   }
   for (const entry of Object.entries(customLicenceFiles)) {
-    const [customLicenceFile, license] = entry;
+    const [customLicenceFile, licenses] = entry;
     const licensePath = item.path.replace(/package\.json$/, customLicenceFile);
     if (fs.existsSync(licensePath)) {
-      return { license, licensePath };
+      return { licenses, licensePath };
     }
   }
   for (const licenseFile of licenseFiles) {
     try {
       const licensePath = item.path.replace(/package\.json$/, licenseFile);
-      const license = retriever.retrieveLicenseFromLicenseFile(licensePath);
-      if (license) {
-        return { license, licensePath };
+      const licenses = retriever.retrieveLicenseFromLicenseFile(licensePath);
+      if (licenses) {
+        return { licenses, licensePath };
       }
     } catch (error) {
       console.error(error);
@@ -54,9 +54,9 @@ const findLicense = async item => {
   for (const readmeFile of readmeFiles) {
     try {
       const licensePath = item.path.replace(/package\.json$/, readmeFile);
-      const license = retriever.retrieveLicenseFromReadme(licensePath);
-      if (license) {
-        return { license, licensePath };
+      const licenses = retriever.retrieveLicenseFromReadme(licensePath);
+      if (licenses) {
+        return { licenses, licensePath };
       }
     } catch (error) {
       console.error(error);
@@ -67,16 +67,16 @@ const findLicense = async item => {
       const url = _.get(item, 'repository.url', item.repository);
       if (url) {
         const licensePath = `${url.replace(/github.com/, '/raw.githubusercontent.com').replace(/\.git$/, '').replace(/^git:\/\/\//, 'https://')}/master/${licenseFile}`;
-        const license = await retriever.retrieveLicenseFromRepo(licensePath);
-        if (license) {
-          return { license, licensePath };
+        const licenses = await retriever.retrieveLicenseFromRepo(licensePath);
+        if (licenses) {
+          return { licenses, licensePath };
         }
       }
     } catch (error) {
       console.error(error);
     }
   }
-  return { license: 'UNKNOWN', licensePath: 'UNKNOWN' };
+  return { licenses: 'UNKNOWN', licensePath: 'UNKNOWN' };
 };
 
 const licenseChecker = {
