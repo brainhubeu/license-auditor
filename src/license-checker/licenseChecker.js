@@ -54,7 +54,7 @@ const findLicense = async item => {
   // if the "license" field does not exist, we check the "licenses" field
   if (typeof item.license === 'object') {
     if (Array.isArray(item.license)) {
-      return { license: item.license.map(x => x.type), licensePath: item.path };
+      return { license: item.license.map(x => x.type || x), licensePath: item.path };
     }
     return { license: item.license.type, licensePath: item.path };
   }
@@ -64,7 +64,7 @@ const findLicense = async item => {
   if (item.licenses) {
     if (typeof item.licenses === 'object') {
       if (Array.isArray(item.licenses)) {
-        return { license: item.licenses.map(x => x.type), licensePath: item.path };
+        return { license: item.licenses.map(x => x.type || x), licensePath: item.path };
       }
       return { license: item.licenses.type, licensePath: item.path };
     }

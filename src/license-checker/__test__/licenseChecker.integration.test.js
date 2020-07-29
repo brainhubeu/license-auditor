@@ -181,11 +181,10 @@ describe('licenseChecker', () => {
       },
     ]));
 
-    // TODO fix this
     expect(result).toEqual(expect.arrayContaining([
       {
-        license: 'UNKNOWN',
-        licensePath: 'UNKNOWN',
+        license: 'MIT',
+        licensePath: 'src/license-checker/__test__/node_modules/indexof/Readme.md',
         path: 'src/license-checker/__test__/node_modules/indexof/package.json',
         version: '0.0.1',
       },
@@ -236,12 +235,11 @@ describe('licenseChecker', () => {
       },
     ]));
 
-    // TODO fix this
     expect(result).toEqual(expect.arrayContaining([
       {
         license: [
-          undefined,
-          undefined,
+          'MIT',
+          'Apache2',
         ],
         licensePath: 'src/license-checker/__test__/node_modules/pause-stream/package.json',
         path: 'src/license-checker/__test__/node_modules/pause-stream/package.json',

@@ -10,7 +10,7 @@ const retrieveLicenseFromReadme = (filename, licenseMap) => {
     return '';
   }
   const license = lines[licenseWordIndex + 1].trim();
-  return licenseMap[license];
+  return licenseMap[license] || license;
 };
 
 module.exports = retrieveLicenseFromReadme;
