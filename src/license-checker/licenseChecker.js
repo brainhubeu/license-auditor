@@ -27,13 +27,11 @@ const findLicense = async item => {
   if (item.license && item.license !== 'SEE LICENSE IN LICENSE') {
     return { license: licenseMap[item.license] || item.license, licensePath: item.path };
   }
-  if (item.licenses) {
-    if (typeof item.licenses === 'object') {
-      if (Array.isArray(item.licenses)) {
-        return { license: item.licenses.map(x => x.type || x), licensePath: item.path };
-      }
-      return { license: item.licenses.type, licensePath: item.path };
+  if (item.licenses && typeof item.licenses === 'object') {
+    if (Array.isArray(item.licenses)) {
+      return { license: item.licenses.map(x => x.type || x), licensePath: item.path };
     }
+    return { license: item.licenses.type, licensePath: item.path };
   }
   for (const entry of Object.entries(customLicenceFiles)) {
     const [customLicenceFile, license] = entry;
