@@ -50,6 +50,7 @@ const findLicense = async item => {
         return { license, licensePath };
       }
     } catch (error) {
+      console.error(error);
     }
   }
   for (const readmeFile of readmeFiles) {
@@ -60,6 +61,7 @@ const findLicense = async item => {
         return { license, licensePath };
       }
     } catch (error) {
+      console.error(error);
     }
   }
   for (const licenseFile of licenseFiles) {
@@ -73,6 +75,7 @@ const findLicense = async item => {
         }
       }
     } catch (error) {
+      console.error(error);
     }
   }
   return { license: 'UNKNOWN', licensePath: 'UNKNOWN' };
