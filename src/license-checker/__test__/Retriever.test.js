@@ -1,10 +1,10 @@
 const Retriever = require('../Retriever');
 
-describe('retrieveLicenseFromLicenseFileContent', () => {
+describe('Retriever.retrieveLicenseFromLicenseFileContent', () => {
   test('should find a mapped license', () => {
     const content = `
     MIT license
-    foo bar baz
+    MIT license content
 `;
     const licenseMap = {
       'MIT license': 'MIT',
@@ -18,35 +18,35 @@ describe('retrieveLicenseFromLicenseFileContent', () => {
   });
 
   test('should find a license by template', () => {
-    const content = `custom license
-foo bar baz`;
+    const content = `copyright by Alan Anderson
+BSD license content`;
     const licenseMap = {
       'MIT license': 'MIT',
     };
     const templates = {
-      'foo bar baz': 'FOO',
+      'BSD license content': 'BSD',
     };
     const retriever = Retriever(licenseMap, templates);
 
     const result = retriever.retrieveLicenseFromLicenseFileContent(content);
 
-    expect(result).toBe('FOO');
+    expect(result).toBe('BSD');
   });
 
   test('should return the license content if no known license is matched', () => {
     const content = `custom license
-foo bar baz`;
+custom license content`;
     const licenseMap = {
       'MIT license': 'MIT',
     };
     const templates = {
-      'foo bar': 'FOO',
+      'BSD license content': 'BSD',
     };
     const retriever = Retriever(licenseMap, templates);
 
     const result = retriever.retrieveLicenseFromLicenseFileContent(content);
 
     expect(result).toBe(`custom license
-foo bar baz`);
+custom license content`);
   });
 });
