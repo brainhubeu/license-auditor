@@ -201,6 +201,8 @@ describe('licenseChecker', () => {
       version: '0.2.3',
     },
   ])('.contains(%j)', expected => {
-    expect(result).toEqual(expect.arrayContaining([expected]));
+    const foundItem = result.find(item => item.path === expected.path);
+    expect(!!foundItem).toEqual(true);
+    expect(foundItem).toEqual(expected);
   });
 });
