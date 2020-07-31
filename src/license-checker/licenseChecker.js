@@ -5,7 +5,7 @@ const fs = require('fs');
 const bluebird = require('bluebird');
 const _ = require('lodash');
 
-const Retriever = require('./Retriever');
+const Retriever = require('./retriever');
 const {
   templates,
   licenseMap,

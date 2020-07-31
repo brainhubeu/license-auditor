@@ -1,4 +1,4 @@
-const Retriever = require('../Retriever');
+const Retriever = require('../retriever');
 
 describe('Retriever.retrieveLicenseFromLicenseFileContent', () => {
   test('should find a mapped license', () => {
