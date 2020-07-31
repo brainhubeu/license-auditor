@@ -142,6 +142,12 @@ This command will list fails for every dependency that was blacklisted in `black
 
 You can also create your own implementation of `warn` and `fail` methods behavior based on your needs. To do so, we recommend to copy [logging example file](./examples/logging_example.js) and change `fail` and `warn` methods implementations, remembering to preserve `msg` input parameter and not to add new parameters, as they will be of no use.
 
+# Contributing
+
+## Tests
+- in the `src/license-checker/__test__/` directory, run `yarn install --non-interactive --frozen-lockfile`
+- run `yarn test`
+
 ## About
 
 `license-auditor` was built using:
