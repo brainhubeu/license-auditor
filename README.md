@@ -145,7 +145,6 @@ You can also create your own implementation of `warn` and `fail` methods behavio
 # Contributing
 
 ## Tests
-- in the `src/license-checker/__test__/` directory, run `yarn install --non-interactive --frozen-lockfile`
 - run `yarn test`
 
 ## About

@@ -2,4 +2,3 @@
 .idea
 .coveralls.yml
 coverage/
-src/license-checker/__test__/node_modules/
