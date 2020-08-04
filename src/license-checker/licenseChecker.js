@@ -9,7 +9,6 @@ const Retriever = require('./retriever');
 const {
   templates,
   licenseMap,
-  customLicenceFiles,
   licenseFiles,
   readmeFiles,
 } = require('./constants');
@@ -32,13 +31,6 @@ const findLicense = async item => {
       return { licenses: item.licenses.map(x => x.type || x), licensePath: item.path };
     }
     return { licenses: item.licenses.type, licensePath: item.path };
-  }
-  for (const entry of Object.entries(customLicenceFiles)) {
-    const [customLicenceFile, licenses] = entry;
-    const licensePath = item.path.replace(/package\.json$/, customLicenceFile);
-    if (fs.existsSync(licensePath)) {
-      return { licenses, licensePath };
-    }
   }
   for (const licenseFile of licenseFiles) {
     try {

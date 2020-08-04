@@ -17,15 +17,16 @@ const licenseMap = {
   'This software is released under the MIT license:': 'MIT',
 };
 
-const customLicenceFiles = {
-  'LICENSE-MIT': 'MIT',
-};
-
 const licenseFiles = [
   'LICENSE',
+  'license',
   'LICENCE',
+  'licence',
   'LICENSE.md',
   'LICENCE.md',
+  'LICENSE.txt',
+  'LICENSE-MIT',
+  'LICENSE.BSD',
 ];
 
 const readmeFiles = [
@@ -43,7 +44,6 @@ const readmeFiles = [
 module.exports = {
   templates,
   licenseMap,
-  customLicenceFiles,
   licenseFiles,
   readmeFiles,
 };
