@@ -13,7 +13,31 @@ const {
   readmeFiles,
 } = require('./constants');
 
-const findLicense = async item => {
+const findDirPath = () => new Promise((resolve, reject) => {
+  exec('pwd', async (err, stdout, stderr) => {
+    if (err) {
+      reject(err);
+    }
+    if (stderr) {
+      console.error(stderr);
+    }
+    resolve(stdout.replace(/\n/, ''));
+  });
+});
+
+const findFile = (filename, dirPath) => new Promise((resolve, reject) => {
+  exec(`find ${dirPath} -iwholename ${dirPath}/${filename}`, async (err, stdout, stderr) => {
+    if (err) {
+      reject(err);
+    }
+    if (stderr) {
+      console.error(stderr);
+    }
+    resolve(stdout.split(`${dirPath}/`).join('').replace(/\n/, ''));
+  });
+});
+
+const findLicense = async (item, dirPath) => {
   const retriever = Retriever(licenseMap, templates);
   // first, we check the "license" field which can be a string, an array or an object
   // if the "license" field does not exist, we check the "licenses" field
@@ -34,7 +58,8 @@ const findLicense = async item => {
   }
   for (const licenseFile of licenseFiles) {
     try {
-      const licensePath = item.path.replace(/package\.json$/, licenseFile);
+      const basicPath = item.path.replace(/package\.json$/, licenseFile);
+      const licensePath = await findFile(basicPath, dirPath);
       const licenses = retriever.retrieveLicenseFromLicenseFile(licensePath);
       if (licenses) {
         return { licenses, licensePath };
@@ -45,7 +70,8 @@ const findLicense = async item => {
   }
   for (const readmeFile of readmeFiles) {
     try {
-      const licensePath = item.path.replace(/package\.json$/, readmeFile);
+      const basicPath = item.path.replace(/package\.json$/, readmeFile);
+      const licensePath = await findFile(basicPath, dirPath);
       const licenses = retriever.retrieveLicenseFromReadme(licensePath);
       if (licenses) {
         return { licenses, licensePath };
@@ -80,6 +106,7 @@ const licenseChecker = {
       if (stderr) {
         console.error(stderr);
       }
+      const dirPath = await findDirPath();
       const packages = stdout.split('\n')
         .filter(x => x)
         .filter(x => /node_modules\/[0-9A-Za-z-]*\/package\.json$/.test(x)
@@ -88,7 +115,7 @@ const licenseChecker = {
         .map(path => ({ path, ...JSON.parse(fs.readFileSync(path).toString()) }))
         .filter(item => item.name);
       const licenseData = await bluebird.mapSeries(data, async item => ({
-        ...(await findLicense(item)),
+        ...(await findLicense(item, dirPath)),
         path: item.path,
         repository: _.get(item, 'repository.url'),
         publisher: _.get(item, 'author.name', item.author),

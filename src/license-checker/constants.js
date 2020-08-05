@@ -19,9 +19,7 @@ const licenseMap = {
 
 const licenseFiles = [
   'LICENSE',
-  'license',
   'LICENCE',
-  'licence',
   'LICENSE.md',
   'LICENCE.md',
   'LICENSE.txt',
@@ -31,14 +29,8 @@ const licenseFiles = [
 
 const readmeFiles = [
   'README',
-  'readme',
-  'Readme',
   'README.md',
-  'readme.md',
-  'Readme.md',
   'README.markdown',
-  'readme.markdown',
-  'Readme.markdown',
 ];
 
 module.exports = {
