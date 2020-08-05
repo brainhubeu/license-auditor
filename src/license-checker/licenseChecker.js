@@ -33,7 +33,7 @@ const findFile = (filename, dirPath) => new Promise((resolve, reject) => {
     if (stderr) {
       console.error(stderr);
     }
-    resolve(stdout.split(`${dirPath}/`).join('').replace(/\n/, ''));
+    resolve(stdout.replace(`${dirPath}/`, '').replace(/\n/, ''));
   });
 });
 
