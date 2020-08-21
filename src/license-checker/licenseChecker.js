@@ -80,20 +80,6 @@ const findLicense = async (item, dirPath) => {
       console.error(error);
     }
   }
-  for (const licenseFile of licenseFiles) {
-    try {
-      const url = _.get(item, 'repository.url', item.repository);
-      if (url) {
-        const licensePath = `${url.replace(/github.com/, '/raw.githubusercontent.com').replace(/\.git$/, '').replace(/^git:\/\/\//, 'https://')}/master/${licenseFile}`;
-        const licenses = await retriever.retrieveLicenseFromRepo(licensePath);
-        if (licenses) {
-          return { licenses, licensePath };
-        }
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  }
   return { licenses: 'UNKNOWN', licensePath: 'UNKNOWN' };
 };
 

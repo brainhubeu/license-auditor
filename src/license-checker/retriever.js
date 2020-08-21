@@ -1,7 +1,5 @@
 const fs = require('fs');
 
-const request = require('superagent');
-
 function Retriever(licenseMap, templates) {
   function retrieveLicenseFromLicenseFileContent(content) {
     const lines = content.split('\n');
@@ -35,19 +33,9 @@ function Retriever(licenseMap, templates) {
     return licenseMap[license] || license;
   }
 
-  async function retrieveLicenseFromRepo(url) {
-    const content = await request(url.replace(/\/\/\//, '//'))
-      .set('Authorization', `token ${process.env.GITHUB_TOKEN}`)
-      .set('user-agent', 'bot')
-      .then(({ text }) => text);
-    const license = retrieveLicenseFromLicenseFileContent(content);
-    return license;
-  }
-
   return {
     retrieveLicenseFromLicenseFileContent,
     retrieveLicenseFromReadme,
-    retrieveLicenseFromRepo,
     retrieveLicenseFromLicenseFile,
   };
 }
