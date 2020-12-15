@@ -7,18 +7,18 @@ const licenses
       repository: 'https://github.com/X',
       publisher: 'John Doe',
       email: 'john.doe@gmail.com',
-      url: 'johndoe.com',
       path: 'node_modules/X',
-      licenseFile: 'node_modules/X/LICENSE',
+      licensePath: 'node_modules/X/LICENSE',
+      version: '0.0.1',
     },
     BSD_AFL: {
       licenses: ['BSD', 'AFL'],
       repository: 'https://github.com/Y',
       publisher: 'Foo Bar',
       email: 'foo.bar@gmail.com',
-      url: 'foobar.com',
       path: 'node_modules/Y',
-      licenseFile: 'node_modules/Y/LICENSE',
+      licensePath: 'node_modules/Y/LICENSE',
+      version: '0.0.2',
     },
   };
 
@@ -46,15 +46,16 @@ describe('parseLicenses', () => {
     };
     parse(parseLicensesDependencies)([licenses.MIT_APACHE, licenses.BSD_AFL]);
 
-    expect(parseLicensesDependencies.createWarnNotification).toHaveBeenCalledWith(
-      `MODULE : ${licenses.MIT_APACHE.path}
- | LICENSE : ${licenses.MIT_APACHE.licenses}
- | LICENSE_FILE : ${licenses.MIT_APACHE.licenseFile}
- | REPOSITORY: ${licenses.MIT_APACHE.repository}
- | PUBLISHER : ${licenses.MIT_APACHE.publisher}
- | EMAIL : ${licenses.MIT_APACHE.email}
- | URL : ${licenses.MIT_APACHE.url}
-`);
+    expect(parseLicensesDependencies.createWarnNotification.mock.calls[0]).toEqual([
+      `MODULE PATH: node_modules/X
+| LICENSE: MIT,Apache
+| LICENSE PATH: node_modules/X/LICENSE
+| REPOSITORY: https://github.com/X
+| PUBLISHER: John Doe
+| EMAIL: john.doe@gmail.com
+| VERSION: 0.0.1
+`,
+    ]);
   });
 
   test('should call createErrorNotification', () => {
@@ -67,15 +68,16 @@ describe('parseLicenses', () => {
     };
     parse(parseLicensesDependencies)([licenses.MIT_APACHE, licenses.BSD_AFL]);
 
-    expect(parseLicensesDependencies.createErrorNotification).toHaveBeenCalledWith(
-      `MODULE : ${licenses.BSD_AFL.path}
- | LICENSE : ${licenses.BSD_AFL.licenses}
- | LICENSE_FILE : ${licenses.BSD_AFL.licenseFile}
- | REPOSITORY: ${licenses.BSD_AFL.repository}
- | PUBLISHER : ${licenses.BSD_AFL.publisher}
- | EMAIL : ${licenses.BSD_AFL.email}
- | URL : ${licenses.BSD_AFL.url}
-`);
+    expect(parseLicensesDependencies.createErrorNotification.mock.calls[0]).toEqual([
+      `MODULE PATH: node_modules/Y
+| LICENSE: BSD,AFL
+| LICENSE PATH: node_modules/Y/LICENSE
+| REPOSITORY: https://github.com/Y
+| PUBLISHER: Foo Bar
+| EMAIL: foo.bar@gmail.com
+| VERSION: 0.0.2
+`,
+    ]);
   });
 
   test('should fail on missing licenses', () => {

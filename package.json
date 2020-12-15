@@ -9,7 +9,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "jest ./src/__test__/*"
+    "test": "jest ./src/__test__/* ./src/license-checker/__test__/*"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "license-checker": "^25.0.1"
+    "bluebird": "^3.7.2",
+    "lodash": "^4.17.19"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",

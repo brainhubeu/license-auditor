@@ -131,12 +131,16 @@ This command will list fails for every dependency that was blacklisted in `black
 
 You can also create your own implementation of `warn` and `fail` methods behavior based on your needs. To do so, we recommend to copy [logging example file](./examples/logging_example.js) and change `fail` and `warn` methods implementations, remembering to preserve `msg` input parameter and not to add new parameters, as they will be of no use.
 
+# Contributing
+
+## Tests
+- run `yarn test`
+
 ## About
 
 `license-auditor` was built using:
 
 - [Danger.js](https://danger.systems/js/)
-- [License-Checker](https://github.com/davglass/license-checker)
 
 `license-auditor` is maintained by [@jkthomas](https://github.com/jkthomas), [@nikodemwrona](https://github.com/NikodemWrona) and the Brainhub development team. It is funded by Brainhub and the names and logos for Brainhub are trademarks of Brainhub Sp. z o.o.. You can check other open-source projects supported/developed by our teammates [here](https://brainhub.eu/?utm_source=github).
 
