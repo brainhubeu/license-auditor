@@ -15,7 +15,6 @@
 
 <div align="center">
 
-  [![CircleCI](https://circleci.com/gh/brainhubeu/license-auditor.svg?style=svg)](https://circleci.com/gh/brainhubeu/license-auditor)
   [![Last commit](https://img.shields.io/github/last-commit/brainhubeu/license-auditor.svg)](https://github.com/brainhubeu/license-auditor/commits/master)
   [![license](https://img.shields.io/npm/l/@brainhubeu/license-auditor.svg)](https://github.com/brainhubeu/license-auditor/blob/master/LICENSE.md)
   [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
@@ -133,6 +132,13 @@ You can also create your own implementation of `warn` and `fail` methods behavio
 
 # Contributing
 
+# Releasing a new version of the package
+
+1. Create a new branch `release-<version>` e.g. `release-v1.1.1`.
+2. Run `yarn version` command and set a new version e.g `v1.1.1`. Follow [Semantic Versioning 2.0.0](https://semver.org/).
+3. Push your branch along with created tag e.g. `git push --set-upstream origin release-v1.1.1 --tags`.
+4. Open pull request.
+5. Once pull request is merged, create a new release on Github. Select existing tag e.g. `v1.1.1` and fill in release notes. A new version will be published using Github Actions :tada:.
 ## Tests
 - run `yarn test`
 
