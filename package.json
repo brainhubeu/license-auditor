@@ -1,6 +1,6 @@
 {
   "name": "@brainhubeu/license-auditor",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "License Auditor helps you track and validate licenses inside your project. Prevents unwanted law complications. License Auditor includes a step in your pipeline and creates notifications about potential problems with used licenses. At the moment, a notification means a comment.",
   "main": "index.js",
   "directories": {
@@ -28,6 +28,6 @@
     "coveralls": "^3.1.1",
     "eslint": "^7.32.0",
     "eslint-config-brainhub": "^1.14.0",
-    "jest": "^27.2.4"
+    "jest": "^27.3.1"
   }
 }
