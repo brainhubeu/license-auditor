@@ -1,26 +1,27 @@
 const parse = require('../parseLicenses');
 
-const licenses
-  = {
-    MIT_APACHE: {
-      licenses: ['MIT', 'Apache'],
-      repository: 'https://github.com/X',
-      publisher: 'John Doe',
-      email: 'john.doe@gmail.com',
-      path: 'node_modules/X',
-      licensePath: 'node_modules/X/LICENSE',
-      version: '0.0.1',
-    },
-    BSD_AFL: {
-      licenses: ['BSD', 'AFL'],
-      repository: 'https://github.com/Y',
-      publisher: 'Foo Bar',
-      email: 'foo.bar@gmail.com',
-      path: 'node_modules/Y',
-      licensePath: 'node_modules/Y/LICENSE',
-      version: '0.0.2',
-    },
-  };
+const licenses = {
+  MIT_APACHE: {
+    licenses: ['MIT', 'Apache'],
+    repository: 'https://github.com/X',
+    publisher: 'John Doe',
+    email: 'john.doe@gmail.com',
+    path: 'node_modules/X',
+    name: 'X',
+    licensePath: 'node_modules/X/LICENSE',
+    version: '0.0.1',
+  },
+  BSD_AFL: {
+    licenses: ['BSD', 'AFL'],
+    repository: 'https://github.com/Y',
+    publisher: 'Foo Bar',
+    email: 'foo.bar@gmail.com',
+    path: 'node_modules/Y',
+    name: 'Y',
+    licensePath: 'node_modules/Y/LICENSE',
+    version: '0.0.2',
+  },
+};
 
 describe('parseLicenses', () => {
   test('should not call createWarnNotification or createErrorNotification', () => {
@@ -78,6 +79,24 @@ describe('parseLicenses', () => {
 | VERSION: 0.0.2
 `,
     ]);
+  });
+
+  test.each([
+    { whitelistedLicenses: [], whitelistedModules: { X: ['MIT', 'Apache'] } },
+    { whitelistedLicenses: ['Apache'], whitelistedModules: { X: 'MIT' } },
+    { whitelistedLicenses: [], whitelistedModules: { X: 'any' } },
+  ])('should pass on whitelisted modules', ({ whitelistedLicenses, whitelistedModules }) => {
+    const parseLicensesDependencies = {
+      whitelistedLicenses,
+      blacklistedLicenses: [],
+      whitelistedModules,
+      createWarnNotification: jest.fn(),
+      createErrorNotification: jest.fn(),
+    };
+    parse(parseLicensesDependencies)([licenses.MIT_APACHE]);
+
+    expect(parseLicensesDependencies.createWarnNotification).not.toHaveBeenCalled();
+    expect(parseLicensesDependencies.createErrorNotification).not.toHaveBeenCalled();
   });
 
   test('should fail on missing licenses', () => {

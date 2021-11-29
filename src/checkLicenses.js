@@ -6,6 +6,7 @@ const parseLicensesFactory = require('./parseLicenses');
 const checkLicenses = async ({
   whitelistedLicenses,
   blacklistedLicenses,
+  whitelistedModules = {},
   projectPath,
   ciManager,
 }) => {
@@ -27,6 +28,7 @@ const checkLicenses = async ({
     const parse = parseLicensesFactory({
       whitelistedLicenses,
       blacklistedLicenses,
+      whitelistedModules,
       createWarnNotification,
       createErrorNotification,
     });
