@@ -12,12 +12,12 @@ const parseLicenses = ({
     if (whitelistedLicenseForModule === 'any') {
       return;
     }
-    const whitelistedLicensesForModule = typeof whitelistedLicenseForModule === 'object'
+    const whitelistedLicensesForModule = Array.isArray(whitelistedLicenseForModule)
       ? whitelistedLicenseForModule
       : [whitelistedLicenseForModule];
 
 
-    const isWhitelisted = typeof licenseObj.licenses === 'object'
+    const isWhitelisted = Array.isArray(licenseObj.licenses)
       ? licenseObj.licenses.every(license =>
         [...whitelistedLicenses, ...whitelistedLicensesForModule].includes(license),
       )
@@ -27,7 +27,7 @@ const parseLicenses = ({
       return;
     }
 
-    const isBlacklisted = typeof licenseObj.licenses === 'object'
+    const isBlacklisted = Array.isArray(licenseObj.licenses)
       ? licenseObj.licenses.some(license =>
         blacklistedLicenses.includes(license),
       )
