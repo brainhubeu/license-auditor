@@ -103,6 +103,7 @@ const licenseChecker = {
       const licenseData = await bluebird.mapSeries(data, async item => ({
         ...(await findLicense(item, dirPath)),
         path: item.path,
+        name: item.name,
         repository: _.get(item, 'repository.url'),
         publisher: _.get(item, 'author.name', item.author),
         email: _.get(item, 'author.email'),
