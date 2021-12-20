@@ -1,12 +1,12 @@
-const licenseChecker = require('license-checker');
-
+const licenseChecker = require('./license-checker');
 const messages = require('./messages');
 const ciNotification = require('./ciNotifications');
 const parseLicensesFactory = require('./parseLicenses');
 
-const checkLicenses = ({
+const checkLicenses = async ({
   whitelistedLicenses,
   blacklistedLicenses,
+  whitelistedModules = {},
   projectPath,
   ciManager,
 }) => {
@@ -18,12 +18,8 @@ const checkLicenses = ({
     return createErrorNotification(messages.noPathSpecified);
   }
 
-  licenseChecker.init({ start: projectPath }, (err, result) => {
-    if (err) {
-      return createErrorNotification(err);
-    }
-
-    const licenses = Object.values(result);
+  try {
+    const licenses = await licenseChecker.findAllLicenses({ projectPath });
 
     if (!licenses || licenses.length <= 0) {
       return createWarnNotification(messages.noLicenses);
@@ -32,12 +28,15 @@ const checkLicenses = ({
     const parse = parseLicensesFactory({
       whitelistedLicenses,
       blacklistedLicenses,
+      whitelistedModules,
       createWarnNotification,
       createErrorNotification,
     });
 
     parse(licenses);
-  });
+  } catch (err) {
+    return createErrorNotification(err);
+  }
 };
 
 module.exports = checkLicenses;

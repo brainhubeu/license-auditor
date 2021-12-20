@@ -15,7 +15,6 @@
 
 <div align="center">
 
-  [![CircleCI](https://circleci.com/gh/brainhubeu/license-auditor.svg?style=svg)](https://circleci.com/gh/brainhubeu/license-auditor)
   [![Last commit](https://img.shields.io/github/last-commit/brainhubeu/license-auditor.svg)](https://github.com/brainhubeu/license-auditor/commits/master)
   [![license](https://img.shields.io/npm/l/@brainhubeu/license-auditor.svg)](https://github.com/brainhubeu/license-auditor/blob/master/LICENSE.md)
   [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
@@ -131,12 +130,23 @@ This command will list fails for every dependency that was blacklisted in `black
 
 You can also create your own implementation of `warn` and `fail` methods behavior based on your needs. To do so, we recommend to copy [logging example file](./examples/logging_example.js) and change `fail` and `warn` methods implementations, remembering to preserve `msg` input parameter and not to add new parameters, as they will be of no use.
 
+# Contributing
+
+# Releasing a new version of the package
+
+1. Create a new branch `release-<version>` e.g. `release-v1.1.1`.
+2. Run `yarn version` command and set a new version e.g `v1.1.1`. Follow [Semantic Versioning 2.0.0](https://semver.org/).
+3. Push your branch along with created tag e.g. `git push --set-upstream origin release-v1.1.1 --tags`.
+4. Open pull request.
+5. Once pull request is merged, create a new release on Github. Select existing tag e.g. `v1.1.1` and fill in release notes. A new version will be published using Github Actions :tada:.
+## Tests
+- run `yarn test`
+
 ## About
 
 `license-auditor` was built using:
 
 - [Danger.js](https://danger.systems/js/)
-- [License-Checker](https://github.com/davglass/license-checker)
 
 `license-auditor` is maintained by [@jkthomas](https://github.com/jkthomas), [@nikodemwrona](https://github.com/NikodemWrona) and the Brainhub development team. It is funded by Brainhub and the names and logos for Brainhub are trademarks of Brainhub Sp. z o.o.. You can check other open-source projects supported/developed by our teammates [here](https://brainhub.eu/?utm_source=github).
 
