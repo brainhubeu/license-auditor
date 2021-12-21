@@ -7,7 +7,7 @@ const blacklist = require('./license/blacklist');
 licenseAuditor({
   whitelistedLicenses: whitelist,
   blacklistedLicenses: blacklist,
-  projectPath: `.`,
+  projectPath: process.env.PROJECT_PATH,
   ciManager: {
     warn,
     fail,
