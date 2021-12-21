@@ -46,7 +46,7 @@ jobs:
       - name: Check licenses
         run: |
           yarn add -D danger
-          yarn danger ci --failOnErrors --verbose --id LicenceAuditor
+          yarn danger ci --failOnErrors --verbose --id LicenceAuditorTestCheck
         env:
           DANGER_GITHUB_API_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
