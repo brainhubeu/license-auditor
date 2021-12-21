@@ -45,7 +45,7 @@ or Yarn:
 yarn add @brainhubeu/license-auditor
 ```
 
-In the next step, copy `license` directory with `licenses.js`, `blacklist.js`, and `whitelist.js` files. The first one contains a full list of all currently acknowledged, depreciated, and exceptional software licenses. To whitelist or blacklist the license, you must copy selected licenses from the main file into them.
+In the next step, copy `license-template` directory with `licenses.js`, `blacklist.js`, and `whitelist.js` files, naming it `license` in your project. The first one contains a full list of all currently acknowledged, depreciated, and exceptional software licenses. To whitelist or blacklist the license, you must copy selected licenses from the main file into them.
 
 Whitelisting stops **License Auditor** from analyzing and displaying any notifications for a given package with whitelisted license type. Blacklisting a license leads to the generation of fail notification log or causes CI job to fail if the blacklisted license is found, which prevents the developer from merging unwanted dependencies into the destination branch. Any license that is included in neither `blacklist.js` nor `whitelist.js`, but is found during packages analyze or merge request, becomes a warning, which developer should address during merge process or further development.
 
