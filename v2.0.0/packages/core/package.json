@@ -1,0 +1,16 @@
+{
+  "name": "@brainhubeu/license-auditor-core",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "typecheck": "tsc --noEmit --incremental false",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "devDependencies": {
+    "@license-auditor/eslint-config": "*",
+    "@license-auditor/typescript-config": "*",
+    "eslint": "8.57.0",
+    "typescript": "5.6.2"
+  }
+}
