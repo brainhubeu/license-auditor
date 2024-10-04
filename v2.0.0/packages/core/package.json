@@ -3,9 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "typecheck": "tsc --noEmit --incremental false",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "typecheck": "tsc --noEmit --incremental false"
   },
   "devDependencies": {
     "@license-auditor/eslint-config": "*",
