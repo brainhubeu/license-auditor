@@ -29,10 +29,7 @@
   "engines": {
     "node": ">=20"
   },
-  "workspaces": [
-    "packages/*",
-    "tooling/*"
-  ],
+  "workspaces": ["packages/*", "tooling/*"],
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
