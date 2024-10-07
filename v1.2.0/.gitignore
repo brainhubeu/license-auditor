@@ -1,7 +1,0 @@
-/node_modules/
-.idea
-.coveralls.yml
-coverage/
-node_modules
-build
-dist
