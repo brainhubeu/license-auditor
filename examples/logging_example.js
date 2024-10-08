@@ -3,6 +3,7 @@ const licenseAuditor = require('@brainhubeu/license-auditor');
 
 const whitelist = require('./license/whitelist');
 const blacklist = require('./license/blacklist');
+const modules = require('./license/modules');
 
 const warn = msg => {
   // eslint-disable-next-line no-console
@@ -17,6 +18,7 @@ const fail = msg => {
 licenseAuditor({
   whitelistedLicenses: whitelist,
   blacklistedLicenses: blacklist,
+  whitelistedModules: modules,
   projectPath: process.env.PROJECT_PATH,
   ciManager: {
     warn,
