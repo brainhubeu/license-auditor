@@ -7,7 +7,7 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "ignore": []
+    "ignore": ["dist", "build"]
   },
   "formatter": {
     "enabled": true,
@@ -24,8 +24,11 @@
         "noExcessiveCognitiveComplexity": "error",
         "useSimplifiedLogicExpression": "error"
       },
+      "suspicious": {
+        "noAssignInExpressions": "off"
+      },
       "style": {
-        "noDefaultExport": "error",
+        "noDefaultExport": "off",
         "useBlockStatements": "error",
         "useDefaultSwitchClause": "error",
         "useFilenamingConvention": {
@@ -38,7 +41,8 @@
         "useNamingConvention": "error",
         "useShorthandArrayType": "error",
         "useShorthandAssign": "error",
-        "useSingleCaseStatement": "error"
+        "useSingleCaseStatement": "error",
+        "noCommaOperator": "off"
       }
     }
   },
