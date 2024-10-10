@@ -2,3 +2,6 @@
 .idea
 .coveralls.yml
 coverage/
+node_modules
+build
+dist
