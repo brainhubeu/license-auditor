@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/audit-licenses.js",
     "typecheck": "tsc --noEmit --incremental false"
   },
   "devDependencies": {
     "@license-auditor/eslint-config": "*",
     "@license-auditor/typescript-config": "*",
-    "eslint": "8.57.0",
     "typescript": "5.6.2"
   }
 }
