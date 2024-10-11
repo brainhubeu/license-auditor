@@ -1,5 +1,11 @@
 {
   "extends": "@license-auditor/typescript-config/base.json",
   "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "build"],
+  "compilerOptions": {
+    "moduleResolution": "Node16",
+    "module": "Node16",
+    "outDir": "./build",
+    "target": "ES2022"
+  }
 }

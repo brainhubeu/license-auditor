@@ -2,12 +2,18 @@
   "name": "@brainhubeu/license-auditor-cli",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "typecheck": "tsc --noEmit --incremental false"
   },
   "devDependencies": {
     "@license-auditor/eslint-config": "*",
     "@license-auditor/typescript-config": "*",
-    "typescript": "5.6.2"
+    "typescript": "5.6.2",
+    "tsx": "4.19.1"
+  },
+  "dependencies": {
+    "@commander-js/extra-typings": "12.1.0",
+    "commander": "12.1.0"
   }
 }
