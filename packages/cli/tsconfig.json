@@ -3,8 +3,8 @@
   "include": ["**/*.ts", "**/*.tsx", "src/**/*"],
   "exclude": ["node_modules", "./build/**/*"],
   "compilerOptions": {
-    "moduleResolution": "node16",
-    "module": "node16",
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext",
     "outDir": "./build",
     "sourceMap": true,
     "jsx": "preserve",
