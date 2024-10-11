@@ -1,5 +1,7 @@
 import { checkLicenseStatus, type LicenseStatus } from "./check-license-status";
+import { extractPackageName, readPackageJson } from "./file-utils";
 import { findLicense } from "./find-license";
+import { getChildDependencies } from "./get-child-dependencies";
 
 interface PackageInfo {
   package: string;
@@ -17,15 +19,6 @@ function auditLicenses(packagePaths: string[]) {
     disallowed: 0,
     unknown: 0,
   };
-  function extractPackageName(packagePath: string): string {
-    // todo
-    return packagePath;
-  }
-
-  function getChildDependencies(packagePath: string): string[] {
-    // todo
-    return [];
-  }
 
   function processPackage(packagePath: string) {
     const packageName = extractPackageName(packagePath);
@@ -33,6 +26,7 @@ function auditLicenses(packagePaths: string[]) {
     if (resultMap.has(packageName)) {
       return;
     }
+    const packageJson = readPackageJson(packagePath);
 
     const { license, licensePath } = findLicense(packagePath);
 
@@ -51,8 +45,8 @@ function auditLicenses(packagePaths: string[]) {
     summary[status] += 1;
 
     // process child dependencies only if the parent package's license is allowed
-    if (status === "allowed") {
-      const childDependencies = getChildDependencies(packagePath);
+    if (status === "allowed" && packageJson) {
+      const childDependencies = getChildDependencies(packageJson, packagePath);
       for (const childPath of childDependencies) {
         processPackage(childPath);
       }
