@@ -24,9 +24,6 @@
         "noExcessiveCognitiveComplexity": "error",
         "useSimplifiedLogicExpression": "error"
       },
-      "suspicious": {
-        "noAssignInExpressions": "off"
-      },
       "style": {
         "noDefaultExport": "off",
         "useBlockStatements": "error",
@@ -41,11 +38,22 @@
         "useNamingConvention": "error",
         "useShorthandArrayType": "error",
         "useShorthandAssign": "error",
-        "useSingleCaseStatement": "error",
-        "noCommaOperator": "off"
+        "useSingleCaseStatement": "error"
       }
     }
   },
+  "overrides": [
+    {
+      "include": ["packages/pastel-cli"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noDefaultExport": "off"
+          }
+        }
+      }
+    }
+  ],
   "javascript": {
     "formatter": {
       "quoteStyle": "double"
