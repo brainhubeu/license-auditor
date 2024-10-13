@@ -86,7 +86,7 @@ const licenses = [
   },
   {
     modulePath: "./node_modules/recharts",
-    license: "MIT",
+    license: "ISC",
     licensePath: "./node_modules/recharts/package.json",
   },
   {

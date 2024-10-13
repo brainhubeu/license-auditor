@@ -1,4 +1,4 @@
-import { Box, Text } from "ink";
+import { Box, Static, Text } from "ink";
 import React, { useState, useEffect } from "react";
 import zod from "zod";
 import { licenses } from "../mocks.js";
@@ -16,52 +16,72 @@ const process = () =>
   new Promise((resolve) => {
     setTimeout(() => {
       resolve(null);
-    }, 2000);
+    }, 5000);
   });
 
 export default function Index({ options }: Props) {
-  const [{ working, error }, setState] = useState({
-    working: true,
-    error: false,
-  });
+  const [working, setWorking] = useState(true);
+
+  const [processed, setProcessed] = useState<
+    {
+      modulePath: string;
+      license: string;
+      licensePath: string;
+      error: boolean;
+    }[]
+  >([]);
 
   useEffect(() => {
-    process()
-      .then(() => setState({ working: false, error: false }))
-      .catch(() => setState({ working: false, error: true }));
+    setWorking(true);
+
+    for (const license of licenses) {
+      setTimeout(
+        () =>
+          setProcessed((existing) => [
+            ...existing,
+            {
+              modulePath: license.modulePath,
+              license: license.license,
+              licensePath: license.licensePath,
+              error: license.license !== "MIT",
+            },
+          ]),
+        500
+      );
+    }
+
+    setWorking(false);
   }, []);
 
-  if (working) {
+  if (working && !options.verbose) {
     return (
       <Box>
         <Spinner />
-        <Text>Loading...</Text>
+        <Text>Processing licenses...</Text>
       </Box>
     );
-  }
-
-  if (error) {
-    return <Text color="red">Encountered an error</Text>;
   }
 
   return (
     <Box flexDirection="column">
       {options.verbose ? (
-        licenses.map((license) => (
-          <Box
-            flexDirection="column"
-            marginBottom={1}
-            borderStyle="single"
-            borderColor="white"
-          >
-            <Text>{license.modulePath}</Text>
-            <Text>{license.license}</Text>
-            <Text>{license.licensePath}</Text>
-          </Box>
-        ))
+        <Static items={processed}>
+          {(item) => (
+            <Box
+              key={item.modulePath}
+              flexDirection="column"
+              borderStyle="single"
+              borderColor={item.error ? "red" : "white"}
+            >
+              <Text>Module path: {item.modulePath}</Text>
+              <Text>License: {item.license}</Text>
+              <Text>License path: {item.licensePath}</Text>
+            </Box>
+          )}
+        </Static>
       ) : (
         <Box borderStyle="single" borderColor="white">
-          <Text>Licenses found: {licenses.length}</Text>
+          <Text>Licenses found: {processed.length}</Text>
         </Box>
       )}
     </Box>
