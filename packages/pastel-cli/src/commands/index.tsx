@@ -1,8 +1,8 @@
 import { Box, Static, Text } from "ink";
 import React, { useState, useEffect } from "react";
 import zod from "zod";
-import { licenses } from "../mocks.js";
 import Spinner from "../components/spinner.js";
+import { licenses } from "../mocks.js";
 
 export const options = zod.object({
   verbose: zod.boolean().default(false).describe("Verbose output"),
@@ -46,7 +46,7 @@ export default function Index({ options }: Props) {
               error: license.license !== "MIT",
             },
           ]),
-        500
+        500,
       );
     }
 

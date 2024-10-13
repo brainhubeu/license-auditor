@@ -9,9 +9,7 @@
     "dev": "tsc --watch",
     "cli": "tsx src/cli.tsx"
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "dependencies": {
     "ink": "5.0.1",
     "pastel": "3.0.0",
@@ -37,8 +35,6 @@
       "ts": "module",
       "tsx": "module"
     },
-    "nodeArguments": [
-      "--loader=ts-node/esm"
-    ]
+    "nodeArguments": ["--loader=ts-node/esm"]
   }
 }
