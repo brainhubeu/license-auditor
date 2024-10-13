@@ -7,10 +7,8 @@ program.name("commander-poc").description("Commander proof of concept");
 
 program
   .command("do-something")
-  .description("Split a string into substrings and display as a JSON")
-  .argument("<string>", "string to split")
-  .option("--first", "display just the first substring")
-  .option("-s, --separator <char>", "separator character", ",")
+  .description("Process provided licenses")
+  .option("--verbose", "display just the first substring")
   .action(handler);
 
 program.parse();
