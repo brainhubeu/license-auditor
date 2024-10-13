@@ -25,7 +25,6 @@
         "useSimplifiedLogicExpression": "error"
       },
       "style": {
-        "noDefaultExport": "off",
         "useBlockStatements": "error",
         "useDefaultSwitchClause": "error",
         "useFilenamingConvention": {
