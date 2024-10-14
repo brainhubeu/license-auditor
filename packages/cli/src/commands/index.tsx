@@ -12,13 +12,6 @@ type Props = {
   options: zod.infer<typeof options>;
 };
 
-const process = () =>
-  new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(null);
-    }, 5000);
-  });
-
 export default function Index({ options }: Props) {
   const [working, setWorking] = useState(true);
 
@@ -64,7 +57,7 @@ export default function Index({ options }: Props) {
 
   return (
     <Box flexDirection="column">
-      {options.verbose ? (
+      {options.verbose && (
         <Static items={processed}>
           {(item) => (
             <Box
@@ -79,11 +72,22 @@ export default function Index({ options }: Props) {
             </Box>
           )}
         </Static>
-      ) : (
-        <Box borderStyle="single" borderColor="white">
+      )}
+      <Box flexDirection="column" borderStyle="single" borderColor="white">
+        <Box>
           <Text>Licenses found: {processed.length}</Text>
         </Box>
-      )}
+        <Box>
+          <Text>
+            Valid licenses: {processed.filter((item) => !item.error).length}
+          </Text>
+        </Box>
+        <Box>
+          <Text color="red">
+            Prohibited licenses: {processed.filter((item) => item.error).length}
+          </Text>
+        </Box>
+      </Box>
     </Box>
   );
 }
