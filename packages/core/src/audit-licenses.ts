@@ -2,11 +2,9 @@ import { checkLicenseStatus, type LicenseStatus } from "./check-license-status";
 import { extractPackageName, readPackageJson } from "./file-utils";
 import { findLicense } from "./license-finder/find-license";
 
-interface PackageInfo {
+interface PackageInfo extends LicenseWithPath {
   package: string;
   path: string;
-  license: License;
-  licensePath: string | undefined;
   status: LicenseStatus;
 }
 

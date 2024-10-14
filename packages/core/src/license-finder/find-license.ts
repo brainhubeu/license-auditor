@@ -1,22 +1,32 @@
-import * as fs from "node:fs";
 import * as path from "node:path";
 import { findLicenseInPackageJson } from "./find-license-in-package-json";
+import { findLicenseInLicenseFile } from "./find-license-in-license-file";
+import { findLicenseInReadme } from "./find-license-in-readme";
 
 export function findLicense(
   packageJson: object,
   packagePath: string,
-): {
-  license?: License;
-  licensePath?: string | undefined;
-} {
-  let license = findLicenseInPackageJson(packageJson);
-
-  if (license) {
+): LicenseWithPath {
+  const licenseFromPackageJson = findLicenseInPackageJson(packageJson);
+  if (licenseFromPackageJson) {
     return {
-      license,
+      license: licenseFromPackageJson,
       licensePath: path.join(packagePath, "package.json"),
     };
   }
 
-  return {};
+  const licenseFromLicenseFile = findLicenseInLicenseFile();
+  if (licenseFromLicenseFile) {
+    return licenseFromLicenseFile;
+  }
+
+  const licenseFromReadmeFile = findLicenseInReadme();
+  if (licenseFromReadmeFile) {
+    return licenseFromReadmeFile;
+  }
+
+  return {
+    license: undefined,
+    licensePath: undefined,
+  };
 }
