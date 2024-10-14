@@ -7,7 +7,7 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "ignore": []
+    "ignore": ["dist", "build"]
   },
   "formatter": {
     "enabled": true,
@@ -42,6 +42,18 @@
       }
     }
   },
+  "overrides": [
+    {
+      "include": ["packages/cli"],
+      "linter": {
+        "rules": {
+          "style": {
+            "noDefaultExport": "off"
+          }
+        }
+      }
+    }
+  ],
   "javascript": {
     "formatter": {
       "quoteStyle": "double"
