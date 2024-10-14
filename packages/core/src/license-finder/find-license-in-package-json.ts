@@ -25,12 +25,7 @@ function retrieveLicenseByField<T extends string>(
   if (typeof packageJson[licenseField] === "object") {
     if (Array.isArray(packageJson[licenseField])) {
       return packageJson[licenseField]
-        .map((l) => {
-          if (isValidLicense(l)) {
-            return l;
-          }
-          return retrieveLicenseFromTypeField(l);
-        })
+        .map((l) => (isValidLicense(l) ? l : retrieveLicenseFromTypeField(l)))
         .filter(Boolean);
     }
     return retrieveLicenseFromTypeField(packageJson[licenseField]);
