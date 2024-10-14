@@ -1,12 +1,12 @@
 import { checkLicenseStatus, type LicenseStatus } from "./check-license-status";
 import { extractPackageName, readPackageJson } from "./file-utils";
-import { findLicense } from "./find-license";
+import { findLicense } from "./license-finder/find-license";
 import { getChildDependencies } from "./get-child-dependencies";
 
 interface PackageInfo {
   package: string;
   path: string;
-  license: string | undefined;
+  license: License;
   licensePath: string | undefined;
   status: LicenseStatus;
 }
@@ -28,7 +28,7 @@ function auditLicenses(packagePaths: string[]) {
     }
     const packageJson = readPackageJson(packagePath);
 
-    const { license, licensePath } = findLicense(packagePath);
+    const { license, licensePath } = findLicense(packageJson, packagePath);
 
     const status = checkLicenseStatus(license);
 
@@ -72,7 +72,6 @@ const packagePaths: string[] = [
   "/Users/angelikajeziorska/Documents/projects/license-auditor/node_modules/husky",
   "/Users/angelikajeziorska/Documents/projects/license-auditor/node_modules/turbo",
   "/Users/angelikajeziorska/Documents/projects/license-auditor/node_modules/typescript",
-  "/Users/angelikajeziorska/Documents/projects/license-auditor/node_modules/@license-auditor/eslint-config",
   "/Users/angelikajeziorska/Documents/projects/license-auditor/node_modules/@total-typescript/ts-reset",
 ];
 

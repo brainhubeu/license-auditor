@@ -58,5 +58,17 @@
     "formatter": {
       "quoteStyle": "double"
     }
-  }
+  },
+  "overrides": [
+    {
+      "include": ["packages/core/**"],
+      "linter": {
+        "rules": {
+          "nursery": {
+            "useExplicitFunctionReturnType": "error"
+          }
+        }
+      }
+    }
+  ]
 }
