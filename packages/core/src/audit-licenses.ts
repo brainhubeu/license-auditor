@@ -1,4 +1,4 @@
-import { checkLicenseStatus, type LicenseStatus } from "./check-license-status";
+import { type LicenseStatus, checkLicenseStatus } from "./check-license-status";
 import { extractPackageName, readPackageJson } from "./file-utils";
 import { findLicense } from "./license-finder/find-license";
 

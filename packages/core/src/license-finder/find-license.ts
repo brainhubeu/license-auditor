@@ -1,6 +1,6 @@
 import * as path from "node:path";
-import { findLicenseInPackageJson } from "./find-license-in-package-json";
 import { findLicenseInLicenseFile } from "./find-license-in-license-file";
+import { findLicenseInPackageJson } from "./find-license-in-package-json";
 import { findLicenseInReadme } from "./find-license-in-readme";
 
 export function findLicense(
