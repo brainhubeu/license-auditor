@@ -5,12 +5,13 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
-    "start": "node dist/audit-licenses.js",
+    "start": "tsx src/audit-licenses.ts",
     "typecheck": "tsc --noEmit --incremental false"
   },
   "devDependencies": {
     "@license-auditor/eslint-config": "*",
     "@license-auditor/typescript-config": "*",
+    "tsx": "4.19.1",
     "typescript": "5.6.2"
   }
 }
