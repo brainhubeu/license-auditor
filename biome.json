@@ -25,6 +25,7 @@
         "useSimplifiedLogicExpression": "error"
       },
       "style": {
+        "noDefaultExport": "error",
         "useBlockStatements": "error",
         "useDefaultSwitchClause": "error",
         "useFilenamingConvention": {
@@ -43,7 +44,7 @@
   },
   "overrides": [
     {
-      "include": ["packages/pastel-cli"],
+      "include": ["packages/cli"],
       "linter": {
         "rules": {
           "style": {
