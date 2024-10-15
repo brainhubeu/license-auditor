@@ -1,11 +1,8 @@
-import { execSync } from "child_process";
+import { execCommand } from "./exec-command";
 
 export function detectNpmDependencies(projectRoot: string): string[] {
   try {
-    const output = execSync("npm ls --all -p", {
-      cwd: projectRoot,
-      encoding: "utf-8",
-    });
+    const output = execCommand("npm ls --all -p", projectRoot);
 
     // Remove the first line, as npm always prints the project root first
     const lines = output.split("\n").slice(1);
@@ -16,7 +13,6 @@ export function detectNpmDependencies(projectRoot: string): string[] {
 
     return dependencyPaths;
   } catch (error) {
-    console.error("Error detecting npm dependencies:", error);
-    return [];
+    throw new Error("Error detecting npm dependencies");
   }
 }

@@ -1,4 +1,4 @@
-import { execSync } from "child_process";
+import { execCommand } from "./exec-command";
 
 interface PnpmDependency {
   from: string;
@@ -19,11 +19,7 @@ interface PnpmListDependenciesOutput {
 
 export function detectPnpmDependencies(projectRoot: string): string[] {
   try {
-    const output = execSync("pnpm ls --json", {
-      cwd: projectRoot,
-      encoding: "utf-8",
-    });
-
+    const output = execCommand("pnpm ls --json", projectRoot);
     const dependenciesList = JSON.parse(output) as PnpmListDependenciesOutput[];
 
     const dependencyPaths: string[] = [];
@@ -45,19 +41,9 @@ export function detectPnpmDependencies(projectRoot: string): string[] {
 
     return dependencyPaths;
   } catch (error) {
-    console.error("Error detecting pnpm dependencies:", error);
-    return [];
+    throw new Error("Error detecting pnpm dependencies");
   }
 }
 
-function extractDependencyPaths(
-  packageInfo: Record<string, PnpmDependency>
-): string[] {
-  const paths: string[] = [];
-
-  for (const dep of Object.values(packageInfo)) {
-    paths.push(dep.path);
-  }
-
-  return paths;
-}
+const extractDependencyPaths = (dependencies: Record<string, PnpmDependency>) =>
+  Object.values(dependencies).map((dep) => dep.path);

@@ -1,19 +1,15 @@
 import fs from "fs";
 import path from "path";
 
-// I'll be happy to hear suggestion on where exactly to put this type
-// I'm sure Brainhub has some guidelines on this, as opposed to just a single dev's opinion
 export type SupportedPackageManager = "npm" | "pnpm" | "yarn-classic";
 
 export function findPackageManager(
   projectRoot: string
 ): SupportedPackageManager {
-  // Check for npm
   if (fs.existsSync(path.join(projectRoot, "package-lock.json"))) {
     return "npm";
   }
 
-  // Check for Yarn Classic
   if (fs.existsSync(path.join(projectRoot, "yarn.lock"))) {
     const packageJson = JSON.parse(
       fs.readFileSync(path.join(projectRoot, "package.json"), "utf-8")
@@ -29,7 +25,6 @@ export function findPackageManager(
     );
   }
 
-  // Check for pnpm
   if (fs.existsSync(path.join(projectRoot, "pnpm-lock.yaml"))) {
     return "pnpm";
   }
