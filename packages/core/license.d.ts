@@ -1,3 +1,5 @@
+import type { licenses } from "./src/license/licenses";
+
 declare global {
   type AvailableLicense = (typeof licenses)[number];
   type License = AvailableLicense | AvailableLicense[] | undefined;
@@ -6,5 +8,3 @@ declare global {
     licensePath: string | undefined;
   }
 }
-
-export {};
