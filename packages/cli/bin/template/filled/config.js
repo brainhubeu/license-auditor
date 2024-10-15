@@ -439,4 +439,55 @@ const blacklist = [
   "UNLICENSED",
 ];
 
-module.exports = blacklist;
+/* Provide a list of whitelisted licenses for the project below */
+const whitelist = [
+  "(Apache-2.0 OR MPL-1.1)",
+  "(BSD-2-Clause OR WTFPL)",
+  "(CC-BY-4.0 AND MIT)",
+  "(MIT AND BSD-3-Clause)",
+  "(MIT AND CC-BY-3.0)",
+  "(MIT AND Zlib)",
+  "(MIT OR Apache-2.0)",
+  "(MIT OR CC0-1.0)",
+  "(Unlicense OR Apache-2.0)",
+  "(WTFPL OR MIT)",
+  "0BSD",
+  "AFLv2.1",
+  "Apache 2.0",
+  "Apache License, Version 2.0",
+  "Apache-2.0",
+  "Apache2",
+  "BSD-2-Clause",
+  "BSD-3-Clause OR MIT",
+  "BSD-3-Clause",
+  "CC-BY-3.0",
+  "CC-BY-4.0",
+  "CC0-1.0",
+  "ISC",
+  "MIT",
+  "MIT,Apache2",
+  "MPL-1.1",
+  "Unlicense",
+  "WTFPL",
+  "Zlib",
+];
+
+/* Provide a list of whitelisted modules below. */
+
+const modules = {
+  /* Examples: */
+  /* Provide a module name as key and license type as value. */
+  // 'module-name': 'license-type',
+  /* You should use the value UNLICENSED for internal module. */
+  // '@my-company/my-module': 'UNLICENSED',
+  /* Providing a value protects you against unexpected changes of license
+         in the package. */
+  // 'some-module-i-bought': 'Commercial',
+  /* The value may also be an array if the package has multiple */
+  // 'another-module': ['MIT', 'Apache-2.0'],
+  /* Providing any as value matches any license (this module will always
+         be whitelisted). */
+  // 'another-module': 'any',
+};
+
+module.exports = { blacklist, whitelist, modules };

@@ -1,5 +1,10 @@
-/* Provide a list of whitelisted modules below. */
+/* Provide a list of blacklisted licenses for the project below */
+const blacklist = [];
 
+/* Provide a list of whitelisted licenses for the project below */
+const whitelist = [];
+
+/* Provide a list of whitelisted modules below. */
 const modules = {
   /* Examples: */
   /* Provide a module name as key and license type as value. */
@@ -16,4 +21,4 @@ const modules = {
   // 'another-module': 'any',
 };
 
-module.exports = modules;
+module.exports = { blacklist, whitelist, modules };
