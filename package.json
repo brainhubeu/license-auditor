@@ -29,6 +29,9 @@
   "engines": {
     "node": ">=20"
   },
+  "bin": {
+    "license-auditor": "./packages/cli/bin/index.cjs"
+  },
   "packageManager": "npm@10.8.2",
   "workspaces": ["packages/*", "tooling/*"],
   "config": {
