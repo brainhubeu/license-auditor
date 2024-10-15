@@ -6,6 +6,7 @@ import {
   checkLicenseStatus,
   tempConfig,
 } from "./check-license-status";
+import { findDependencies } from "./dependency-finder/find-dependencies";
 import { extractPackageName, readPackageJson } from "./file-utils";
 import { findLicenses } from "./license-finder/find-license";
 
@@ -24,11 +25,10 @@ interface LicenseAuditResult {
   notFound: Set<string>;
 }
 
-export async function auditLicenses(wd: string): Promise<LicenseAuditResult> {
-  const packageManager = await findPackageManager(wd);
-  console.log("Package Manager:", packageManager);
+function auditLicenses(projectRoot: string): LicenseAuditResult {
+  const packageManager = findPackageManager(projectRoot);
+  const packagePaths = findDependencies(packageManager, projectRoot);
 
-  const packagePaths: string[] = [];
   const resultMap = new Map<string, PackageInfo>();
   const summary: AuditSummary = {
     whitelist: 0,
@@ -78,18 +78,7 @@ export async function auditLicenses(wd: string): Promise<LicenseAuditResult> {
   return {
     resultMap,
     summary,
-    notFound,
   };
 }
 
-// hardcoded for testing
-// todo: pass actual project root path from cli
-const auditResult = auditLicenses(".");
-
-// console.log("Result Map:", auditResult.resultMap);
-// console.log(
-//   "Licenses:",
-//   Array.from(auditResult.resultMap.values()).flatMap((p) => p.result.licenses),
-// );
-// console.log("Summary:", auditResult.summary);
-// console.log("Not found:", auditResult.notFound);
+auditLicenses("/Users/mateuszjarzebowskibownik/Brainhub/temp");
