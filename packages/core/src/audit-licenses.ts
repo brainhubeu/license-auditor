@@ -27,7 +27,9 @@ interface LicenseAuditResult {
 
 function auditLicenses(projectRoot: string): LicenseAuditResult {
   const packageManager = findPackageManager(projectRoot);
+  // console.log("packageManager", packageManager);
   const packagePaths = findDependencies(packageManager, projectRoot);
+  console.log("packagePaths", packagePaths);
 
   const resultMap = new Map<string, PackageInfo>();
   const summary: AuditSummary = {
@@ -81,4 +83,6 @@ function auditLicenses(projectRoot: string): LicenseAuditResult {
   };
 }
 
-auditLicenses("/Users/mateuszjarzebowskibownik/Brainhub/temp");
+// auditLicenses("/Users/mateuszjarzebowskibownik/Brainhub/cra-npm");
+// auditLicenses("/Users/mateuszjarzebowskibownik/Brainhub/cra-yarn-classic");
+auditLicenses("/Users/mateuszjarzebowskibownik/Brainhub/cra-pnpm");
