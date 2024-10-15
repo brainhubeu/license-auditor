@@ -15,7 +15,7 @@ export function findLicense(
     };
   }
 
-  const licenseFromLicenseFile = findLicenseInLicenseFile();
+  const licenseFromLicenseFile = findLicenseInLicenseFile(packagePath);
   if (licenseFromLicenseFile) {
     return licenseFromLicenseFile;
   }
