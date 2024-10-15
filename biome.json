@@ -42,7 +42,22 @@
       }
     }
   },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "double"
+    }
+  },
   "overrides": [
+    {
+      "include": ["packages/core/**"],
+      "linter": {
+        "rules": {
+          "nursery": {
+            "useExplicitFunctionReturnType": "error"
+          }
+        }
+      }
+    },
     {
       "include": ["packages/cli"],
       "linter": {
@@ -53,10 +68,5 @@
         }
       }
     }
-  ],
-  "javascript": {
-    "formatter": {
-      "quoteStyle": "double"
-    }
-  }
+  ]
 }
