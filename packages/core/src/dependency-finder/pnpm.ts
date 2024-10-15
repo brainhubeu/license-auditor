@@ -55,10 +55,8 @@ function extractDependencyPaths(
 ): string[] {
   const paths: string[] = [];
 
-  if (packageInfo) {
-    for (const dep of Object.values(packageInfo) as any[]) {
-      paths.push(dep.path);
-    }
+  for (const dep of Object.values(packageInfo)) {
+    paths.push(dep.path);
   }
 
   return paths;

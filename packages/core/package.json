@@ -6,8 +6,7 @@
     "build": "tsc",
     "dev": "tsc --watch",
     "start": "tsx src/audit-licenses.ts",
-    "typecheck": "tsc --noEmit --incremental false",
-    "test": "tsx watch src/audit-licenses.ts"
+    "typecheck": "tsc --noEmit --incremental false"
   },
   "dependencies": {
     "@license-auditor/licenses": "*",
