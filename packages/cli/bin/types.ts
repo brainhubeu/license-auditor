@@ -1,6 +1,6 @@
-/* Provide a list of blacklisted licenses for the project below */
-const blacklist = [
-  "UNKNOWN",
+// eslint-disable-next-line no-unused-vars
+export const licenses = [
+  "0BSD",
   "389-exception",
   "AAL",
   "ADSL",
@@ -30,6 +30,7 @@ const blacklist = [
   "Aladdin",
   "Apache-1.0",
   "Apache-1.1",
+  "Apache-2.0",
   "Artistic-1.0-Perl",
   "Artistic-1.0-cl8",
   "Artistic-1.0",
@@ -40,6 +41,7 @@ const blacklist = [
   "BSD-2-Clause-FreeBSD",
   "BSD-2-Clause-NetBSD",
   "BSD-2-Clause-Patent",
+  "BSD-2-Clause",
   "BSD-3-Clause-Attribution",
   "BSD-3-Clause-Clear",
   "BSD-3-Clause-LBNL",
@@ -47,6 +49,7 @@ const blacklist = [
   "BSD-3-Clause-No-Nuclear-License",
   "BSD-3-Clause-No-Nuclear-Warranty",
   "BSD-3-Clause-Open-MPI",
+  "BSD-3-Clause",
   "BSD-4-Clause-UC",
   "BSD-4-Clause",
   "BSD-Protection",
@@ -65,6 +68,8 @@ const blacklist = [
   "CC-BY-1.0",
   "CC-BY-2.0",
   "CC-BY-2.5",
+  "CC-BY-3.0",
+  "CC-BY-4.0",
   "CC-BY-NC-1.0",
   "CC-BY-NC-2.0",
   "CC-BY-NC-2.5",
@@ -91,6 +96,7 @@ const blacklist = [
   "CC-BY-SA-3.0",
   "CC-BY-SA-4.0",
   "CC-PDDC",
+  "CC0-1.0",
   "CDDL-1.0",
   "CDDL-1.1",
   "CDLA-Permissive-1.0",
@@ -175,6 +181,7 @@ const blacklist = [
   "IJG",
   "IPA",
   "IPL-1.0",
+  "ISC",
   "ImageMagick",
   "Imlib2",
   "Info-ZIP",
@@ -216,6 +223,7 @@ const blacklist = [
   "MIT-advertising",
   "MIT-enna",
   "MIT-feh",
+  "MIT",
   "MITNFA",
   "MPL-1.0",
   "MPL-1.1",
@@ -356,12 +364,14 @@ const blacklist = [
   "Unicode-DFS-2016",
   "Unicode-TOU",
   "Universal-FOSS-exception-1.0",
+  "Unlicense",
   "VOSTROM",
   "VSL-1.0",
   "Vim",
   "W3C-19980720",
   "W3C-20150513",
   "W3C",
+  "WTFPL",
   "Watcom-1.0",
   "Wsuipa",
   "WxWindows-exception-3.1",
@@ -379,6 +389,7 @@ const blacklist = [
   "Zend-2.0",
   "Zimbra-1.3",
   "Zimbra-1.4",
+  "Zlib",
   "blessing",
   "bzip2-1.0.5",
   "bzip2-1.0.6",
@@ -436,58 +447,12 @@ const blacklist = [
   "xinetd",
   "xpp",
   "zlib-acknowledgement",
+  "UNKNOWN",
   "UNLICENSED",
-];
+] as const;
 
-/* Provide a list of whitelisted licenses for the project below */
-const whitelist = [
-  "(Apache-2.0 OR MPL-1.1)",
-  "(BSD-2-Clause OR WTFPL)",
-  "(CC-BY-4.0 AND MIT)",
-  "(MIT AND BSD-3-Clause)",
-  "(MIT AND CC-BY-3.0)",
-  "(MIT AND Zlib)",
-  "(MIT OR Apache-2.0)",
-  "(MIT OR CC0-1.0)",
-  "(Unlicense OR Apache-2.0)",
-  "(WTFPL OR MIT)",
-  "0BSD",
-  "AFLv2.1",
-  "Apache 2.0",
-  "Apache License, Version 2.0",
-  "Apache-2.0",
-  "Apache2",
-  "BSD-2-Clause",
-  "BSD-3-Clause OR MIT",
-  "BSD-3-Clause",
-  "CC-BY-3.0",
-  "CC-BY-4.0",
-  "CC0-1.0",
-  "ISC",
-  "MIT",
-  "MIT,Apache2",
-  "MPL-1.1",
-  "Unlicense",
-  "WTFPL",
-  "Zlib",
-];
-
-/* Provide a list of whitelisted modules below. */
-
-const modules = {
-  /* Examples: */
-  /* Provide a module name as key and license type as value. */
-  // 'module-name': 'license-type',
-  /* You should use the value UNLICENSED for internal module. */
-  // '@my-company/my-module': 'UNLICENSED',
-  /* Providing a value protects you against unexpected changes of license
-         in the package. */
-  // 'some-module-i-bought': 'Commercial',
-  /* The value may also be an array if the package has multiple */
-  // 'another-module': ['MIT', 'Apache-2.0'],
-  /* Providing any as value matches any license (this module will always
-         be whitelisted). */
-  // 'another-module': 'any',
+export type Config = {
+  blacklist: (typeof licenses)[number][];
+  whitelist: (typeof licenses)[number][];
+  modules: Record<string, string>;
 };
-
-module.exports = { blacklist, whitelist, modules };
