@@ -33,10 +33,8 @@ export default function Index({ options }: Props) {
       const currentDir = process.cwd();
 
       // @ts-ignore
-      import(`${currentDir}/config.cjs`).then(
-        (module: { default: { config: Config } }) => {
-          const { config } = module.default;
-
+      import(`${currentDir}/config.js`).then(
+        ({ config }: { config: Config }) => {
           for (const license of licenses) {
             setTimeout(
               () =>
@@ -49,10 +47,10 @@ export default function Index({ options }: Props) {
                     error: config.blacklist.includes(license.license),
                   },
                 ]),
-              500,
+              500
             );
           }
-        },
+        }
       );
     } catch (err) {
       console.error("Config file does not exist or failed to load:", err);
