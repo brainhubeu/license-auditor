@@ -1,7 +1,9 @@
 import { execCommand } from "./exec-command";
 
-export function detectNpmDependencies(projectRoot: string): string[] {
-  const output = execCommand("npm ls --all -p", projectRoot);
+export async function detectNpmDependencies(
+  projectRoot: string,
+): Promise<string[]> {
+  const output = await execCommand("npm ls --all -p", projectRoot);
 
   // Remove the first line, as npm always prints the project root first
   const lines = output.split("\n").slice(1);

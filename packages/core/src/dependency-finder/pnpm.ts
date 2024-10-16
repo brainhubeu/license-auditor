@@ -1,48 +1,51 @@
+import { z } from "zod";
 import { execCommand } from "./exec-command";
 
-interface PnpmDependency {
-  from: string;
-  version: string;
-  resolved?: string;
-  path: string;
-}
+const PnpmDependencySchema = z.object({
+  from: z.string(),
+  version: z.string(),
+  resolved: z.string().optional(),
+  path: z.string(),
+});
 
-interface PnpmListDependenciesOutput {
-  name: string;
-  version: string;
-  path: string;
-  private: boolean;
-  dependencies?: Record<string, PnpmDependency>;
-  devDependencies?: Record<string, PnpmDependency>;
-  unsavedDependencies?: Record<string, PnpmDependency>;
-}
+const PnpmListDependenciesOutputSchema = z
+  .object({
+    dependencies: z.record(z.string(), PnpmDependencySchema).optional(),
+    devDependencies: z.record(z.string(), PnpmDependencySchema).optional(),
+  })
+  .and(z.record(z.string(), z.unknown()));
 
-export function detectPnpmDependencies(projectRoot: string): string[] {
-  try {
-    const output = execCommand("pnpm ls --json", projectRoot);
-    const dependenciesList = JSON.parse(output) as PnpmListDependenciesOutput[];
+type PnpmDependency = z.infer<typeof PnpmDependencySchema>;
 
-    const dependencyPaths: string[] = [];
+export async function detectPnpmDependencies(
+  projectRoot: string,
+): Promise<string[]> {
+  const output = await execCommand("pnpm ls --json", projectRoot);
+  const parsedOutput = JSON.parse(output);
 
-    // Extra check if the std output is a valid pnpm ls --json output
-    if (Array.isArray(dependenciesList) && dependenciesList.length > 0) {
-      if (dependenciesList[0]?.dependencies) {
-        const paths = extractDependencyPaths(dependenciesList[0].dependencies);
-        dependencyPaths.push(...paths);
-      }
+  const validationResult = z
+    .array(PnpmListDependenciesOutputSchema)
+    .safeParse(parsedOutput);
+  if (!validationResult.success) {
+    throw new Error("Invalid pnpm ls --json output format");
+  }
 
-      if (dependenciesList[0]?.devDependencies) {
-        const paths = extractDependencyPaths(
-          dependenciesList[0].devDependencies,
-        );
-        dependencyPaths.push(...paths);
-      }
+  const dependenciesList = validationResult.data;
+  const dependencyPaths: string[] = [];
+
+  if (dependenciesList.length > 0) {
+    if (dependenciesList[0]?.dependencies) {
+      const paths = extractDependencyPaths(dependenciesList[0].dependencies);
+      dependencyPaths.push(...paths);
     }
 
-    return dependencyPaths;
-  } catch (error) {
-    throw new Error("Error detecting pnpm dependencies");
+    if (dependenciesList[0]?.devDependencies) {
+      const paths = extractDependencyPaths(dependenciesList[0].devDependencies);
+      dependencyPaths.push(...paths);
+    }
   }
+
+  return dependencyPaths;
 }
 
 const extractDependencyPaths = (

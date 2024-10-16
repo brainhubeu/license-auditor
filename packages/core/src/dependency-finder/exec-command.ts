@@ -1,13 +1,15 @@
-import { execSync } from "node:child_process";
+import { exec } from "node:child_process";
+import { promisify } from "node:util";
 
-export function execCommand(command: string, cwd: string): string {
+const execAsync = promisify(exec);
+
+export async function execCommand(
+  command: string,
+  cwd: string,
+): Promise<string> {
   try {
-    const output = execSync(command, {
-      cwd,
-      encoding: "utf-8",
-    });
-
-    return output;
+    const { stdout } = await execAsync(command, { cwd });
+    return stdout;
   } catch (error) {
     if (error instanceof Error) {
       throw new Error(

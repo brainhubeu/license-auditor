@@ -9,9 +9,9 @@ export async function findDependencies(
 ): Promise<string[]> {
   switch (packageManager) {
     case "npm":
-      return detectNpmDependencies(projectRoot);
+      return await detectNpmDependencies(projectRoot);
     case "pnpm":
-      return detectPnpmDependencies(projectRoot);
+      return await detectPnpmDependencies(projectRoot);
     case "yarn-classic":
       return await detectYarnClassicDependencies(projectRoot);
     default:
