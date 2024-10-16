@@ -47,10 +47,10 @@ export default function Index({ options }: Props) {
                     error: config.blacklist.includes(license.license),
                   },
                 ]),
-              500
+              500,
             );
           }
-        }
+        },
       );
     } catch (err) {
       console.error("Config file does not exist or failed to load:", err);
