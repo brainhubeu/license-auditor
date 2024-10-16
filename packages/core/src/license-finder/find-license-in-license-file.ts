@@ -12,7 +12,9 @@ function retrieveLicenseFromLicenseFileContent(
 ): string | string[] {
   const lines = content.split("\n");
 
-  const licenseArr = licenses.filter((license) => content.includes(license));
+  const licenseArr = licenses.filter((license) =>
+    content.split(" ").includes(license),
+  );
 
   if (!licenseArr.length) {
     return content;
@@ -28,6 +30,7 @@ function retrieveLicenseFromLicenseFileContent(
 export function findLicenseInLicenseFile(
   filename: string,
 ): LicenseWithPath | undefined {
+  console.log(filename);
   if (!fs.existsSync(filename)) {
     return;
   }

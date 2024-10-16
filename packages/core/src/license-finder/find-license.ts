@@ -25,7 +25,7 @@ export function findLicense(
     };
   }
 
-  for (const licenseFile in licenseFiles) {
+  for (const licenseFile of licenseFiles) {
     const basicPath = path.join(packagePath, licenseFile);
     const licenseFromLicenseFile = findLicenseInLicenseFile(basicPath);
     if (licenseFromLicenseFile) {
