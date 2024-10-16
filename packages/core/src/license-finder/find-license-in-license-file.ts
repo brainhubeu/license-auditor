@@ -34,11 +34,13 @@ export function findLicenseInLicenseFile(
   const content = fs.readFileSync(filename).toString();
   const foundLicenses = retrieveLicenseFromLicenseFileContent(content);
 
-  const matchedLicense = licenses.find((license) => license === foundLicenses);
+  const matchedLicenses = licenses.filter((license) =>
+    foundLicenses.includes(license)
+  );
 
-  if (!matchedLicense) {
-    return { license: "Unlicense", licensePath: filename };
+  if (!matchedLicenses) {
+    return;
   }
 
-  return { license: matchedLicense, licensePath: filename };
+  return { license: matchedLicenses, licensePath: filename };
 }
