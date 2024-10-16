@@ -8,6 +8,9 @@
     "start": "tsx src/audit-licenses.ts",
     "typecheck": "tsc --noEmit --incremental false"
   },
+  "dependencies": {
+    "@license-auditor/licenses": "*"
+  },
   "devDependencies": {
     "@license-auditor/typescript-config": "*",
     "tsx": "4.19.1",

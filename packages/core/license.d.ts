@@ -1,10 +1,9 @@
-import type { licenses } from "./src/license/licenses";
+import type { type License } from "@license-auditor/licenses";
 
 declare global {
-  type AvailableLicense = (typeof licenses)[number];
-  type License = AvailableLicense | AvailableLicense[] | undefined;
+  type LicenseResult = License | License[] | undefined;
   interface LicenseWithPath {
-    license: License;
+    license: LicenseResult;
     licensePath: string | undefined;
   }
 }
