@@ -1,6 +1,6 @@
 import { execCommand } from "./exec-command";
-import path from "path";
-import fs from "fs";
+import path from "node:path";
+import fs from "node:fs/promises";
 
 interface YarnDependency {
   name: string;
@@ -18,35 +18,36 @@ interface YarnListOutput {
   };
 }
 
-export function detectYarnClassicDependencies(projectRoot: string): string[] {
+export async function detectYarnClassicDependencies(
+  projectRoot: string
+): Promise<string[]> {
   try {
     const output = execCommand("yarn list --depth=0 --json -R", projectRoot);
     const dependenciesList = JSON.parse(output) as YarnListOutput;
-
-    const dependencyPaths: string[] = [];
 
     // Extra check if the std output is a valid yarn list --depth=0 --json -R output
     if (
       dependenciesList.type === "tree" &&
       Array.isArray(dependenciesList.data.trees)
     ) {
-      dependencyPaths.push(
-        ...extractDependencyPaths(dependenciesList.data.trees, projectRoot)
+      return await extractDependencyPaths(
+        dependenciesList.data.trees,
+        projectRoot
       );
     }
 
-    return dependencyPaths;
+    return [];
   } catch (error) {
     throw new Error("Error detecting Yarn Classic dependencies");
   }
 }
 
-function extractDependencyPaths(
+async function extractDependencyPaths(
   dependencies: YarnDependency[],
   projectRoot: string
-): string[] {
-  return dependencies
-    .map((dep) => {
+): Promise<string[]> {
+  const dependencyPaths = await Promise.all(
+    dependencies.map(async (dep) => {
       const packageName = dep.name.split("@").slice(0, -1).join("@");
       const dependencyPath = path.join(
         projectRoot,
@@ -54,11 +55,13 @@ function extractDependencyPaths(
         packageName
       );
       try {
-        fs.accessSync(dependencyPath);
+        await fs.access(dependencyPath);
         return dependencyPath;
       } catch (error) {
         return null;
       }
     })
-    .filter((path): path is string => path !== null);
+  );
+
+  return dependencyPaths.filter((path): path is string => path !== null);
 }

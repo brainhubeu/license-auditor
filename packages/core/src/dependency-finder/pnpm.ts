@@ -45,5 +45,6 @@ export function detectPnpmDependencies(projectRoot: string): string[] {
   }
 }
 
-const extractDependencyPaths = (dependencies: Record<string, PnpmDependency>) =>
-  Object.values(dependencies).map((dep) => dep.path);
+const extractDependencyPaths = (
+  dependencies: Record<string, PnpmDependency>
+): string[] => Object.values(dependencies).map((dep) => dep.path);

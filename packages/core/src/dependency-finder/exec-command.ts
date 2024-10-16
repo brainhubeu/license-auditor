@@ -1,4 +1,4 @@
-import { execSync } from "child_process";
+import { execSync } from "node:child_process";
 
 export function execCommand(command: string, cwd: string): string {
   try {
@@ -9,6 +9,11 @@ export function execCommand(command: string, cwd: string): string {
 
     return output;
   } catch (error) {
-    throw new Error("Error executing command");
+    if (error instanceof Error) {
+      throw new Error(
+        `Error executing command ${command}: ${error.name} - ${error.message}`
+      );
+    }
+    throw new Error(`Error executing command ${command}`);
   }
 }
