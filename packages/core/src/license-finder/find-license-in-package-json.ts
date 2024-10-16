@@ -1,6 +1,6 @@
 import { isValidLicense } from "./is-valid-license";
 
-function retrieveLicenseFromTypeField(license: unknown): License | undefined {
+function retrieveLicenseFromTypeField(license: unknown): LicenseResult {
   if (
     typeof license === "object" &&
     !!license &&
@@ -14,7 +14,7 @@ function retrieveLicenseFromTypeField(license: unknown): License | undefined {
 function retrieveLicenseByField<T extends string>(
   packageJson: object & Record<T, unknown>,
   licenseField: T,
-): License {
+): LicenseResult {
   if (typeof packageJson[licenseField] === "string") {
     if (isValidLicense(packageJson[licenseField])) {
       return packageJson[licenseField];
@@ -32,7 +32,7 @@ function retrieveLicenseByField<T extends string>(
   }
 }
 
-export function findLicenseInPackageJson(packageJson: object): License {
+export function findLicenseInPackageJson(packageJson: object): LicenseResult {
   if ("license" in packageJson) {
     return retrieveLicenseByField(packageJson, "license");
   }
