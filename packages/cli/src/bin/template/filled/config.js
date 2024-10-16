@@ -1,5 +1,10 @@
-import type { Config } from "../../../types.js";
-const config: Config = {
+/**
+ * Configuration object.
+ * @type {{ blacklist: LicenseType[], whitelist: LicenseType[], modules: Record<string, string> }}
+ */
+
+
+const config = {
   blacklist: [
     "UNKNOWN",
     "389-exception",
@@ -472,4 +477,4 @@ const config: Config = {
   },
 };
 
-module.exports = { config };
+export default config;
