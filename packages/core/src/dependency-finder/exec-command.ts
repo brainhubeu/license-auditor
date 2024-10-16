@@ -11,7 +11,7 @@ export function execCommand(command: string, cwd: string): string {
   } catch (error) {
     if (error instanceof Error) {
       throw new Error(
-        `Error executing command ${command}: ${error.name} - ${error.message}`
+        `Error executing command ${command}: ${error.name} - ${error.message}`,
       );
     }
     throw new Error(`Error executing command ${command}`);

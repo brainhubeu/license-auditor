@@ -1,6 +1,6 @@
-import { execCommand } from "./exec-command";
-import path from "node:path";
 import fs from "node:fs/promises";
+import path from "node:path";
+import { execCommand } from "./exec-command";
 
 interface YarnDependency {
   name: string;
@@ -19,7 +19,7 @@ interface YarnListOutput {
 }
 
 export async function detectYarnClassicDependencies(
-  projectRoot: string
+  projectRoot: string,
 ): Promise<string[]> {
   try {
     const output = execCommand("yarn list --depth=0 --json -R", projectRoot);
@@ -32,7 +32,7 @@ export async function detectYarnClassicDependencies(
     ) {
       return await extractDependencyPaths(
         dependenciesList.data.trees,
-        projectRoot
+        projectRoot,
       );
     }
 
@@ -44,7 +44,7 @@ export async function detectYarnClassicDependencies(
 
 async function extractDependencyPaths(
   dependencies: YarnDependency[],
-  projectRoot: string
+  projectRoot: string,
 ): Promise<string[]> {
   const dependencyPaths = await Promise.all(
     dependencies.map(async (dep) => {
@@ -52,7 +52,7 @@ async function extractDependencyPaths(
       const dependencyPath = path.join(
         projectRoot,
         "node_modules",
-        packageName
+        packageName,
       );
       try {
         await fs.access(dependencyPath);
@@ -60,7 +60,7 @@ async function extractDependencyPaths(
       } catch (error) {
         return null;
       }
-    })
+    }),
   );
 
   return dependencyPaths.filter((path): path is string => path !== null);

@@ -1,7 +1,7 @@
+import { exec } from "node:child_process";
 import fs from "node:fs/promises";
 import path from "node:path";
 import { promisify } from "node:util";
-import { exec } from "node:child_process";
 
 const execAsync = promisify(exec);
 
@@ -17,7 +17,7 @@ async function pathExists(p: string): Promise<boolean> {
 }
 
 async function checkGlobalInstallation(
-  pm: SupportedPackageManager
+  pm: SupportedPackageManager,
 ): Promise<boolean> {
   try {
     const { stdout } = await execAsync(`${pm} --version`);
@@ -32,7 +32,7 @@ async function checkGlobalInstallation(
 }
 
 async function checkLockFiles(
-  projectRoot: string
+  projectRoot: string,
 ): Promise<SupportedPackageManager | null> {
   const [hasNpmLock, hasYarnLock, hasPnpmLock] = await Promise.all([
     pathExists(path.join(projectRoot, "package-lock.json")),
@@ -50,7 +50,7 @@ async function checkLockFiles(
       return "yarn-classic";
     }
     throw new Error(
-      "Other versions of Yarn other than Classic are not supported"
+      "Other versions of Yarn other than Classic are not supported",
     );
   }
   if (hasPnpmLock) {
@@ -61,7 +61,7 @@ async function checkLockFiles(
 }
 
 async function readPackageJson(
-  projectRoot: string
+  projectRoot: string,
 ): Promise<{ packageManager?: string }> {
   const packageJsonPath = path.join(projectRoot, "package.json");
   if (await pathExists(packageJsonPath)) {
@@ -73,7 +73,7 @@ async function readPackageJson(
 }
 
 async function checkPackageJsonHints(
-  projectRoot: string
+  projectRoot: string,
 ): Promise<SupportedPackageManager | null> {
   const packageJson = await readPackageJson(projectRoot);
   if (packageJson.packageManager) {
@@ -91,7 +91,7 @@ async function checkPackageJsonHints(
 }
 
 export async function findPackageManager(
-  projectRoot: string
+  projectRoot: string,
 ): Promise<SupportedPackageManager> {
   const lockFileResult = await checkLockFiles(projectRoot);
   if (lockFileResult) {

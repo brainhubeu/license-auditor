@@ -5,7 +5,7 @@ import { detectYarnClassicDependencies } from "./yarn-classic";
 
 export async function findDependencies(
   packageManager: SupportedPackageManager,
-  projectRoot: string
+  projectRoot: string,
 ): Promise<string[]> {
   switch (packageManager) {
     case "npm":

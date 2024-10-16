@@ -33,7 +33,7 @@ export function detectPnpmDependencies(projectRoot: string): string[] {
 
       if (dependenciesList[0]?.devDependencies) {
         const paths = extractDependencyPaths(
-          dependenciesList[0].devDependencies
+          dependenciesList[0].devDependencies,
         );
         dependencyPaths.push(...paths);
       }
@@ -46,5 +46,5 @@ export function detectPnpmDependencies(projectRoot: string): string[] {
 }
 
 const extractDependencyPaths = (
-  dependencies: Record<string, PnpmDependency>
+  dependencies: Record<string, PnpmDependency>,
 ): string[] => Object.values(dependencies).map((dep) => dep.path);
