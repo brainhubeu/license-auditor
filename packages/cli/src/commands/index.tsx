@@ -15,6 +15,7 @@ type Props = {
 
 export default function Index({ options }: Props) {
   const [working, setWorking] = useState(true);
+  const [error, setError] = useState(false);
 
   const [processed, setProcessed] = useState<
     {
@@ -32,7 +33,7 @@ export default function Index({ options }: Props) {
       const currentDir = process.cwd();
 
       // @ts-ignore
-      import(`${currentDir}/config.js`).then(
+      import(`${currentDir}/config.cjs`).then(
         (module: { default: { config: Config } }) => {
           const { config } = module.default;
 
@@ -55,10 +56,19 @@ export default function Index({ options }: Props) {
       );
     } catch (err) {
       console.error("Config file does not exist or failed to load:", err);
+      setError(true);
     }
 
     setWorking(false);
   }, []);
+
+  if (error) {
+    return (
+      <Box borderStyle="single" borderColor="red">
+        <Text color="red">Config file does not exist or failed to load</Text>
+      </Box>
+    );
+  }
 
   if (working && !options.verbose) {
     return (
