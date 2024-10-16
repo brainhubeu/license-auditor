@@ -3,7 +3,6 @@
  * @type {{ blacklist: LicenseType[], whitelist: LicenseType[], modules: Record<string, string> }}
  */
 
-
 const config = {
   blacklist: [
     "UNKNOWN",
