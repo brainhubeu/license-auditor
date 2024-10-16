@@ -15,7 +15,7 @@ const licenseFiles = [
 
 export function findLicense(
   packageJson: object,
-  packagePath: string
+  packagePath: string,
 ): LicenseWithPath {
   const licenseFromPackageJson = findLicenseInPackageJson(packageJson);
   if (licenseFromPackageJson) {
