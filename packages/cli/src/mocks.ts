@@ -1,4 +1,4 @@
-import type { LicenseType } from './types.js';
+import type { LicenseType } from "./types.js";
 
 const licenses: {
   modulePath: string;

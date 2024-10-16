@@ -1,4 +1,4 @@
-import { Config } from "./src/types.js";
+import type { Config } from "./src/types.js";
 const config: Config = {
   blacklist: [
     "UNKNOWN",
