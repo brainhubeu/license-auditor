@@ -1,8 +1,8 @@
 import { type License, licenses } from "@license-auditor/licenses";
 
-export function isValidLicense(license: unknown): license is License {
-  if (typeof license !== "string") {
-    return false;
+export function findLicense(licenseId: unknown): License | undefined {
+  if (typeof licenseId !== "string") {
+    return undefined;
   }
-  return licenses.some((l) => l.licenseId === license);
+  return licenses.find((l) => l.licenseId === licenseId);
 }
