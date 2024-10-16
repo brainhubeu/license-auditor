@@ -8,12 +8,12 @@ const templates = {
 };
 
 function retrieveLicenseFromLicenseFileContent(
-  content: string,
+  content: string
 ): string | string[] {
   const lines = content.split("\n");
 
   const licenseArr = licenses.filter((license) =>
-    content.split(" ").includes(license),
+    content.split(" ").includes(license)
   );
 
   if (!licenseArr.length) {
@@ -28,7 +28,7 @@ function retrieveLicenseFromLicenseFileContent(
 }
 
 export function findLicenseInLicenseFile(
-  filename: string,
+  filename: string
 ): LicenseWithPath | undefined {
   console.log(filename);
   if (!fs.existsSync(filename)) {
@@ -38,12 +38,16 @@ export function findLicenseInLicenseFile(
   const foundLicenses = retrieveLicenseFromLicenseFileContent(content);
 
   const matchedLicenses = licenses.filter((license) =>
-    foundLicenses.includes(license),
+    foundLicenses.includes(license)
   );
 
   if (!matchedLicenses) {
     return;
   }
 
-  return { license: matchedLicenses, licensePath: filename };
+  return {
+    license:
+      matchedLicenses.length === 1 ? matchedLicenses[0] : matchedLicenses,
+    licensePath: filename,
+  };
 }
