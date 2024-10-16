@@ -1,4 +1,4 @@
-import type { type License, licenses } from "@license-auditor/licenses";
+import type { type License } from "@license-auditor/licenses";
 
 declare global {
   type LicenseResult = License | License[] | undefined;
