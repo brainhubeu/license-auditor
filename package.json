@@ -30,7 +30,7 @@
     "node": ">=20"
   },
   "bin": {
-    "license-auditor": "./packages/cli/bin/index.cjs"
+    "license-auditor": "./packages/cli/src/bin/index.cjs"
   },
   "packageManager": "npm@10.8.2",
   "workspaces": ["packages/*", "tooling/*"],
