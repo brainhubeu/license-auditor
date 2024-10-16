@@ -55,3 +55,7 @@
  * 'mpich2' | 'wxWindows' | 'xinetd' | 'xpp' | 'zlib-acknowledgement' | 'zlib' } LicenseType
  */
 
+/**
+ * @typedef {{ blacklist: LicenseType[]; whitelist: LicenseType[]; modules: Record<string, string>}} Config
+ */
+
