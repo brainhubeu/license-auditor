@@ -1,4 +1,10 @@
-const licenses = [
+import type { LicenseType } from './types.js';
+
+const licenses: {
+  modulePath: string;
+  license: LicenseType;
+  licensePath: string;
+}[] = [
   {
     modulePath: "./node_modules/react",
     license: "MIT",

@@ -1,6 +1,7 @@
 import { Box, Static, Text } from "ink";
 import React, { useState, useEffect } from "react";
 import zod from "zod";
+import type { Config, LicenseType } from "../types.js";
 import Spinner from "../components/spinner.js";
 import { licenses } from "../mocks.js";
 
@@ -18,7 +19,7 @@ export default function Index({ options }: Props) {
   const [processed, setProcessed] = useState<
     {
       modulePath: string;
-      license: string;
+      license: LicenseType;
       licensePath: string;
       error: boolean;
     }[]
@@ -27,20 +28,33 @@ export default function Index({ options }: Props) {
   useEffect(() => {
     setWorking(true);
 
-    for (const license of licenses) {
-      setTimeout(
-        () =>
-          setProcessed((existing) => [
-            ...existing,
-            {
-              modulePath: license.modulePath,
-              license: license.license,
-              licensePath: license.licensePath,
-              error: license.license !== "MIT",
-            },
-          ]),
-        500,
+    try {
+      const currentDir = process.cwd();
+
+      // @ts-ignore
+      import(`${currentDir}/config.js`).then(
+        (module: { default: { config: Config } }) => {
+          const { config } = module.default;
+
+          for (const license of licenses) {
+            setTimeout(
+              () =>
+                setProcessed((existing) => [
+                  ...existing,
+                  {
+                    modulePath: license.modulePath,
+                    license: license.license,
+                    licensePath: license.licensePath,
+                    error: config.blacklist.includes(license.license),
+                  },
+                ]),
+              500
+            );
+          }
+        }
       );
+    } catch (err) {
+      console.error("Config file does not exist or failed to load:", err);
     }
 
     setWorking(false);

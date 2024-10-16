@@ -1,4 +1,4 @@
-import type { Config } from "../../types.js";
+import { Config } from "../../../types.js";
 
 const config: Config = {
   blacklist: [],

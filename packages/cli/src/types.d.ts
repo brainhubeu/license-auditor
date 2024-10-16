@@ -451,8 +451,10 @@ export const licenses = [
   "UNLICENSED",
 ] as const;
 
+export type LicenseType = (typeof licenses)[number];
+
 export type Config = {
-  blacklist: (typeof licenses)[number][];
-  whitelist: (typeof licenses)[number][];
+  blacklist: LicenseType[];
+  whitelist: LicenseType[];
   modules: Record<string, string>;
 };
