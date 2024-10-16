@@ -56,6 +56,6 @@
  */
 
 /**
- * @typedef {{ blacklist: LicenseType[]; whitelist: LicenseType[]; modules: Record<string, string>}} Config
+ * @typedef {{ blacklist: LicenseType[]; whitelist: LicenseType[]; modules: Record<string, string>}} ConfigType
  */
 

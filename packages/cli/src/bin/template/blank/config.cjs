@@ -1,6 +1,6 @@
 /**
  * Configuration object.
- * @type {{ blacklist: LicenseType[], whitelist: LicenseType[], modules: Record<string, string> }}
+ * @type ConfigType
  */
 
 const config = {
