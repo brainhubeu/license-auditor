@@ -1,66 +1,46 @@
-# detect-package-manager
+# detect-pm
 
-[![NPM version](https://img.shields.io/npm/v/detect-package-manager.svg?style=flat)](https://npmjs.com/package/detect-package-manager) [![NPM downloads](https://img.shields.io/npm/dm/detect-package-manager.svg?style=flat)](https://npmjs.com/package/detect-package-manager) [![CircleCI](https://circleci.com/gh/egoist/detect-package-manager/tree/master.svg?style=shield)](https://circleci.com/gh/egoist/detect-package-manager/tree/master) [![donate](https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&style=flat)](https://github.com/egoist/donate)
+A fork of [detect-package-manager](https://github.com/egoist/detect-package-manager) by [EGOIST](https://github.com/egoist), extended for use in the [@brainhubeu/license-auditor](https://github.com/brainhubeu/license-auditor/) project.
 
-## How does this work?
+## Why this fork?
 
-1. When there's `yarn.lock`, `package-lock.json`, `pnpm-lock.yaml`, or `bun.lockb` in current working directory, it will skip other operations and directly resolve `yarn`, `npm`, `pnpm`, or `bun`.
-2. When there's no lockfile found, it checks if `yarn`, `pnpm`, or `bun` command exists. If so, it resolves `yarn`, `pnpm`, or `bun` otherwise `npm`.
-3. Results are cached.
-
-## Install
-
-```bash
-yarn add detect-package-manager
-```
+This package extends the battle-tested `detect-package-manager` solution to distinguish between package managers currently supported by the @brainhubeu/license-auditor project. Specifically, it adds support for detecting yarn classic while excluding yarn modern and bun.
 
 ## Usage
 
-```js
-const { detect } = require("detect-package-manager");
+```typescript
+import { detectPm } from './src/extended-detect';
 
-detect().then((pm) => {
-  console.log(pm);
-  //=> 'yarn', 'npm', or 'pnpm', 'bun'
-});
+async function example() {
+  try {
+    const pm = await detectPm();
+    console.log(`Detected package manager: ${pm}`);
+    // Possible outputs: 'npm', 'pnpm', or 'yarn-classic'
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+example();
 ```
 
-## API
+The `detectPm` function returns a Promise that resolves to one of the following values: `'npm'`, `'pnpm'`, or `'yarn-classic'`. It will throw an error if it detects yarn modern or bun, as these are not currently supported.
 
-### detect([opts])
+## Differences from the original package
 
-- Arguments:
-  - `opts.cwd`: `string` Optional, defaults to `.`, the directory to look up `yarn.lock`, `package-lock.json`, or `pnpm-lock.yaml`.
-  - `opts.includeGlobalBun`: `boolean` Optional, defaults to `false`, whether to check if `bun` exists in PATH.
-- Returns: `Promise<PM>`
+1. The original `detect` function from `index.ts` returns `'npm'`, `'yarn'`, `'pnpm'`, or `'bun'`.
+2. The new `detectPm` function in `extended-detect.ts`:
+   - Returns `'npm'`, `'pnpm'`, or `'yarn-classic'`
+   - Throws an error for bun
+   - Distinguishes between yarn classic and modern, throwing an error for yarn modern
+3. The new version introduces a `SupportedPm` type that explicitly defines the supported package managers.
 
-It returns a Promise resolving the name of package manager, could be `npm`, `yarn`, or `pnpm`, `bun`.
+## Credits
 
-### getNpmVersion([pm])
+Original package: [detect-package-manager](https://github.com/egoist/detect-package-manager) by [EGOIST](https://github.com/egoist)
 
-- Arguments:
-  - `pm`: `string` Optional, defaults to `npm`, could be `npm`, `yarn`, or `pnpm`, `bun`
-- Returns: `Promise<string>`
+Extended and maintained by [Brainhub](https://github.com/brainhubeu/)
 
-It returns a Promise resolving the version of npm or the package manager you specified.
+## License
 
-### clearCache()
-
-- Returns: `void`
-
-Clear cache.
-
-## Contributing
-
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
-
-## Author
-
-**detect-package-manager** © [EGOIST](https://github.com/egoist), Released under the [MIT](./LICENSE) License.<br>
-Authored and maintained by EGOIST with help from contributors ([list](https://github.com/egoist/detect-package-manager/contributors)).
-
-> [github.com/egoist](https://github.com/egoist) · GitHub [@EGOIST](https://github.com/egoist) · Twitter [@\_egoistlily](https://twitter.com/_egoistlily)
+MIT

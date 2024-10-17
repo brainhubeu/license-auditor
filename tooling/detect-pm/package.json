@@ -1,11 +1,8 @@
 {
-  "name": "detect-package-manager",
-  "version": "1.1.0",
-  "description": "Detect which package manager you're using (yarn or npm)",
-  "repository": {
-    "url": "egoist/detect-package-manager",
-    "type": "git"
-  },
+  "name": "detect-pm",
+  "version": "1.0.0",
+  "description": "Detect which package manager you're using (npm, yarn classic, yarn modern, pnpm, or bun)",
+  "originalRepository": "https://github.com/egoist/detect-package-manager.git",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "exports": {
@@ -16,12 +13,12 @@
     }
   },
   "types": "./dist/index.d.ts",
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "keywords": [
     "npm",
     "yarn",
+    "yarn-classic",
+    "yarn-modern",
     "package-manager",
     "detect",
     "check",
@@ -32,7 +29,8 @@
     "test": "node -r sucrase/register test.ts",
     "prepublishOnly": "npm run build"
   },
-  "author": "egoist <0x142857@gmail.com>",
+  "author": "https://github.com/brainhubeu/",
+  "contributors": ["egoist <0x142857@gmail.com>"],
   "license": "MIT",
   "dependencies": {
     "execa": "^5.1.1"
