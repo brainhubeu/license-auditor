@@ -1,4 +1,4 @@
-import { ConfigType } from "@license-auditor/config";
+import type { ConfigType } from "@license-auditor/config";
 
 async function readConfiguration(callback: (config: ConfigType) => unknown) {
   const currentDir = process.cwd();
@@ -10,10 +10,10 @@ async function readConfiguration(callback: (config: ConfigType) => unknown) {
   } catch (err) {
     console.error(
       "Failed to load configuration file at location:",
-      `${currentDir}/license-auditor.config.js`
+      `${currentDir}/license-auditor.config.js`,
     );
     console.error(
-      "Please make sure the config.js exists at the root of your project."
+      "Please make sure the config.js exists at the root of your project.",
     );
   }
 }

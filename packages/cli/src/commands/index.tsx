@@ -1,10 +1,10 @@
+import type { LicenseType } from "@license-auditor/config";
 import { Box, Static, Text, useApp } from "ink";
 import React, { useState, useEffect } from "react";
 import zod from "zod";
 import Spinner from "../components/spinner.js";
-import type { LicenseType } from "@license-auditor/config";
-import { readConfiguration } from "../utils/read-configuration.js";
 import { licenses } from "../mocks.js";
+import { readConfiguration } from "../utils/read-configuration.js";
 
 export const options = zod.object({
   verbose: zod.boolean().default(false).describe("Verbose output"),
@@ -50,7 +50,7 @@ export default function Index({ options }: Props) {
       exit();
     }
     setWorking(false);
-  }, []);
+  }, [exit]);
 
   if (error) {
     return (
@@ -69,42 +69,39 @@ export default function Index({ options }: Props) {
     );
   }
 
-  if (!error) {
-    return (
-      <Box flexDirection="column">
-        {options.verbose && !error && (
-          <Static items={processed}>
-            {(item) => (
-              <Box
-                key={item.modulePath}
-                flexDirection="column"
-                borderStyle="single"
-                borderColor={item.error ? "red" : "white"}
-              >
-                <Text>Module path: {item.modulePath}</Text>
-                <Text>License: {item.license}</Text>
-                <Text>License path: {item.licensePath}</Text>
-              </Box>
-            )}
-          </Static>
-        )}
-        <Box flexDirection="column" borderStyle="single" borderColor="white">
-          <Box>
-            <Text>Licenses found: {processed.length}</Text>
-          </Box>
-          <Box>
-            <Text>
-              Valid licenses: {processed.filter((item) => !item.error).length}
-            </Text>
-          </Box>
-          <Box>
-            <Text color="red">
-              Prohibited licenses:{" "}
-              {processed.filter((item) => item.error).length}
-            </Text>
-          </Box>
+  return (
+    <Box flexDirection="column">
+      {options.verbose && !error && (
+        <Static items={processed}>
+          {(item) => (
+            <Box
+              key={item.modulePath}
+              flexDirection="column"
+              borderStyle="single"
+              borderColor={item.error ? "red" : "white"}
+            >
+              <Text>Module path: {item.modulePath}</Text>
+              <Text>License: {item.license}</Text>
+              <Text>License path: {item.licensePath}</Text>
+            </Box>
+          )}
+        </Static>
+      )}
+      <Box flexDirection="column" borderStyle="single" borderColor="white">
+        <Box>
+          <Text>Licenses found: {processed.length}</Text>
+        </Box>
+        <Box>
+          <Text>
+            Valid licenses: {processed.filter((item) => !item.error).length}
+          </Text>
+        </Box>
+        <Box>
+          <Text color="red">
+            Prohibited licenses: {processed.filter((item) => item.error).length}
+          </Text>
         </Box>
       </Box>
-    );
-  }
+    </Box>
+  );
 }
