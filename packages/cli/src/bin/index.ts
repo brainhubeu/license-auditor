@@ -1,4 +1,3 @@
-import { exec } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -18,11 +17,4 @@ const templateDir = usePredefinedLists
   : path.resolve(__dirname, "template/blank");
 fs.cpSync(templateDir, licenseDir, { recursive: true });
 
-exec("npm install @brainhubeu/license-auditor", (error) => {
-  if (error) {
-    console.error(`Error installing package: ${error.message}`);
-    return;
-  }
-
-  console.log("Success! Configured licenses for license-auditor.");
-});
+console.log("Success! Configured licenses for license-auditor.");

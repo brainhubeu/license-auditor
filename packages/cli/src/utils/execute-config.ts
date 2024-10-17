@@ -16,15 +16,6 @@ function executeConfig(usePredefinedLists: boolean) {
     : path.resolve(__dirname, "template/blank");
   fs.cpSync(templateDir, licenseDir, { recursive: true });
 
-  // TODO: install package only once we have a way of identifying package manager
-  //   exec("npm install @brainhubeu/license-auditor", (error) => {
-  //     if (error) {
-  //       console.error(`Error installing package: ${error.message}`);
-  //       return;
-  //     }
-
-  //   });
-
   console.log("Success! Configured licenses for license-auditor.");
 }
 
