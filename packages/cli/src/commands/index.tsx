@@ -1,4 +1,4 @@
-import type { LicenseType } from "@license-auditor/config";
+import type { LicenseId } from "@license-auditor/licenses";
 import { Box, Static, Text, useApp } from "ink";
 import React, { useState, useEffect } from "react";
 import zod from "zod";
@@ -22,7 +22,7 @@ export default function Index({ options }: Props) {
   const [processed, setProcessed] = useState<
     {
       modulePath: string;
-      license: LicenseType;
+      license: LicenseId;
       licensePath: string;
       error: boolean;
     }[]

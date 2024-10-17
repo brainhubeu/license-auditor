@@ -1,8 +1,8 @@
-import type { LicenseType } from "@license-auditor/config";
+import type { LicenseId } from "@license-auditor/licenses";
 
 const licenses: {
   modulePath: string;
-  license: LicenseType;
+  license: LicenseId;
   licensePath: string;
 }[] = [
   {
