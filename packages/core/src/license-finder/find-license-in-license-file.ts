@@ -1,24 +1,26 @@
 import * as fs from "node:fs";
-import { licenses } from "../license/licenses";
+import { type License, licenses } from "@license-auditor/licenses";
 
 const templates = {
   [fs.readFileSync(`${__dirname}/templates/BSD-2-Clause.txt`).toString()]:
-    "BSD 2-Clause",
-  [fs.readFileSync(`${__dirname}/templates/MIT.txt`).toString()]: "MIT",
+    licenses.find((license) => license.licenseId === "BSD-2-Clause"),
+  [fs.readFileSync(`${__dirname}/templates/MIT.txt`).toString()]: licenses.find(
+    (license) => license.licenseId === "MIT",
+  ),
 };
 
 function retrieveLicenseFromLicenseFileContent(
-  content: string
-): string | string[] {
+  content: string,
+): License | License[] {
   const lines = content.split("\n");
 
-  const licenseArr = licenses.filter((license) =>
-    content.split(" ").includes(license)
-  );
+  const contentTokens = content.split(/[ ,]+/);
 
-  if (!licenseArr.length) {
-    return content;
-  }
+  const licenseArr = licenses.filter(
+    (license) =>
+      contentTokens.includes(license.licenseId) ||
+      contentTokens.includes(license.name),
+  );
 
   const withoutFirstLine = lines
     .slice(1)
@@ -28,26 +30,19 @@ function retrieveLicenseFromLicenseFileContent(
 }
 
 export function findLicenseInLicenseFile(
-  filename: string
+  filename: string,
 ): LicenseWithPath | undefined {
-  console.log(filename);
   if (!fs.existsSync(filename)) {
     return;
   }
   const content = fs.readFileSync(filename).toString();
   const foundLicenses = retrieveLicenseFromLicenseFileContent(content);
 
-  const matchedLicenses = licenses.filter((license) =>
-    foundLicenses.includes(license)
-  );
-
-  if (!matchedLicenses) {
-    return;
-  }
-
   return {
     license:
-      matchedLicenses.length === 1 ? matchedLicenses[0] : matchedLicenses,
+      Array.isArray(foundLicenses) && foundLicenses.length === 1
+        ? foundLicenses[0]
+        : foundLicenses,
     licensePath: filename,
   };
 }
