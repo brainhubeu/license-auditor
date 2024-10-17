@@ -1,0 +1,13 @@
+{
+    "name": "@license-auditor/config",
+    "version": "0.1.0",
+    "private": true,
+    "license": "MIT",
+    "publishConfig": {
+      "access": "public"
+    },
+    "type": "module",
+    "types": "./index.d.ts",
+    "files": ["index.d.ts"]
+  }
+  

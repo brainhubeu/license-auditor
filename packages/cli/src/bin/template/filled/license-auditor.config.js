@@ -1,9 +1,8 @@
 /**
- * Configuration object.
- * @type {{ blacklist: LicenseType[], whitelist: LicenseType[], modules: Record<string, string> }}
+ * @type {import('@license-auditor/config').ConfigType}
  */
 
-const config = {
+const overrides = {
   blacklist: [
     "UNKNOWN",
     "389-exception",
@@ -476,4 +475,4 @@ const config = {
   },
 };
 
-export { config };
+module.exports = { overrides };

@@ -1,4 +1,4 @@
-import type { LicenseType } from "./types.js";
+import type { LicenseType } from "@license-auditor/config";
 
 const licenses: {
   modulePath: string;
