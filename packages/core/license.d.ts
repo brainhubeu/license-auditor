@@ -5,5 +5,6 @@ declare global {
   interface LicenseWithPath {
     license: LicenseResult;
     licensePath: string | undefined;
+    needsVerification?: boolean;
   }
 }
