@@ -1,12 +1,16 @@
-import { type License, licenses } from "@license-auditor/licenses";
+import {
+  type License,
+  type LicenseId,
+  licenseMap,
+  licenseIdsSet,
+} from "@license-auditor/licenses";
 
-const licenseMap = new Map<string, License>(
-  licenses.map((l) => [l.licenseId, l]),
-);
+function isLicenseId(licenseId: unknown): licenseId is LicenseId {
+  return licenseIdsSet.has(licenseId as LicenseId);
+}
 
 export function findLicense(licenseId: unknown): License | undefined {
-  if (typeof licenseId !== "string") {
-    return undefined;
+  if (isLicenseId(licenseId)) {
+    return licenseMap.get(licenseId);
   }
-  return licenseMap.get(licenseId);
 }

@@ -1,12 +1,7 @@
-interface License {
-  reference: string;
-  isDeprecatedLicenseId: boolean;
-  detailsUrl: string;
-  referenceNumber: number;
-  name: string;
-  licenseId: string;
-  seeAlso: string[];
-  isOsiApproved: boolean;
-}
+import type { licensesData } from "./licenses";
 
-export declare const licenses: License[];
+export declare const licenses: (typeof licensesData.licenses)[];
+export declare const licenseMap: Map<LicenseId, License>;
+export declare const licenseIdsSet: Set<LicenseId>;
+export declare type License = (typeof licensesData.licenses)[number];
+export declare type LicenseId = License["licenseId"];

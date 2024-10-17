@@ -12,6 +12,10 @@
   "exports": "./index.mjs",
   "files": ["index.mjs", "index.d.ts", "licenses.json"],
   "scripts": {
-    "update-licenses": "curl -o ./licenses.json https://raw.githubusercontent.com/spdx/license-list-data/main/json/licenses.json"
+    "update-licenses": "tsx update-licenses.ts"
+  },
+  "devDependencies": {
+    "tsx": "4.19.1",
+    "typescript": "5.6.2"
   }
 }
