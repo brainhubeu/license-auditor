@@ -1,8 +1,8 @@
 import {
   type License,
   type LicenseId,
-  licenseMap,
   licenseIdsSet,
+  licenseMap,
 } from "@license-auditor/licenses";
 
 function isLicenseId(licenseId: unknown): licenseId is LicenseId {
