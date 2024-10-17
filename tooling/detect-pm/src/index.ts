@@ -1,8 +1,8 @@
-import { promises as fs } from "fs";
-import { resolve } from "path";
+import { promises as fs } from "node:fs";
+import { resolve } from "node:path";
 import execa from "execa";
 
-export type PM = "npm" | "yarn" | "pnpm" | "bun";
+export type Pm = "npm" | "yarn" | "pnpm" | "bun";
 
 /**
  * Check if a path exists
@@ -21,7 +21,7 @@ const cache = new Map();
 /**
  * Check if a global pm is available
  */
-function hasGlobalInstallation(pm: PM): Promise<boolean> {
+function hasGlobalInstallation(pm: Pm): Promise<boolean> {
   const key = `has_global_${pm}`;
   if (cache.has(key)) {
     return Promise.resolve(cache.get(key));
@@ -38,7 +38,7 @@ function hasGlobalInstallation(pm: PM): Promise<boolean> {
     .catch(() => false);
 }
 
-function getTypeofLockFile(cwd = "."): Promise<PM | null> {
+function getTypeofLockFile(cwd = "."): Promise<Pm | null> {
   const key = `lockfile_${cwd}`;
   if (cache.has(key)) {
     return Promise.resolve(cache.get(key));
@@ -50,7 +50,7 @@ function getTypeofLockFile(cwd = "."): Promise<PM | null> {
     pathExists(resolve(cwd, "pnpm-lock.yaml")),
     pathExists(resolve(cwd, "bun.lockb")),
   ]).then(([isYarn, isNpm, isPnpm, isBun]) => {
-    let value: PM | null = null;
+    let value: Pm | null = null;
 
     if (isYarn) {
       value = "yarn";
@@ -94,7 +94,7 @@ const detect = async ({
 
 export { detect };
 
-export function getNpmVersion(pm: PM) {
+export function getNpmVersion(pm: Pm) {
   return execa(pm || "npm", ["--version"]).then((res) => res.stdout);
 }
 

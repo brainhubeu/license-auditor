@@ -1,8 +1,8 @@
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import { type PM, detect as originalDetect } from "./index";
+import { type Pm, detect as originalDetect } from "./index";
 
-export type SupportedPm = Omit<PM, "bun" | "yarn"> | "yarn-classic";
+export type SupportedPm = Omit<Pm, "bun" | "yarn"> | "yarn-classic";
 
 async function readPackageJson(
   projectRoot: string,
