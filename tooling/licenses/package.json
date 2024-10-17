@@ -1,0 +1,17 @@
+{
+  "name": "@license-auditor/licenses",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "types": "./index.d.ts",
+  "main": "./index.mjs",
+  "exports": "./index.mjs",
+  "files": ["index.mjs", "index.d.ts", "licenses.json"],
+  "scripts": {
+    "update-licenses": "curl -o ./licenses.json https://raw.githubusercontent.com/spdx/license-list-data/main/json/licenses.json"
+  }
+}
