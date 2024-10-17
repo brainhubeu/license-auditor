@@ -40,12 +40,14 @@ function retrieveLicenseFromLicenseFileContent(
   return templates[withoutFirstLine] || licenseArr;
 }
 
-export function findLicenseInLicenseFile(filename: string): LicenseWithPath {
+export async function findLicenseInLicenseFile(
+  filename: string,
+): Promise<LicenseWithPath> {
   if (!fs.existsSync(filename)) {
     return { license: undefined, licensePath: undefined };
   }
 
-  const content = fs.readFileSync(filename, "utf-8");
+  const content = await fs.promises.readFile(filename, "utf-8");
 
   if (!content) {
     return { license: undefined, licensePath: undefined };
@@ -70,7 +72,7 @@ export function findLicenseInLicenseFile(filename: string): LicenseWithPath {
 
 export function parseLicenseFiles(
   packagePath: string,
-): LicenseWithPath | undefined {
+): Promise<LicenseWithPath> | undefined {
   for (const licenseFile of licenseFiles) {
     const basicPath = path.join(packagePath, licenseFile);
     const licenseFromLicenseFile = findLicenseInLicenseFile(basicPath);

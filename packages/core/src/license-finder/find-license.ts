@@ -3,10 +3,10 @@ import { parseLicenseFiles } from "./find-license-in-license-file";
 import { findLicenseInPackageJson } from "./find-license-in-package-json";
 import { findLicenseInReadme } from "./find-license-in-readme";
 
-export function findLicense(
+export async function findLicense(
   packageJson: object,
-  packagePath: string
-): LicenseWithPath {
+  packagePath: string,
+): Promise<LicenseWithPath> {
   const licenseFromPackageJson = findLicenseInPackageJson(packageJson);
   if (licenseFromPackageJson) {
     return {
