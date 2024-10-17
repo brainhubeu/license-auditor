@@ -1,21 +1,22 @@
 import type { ConfigType } from "@license-auditor/config";
+import { cosmiconfig } from "cosmiconfig";
 
 async function readConfiguration(callback: (config: ConfigType) => unknown) {
-  const currentDir = process.cwd();
-  try {
-    const { overrides } = await import(
-      `${currentDir}/licenseauditor.config.js`
-    );
-    callback(overrides);
-  } catch (err) {
-    console.error(
-      "Failed to load configuration file at location:",
-      `${currentDir}/license-auditor.config.js`,
-    );
-    console.error(
-      "Please make sure the config.js exists at the root of your project.",
-    );
-  }
+  const explorer = cosmiconfig("license-auditor");
+
+  explorer
+    .load("license-auditor.config.js")
+    .then((config) => {
+      if (config?.config) {
+        callback(config.config as ConfigType);
+      }
+    })
+    .catch((err) => {
+      console.error("Failed to load configuration file at location:", err);
+      console.error(
+        "Please make sure the config.js exists within your project.",
+      );
+    });
 }
 
 export { readConfiguration };

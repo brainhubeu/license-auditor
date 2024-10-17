@@ -8,4 +8,4 @@ const overrides = {
   modules: {},
 };
 
-module.exports = { overrides };
+export default overrides;

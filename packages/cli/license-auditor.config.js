@@ -475,4 +475,4 @@ const overrides = {
   },
 };
 
-export { overrides };
+export default overrides;
