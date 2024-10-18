@@ -1,5 +1,17 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
+import z from "zod";
+
+const packageJsonSchema = z
+  .object({
+    license: z.string(),
+    licenses: z.array(z.string()),
+  })
+  .partial()
+  .refine(
+    (data) => !!data.license || !!data.licenses,
+    "Either license or licenses has to be defined for a valid package.json"
+  );
 
 export function readPackageJson(packagePath: string): object {
   const packageJsonPath = path.join(packagePath, "package.json");
@@ -25,4 +37,10 @@ export function extractPackageName(packagePath: string): string {
     return `${parentName}/${baseName}`;
   }
   return baseName;
+}
+
+export function validatePackageJson(packageJson: object) {
+  const result = packageJsonSchema.safeParse(packageJson);
+
+  return result.success;
 }
