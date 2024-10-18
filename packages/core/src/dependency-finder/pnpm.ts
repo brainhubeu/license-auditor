@@ -17,10 +17,12 @@ const PnpmListDependenciesOutputSchema = z
 
 type PnpmDependency = z.infer<typeof PnpmDependencySchema>;
 
-export async function detectPnpmDependencies(
+export const findPnpmDepsCommand = "pnpm ls --json";
+
+export async function findPnpmDependencies(
   projectRoot: string,
 ): Promise<string[]> {
-  const output = await execCommand("pnpm ls --json", projectRoot);
+  const output = await execCommand(findPnpmDepsCommand, projectRoot);
   const parsedOutput = JSON.parse(output);
 
   const validationResult = z

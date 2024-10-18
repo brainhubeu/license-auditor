@@ -1,8 +1,8 @@
 import type { SupportedPm } from "@license-auditor/package-manager-finder";
 import { findInternalPackages } from "./find-internal-packages";
-import { detectNpmDependencies } from "./npm";
-import { detectPnpmDependencies } from "./pnpm";
-import { detectYarnClassicDependencies } from "./yarn-classic";
+import { findNpmDependencies } from "./npm";
+import { findPnpmDependencies } from "./pnpm";
+import { findYarnClassicDependencies } from "./yarn-classic";
 
 export async function findDependencies(
   packageManager: SupportedPm,
@@ -24,11 +24,11 @@ async function findExternalDependencies(
 ): Promise<string[]> {
   switch (packageManager) {
     case "npm":
-      return detectNpmDependencies(projectRoot);
+      return findNpmDependencies(projectRoot);
     case "pnpm":
-      return detectPnpmDependencies(projectRoot);
+      return findPnpmDependencies(projectRoot);
     case "yarn-classic":
-      return detectYarnClassicDependencies(projectRoot);
+      return findYarnClassicDependencies(projectRoot);
     default:
       throw new Error("Unsupported package manager");
   }
