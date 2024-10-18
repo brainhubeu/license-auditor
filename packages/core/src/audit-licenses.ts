@@ -28,9 +28,7 @@ export async function auditLicenses(wd: string): Promise<LicenseAuditResult> {
   const packageManager = await findPackageManager(wd);
   console.log("Package Manager:", packageManager);
 
-  const packagePaths: string[] = [
-    "/Users/filipkublin/Documents/license-auditor/packages/core",
-  ];
+  const packagePaths: string[] = [];
   const resultMap = new Map<string, PackageInfo>();
   const summary: AuditSummary = {
     whitelist: 0,
@@ -77,9 +75,6 @@ export async function auditLicenses(wd: string): Promise<LicenseAuditResult> {
     resultMap.set(packageName, packageInfo);
   }
 
-  console.log(resultMap);
-  console.log(summary);
-
   return {
     resultMap,
     summary,
@@ -89,9 +84,7 @@ export async function auditLicenses(wd: string): Promise<LicenseAuditResult> {
 
 // hardcoded for testing
 // todo: pass actual project root path from cli
-const auditResult = auditLicenses(
-  "/Users/filipkublin/Documents/license-auditor/packages/core",
-);
+const auditResult = auditLicenses(".");
 
 // console.log("Result Map:", auditResult.resultMap);
 // console.log(
