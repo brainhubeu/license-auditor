@@ -1,7 +1,13 @@
 import { cosmiconfig } from "cosmiconfig";
+import {
+  MODULE_NAME,
+  supportedConfigFiles,
+} from "../configuration-constants.js";
 
 async function readConfiguration() {
-  const explorer = cosmiconfig("license-auditor");
+  const explorer = cosmiconfig(MODULE_NAME, {
+    searchPlaces: supportedConfigFiles,
+  });
 
   const configFile = await explorer.search();
   if (configFile?.isEmpty) {

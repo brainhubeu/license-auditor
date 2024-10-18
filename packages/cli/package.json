@@ -2,13 +2,12 @@
   "name": "@brainhubeu/license-auditor-cli",
   "version": "0.0.0",
   "license": "MIT",
-  "bin": "dist/cli.js",
   "type": "module",
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
     "cli": "tsx src/cli.tsx",
-    "cli:config": "tsx src/cli.tsx config"
+    "cli:init": "tsx src/cli.tsx init"
   },
   "files": ["dist"],
   "dependencies": {
