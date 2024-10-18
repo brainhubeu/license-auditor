@@ -1,6 +1,6 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
-import z from "zod";
+import z, { type SafeParseReturnType } from "zod";
 
 const packageJsonSchema = z
   .object({
@@ -10,7 +10,7 @@ const packageJsonSchema = z
   .partial()
   .refine(
     (data) => !!data.license || !!data.licenses,
-    "Either license or licenses has to be defined for a valid package.json"
+    "Either license or licenses has to be defined for a valid package.json",
   );
 
 export function readPackageJson(packagePath: string): object {
@@ -39,7 +39,7 @@ export function extractPackageName(packagePath: string): string {
   return baseName;
 }
 
-export function validatePackageJson(packageJson: object) {
+export function validatePackageJson(packageJson: object): boolean {
   const result = packageJsonSchema.safeParse(packageJson);
 
   return result.success;
