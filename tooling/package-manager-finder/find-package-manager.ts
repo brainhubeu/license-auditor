@@ -1,8 +1,4 @@
-import { exec } from "node:child_process";
-import { promisify } from "node:util";
-import { type PM, detect } from "detect-package-manager";
-
-const execAsync = promisify(exec);
+import { type PM, detect, getNpmVersion } from "detect-package-manager";
 
 export type SupportedPm = Omit<PM, "bun" | "yarn"> | "yarn-classic";
 
@@ -10,9 +6,7 @@ export async function findPackageManager(cwd?: string): Promise<SupportedPm> {
   const packageManager = await detect({ cwd });
 
   if (packageManager === "yarn") {
-    const version = await execAsync("yarn --version", {
-      encoding: "utf8",
-    }).then((result) => result.stdout.trim());
+    const version = await getNpmVersion(packageManager);
 
     if (version.startsWith("1.")) {
       return "yarn-classic";
