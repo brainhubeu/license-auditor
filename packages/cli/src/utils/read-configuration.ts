@@ -1,22 +1,18 @@
-import type { ConfigType } from "@license-auditor/config";
 import { cosmiconfig } from "cosmiconfig";
 
-async function readConfiguration(callback: (config: ConfigType) => unknown) {
+async function readConfiguration() {
   const explorer = cosmiconfig("license-auditor");
 
-  explorer
-    .load("license-auditor.config.js")
-    .then((config) => {
-      if (config?.config) {
-        callback(config.config as ConfigType);
-      }
-    })
-    .catch((err) => {
-      console.error("Failed to load configuration file at location:", err);
-      console.error(
-        "Please make sure the config.js exists within your project.",
-      );
-    });
+  const configFile = await explorer.search();
+  if (configFile?.isEmpty) {
+    // todo: prompt the user whether they'd like to use our default config or set up their own
+    throw new Error("Configuration file has been found but it's empty");
+  }
+  if (configFile?.config) {
+    return configFile;
+  }
+  // todo: prompt the user to initialize one
+  throw new Error("Configuration file has not been found.");
 }
 
 export { readConfiguration };

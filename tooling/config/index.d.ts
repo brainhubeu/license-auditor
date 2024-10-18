@@ -5,5 +5,3 @@ export type ConfigType = {
   whitelist: LicenseId[];
   modules: Record<string, string>;
 };
-
-export declare const licenses: License[];
