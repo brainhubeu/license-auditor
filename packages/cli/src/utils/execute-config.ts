@@ -3,20 +3,32 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 function executeConfig(usePredefinedLists: boolean) {
-  const currentDir = process.cwd();
-  const licenseDir = path.resolve(currentDir, "licenses");
+  try {
+    const currentDir = process.cwd();
 
-  fs.mkdirSync(licenseDir, { recursive: true });
+    fs.mkdirSync(currentDir, { recursive: true });
 
-  const __filename = fileURLToPath(import.meta.url);
-  const __dirname = path.dirname(__filename);
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
 
-  const templateDir = usePredefinedLists
-    ? path.resolve(__dirname, "template/filled")
-    : path.resolve(__dirname, "template/blank");
-  fs.cpSync(templateDir, licenseDir, { recursive: true });
+    const templateDir = usePredefinedLists
+      ? path.resolve(__dirname, "template/filled")
+      : path.resolve(__dirname, "template/blank");
+    fs.cpSync(templateDir, currentDir, { recursive: true });
 
-  console.log("Success! Configured licenses for license-auditor.");
+    console.log("Success!");
+    if (usePredefinedLists) {
+      console.log(
+        `Created a default license list for license-auditor at ${currentDir}/license-auditor.config.js`,
+      );
+    } else {
+      console.log(
+        `Created a blank license list for license-auditor at ${currentDir}/license-auditor.config.js`,
+      );
+    }
+  } catch (err) {
+    console.error("Failed to complete license configuration: ", err);
+  }
 }
 
 export { executeConfig };

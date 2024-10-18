@@ -7,7 +7,8 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
-    "cli": "tsx src/cli.tsx"
+    "cli": "tsx src/cli.tsx",
+    "cli:config": "tsx src/cli.tsx config"
   },
   "files": ["dist"],
   "dependencies": {

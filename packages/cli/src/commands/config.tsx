@@ -1,9 +1,10 @@
-import { Box, Text, useApp } from "ink";
+import { Box, Static, Text, useApp } from "ink";
 import SelectInput from "ink-select-input";
 import React from "react";
 import { executeConfig } from "../utils/execute-config.js";
 
-type ItemType = { label: string; value: "default" | "blank" };
+type ConfigOption = "default" | "blank";
+type ItemType = { label: string; value: ConfigOption };
 
 const items: ItemType[] = [
   {
