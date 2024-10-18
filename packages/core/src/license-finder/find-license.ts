@@ -8,7 +8,7 @@ export async function findLicenses(
   packagePath: string
 ): Promise<LicensesWithPath> {
   const licenseFromPackageJson = findLicenseInPackageJson(packageJson);
-  if (licenseFromPackageJson) {
+  if (licenseFromPackageJson.length > 0) {
     return {
       licenses: licenseFromPackageJson,
       licensePath: path.join(packagePath, "package.json"),

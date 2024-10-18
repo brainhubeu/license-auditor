@@ -72,14 +72,14 @@ export async function findLicenseInLicenseFile(
   };
 }
 
-export function parseLicenseFiles(
+export async function parseLicenseFiles(
   packagePath: string
-): Promise<LicensesWithPath> | undefined {
+): Promise<LicensesWithPath | undefined> {
+  let basicPath: string;
   for (const licenseFile of licenseFiles) {
-    const basicPath = path.join(packagePath, licenseFile);
-    console.log(basicPath);
-    const licenseFromLicenseFile = findLicenseInLicenseFile(basicPath);
-    if (licenseFromLicenseFile) {
+    basicPath = path.join(packagePath, licenseFile);
+    const licenseFromLicenseFile = await findLicenseInLicenseFile(basicPath);
+    if (licenseFromLicenseFile.licenses.length > 0) {
       return licenseFromLicenseFile;
     }
   }

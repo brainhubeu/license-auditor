@@ -28,7 +28,12 @@ export async function auditLicenses(wd: string): Promise<LicenseAuditResult> {
   const packageManager = await findPackageManager(wd);
   console.log("Package Manager:", packageManager);
 
-  const packagePaths: string[] = [];
+  // adjust paths to run locally
+  const packagePaths: string[] = [
+    "/Users/filipkublin/Documents/license-auditor/packages/core/samples/@mergeapi/merge-node-client",
+    "/Users/filipkublin/Documents/license-auditor/packages/core/samples/@rudderstack/rudder-sdk-node",
+    "/Users/filipkublin/Documents/license-auditor/packages/core/samples/@zilliz/milvus2-sdk-node",
+  ];
   const resultMap = new Map<string, PackageInfo>();
   const summary: AuditSummary = {
     whitelist: 0,
