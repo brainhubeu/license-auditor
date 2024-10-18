@@ -1,7 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { findPackageManager } from "@license-auditor/package-manager-finder";
 
 export enum ConfigType {
   Default = "default",
@@ -11,10 +10,6 @@ export enum ConfigType {
 export async function generateConfig(configType: ConfigType) {
   try {
     const currentDir = process.cwd();
-
-    const packageManager = await findPackageManager(currentDir);
-
-    console.log(`Detected package manager: ${packageManager}`);
 
     await fs.mkdir(currentDir, { recursive: true });
 
