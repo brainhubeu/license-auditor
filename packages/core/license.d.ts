@@ -1,9 +1,8 @@
 import type { type License } from "@license-auditor/licenses";
 
 declare global {
-  type LicenseResult = License[] | undefined;
-  interface LicenseWithPath {
-    license: LicenseResult;
+  interface LicensesWithPath {
+    licenses: License[];
     licensePath: string | undefined;
   }
 }

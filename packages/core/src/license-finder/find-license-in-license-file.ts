@@ -11,6 +11,6 @@
 // ] as const;
 
 // todo: re-implement logic responsible for searching for license in license files
-export function findLicenseInLicenseFile(): LicenseWithPath | undefined {
+export function findLicenseInLicenseFile(): LicensesWithPath | undefined {
   return undefined;
 }

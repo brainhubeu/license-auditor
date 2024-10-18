@@ -1,4 +1,4 @@
-import licensesData from "./licenses";
+import { licensesData } from "./licenses";
 
 export const licenses = licensesData.licenses;
 export const licenseMap = new Map(
