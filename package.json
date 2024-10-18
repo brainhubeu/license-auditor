@@ -29,9 +29,6 @@
   "engines": {
     "node": ">=20"
   },
-  "bin": {
-    "license-auditor": "./packages/cli/dist/bin/index.js"
-  },
   "packageManager": "npm@10.8.2",
   "workspaces": ["packages/*", "tooling/*"],
   "config": {
