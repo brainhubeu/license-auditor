@@ -1,8 +1,10 @@
-import { Box, Static, Text } from "ink";
+import type { LicenseId } from "@license-auditor/licenses";
+import { Box, Static, Text, useApp } from "ink";
 import React, { useState, useEffect } from "react";
 import zod from "zod";
 import Spinner from "../components/spinner.js";
 import { licenses } from "../mocks.js";
+import { readConfiguration } from "../utils/read-configuration.js";
 
 export const options = zod.object({
   verbose: zod.boolean().default(false).describe("Verbose output"),
@@ -14,11 +16,13 @@ type Props = {
 
 export default function Index({ options }: Props) {
   const [working, setWorking] = useState(true);
+  const [error, setError] = useState(false);
+  const { exit } = useApp();
 
   const [processed, setProcessed] = useState<
     {
       modulePath: string;
-      license: string;
+      license: LicenseId;
       licensePath: string;
       error: boolean;
     }[]
@@ -27,24 +31,34 @@ export default function Index({ options }: Props) {
   useEffect(() => {
     setWorking(true);
 
-    for (const license of licenses) {
-      setTimeout(
-        () =>
-          setProcessed((existing) => [
-            ...existing,
+    try {
+      readConfiguration((config) => {
+        for (const license of licenses) {
+          setProcessed((currentProcessed) => [
+            ...currentProcessed,
             {
               modulePath: license.modulePath,
               license: license.license,
               licensePath: license.licensePath,
-              error: license.license !== "MIT",
+              error: config.blacklist.includes(license.license),
             },
-          ]),
-        500,
-      );
+          ]);
+        }
+      });
+    } catch (err) {
+      setError(true);
+      exit();
     }
-
     setWorking(false);
-  }, []);
+  }, [exit]);
+
+  if (error) {
+    return (
+      <Box borderStyle="single" borderColor="red">
+        <Text color="red">Config file does not exist or failed to load</Text>
+      </Box>
+    );
+  }
 
   if (working && !options.verbose) {
     return (
@@ -57,7 +71,7 @@ export default function Index({ options }: Props) {
 
   return (
     <Box flexDirection="column">
-      {options.verbose && (
+      {options.verbose && !error && (
         <Static items={processed}>
           {(item) => (
             <Box

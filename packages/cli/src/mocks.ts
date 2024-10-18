@@ -1,4 +1,10 @@
-const licenses = [
+import type { LicenseId } from "@license-auditor/licenses";
+
+const licenses: {
+  modulePath: string;
+  license: LicenseId;
+  licensePath: string;
+}[] = [
   {
     modulePath: "./node_modules/react",
     license: "MIT",
