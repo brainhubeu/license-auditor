@@ -6,7 +6,7 @@ import type { LicensesWithPath } from "./licenses-with-path";
 
 export function findLicenses(
   packageJson: object,
-  packagePath: string
+  packagePath: string,
 ): LicensesWithPath {
   const validationResult = validatePackageJson(packageJson);
 
@@ -22,7 +22,7 @@ export function findLicenses(
     }
   } else {
     console.error(
-      `Failed validation of license(s) field in package.json at ${packageJsonPath}`
+      `Failed validation of license(s) field in package.json at ${packageJsonPath}`,
     );
     console.error(validationResult.error.message);
     console.error("Make sure the provided license has correct format.");
