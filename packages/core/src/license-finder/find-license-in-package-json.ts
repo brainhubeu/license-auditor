@@ -1,5 +1,4 @@
 import type { License } from "@license-auditor/licenses";
-import { validatePackageJson } from "../file-utils";
 import { findLicense } from "./is-valid-license";
 
 function retrieveLicenseFromTypeField(license: unknown): License[] {
@@ -29,15 +28,6 @@ function retrieveLicenseByField<T extends string>(
 }
 
 export function findLicenseInPackageJson(packageJson: object): License[] {
-  const validationResult = validatePackageJson(packageJson);
-
-  if (!validationResult) {
-    console.error(
-      "Failed validation of package.json - no license or licenses field",
-    );
-    return [];
-  }
-
   if ("license" in packageJson) {
     return retrieveLicenseByField(packageJson, "license");
   }

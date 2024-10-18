@@ -1,16 +1,13 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
-import z from "zod";
+import z, { type SafeParseReturnType } from "zod";
 
-const packageJsonSchema = z
-  .object({
-    license: z.string().optional(),
-    licenses: z.array(z.string()).optional(),
-  })
-  .refine(
-    (data) => !!data.license || !!data.licenses,
-    "Either license or licenses has to be defined for a valid package.json",
-  );
+const packageJsonSchema = z.object({
+  license: z.string().optional(),
+  licenses: z.array(z.string()).optional(),
+});
+
+type PackageType = z.infer<typeof packageJsonSchema>;
 
 export function readPackageJson(packagePath: string): object {
   const packageJsonPath = path.join(packagePath, "package.json");
@@ -38,8 +35,10 @@ export function extractPackageName(packagePath: string): string {
   return baseName;
 }
 
-export function validatePackageJson(packageJson: object): boolean {
+export function validatePackageJson(
+  packageJson: object,
+): SafeParseReturnType<object, PackageType> {
   const result = packageJsonSchema.safeParse(packageJson);
 
-  return result.success;
+  return result;
 }
