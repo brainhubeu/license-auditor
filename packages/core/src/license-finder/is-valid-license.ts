@@ -1,16 +1,8 @@
-import {
-  type License,
-  type LicenseId,
-  licenseIdsSet,
-  licenseMap,
-} from "@license-auditor/licenses";
+import { type License, licenseMap } from "@license-auditor/licenses";
 
-function isLicenseId(licenseId: unknown): licenseId is LicenseId {
-  return licenseIdsSet.has(licenseId as LicenseId);
-}
-
-export function findLicense(licenseId: unknown): License | undefined {
-  if (isLicenseId(licenseId)) {
-    return licenseMap.get(licenseId);
+export function findLicense(licenseId: unknown): LicenseResult | undefined {
+  if (typeof licenseId === "string" && licenseMap.has(licenseId)) {
+    // @ts-expect-error in the line above it's already checked that the element exists in the map
+    return [licenseMap.get(licenseId)];
   }
 }
