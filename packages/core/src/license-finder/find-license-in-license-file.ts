@@ -1,5 +1,7 @@
 // import * as fs from "node:fs";
 
+import type { LicensesWithPath } from "./licenses-with-path";
+
 // const licenseFiles = [
 //   "LICENSE",
 //   "LICENCE",

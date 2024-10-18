@@ -1,7 +1,7 @@
 import * as path from "node:path";
 import { findLicenseInLicenseFile } from "./find-license-in-license-file";
 import { findLicenseInPackageJson } from "./find-license-in-package-json";
-import { findLicenseInReadme } from "./find-license-in-readme";
+import type { LicensesWithPath } from "./licenses-with-path";
 
 export function findLicenses(
   packageJson: object,
@@ -18,11 +18,6 @@ export function findLicenses(
   const licenseFromLicenseFile = findLicenseInLicenseFile();
   if (licenseFromLicenseFile) {
     return licenseFromLicenseFile;
-  }
-
-  const licenseFromReadmeFile = findLicenseInReadme();
-  if (licenseFromReadmeFile) {
-    return licenseFromReadmeFile;
   }
 
   return {
