@@ -1,9 +1,9 @@
 import type { LicenseId } from "@license-auditor/licenses";
 import { Box, Static, Text, useApp } from "ink";
-import Spinner from "ink-spinner";
 import React, { useState, useEffect } from "react";
 import { licenses } from "../mocks.js";
 import type { AuditLicensesOptions } from "../options.js";
+import { SpinnerWithLabel } from "../components/spinner-with-label.js";
 
 export default function AuditLicenses({ options }: AuditLicensesOptions) {
   const [working, setWorking] = useState(true);
@@ -48,12 +48,7 @@ export default function AuditLicenses({ options }: AuditLicensesOptions) {
   }
 
   if (working && !options.verbose) {
-    return (
-      <Box>
-        <Spinner />
-        <Text>Processing licenses...</Text>
-      </Box>
-    );
+    return <SpinnerWithLabel label="Processing licenses..." />;
   }
 
   return (

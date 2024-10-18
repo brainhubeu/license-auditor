@@ -1,7 +1,9 @@
 import { Box, Text, useApp } from "ink";
 import SelectInput from "ink-select-input";
-import React, { useState } from "react";
-import { ConfigType, executeConfig } from "../utils/execute-config.js";
+import React, { useEffect, useState } from "react";
+import { ConfigType, generateConfig } from "../utils/generate-config.js";
+import { installPackages } from "../utils/install-packages.js";
+import { SpinnerWithLabel } from "../components/spinner-with-label.js";
 
 type ConfigTypeItem = { label: string; value: ConfigType };
 
@@ -19,13 +21,23 @@ const configTypeItems: ConfigTypeItem[] = [
 // todo: allow generating config files other than .js -> refer to supportedExtensions
 export default function Init() {
   const { exit } = useApp();
+  const [packagesInstalled, setPackagesInstalled] = useState(false);
   const [resultMessage, setResultMessage] = useState("");
 
   const handleSelectConfigType = async (item: ConfigTypeItem) => {
-    const message = await executeConfig(item.value);
+    const message = await generateConfig(item.value);
     setResultMessage(message);
     setTimeout(exit, 1500);
   };
+
+  useEffect(() => {
+    void installPackages();
+    setPackagesInstalled(true);
+  }, []);
+
+  if (!packagesInstalled) {
+    return <SpinnerWithLabel label="Installing dependencies..." />;
+  }
 
   if (resultMessage) {
     return <Text>{resultMessage}</Text>;

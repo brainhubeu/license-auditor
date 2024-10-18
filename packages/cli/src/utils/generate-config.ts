@@ -8,7 +8,7 @@ export enum ConfigType {
   Blank = "blank",
 }
 
-async function executeConfig(configType: ConfigType) {
+export async function generateConfig(configType: ConfigType) {
   try {
     const currentDir = process.cwd();
 
@@ -32,5 +32,3 @@ async function executeConfig(configType: ConfigType) {
     throw new Error("Failed to complete license configuration");
   }
 }
-
-export { executeConfig };
