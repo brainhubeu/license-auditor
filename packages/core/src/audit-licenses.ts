@@ -1,5 +1,5 @@
-import { findPackageManager } from "@license-auditor/package-manager-finder";
 import type { License } from "@license-auditor/licenses";
+import { findPackageManager } from "@license-auditor/package-manager-finder";
 import {
   type AuditSummary,
   type LicenseStatus,
