@@ -4,10 +4,9 @@ import z, { type SafeParseReturnType } from "zod";
 
 const packageJsonSchema = z
   .object({
-    license: z.string(),
-    licenses: z.array(z.string()),
+    license: z.string().optional(),
+    licenses: z.array(z.string()).optional(),
   })
-  .partial()
   .refine(
     (data) => !!data.license || !!data.licenses,
     "Either license or licenses has to be defined for a valid package.json",
