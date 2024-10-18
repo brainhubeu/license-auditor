@@ -27,7 +27,7 @@ function belongsToList(list: LicenseId[], licenseId: LicenseId): boolean {
 
 export function checkLicenseStatus(
   license: License,
-  config: Config
+  config: Config,
 ): LicenseStatus {
   if (belongsToList(config.whitelist, license.licenseId)) {
     return "whitelist";

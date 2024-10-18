@@ -5,7 +5,7 @@ import type { LicensesWithPath } from "./licenses-with-path";
 
 export async function findLicenses(
   packageJson: object,
-  packagePath: string
+  packagePath: string,
 ): Promise<LicensesWithPath> {
   const licenseFromPackageJson = findLicenseInPackageJson(packageJson);
   if (licenseFromPackageJson.length > 0) {

@@ -1,7 +1,7 @@
-import fs, { promises as asyncFS } from "node:fs";
+import fs, { promises as asyncFs } from "node:fs";
 import * as path from "node:path";
 import { type License, licenseMap } from "@license-auditor/licenses";
-import { LicensesWithPath } from "./licenses-with-path";
+import type { LicensesWithPath } from "./licenses-with-path";
 
 const licenseFiles = [
   "LICENSE",
@@ -28,7 +28,7 @@ function retrieveLicenseFromLicenseFileContent(content: string): License[] {
   const licenseArr = [...licenseMap]
     .filter(
       ([key, value]) =>
-        contentTokens.includes(key) || contentTokens.includes(value.name)
+        contentTokens.includes(key) || contentTokens.includes(value.name),
     )
     .map((result) => result[1]);
 
@@ -47,7 +47,7 @@ function retrieveLicenseFromLicenseFileContent(content: string): License[] {
 }
 
 export async function findLicenseInLicenseFile(
-  filename: string
+  filename: string,
 ): Promise<LicensesWithPath> {
   if (!fs.existsSync(filename)) {
     return { licenses: [], licensePath: undefined };
@@ -55,7 +55,7 @@ export async function findLicenseInLicenseFile(
 
   console.log(filename);
 
-  const content = await asyncFS.readFile(filename, "utf-8");
+  const content = await asyncFs.readFile(filename, "utf-8");
 
   if (!content) {
     return { licenses: [], licensePath: undefined };
@@ -73,7 +73,7 @@ export async function findLicenseInLicenseFile(
 }
 
 export async function parseLicenseFiles(
-  packagePath: string
+  packagePath: string,
 ): Promise<LicensesWithPath | undefined> {
   let basicPath: string;
   for (const licenseFile of licenseFiles) {
