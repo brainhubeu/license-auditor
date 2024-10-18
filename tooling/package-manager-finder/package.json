@@ -9,7 +9,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "detect-package-manager": "^3.0.2"
+    "detect-package-manager": "3.0.2"
   },
   "devDependencies": {
     "@types/node": "20.16.12",

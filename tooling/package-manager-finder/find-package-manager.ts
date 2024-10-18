@@ -23,5 +23,9 @@ export async function findPackageManager(cwd?: string): Promise<SupportedPm> {
     );
   }
 
+  if (packageManager === "bun") {
+    throw new Error("Bun is not supported yet");
+  }
+
   return packageManager;
 }
