@@ -1,3 +1,4 @@
+import { findPackageManager } from "@license-auditor/package-manager-finder";
 import { type LicenseStatus, checkLicenseStatus } from "./check-license-status";
 import { extractPackageName, readPackageJson } from "./file-utils";
 import { findLicense } from "./license-finder/find-license";
@@ -19,7 +20,11 @@ interface LicenseAuditResult {
   summary: AuditSummary;
 }
 
-function auditLicenses(packagePaths: string[]): LicenseAuditResult {
+export async function auditLicenses(cwd: string): Promise<LicenseAuditResult> {
+  const packageManager = await findPackageManager(cwd);
+  console.log("Package Manager:", packageManager);
+
+  const packagePaths: string[] = [];
   const resultMap = new Map<string, PackageInfo>();
   const summary: AuditSummary = {
     allowed: 0,
@@ -339,7 +344,14 @@ const packagePaths: string[] = [
   "/Users/angelikajeziorska/Documents/projects/license-auditor/node_modules/@babel/highlight/node_modules/color-convert",
   "/Users/angelikajeziorska/Documents/projects/license-auditor/node_modules/@babel/highlight/node_modules/has-flag",
 ];
-const auditResult = auditLicenses(packagePaths);
 
-console.log("Result Map:", auditResult.resultMap);
-console.log("Summary:", auditResult.summary);
+export async function go(): Promise<void> {
+  const auditResult = await auditLicenses(
+    "/Users/angelikajeziorska/Documents/projects/license-auditor",
+  );
+
+  console.log("Result Map:", auditResult.resultMap);
+  console.log("Summary:", auditResult.summary);
+}
+
+go();
