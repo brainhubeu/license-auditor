@@ -80,9 +80,6 @@ export async function auditLicenses(wd: string): Promise<LicenseAuditResult> {
     resultMap.set(packageName, packageInfo);
   }
 
-  console.log(resultMap);
-  console.log(summary);
-
   return {
     resultMap,
     summary,

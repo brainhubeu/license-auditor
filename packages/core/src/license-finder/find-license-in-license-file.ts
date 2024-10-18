@@ -53,32 +53,34 @@ export async function findLicenseInLicenseFile(
     return { licenses: [], licensePath: undefined };
   }
 
-  console.log(filename);
+  try {
+    const content = await asyncFs.readFile(filename, "utf-8");
 
-  const content = await asyncFs.readFile(filename, "utf-8");
+    if (!content) {
+      return { licenses: [], licensePath: undefined };
+    }
+    const foundLicenses = retrieveLicenseFromLicenseFileContent(content);
 
-  if (!content) {
+    if (!foundLicenses) {
+      return { licenses: [], licensePath: undefined };
+    }
+
+    return {
+      licenses: foundLicenses,
+      licensePath: filename,
+    };
+  } catch (_err) {
     return { licenses: [], licensePath: undefined };
   }
-  const foundLicenses = retrieveLicenseFromLicenseFileContent(content);
-
-  if (!foundLicenses) {
-    return { licenses: [], licensePath: undefined };
-  }
-
-  return {
-    licenses: foundLicenses,
-    licensePath: filename,
-  };
 }
 
 export async function parseLicenseFiles(
   packagePath: string,
 ): Promise<LicensesWithPath | undefined> {
-  let basicPath: string;
+  let licensePath: string;
   for (const licenseFile of licenseFiles) {
-    basicPath = path.join(packagePath, licenseFile);
-    const licenseFromLicenseFile = await findLicenseInLicenseFile(basicPath);
+    licensePath = path.join(packagePath, licenseFile);
+    const licenseFromLicenseFile = await findLicenseInLicenseFile(licensePath);
     if (licenseFromLicenseFile.licenses.length > 0) {
       return licenseFromLicenseFile;
     }
