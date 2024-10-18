@@ -7,31 +7,29 @@ import { detectYarnClassicDependencies } from "./yarn-classic";
 export async function findDependencies(
   packageManager: SupportedPm,
   projectRoot: string,
-  includeInternalPackages = false,
 ): Promise<string[]> {
-  let dependencies: string[];
+  const [dependencies, internalPackages] = await Promise.all([
+    findExternalDependencies(packageManager, projectRoot),
+    findInternalPackages(projectRoot),
+  ]);
 
+  return dependencies.filter(
+    (dep) => !internalPackages.some((internalPkg) => dep.includes(internalPkg)),
+  );
+}
+
+async function findExternalDependencies(
+  packageManager: SupportedPm,
+  projectRoot: string,
+): Promise<string[]> {
   switch (packageManager) {
     case "npm":
-      dependencies = await detectNpmDependencies(projectRoot);
-      break;
+      return detectNpmDependencies(projectRoot);
     case "pnpm":
-      dependencies = await detectPnpmDependencies(projectRoot);
-      break;
+      return detectPnpmDependencies(projectRoot);
     case "yarn-classic":
-      dependencies = await detectYarnClassicDependencies(projectRoot);
-      break;
+      return detectYarnClassicDependencies(projectRoot);
     default:
       throw new Error("Unsupported package manager");
   }
-
-  if (!includeInternalPackages) {
-    const internalPackages = await findInternalPackages(projectRoot);
-    return dependencies.filter(
-      (dep) =>
-        !internalPackages.some((internalPkg) => dep.includes(internalPkg)),
-    );
-  }
-
-  return dependencies;
 }
