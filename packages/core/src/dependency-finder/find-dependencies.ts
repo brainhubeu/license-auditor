@@ -1,10 +1,10 @@
-import type { SupportedPackageManager } from "../package-manager-finder/find-package-manager";
+import type { SupportedPm } from "@license-auditor/package-manager-finder";
 import { detectNpmDependencies } from "./npm";
 import { detectPnpmDependencies } from "./pnpm";
 import { detectYarnClassicDependencies } from "./yarn-classic";
 
 export async function findDependencies(
-  packageManager: SupportedPackageManager,
+  packageManager: SupportedPm,
   projectRoot: string,
 ): Promise<string[]> {
   switch (packageManager) {
