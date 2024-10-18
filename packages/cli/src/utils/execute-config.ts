@@ -24,11 +24,11 @@ async function executeConfig(usePredefinedLists: boolean) {
     console.log("Success!");
     if (usePredefinedLists) {
       console.log(
-        `Created a default license list for license-auditor at ${currentDir}/license-auditor.config.js`
+        `Created a default license list for license-auditor at ${currentDir}/license-auditor.config.js`,
       );
     } else {
       console.log(
-        `Created a blank license list for license-auditor at ${currentDir}/license-auditor.config.js`
+        `Created a blank license list for license-auditor at ${currentDir}/license-auditor.config.js`,
       );
     }
   } catch (err) {
