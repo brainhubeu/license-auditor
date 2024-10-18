@@ -25,9 +25,16 @@ interface LicenseAuditResult {
   notFound: Set<string>;
 }
 
-async function auditLicenses(projectRoot: string): Promise<LicenseAuditResult> {
+async function auditLicenses(
+  projectRoot: string,
+  includeInternalPackages = false,
+): Promise<LicenseAuditResult> {
   const packageManager = await findPackageManager(projectRoot);
-  const packagePaths = await findDependencies(packageManager, projectRoot);
+  const packagePaths = await findDependencies(
+    packageManager,
+    projectRoot,
+    includeInternalPackages,
+  );
 
   const resultMap = new Map<string, PackageInfo>();
   const summary: AuditSummary = {
@@ -78,5 +85,6 @@ async function auditLicenses(projectRoot: string): Promise<LicenseAuditResult> {
   return {
     resultMap,
     summary,
+    notFound,
   };
 }
