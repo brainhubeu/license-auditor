@@ -45,7 +45,7 @@ export async function auditLicenses(wd: string): Promise<LicenseAuditResult> {
     }
     const packageJson = readPackageJson(packagePath);
 
-    const licensesWithPath = findLicenses(packageJson, packagePath);
+    const licensesWithPath = await findLicenses(packageJson, packagePath);
 
     if (!licensesWithPath.licensePath) {
       console.warn(`No license found in ${packagePath}`);
@@ -74,6 +74,9 @@ export async function auditLicenses(wd: string): Promise<LicenseAuditResult> {
 
     resultMap.set(packageName, packageInfo);
   }
+
+  console.log(resultMap);
+  console.log(summary);
 
   return {
     resultMap,

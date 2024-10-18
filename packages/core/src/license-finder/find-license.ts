@@ -1,12 +1,12 @@
 import * as path from "node:path";
-import { findLicenseInLicenseFile } from "./find-license-in-license-file";
+import { parseLicenseFiles } from "./find-license-in-license-file";
 import { findLicenseInPackageJson } from "./find-license-in-package-json";
 import type { LicensesWithPath } from "./licenses-with-path";
 
-export function findLicenses(
+export async function findLicenses(
   packageJson: object,
-  packagePath: string,
-): LicensesWithPath {
+  packagePath: string
+): Promise<LicensesWithPath> {
   const licenseFromPackageJson = findLicenseInPackageJson(packageJson);
   if (licenseFromPackageJson) {
     return {
@@ -15,7 +15,7 @@ export function findLicenses(
     };
   }
 
-  const licenseFromLicenseFile = findLicenseInLicenseFile();
+  const licenseFromLicenseFile = await parseLicenseFiles(packagePath);
   if (licenseFromLicenseFile) {
     return licenseFromLicenseFile;
   }
