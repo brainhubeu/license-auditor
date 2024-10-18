@@ -1,4 +1,4 @@
-import { Box, Static, Text, useApp } from "ink";
+import { Box, Text, useApp } from "ink";
 import SelectInput from "ink-select-input";
 import React from "react";
 import { executeConfig } from "../utils/execute-config.js";
