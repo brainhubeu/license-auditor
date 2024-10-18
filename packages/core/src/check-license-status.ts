@@ -29,9 +29,6 @@ export function checkLicenseStatus(
   license: License,
   config: Config,
 ): LicenseStatus {
-  if (!license) {
-    return "unknown";
-  }
   if (belongsToList(config.whitelist, license.licenseId)) {
     return "whitelist";
   }
