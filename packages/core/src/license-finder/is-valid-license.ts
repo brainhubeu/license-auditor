@@ -1,12 +1,9 @@
-import { type License, licenses } from "@license-auditor/licenses";
+import { type License, licenseMap } from "@license-auditor/licenses";
 
-const licenseMap = new Map<string, License>(
-  licenses.map((l) => [l.licenseId, l]),
-);
-
-export function findLicense(licenseId: unknown): License | undefined {
-  if (typeof licenseId !== "string") {
-    return undefined;
+export function findLicense(licenseId: unknown): License[] {
+  if (typeof licenseId === "string" && licenseMap.has(licenseId)) {
+    // @ts-expect-error in the line above it's already checked that the element exists in the map
+    return [licenseMap.get(licenseId)];
   }
-  return licenseMap.get(licenseId);
+  return [];
 }
