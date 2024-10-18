@@ -9,7 +9,7 @@ const packageJsonSchema = z
   })
   .refine(
     (data) => !!data.license || !!data.licenses,
-    "Either license or licenses has to be defined for a valid package.json"
+    "Either license or licenses has to be defined for a valid package.json",
   );
 
 export function readPackageJson(packagePath: string): object {
