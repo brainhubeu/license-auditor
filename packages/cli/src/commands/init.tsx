@@ -1,9 +1,9 @@
 import { Box, Text, useApp } from "ink";
 import SelectInput from "ink-select-input";
 import React, { useEffect, useState } from "react";
+import { SpinnerWithLabel } from "../components/spinner-with-label.js";
 import { ConfigType, generateConfig } from "../utils/generate-config.js";
 import { installPackages } from "../utils/install-packages.js";
-import { SpinnerWithLabel } from "../components/spinner-with-label.js";
 
 type ConfigTypeItem = { label: string; value: ConfigType };
 
