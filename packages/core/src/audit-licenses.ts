@@ -24,7 +24,7 @@ interface LicenseInfo {
 
 interface LicenseAuditResult {
   groupedByStatus: Record<LicenseStatus, LicenseInfo[]>;
-  notFound: Set<string>;
+  notFound: Map<string, { packagePath: string; errorMessage: string }>;
 }
 
 export async function auditLicenses(
@@ -40,7 +40,11 @@ export async function auditLicenses(
     blacklist: [],
     unknown: [],
   };
-  const notFound = new Set<string>();
+
+  const notFound = new Map<
+    string,
+    { packagePath: string; errorMessage: string }
+  >();
 
   for (const packagePath of packagePaths) {
     const packageName = extractPackageName(packagePath);
@@ -49,44 +53,46 @@ export async function auditLicenses(
       console.log("Skipping package:", packageName);
       continue;
     }
-    const packageJson = readPackageJson(packagePath);
+    const packageJsonResult = readPackageJson(packagePath);
 
-    const licensesWithPath = await findLicenses(packageJson, packagePath);
-
-    if (!licensesWithPath.licensePath) {
-      console.warn(`No license found in ${packagePath}`);
-      notFound.add(packageName);
+    if (packageJsonResult.errorMessage) {
+      notFound.set(packageName, {
+        packagePath,
+        errorMessage: packageJsonResult.errorMessage,
+      });
       continue;
     }
     // todo: handle needsVerification case when license path exists but no licenses have been found
 
-    const licensesWithStatus = [];
-    for (const license of licensesWithPath.licenses) {
-      const status = checkLicenseStatus(license, config);
-      const licenseWithStatus = {
-        ...license,
-        status,
-      };
-      groupedByStatus[status].push({
-        package: packageName,
-        path: packagePath,
-        license: licenseWithStatus,
-        licensePath: licensesWithPath.licensePath,
-      });
+    if (packageJsonResult.packageJson) {
+      const licensesWithPath = await findLicenses(
+        packageJsonResult.packageJson,
+        packagePath,
+      );
 
-      licensesWithStatus.push(licenseWithStatus);
+      if (!licensesWithPath.licensePath) {
+        const errorMsg = `No license found in ${packagePath}`;
+        console.warn(errorMsg);
+        notFound.set(packageName, { packagePath, errorMessage: errorMsg });
+        continue;
+      }
+      const licensesWithStatus = [];
+      for (const license of licensesWithPath.licenses) {
+        const status = checkLicenseStatus(license, config);
+        const licenseWithStatus = {
+          ...license,
+          status,
+        };
+        groupedByStatus[status].push({
+          package: packageName,
+          path: packagePath,
+          license: licenseWithStatus,
+          licensePath: licensesWithPath.licensePath,
+        });
+
+        licensesWithStatus.push(licenseWithStatus);
+      }
     }
-
-    const packageInfo: PackageInfo = {
-      package: packageName,
-      path: packagePath,
-      result: {
-        licenses: licensesWithStatus,
-        licensePath: licensesWithPath.licensePath,
-      },
-    };
-
-    resultMap.set(packageName, packageInfo);
   }
 
   console.log(
