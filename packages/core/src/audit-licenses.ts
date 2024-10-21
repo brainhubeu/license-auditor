@@ -1,8 +1,8 @@
 import type { ConfigType } from "@license-auditor/config";
 import type { License } from "@license-auditor/licenses";
 import { findPackageManager } from "@license-auditor/package-manager-finder";
-import { findDependencies } from "./dependency-finder/find-dependencies";
 import { type LicenseStatus, checkLicenseStatus } from "./check-license-status";
+import { findDependencies } from "./dependency-finder/find-dependencies";
 import { extractPackageName, readPackageJson } from "./file-utils";
 import { findLicenses } from "./license-finder/find-license";
 
