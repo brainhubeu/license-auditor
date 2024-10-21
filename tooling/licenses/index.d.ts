@@ -1,9 +1,9 @@
-import type { licensesData } from "./licenses";
+import type { licensesData } from "./licenses.ts";
 
 export declare const licenses: (typeof licensesData.licenses)[];
-export declare const licenseMap: Map<LicenseId, License>;
 export declare type LicenseId =
   (typeof licensesData.licenses)[number]["licenseId"];
+export declare const licenseMap: Map<LicenseId, License>;
 interface License {
   reference: string;
   isDeprecatedLicenseId: boolean;
