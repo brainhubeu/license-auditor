@@ -1,33 +1,32 @@
-import fs from "node:fs/promises";
 import path from "node:path";
+import fg from "fast-glob";
 import { readPackageJson } from "../file-utils";
+
+interface PackageJson {
+  name?: string;
+}
 
 export async function findInternalPackages(
   projectRoot: string,
 ): Promise<string[]> {
-  const internalPackages: string[] = [];
+  const entries = await fg(
+    ["**/package.json", "!**/node_modules/**", "!package.json"],
+    {
+      cwd: projectRoot,
+    },
+  );
 
-  async function searchDirectory(dir: string): Promise<void> {
-    const entries = await fs.readdir(dir, { withFileTypes: true });
+  const internalPackages = await Promise.all(
+    entries.map(async (entry) => {
+      const fullPath = path.join(projectRoot, entry);
+      const packageJson = readPackageJson(
+        path.dirname(fullPath),
+      ) as PackageJson;
+      return packageJson.name;
+    }),
+  );
 
-    await Promise.all(
-      entries.map(async (entry) => {
-        const fullPath = path.join(dir, entry.name);
-
-        if (entry.isDirectory() && entry.name !== "node_modules") {
-          await searchDirectory(fullPath);
-        }
-
-        if (entry.isFile() && entry.name === "package.json") {
-          const packageJson = readPackageJson(path.dirname(fullPath));
-          if ("name" in packageJson && typeof packageJson.name === "string") {
-            internalPackages.push(packageJson.name);
-          }
-        }
-      }),
-    );
-  }
-
-  await searchDirectory(projectRoot);
-  return internalPackages;
+  return internalPackages.filter(
+    (name): name is string => typeof name === "string",
+  );
 }

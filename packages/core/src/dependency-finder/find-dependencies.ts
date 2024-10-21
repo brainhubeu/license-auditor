@@ -14,11 +14,11 @@ export async function findDependencies(
   ]);
 
   return dependencies.filter(
-    (dep) => !internalPackages.some((internalPkg) => dep.includes(internalPkg)),
+    (dep) => !internalPackages.some((internalPkg) => dep.endsWith(internalPkg)),
   );
 }
 
-async function findExternalDependencies(
+function findExternalDependencies(
   packageManager: SupportedPm,
   projectRoot: string,
 ): Promise<string[]> {

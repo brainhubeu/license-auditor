@@ -32,22 +32,20 @@ export async function findPnpmDependencies(
     throw new Error("Invalid pnpm ls --json output format");
   }
 
-  const dependenciesList = validationResult.data;
-  const dependencyPaths: string[] = [];
-
-  if (dependenciesList.length > 0) {
-    if (dependenciesList[0]?.dependencies) {
-      const paths = extractDependencyPaths(dependenciesList[0].dependencies);
-      dependencyPaths.push(...paths);
-    }
-
-    if (dependenciesList[0]?.devDependencies) {
-      const paths = extractDependencyPaths(dependenciesList[0].devDependencies);
-      dependencyPaths.push(...paths);
-    }
+  const pnpmOutput = validationResult.data[0];
+  if (!pnpmOutput) {
+    throw new Error("No pnpm output data found");
   }
 
-  return dependencyPaths;
+  const dependenciesPaths: string[] = [];
+
+  const dependencies = pnpmOutput.dependencies ?? {};
+  const devDependencies = pnpmOutput.devDependencies ?? {};
+
+  dependenciesPaths.push(...extractDependencyPaths(dependencies));
+  dependenciesPaths.push(...extractDependencyPaths(devDependencies));
+
+  return dependenciesPaths;
 }
 
 const extractDependencyPaths = (
