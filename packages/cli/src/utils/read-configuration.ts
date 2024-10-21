@@ -1,8 +1,5 @@
 import { cosmiconfig } from "cosmiconfig";
-import {
-  MODULE_NAME,
-  supportedConfigFiles,
-} from "../configuration-constants.js";
+import { MODULE_NAME, supportedConfigFiles } from "../config-constants.js";
 
 async function readConfiguration() {
   const explorer = cosmiconfig(MODULE_NAME, {

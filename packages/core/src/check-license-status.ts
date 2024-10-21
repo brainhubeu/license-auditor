@@ -1,12 +1,6 @@
 import type { License, LicenseId } from "@license-auditor/licenses";
 
-export interface AuditSummary {
-  whitelist: number;
-  blacklist: number;
-  unknown: number;
-}
-
-export type LicenseStatus = keyof AuditSummary;
+export type LicenseStatus = "whitelist" | "blacklist" | "unknown";
 
 // todo: import from a shared package from /tooling after config is actually pulled from the cli
 export type Config = {

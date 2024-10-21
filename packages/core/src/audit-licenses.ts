@@ -1,7 +1,6 @@
 import type { License } from "@license-auditor/licenses";
 import { findPackageManager } from "@license-auditor/package-manager-finder";
 import {
-  type AuditSummary,
   type LicenseStatus,
   checkLicenseStatus,
   tempConfig,
@@ -18,9 +17,15 @@ interface PackageInfo {
   };
 }
 
+interface LicenseInfo {
+  package: string;
+  path: string;
+  license: License & { status: LicenseStatus };
+  licensePath: string | undefined;
+}
+
 interface LicenseAuditResult {
-  resultMap: Map<string, PackageInfo>;
-  summary: AuditSummary;
+  groupedByStatus: Record<LicenseStatus, LicenseInfo[]>;
   notFound: Set<string>;
 }
 
@@ -29,19 +34,22 @@ export async function auditLicenses(wd: string): Promise<LicenseAuditResult> {
   console.log("Package Manager:", packageManager);
 
   const packagePaths: string[] = [];
+
   const resultMap = new Map<string, PackageInfo>();
-  const summary: AuditSummary = {
-    whitelist: 0,
-    blacklist: 0,
-    unknown: 0,
+  const groupedByStatus: Record<LicenseStatus, LicenseInfo[]> = {
+    whitelist: [],
+    blacklist: [],
+    unknown: [],
   };
   const notFound = new Set<string>();
 
   for (const packagePath of packagePaths) {
+    console.log(packagePath);
     const packageName = extractPackageName(packagePath);
 
     if (resultMap.has(packageName) || notFound.has(packageName)) {
-      break;
+      console.log("Skipping package:", packageName);
+      continue;
     }
     const packageJson = readPackageJson(packagePath);
 
@@ -52,15 +60,23 @@ export async function auditLicenses(wd: string): Promise<LicenseAuditResult> {
       notFound.add(packageName);
       continue;
     }
+    // todo: handle needsVerification case when license path exists but no licenses have been found
 
     const licensesWithStatus = [];
     for (const license of licensesWithPath.licenses) {
       const status = checkLicenseStatus(license, tempConfig);
-      summary[status] += 1;
-      licensesWithStatus.push({
+      const licenseWithStatus = {
         ...license,
         status,
+      };
+      groupedByStatus[status].push({
+        package: packageName,
+        path: packagePath,
+        license: licenseWithStatus,
+        licensePath: licensesWithPath.licensePath,
       });
+
+      licensesWithStatus.push(licenseWithStatus);
     }
 
     const packageInfo: PackageInfo = {
@@ -75,21 +91,20 @@ export async function auditLicenses(wd: string): Promise<LicenseAuditResult> {
     resultMap.set(packageName, packageInfo);
   }
 
+  console.log(
+    "Result:",
+    Array.from(resultMap.values()).map(
+      (p) =>
+        `${p.package}: ${p.result.licenses.map((l) => l.licenseId).join(", ")}`,
+    ),
+  );
+  console.log("Grouped by status:", groupedByStatus);
+  console.log("Not found:", notFound);
   return {
-    resultMap,
-    summary,
+    groupedByStatus,
     notFound,
   };
 }
 
-// hardcoded for testing
 // todo: pass actual project root path from cli
-const auditResult = auditLicenses(".");
-
-// console.log("Result Map:", auditResult.resultMap);
-// console.log(
-//   "Licenses:",
-//   Array.from(auditResult.resultMap.values()).flatMap((p) => p.result.licenses),
-// );
-// console.log("Summary:", auditResult.summary);
-// console.log("Not found:", auditResult.notFound);
+auditLicenses(".");
