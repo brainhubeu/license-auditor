@@ -9,6 +9,7 @@
     "typecheck": "tsc --noEmit --incremental false"
   },
   "dependencies": {
+    "@license-auditor/config": "*",
     "@license-auditor/licenses": "*",
     "@license-auditor/package-manager-finder": "*"
   },
@@ -16,5 +17,7 @@
     "@license-auditor/typescript-config": "*",
     "tsx": "4.19.1",
     "typescript": "5.6.2"
-  }
+  },
+  "main": "./dist/audit-licenses.js",
+  "types": "./dist/audit-licenses.d.ts"
 }

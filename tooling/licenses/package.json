@@ -9,8 +9,7 @@
   "type": "module",
   "types": "./index.d.ts",
   "main": "./index.mjs",
-  "exports": "./index.mjs",
-  "files": ["index.mjs", "index.d.ts", "licenses.json"],
+  "files": ["index.mjs", "index.d.ts", "licenses.ts"],
   "scripts": {
     "update-licenses": "tsx update-licenses.ts"
   },

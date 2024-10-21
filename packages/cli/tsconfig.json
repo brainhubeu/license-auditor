@@ -1,7 +1,9 @@
 {
   "extends": "@sindresorhus/tsconfig",
   "compilerOptions": {
-    "outDir": "dist"
+    "outDir": "dist",
+    "skipLibCheck": true,
+    "esModuleInterop": true
   },
-  "include": ["src"]
+  "exclude": ["node_modules", "./dist"]
 }
