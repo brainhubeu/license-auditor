@@ -1,11 +1,8 @@
+import type { ConfigType } from "@license-auditor/config";
 import type { License } from "@license-auditor/licenses";
 import { findPackageManager } from "@license-auditor/package-manager-finder";
-import {
-  type AuditSummary,
-  type LicenseStatus,
-  checkLicenseStatus,
-  tempConfig,
-} from "./check-license-status";
+import { type LicenseStatus, checkLicenseStatus } from "./check-license-status";
+import { findDependencies } from "./dependency-finder/find-dependencies";
 import { extractPackageName, readPackageJson } from "./file-utils";
 import { findLicenses } from "./license-finder/find-license";
 import type { LicensesWithPath } from "./license-finder/licenses-with-path";
@@ -18,27 +15,30 @@ interface PackageInfo {
   };
 }
 
+interface LicenseInfo {
+  package: string;
+  path: string;
+  license: License & { status: LicenseStatus };
+  licensePath: string | undefined;
+}
+
 interface LicenseAuditResult {
-  resultMap: Map<string, PackageInfo>;
-  summary: AuditSummary;
+  groupedByStatus: Record<LicenseStatus, LicenseInfo[]>;
   notFound: Set<string>;
 }
 
-export async function auditLicenses(wd: string): Promise<LicenseAuditResult> {
-  const packageManager = await findPackageManager(wd);
-  console.log("Package Manager:", packageManager);
+export async function auditLicenses(
+  cwd: string,
+  config: ConfigType,
+): Promise<LicenseAuditResult> {
+  const packageManager = await findPackageManager(cwd);
+  const packagePaths = await findDependencies(packageManager, cwd);
 
-  // adjust paths to run locally
-  const packagePaths: string[] = [
-    "/Users/filipkublin/Documents/license-auditor/packages/core/samples/@mergeapi/merge-node-client",
-    "/Users/filipkublin/Documents/license-auditor/packages/core/samples/@rudderstack/rudder-sdk-node",
-    "/Users/filipkublin/Documents/license-auditor/packages/core/samples/@zilliz/milvus2-sdk-node",
-  ];
   const resultMap = new Map<string, PackageInfo>();
-  const summary: AuditSummary = {
-    whitelist: 0,
-    blacklist: 0,
-    unknown: 0,
+  const groupedByStatus: Record<LicenseStatus, LicenseInfo[]> = {
+    whitelist: [],
+    blacklist: [],
+    unknown: [],
   };
   const notFound = new Set<string>();
 
@@ -46,7 +46,8 @@ export async function auditLicenses(wd: string): Promise<LicenseAuditResult> {
     const packageName = extractPackageName(packagePath);
 
     if (resultMap.has(packageName) || notFound.has(packageName)) {
-      break;
+      console.log("Skipping package:", packageName);
+      continue;
     }
     const packageJson = readPackageJson(packagePath);
 
@@ -57,15 +58,23 @@ export async function auditLicenses(wd: string): Promise<LicenseAuditResult> {
       notFound.add(packageName);
       continue;
     }
+    // todo: handle needsVerification case when license path exists but no licenses have been found
 
     const licensesWithStatus = [];
     for (const license of licensesWithPath.licenses) {
-      const status = checkLicenseStatus(license, tempConfig);
-      summary[status] += 1;
-      licensesWithStatus.push({
+      const status = checkLicenseStatus(license, config);
+      const licenseWithStatus = {
         ...license,
         status,
+      };
+      groupedByStatus[status].push({
+        package: packageName,
+        path: packagePath,
+        license: licenseWithStatus,
+        licensePath: licensesWithPath.licensePath,
       });
+
+      licensesWithStatus.push(licenseWithStatus);
     }
 
     const packageInfo: PackageInfo = {
@@ -80,21 +89,15 @@ export async function auditLicenses(wd: string): Promise<LicenseAuditResult> {
     resultMap.set(packageName, packageInfo);
   }
 
+  console.log(
+    "Result:",
+    Array.from(resultMap.values()).map(
+      (p) =>
+        `${p.package}: ${p.result.licenses.map((l) => l.licenseId).join(", ")}`,
+    ),
+  );
   return {
-    resultMap,
-    summary,
+    groupedByStatus,
     notFound,
   };
 }
-
-// hardcoded for testing
-// todo: pass actual project root path from cli
-const auditResult = auditLicenses(".");
-
-// console.log("Result Map:", auditResult.resultMap);
-// console.log(
-//   "Licenses:",
-//   Array.from(auditResult.resultMap.values()).flatMap((p) => p.result.licenses),
-// );
-// console.log("Summary:", auditResult.summary);
-// console.log("Not found:", auditResult.notFound);

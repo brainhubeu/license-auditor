@@ -1,93 +1,26 @@
-import { Box, Static, Text } from "ink";
-import React, { useState, useEffect } from "react";
-import zod from "zod";
-import Spinner from "../components/spinner.js";
-import { licenses } from "../mocks.js";
+import { Box, Text } from "ink";
+import Spinner from "ink-spinner";
+import React from "react";
+import { useReadConfiguration } from "../hooks/use-read-config-file.js";
+import type { CliOptions } from "../options.js";
+import AuditLicenses from "./audit-licenses.js";
 
-export const options = zod.object({
-  verbose: zod.boolean().default(false).describe("Verbose output"),
-});
+export default function Index({ options }: CliOptions) {
+  const { configFile } = useReadConfiguration();
 
-type Props = {
-  options: zod.infer<typeof options>;
-};
-
-export default function Index({ options }: Props) {
-  const [working, setWorking] = useState(true);
-
-  const [processed, setProcessed] = useState<
-    {
-      modulePath: string;
-      license: string;
-      licensePath: string;
-      error: boolean;
-    }[]
-  >([]);
-
-  useEffect(() => {
-    setWorking(true);
-
-    for (const license of licenses) {
-      setTimeout(
-        () =>
-          setProcessed((existing) => [
-            ...existing,
-            {
-              modulePath: license.modulePath,
-              license: license.license,
-              licensePath: license.licensePath,
-              error: license.license !== "MIT",
-            },
-          ]),
-        500,
-      );
-    }
-
-    setWorking(false);
-  }, []);
-
-  if (working && !options.verbose) {
+  if (configFile?.config) {
+    console.log(configFile);
     return (
-      <Box>
-        <Spinner />
-        <Text>Processing licenses...</Text>
-      </Box>
+      // todo: handle errors thrown in readConfiguration - prompt the user accordingly
+      // for now let's assume all is well and the file's been found
+      <AuditLicenses options={{ ...options, config: configFile.config }} />
     );
   }
 
   return (
-    <Box flexDirection="column">
-      {options.verbose && (
-        <Static items={processed}>
-          {(item) => (
-            <Box
-              key={item.modulePath}
-              flexDirection="column"
-              borderStyle="single"
-              borderColor={item.error ? "red" : "white"}
-            >
-              <Text>Module path: {item.modulePath}</Text>
-              <Text>License: {item.license}</Text>
-              <Text>License path: {item.licensePath}</Text>
-            </Box>
-          )}
-        </Static>
-      )}
-      <Box flexDirection="column" borderStyle="single" borderColor="white">
-        <Box>
-          <Text>Licenses found: {processed.length}</Text>
-        </Box>
-        <Box>
-          <Text>
-            Valid licenses: {processed.filter((item) => !item.error).length}
-          </Text>
-        </Box>
-        <Box>
-          <Text color="red">
-            Prohibited licenses: {processed.filter((item) => item.error).length}
-          </Text>
-        </Box>
-      </Box>
+    <Box>
+      <Spinner />
+      <Text>Reading configuration...</Text>
     </Box>
   );
 }

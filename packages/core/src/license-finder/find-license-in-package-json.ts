@@ -1,9 +1,9 @@
 import type { License } from "@license-auditor/licenses";
-import { findLicense } from "./is-valid-license";
+import { findLicenseById } from "./find-license-by-id";
 
 function retrieveLicenseFromTypeField(license: unknown): License[] {
   if (typeof license === "object" && !!license && "type" in license) {
-    return findLicense(license.type);
+    return findLicenseById(license.type);
   }
   return [];
 }
@@ -13,13 +13,13 @@ function retrieveLicenseByField<T extends string>(
   licenseField: T,
 ): License[] {
   if (typeof packageJson[licenseField] === "string") {
-    return findLicense(packageJson[licenseField]);
+    return findLicenseById(packageJson[licenseField]);
   }
 
   if (typeof packageJson[licenseField] === "object") {
     if (Array.isArray(packageJson[licenseField])) {
       return packageJson[licenseField]
-        .flatMap((l) => findLicense(l) ?? retrieveLicenseFromTypeField(l))
+        .flatMap((l) => findLicenseById(l) ?? retrieveLicenseFromTypeField(l))
         .filter(Boolean);
     }
     return retrieveLicenseFromTypeField(packageJson[licenseField]);
