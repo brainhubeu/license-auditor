@@ -23,7 +23,7 @@ export function readPackageJson(packagePath: string): PackageJsonResult {
     }
 
     if (validationResult.success) {
-      return { packageJson: parsedPackageJson as PackageJsonType };
+      return { packageJson: validationResult.data };
     }
   }
   // unsure how often such case happens and whether the license verification should be skipped
