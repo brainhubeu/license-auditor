@@ -18,7 +18,7 @@ const configTypeItems: ConfigTypeItem[] = [
   },
 ] as const;
 
-// todo: allow generating config files other than .js -> refer to supportedExtensions
+// todo: allow generating config files other than .js
 export default function Init() {
   const { exit } = useApp();
   const [packagesInstalled, setPackagesInstalled] = useState(false);

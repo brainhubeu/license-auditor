@@ -1,8 +1,18 @@
 import { Box, Text, useApp } from "ink";
 import React, { useState, useEffect } from "react";
 import { SpinnerWithLabel } from "../components/spinner-with-label.js";
-import type { AuditLicensesOptions } from "../options.js";
+import { cliOptions } from "../options.js";
 import { auditLicenses } from "@brainhubeu/license-auditor-core";
+import zod from "zod";
+
+export const auditLicensesOptions = cliOptions.extend({
+  // todo: import config zod schema
+  config: zod.any(),
+});
+
+export type AuditLicensesOptions = {
+  options: zod.infer<typeof auditLicensesOptions>;
+};
 
 export default function AuditLicenses({ options }: AuditLicensesOptions) {
   const [working, setWorking] = useState(true);
@@ -10,29 +20,29 @@ export default function AuditLicenses({ options }: AuditLicensesOptions) {
   const { exit } = useApp();
 
   // const [results, setResults] = useState<any>([]);
-
   useEffect(() => {
     setWorking(true);
 
     const getResults = async () => {
       try {
-        const result = await auditLicenses(process.cwd());
+        const result = await auditLicenses(process.cwd(), options.config);
         console.log("Result:", result);
         // setResults(result);
       } catch (err) {
         // todo: handle errors properly
+        console.error(err);
         setError(true);
         exit();
       }
     };
     void getResults();
     setWorking(false);
-  }, [exit]);
+  }, [exit, options.config]);
 
   if (error) {
     return (
       <Box borderStyle="single" borderColor="red">
-        <Text color="red">Config file does not exist or failed to load</Text>
+        <Text color="red">todo: error message handling</Text>
       </Box>
     );
   }

@@ -1,10 +1,8 @@
 import { cosmiconfig } from "cosmiconfig";
-import { MODULE_NAME, supportedConfigFiles } from "../config-constants.js";
+import { MODULE_NAME } from "../config-constants.js";
 
 async function readConfiguration() {
-  const explorer = cosmiconfig(MODULE_NAME, {
-    searchPlaces: supportedConfigFiles,
-  });
+  const explorer = cosmiconfig(MODULE_NAME);
 
   const configFile = await explorer.search();
   if (configFile?.isEmpty) {

@@ -1,12 +1,9 @@
 import type { License } from "@license-auditor/licenses";
 import { findPackageManager } from "@license-auditor/package-manager-finder";
-import {
-  type LicenseStatus,
-  checkLicenseStatus,
-  tempConfig,
-} from "./check-license-status";
+import { type LicenseStatus, checkLicenseStatus } from "./check-license-status";
 import { extractPackageName, readPackageJson } from "./file-utils";
 import { findLicenses } from "./license-finder/find-license";
+import type { ConfigType } from "@license-auditor/config";
 
 interface PackageInfo {
   package: string;
@@ -29,7 +26,10 @@ interface LicenseAuditResult {
   notFound: Set<string>;
 }
 
-export async function auditLicenses(wd: string): Promise<LicenseAuditResult> {
+export async function auditLicenses(
+  wd: string,
+  config: ConfigType,
+): Promise<LicenseAuditResult> {
   const packageManager = await findPackageManager(wd);
   console.log("Package Manager:", packageManager);
 
@@ -44,7 +44,6 @@ export async function auditLicenses(wd: string): Promise<LicenseAuditResult> {
   const notFound = new Set<string>();
 
   for (const packagePath of packagePaths) {
-    console.log(packagePath);
     const packageName = extractPackageName(packagePath);
 
     if (resultMap.has(packageName) || notFound.has(packageName)) {
@@ -64,7 +63,7 @@ export async function auditLicenses(wd: string): Promise<LicenseAuditResult> {
 
     const licensesWithStatus = [];
     for (const license of licensesWithPath.licenses) {
-      const status = checkLicenseStatus(license, tempConfig);
+      const status = checkLicenseStatus(license, config);
       const licenseWithStatus = {
         ...license,
         status,
@@ -98,13 +97,8 @@ export async function auditLicenses(wd: string): Promise<LicenseAuditResult> {
         `${p.package}: ${p.result.licenses.map((l) => l.licenseId).join(", ")}`,
     ),
   );
-  console.log("Grouped by status:", groupedByStatus);
-  console.log("Not found:", notFound);
   return {
     groupedByStatus,
     notFound,
   };
 }
-
-// todo: pass actual project root path from cli
-auditLicenses(".");
