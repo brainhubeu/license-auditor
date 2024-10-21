@@ -9,6 +9,7 @@
     "typecheck": "tsc --noEmit --incremental false"
   },
   "dependencies": {
+    "@license-auditor/config": "*",
     "@license-auditor/licenses": "*",
     "@license-auditor/package-manager-finder": "*"
   },

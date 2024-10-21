@@ -5,7 +5,7 @@
 const overrides = {
   blacklist: [],
   whitelist: [],
-  modules: {},
+  overrides: {},
 };
 
 export default overrides;
