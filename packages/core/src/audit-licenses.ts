@@ -5,13 +5,13 @@ import { type LicenseStatus, checkLicenseStatus } from "./check-license-status";
 import { findDependencies } from "./dependency-finder/find-dependencies";
 import { extractPackageName, readPackageJson } from "./file-utils";
 import { findLicenses } from "./license-finder/find-license";
+import type { LicensesWithPath } from "./license-finder/licenses-with-path";
 
 interface PackageInfo {
   package: string;
   path: string;
-  result: {
+  result: LicensesWithPath & {
     licenses: (License & { status: LicenseStatus })[];
-    licensePath: string | undefined;
   };
 }
 
@@ -65,7 +65,7 @@ export async function auditLicenses(
     // todo: handle needsVerification case when license path exists but no licenses have been found
 
     if (packageJsonResult.packageJson) {
-      const licensesWithPath = findLicenses(
+      const licensesWithPath = await findLicenses(
         packageJsonResult.packageJson,
         packagePath,
       );

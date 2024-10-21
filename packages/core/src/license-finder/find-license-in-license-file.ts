@@ -1,18 +1,61 @@
-// import * as fs from "node:fs";
-
+import { readFile } from "node:fs/promises";
+import * as path from "node:path";
+import { type License, licenseMap } from "@license-auditor/licenses";
 import type { LicensesWithPath } from "./licenses-with-path";
 
-// const licenseFiles = [
-//   "LICENSE",
-//   "LICENCE",
-//   "LICENSE.md",
-//   "LICENCE.md",
-//   "LICENSE.txt",
-//   "LICENSE-MIT",
-//   "LICENSE.BSD",
-// ] as const;
+const licenseFiles = [
+  "LICENSE",
+  "LICENCE",
+  "LICENSE.md",
+  "LICENCE.md",
+  "LICENSE.txt",
+  "LICENSE-MIT",
+  "LICENSE.BSD",
+] as const;
 
-// todo: re-implement logic responsible for searching for license in license files
-export function findLicenseInLicenseFile(): LicensesWithPath | undefined {
-  return undefined;
+function retrieveLicenseFromLicenseFileContent(content: string): License[] {
+  const contentTokens = content.split(/[ ,]+/);
+
+  const licenseArr = [...licenseMap]
+    .filter(
+      ([key, value]) =>
+        contentTokens.includes(key) || contentTokens.includes(value.name),
+    )
+    .map((result) => result[1]);
+
+  return licenseArr;
+}
+
+export async function findLicenseInLicenseFile(
+  filename: string,
+): Promise<LicensesWithPath> {
+  try {
+    const content = await readFile(filename, "utf-8");
+
+    if (!content) {
+      return { licenses: [], licensePath: undefined };
+    }
+    const foundLicenses = retrieveLicenseFromLicenseFileContent(content);
+
+    return {
+      licenses: foundLicenses,
+      licensePath: filename,
+      needsVerification: foundLicenses.length !== 1,
+    };
+  } catch {
+    return { licenses: [], licensePath: undefined };
+  }
+}
+
+export async function parseLicenseFiles(
+  packagePath: string,
+): Promise<LicensesWithPath | undefined> {
+  let licensePath: string;
+  for (const licenseFile of licenseFiles) {
+    licensePath = path.join(packagePath, licenseFile);
+    const licenseFromLicenseFile = await findLicenseInLicenseFile(licensePath);
+    if (licenseFromLicenseFile.licenses.length > 0) {
+      return licenseFromLicenseFile;
+    }
+  }
 }
