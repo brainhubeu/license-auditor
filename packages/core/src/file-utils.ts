@@ -1,26 +1,34 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
-import z, { type SafeParseReturnType } from "zod";
+import { type PackageType, packageJsonSchema } from "./schemas";
 
-const packageJsonSchema = z.object({
-  license: z.string().optional(),
-  licenses: z.array(z.string()).optional(),
-});
-
-type PackageType = z.infer<typeof packageJsonSchema>;
-
-export function readPackageJson(packagePath: string): object {
+export function readPackageJson(packagePath: string): PackageType | string {
   const packageJsonPath = path.join(packagePath, "package.json");
 
   if (fs.existsSync(packageJsonPath)) {
     const packageJsonContent = fs.readFileSync(packageJsonPath, "utf-8");
     const parsedPackageJson = JSON.parse(packageJsonContent);
-    if (!!parsedPackageJson && typeof parsedPackageJson === "object") {
-      return parsedPackageJson;
+
+    const validationResult = packageJsonSchema.safeParse(parsedPackageJson);
+
+    if (validationResult.error) {
+      console.warn(`Failed validation of package.json at ${packageJsonPath}`);
+      console.warn(validationResult.error.message);
+      return validationResult.error.message;
+    }
+
+    if (
+      !!parsedPackageJson &&
+      typeof parsedPackageJson === "object" &&
+      validationResult.success
+    ) {
+      return parsedPackageJson as PackageType;
     }
   }
   // unsure how often such case happens and whether the license verification should be skipped
-  throw new Error(`package.json not found for package at ${packagePath}`);
+  const errorMsg = `package.json not found for package at ${packagePath}`;
+  console.warn(errorMsg);
+  return errorMsg;
 }
 
 // done this way to avoid reading package.json when checking for an existing value in Map
@@ -33,12 +41,4 @@ export function extractPackageName(packagePath: string): string {
     return `${parentName}/${baseName}`;
   }
   return baseName;
-}
-
-export function validatePackageJson(
-  packageJson: object,
-): SafeParseReturnType<object, PackageType> {
-  const result = packageJsonSchema.safeParse(packageJson);
-
-  return result;
 }

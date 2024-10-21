@@ -21,7 +21,7 @@ interface PackageInfo {
 interface LicenseAuditResult {
   resultMap: Map<string, PackageInfo>;
   summary: AuditSummary;
-  notFound: Set<string>;
+  notFound: Map<string, { packagePath: string; errorMessage: string }>;
 }
 
 export async function auditLicenses(wd: string): Promise<LicenseAuditResult> {
@@ -35,7 +35,11 @@ export async function auditLicenses(wd: string): Promise<LicenseAuditResult> {
     blacklist: 0,
     unknown: 0,
   };
-  const notFound = new Set<string>();
+
+  const notFound = new Map<
+    string,
+    { packagePath: string; errorMessage: string }
+  >();
 
   for (const packagePath of packagePaths) {
     const packageName = extractPackageName(packagePath);
@@ -43,13 +47,22 @@ export async function auditLicenses(wd: string): Promise<LicenseAuditResult> {
     if (resultMap.has(packageName) || notFound.has(packageName)) {
       break;
     }
-    const packageJson = readPackageJson(packagePath);
+    const packageJsonResult = readPackageJson(packagePath);
 
-    const licensesWithPath = findLicenses(packageJson, packagePath);
+    if (typeof packageJsonResult === "string") {
+      notFound.set(packageName, {
+        packagePath,
+        errorMessage: packageJsonResult,
+      });
+      continue;
+    }
+
+    const licensesWithPath = findLicenses(packageJsonResult, packagePath);
 
     if (!licensesWithPath.licensePath) {
-      console.warn(`No license found in ${packagePath}`);
-      notFound.add(packageName);
+      const errorMsg = `No license found in ${packagePath}`;
+      console.warn(errorMsg);
+      notFound.set(packageName, { packagePath, errorMessage: errorMsg });
       continue;
     }
 
