@@ -2,6 +2,7 @@ import type { ConfigType } from "@license-auditor/config";
 import type { License } from "@license-auditor/licenses";
 import { findPackageManager } from "@license-auditor/package-manager-finder";
 import { type LicenseStatus, checkLicenseStatus } from "./check-license-status";
+import { findDependencies } from "./dependency-finder/find-dependencies";
 import { extractPackageName, readPackageJson } from "./file-utils";
 import { findLicenses } from "./license-finder/find-license";
 
@@ -27,13 +28,11 @@ interface LicenseAuditResult {
 }
 
 export async function auditLicenses(
-  wd: string,
+  cwd: string,
   config: ConfigType,
 ): Promise<LicenseAuditResult> {
-  const packageManager = await findPackageManager(wd);
-  console.log("Package Manager:", packageManager);
-
-  const packagePaths: string[] = [];
+  const packageManager = await findPackageManager(cwd);
+  const packagePaths = await findDependencies(packageManager, cwd);
 
   const resultMap = new Map<string, PackageInfo>();
   const groupedByStatus: Record<LicenseStatus, LicenseInfo[]> = {

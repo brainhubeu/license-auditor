@@ -11,7 +11,9 @@
   "dependencies": {
     "@license-auditor/config": "*",
     "@license-auditor/licenses": "*",
-    "@license-auditor/package-manager-finder": "*"
+    "@license-auditor/package-manager-finder": "*",
+    "fast-glob": "3.3.2",
+    "zod": "3.23.8"
   },
   "devDependencies": {
     "@license-auditor/typescript-config": "*",
