@@ -1,4 +1,5 @@
-import fs, { promises as asyncFs } from "node:fs";
+import fs from "node:fs";
+import { readFile } from "node:fs/promises";
 import * as path from "node:path";
 import { type License, licenseMap } from "@license-auditor/licenses";
 import type { LicensesWithPath } from "./licenses-with-path";
@@ -13,16 +14,7 @@ const licenseFiles = [
   "LICENSE.BSD",
 ] as const;
 
-const templates = {
-  [fs.readFileSync(`${__dirname}/templates/BSD-2-Clause.txt`).toString()]:
-    licenseMap.get("BSD-2-Clause"),
-  [fs.readFileSync(`${__dirname}/templates/MIT.txt`).toString()]:
-    licenseMap.get("MIT"),
-};
-
 function retrieveLicenseFromLicenseFileContent(content: string): License[] {
-  const lines = content.split("\n");
-
   const contentTokens = content.split(/[ ,]+/);
 
   const licenseArr = [...licenseMap]
@@ -32,44 +24,30 @@ function retrieveLicenseFromLicenseFileContent(content: string): License[] {
     )
     .map((result) => result[1]);
 
-  const withoutFirstLine = lines
-    .slice(1)
-    .filter((line) => line.length)
-    .join("\n");
-
-  const fromTemplate = templates[withoutFirstLine];
-
-  if (fromTemplate) {
-    return [fromTemplate];
-  }
-
   return licenseArr;
 }
 
 export async function findLicenseInLicenseFile(
   filename: string,
 ): Promise<LicensesWithPath> {
-  if (!fs.existsSync(filename)) {
-    return { licenses: [], licensePath: undefined };
-  }
-
   try {
-    const content = await asyncFs.readFile(filename, "utf-8");
+    const content = await readFile(filename, "utf-8");
 
     if (!content) {
       return { licenses: [], licensePath: undefined };
     }
     const foundLicenses = retrieveLicenseFromLicenseFileContent(content);
 
-    if (!foundLicenses) {
-      return { licenses: [], licensePath: undefined };
+    if (foundLicenses.length === 0) {
+      return { licenses: [], licensePath: filename, needsVerification: true };
     }
 
     return {
       licenses: foundLicenses,
       licensePath: filename,
+      needsVerification: foundLicenses.length > 1,
     };
-  } catch (_err) {
+  } catch {
     return { licenses: [], licensePath: undefined };
   }
 }
