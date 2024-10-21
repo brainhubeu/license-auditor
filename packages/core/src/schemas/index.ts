@@ -6,4 +6,4 @@ export const packageJsonSchema = z.object({
   licenses: z.array(z.string()).optional(),
 });
 
-export type PackageType = z.infer<typeof packageJsonSchema>;
+export type PackageJsonType = z.infer<typeof packageJsonSchema>;

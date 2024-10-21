@@ -1,12 +1,12 @@
 import * as path from "node:path";
 
-import type { PackageType } from "../schemas";
+import type { PackageJsonType } from "../schemas";
 import { findLicenseInLicenseFile } from "./find-license-in-license-file";
 import { findLicenseInPackageJson } from "./find-license-in-package-json";
 import type { LicensesWithPath } from "./licenses-with-path";
 
 export function findLicenses(
-  packageJson: PackageType,
+  packageJson: PackageJsonType,
   packagePath: string,
 ): LicensesWithPath {
   const packageJsonPath = path.join(packagePath, "package.json");

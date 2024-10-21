@@ -1,8 +1,13 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
-import { type PackageType, packageJsonSchema } from "./schemas";
+import { type PackageJsonType, packageJsonSchema } from "./schemas";
 
-export function readPackageJson(packagePath: string): PackageType | string {
+interface PackageJsonResult {
+  packageJson?: PackageJsonType;
+  errorMessage?: string;
+}
+
+export function readPackageJson(packagePath: string): PackageJsonResult {
   const packageJsonPath = path.join(packagePath, "package.json");
 
   if (fs.existsSync(packageJsonPath)) {
@@ -14,21 +19,17 @@ export function readPackageJson(packagePath: string): PackageType | string {
     if (validationResult.error) {
       console.warn(`Failed validation of package.json at ${packageJsonPath}`);
       console.warn(validationResult.error.message);
-      return validationResult.error.message;
+      return { errorMessage: validationResult.error.message };
     }
 
-    if (
-      !!parsedPackageJson &&
-      typeof parsedPackageJson === "object" &&
-      validationResult.success
-    ) {
-      return parsedPackageJson as PackageType;
+    if (validationResult.success) {
+      return { packageJson: parsedPackageJson as PackageJsonType };
     }
   }
   // unsure how often such case happens and whether the license verification should be skipped
   const errorMsg = `package.json not found for package at ${packagePath}`;
   console.warn(errorMsg);
-  return errorMsg;
+  return { errorMessage: errorMsg };
 }
 
 // done this way to avoid reading package.json when checking for an existing value in Map

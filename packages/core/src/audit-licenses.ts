@@ -49,43 +49,48 @@ export async function auditLicenses(wd: string): Promise<LicenseAuditResult> {
     }
     const packageJsonResult = readPackageJson(packagePath);
 
-    if (typeof packageJsonResult === "string") {
+    if (packageJsonResult.errorMessage) {
       notFound.set(packageName, {
         packagePath,
-        errorMessage: packageJsonResult,
+        errorMessage: packageJsonResult.errorMessage,
       });
       continue;
     }
 
-    const licensesWithPath = findLicenses(packageJsonResult, packagePath);
+    if (packageJsonResult.packageJson) {
+      const licensesWithPath = findLicenses(
+        packageJsonResult.packageJson,
+        packagePath,
+      );
 
-    if (!licensesWithPath.licensePath) {
-      const errorMsg = `No license found in ${packagePath}`;
-      console.warn(errorMsg);
-      notFound.set(packageName, { packagePath, errorMessage: errorMsg });
-      continue;
+      if (!licensesWithPath.licensePath) {
+        const errorMsg = `No license found in ${packagePath}`;
+        console.warn(errorMsg);
+        notFound.set(packageName, { packagePath, errorMessage: errorMsg });
+        continue;
+      }
+
+      const licensesWithStatus = [];
+      for (const license of licensesWithPath.licenses) {
+        const status = checkLicenseStatus(license, tempConfig);
+        summary[status] += 1;
+        licensesWithStatus.push({
+          ...license,
+          status,
+        });
+      }
+
+      const packageInfo: PackageInfo = {
+        package: packageName,
+        path: packagePath,
+        result: {
+          licenses: licensesWithStatus,
+          licensePath: licensesWithPath.licensePath,
+        },
+      };
+
+      resultMap.set(packageName, packageInfo);
     }
-
-    const licensesWithStatus = [];
-    for (const license of licensesWithPath.licenses) {
-      const status = checkLicenseStatus(license, tempConfig);
-      summary[status] += 1;
-      licensesWithStatus.push({
-        ...license,
-        status,
-      });
-    }
-
-    const packageInfo: PackageInfo = {
-      package: packageName,
-      path: packagePath,
-      result: {
-        licenses: licensesWithStatus,
-        licensePath: licensesWithPath.licensePath,
-      },
-    };
-
-    resultMap.set(packageName, packageInfo);
   }
 
   return {
