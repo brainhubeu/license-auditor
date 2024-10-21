@@ -8,13 +8,13 @@ import {
 } from "./check-license-status";
 import { extractPackageName, readPackageJson } from "./file-utils";
 import { findLicenses } from "./license-finder/find-license";
+import type { LicensesWithPath } from "./license-finder/licenses-with-path";
 
 interface PackageInfo {
   package: string;
   path: string;
-  result: {
+  result: LicensesWithPath & {
     licenses: (License & { status: LicenseStatus })[];
-    licensePath: string | undefined;
   };
 }
 

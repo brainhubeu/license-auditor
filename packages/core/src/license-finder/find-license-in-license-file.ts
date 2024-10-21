@@ -1,4 +1,3 @@
-import fs from "node:fs";
 import { readFile } from "node:fs/promises";
 import * as path from "node:path";
 import { type License, licenseMap } from "@license-auditor/licenses";
@@ -38,14 +37,10 @@ export async function findLicenseInLicenseFile(
     }
     const foundLicenses = retrieveLicenseFromLicenseFileContent(content);
 
-    if (foundLicenses.length === 0) {
-      return { licenses: [], licensePath: filename, needsVerification: true };
-    }
-
     return {
       licenses: foundLicenses,
       licensePath: filename,
-      needsVerification: foundLicenses.length > 1,
+      needsVerification: foundLicenses.length !== 1,
     };
   } catch {
     return { licenses: [], licensePath: undefined };
