@@ -11,6 +11,7 @@
   },
   "files": ["dist"],
   "dependencies": {
+    "@brainhubeu/license-auditor-core": "*",
     "@license-auditor/config": "*",
     "@license-auditor/licenses": "*",
     "@license-auditor/package-manager-finder": "*",

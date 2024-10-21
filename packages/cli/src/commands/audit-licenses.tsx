@@ -1,41 +1,31 @@
-import type { LicenseId } from "@license-auditor/licenses";
-import { Box, Static, Text, useApp } from "ink";
+import { Box, Text, useApp } from "ink";
 import React, { useState, useEffect } from "react";
 import { SpinnerWithLabel } from "../components/spinner-with-label.js";
-import { licenses } from "../mocks.js";
 import type { AuditLicensesOptions } from "../options.js";
+import { auditLicenses } from "@brainhubeu/license-auditor-core";
 
 export default function AuditLicenses({ options }: AuditLicensesOptions) {
   const [working, setWorking] = useState(true);
   const [error, setError] = useState(false);
   const { exit } = useApp();
 
-  const [processed, setProcessed] = useState<
-    {
-      modulePath: string;
-      license: LicenseId;
-      licensePath: string;
-    }[]
-  >([]);
+  // const [results, setResults] = useState<any>([]);
 
   useEffect(() => {
     setWorking(true);
 
-    try {
-      for (const license of licenses) {
-        setProcessed((currentProcessed) => [
-          ...currentProcessed,
-          {
-            modulePath: license.modulePath,
-            license: license.license,
-            licensePath: license.licensePath,
-          },
-        ]);
+    const getResults = async () => {
+      try {
+        const result = await auditLicenses(process.cwd());
+        console.log("Result:", result);
+        // setResults(result);
+      } catch (err) {
+        // todo: handle errors properly
+        setError(true);
+        exit();
       }
-    } catch (err) {
-      setError(true);
-      exit();
-    }
+    };
+    void getResults();
     setWorking(false);
   }, [exit]);
 
@@ -53,7 +43,7 @@ export default function AuditLicenses({ options }: AuditLicensesOptions) {
 
   return (
     <Box flexDirection="column">
-      {options.verbose && !error && (
+      {/* {options.verbose && !error && (
         <Static items={processed}>
           {(item) => (
             <Box
@@ -67,7 +57,7 @@ export default function AuditLicenses({ options }: AuditLicensesOptions) {
             </Box>
           )}
         </Static>
-      )}
+      )} */}
       {/* <Box flexDirection="column" borderStyle="single" borderColor="white">
         <Box>
           <Text>Licenses found: {processed.length}</Text>
