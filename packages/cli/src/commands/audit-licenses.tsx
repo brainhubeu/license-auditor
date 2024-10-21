@@ -1,7 +1,8 @@
 import { auditLicenses } from "@brainhubeu/license-auditor-core";
 import { Box, Text, useApp } from "ink";
 import React, { useState, useEffect } from "react";
-import zod from "zod";
+import { z as zod } from "zod";
+import AuditResult from "../components/AuditResult.js";
 import { SpinnerWithLabel } from "../components/spinner-with-label.js";
 import { cliOptions } from "../options.js";
 
@@ -19,7 +20,6 @@ export default function AuditLicenses({ options }: AuditLicensesOptions) {
   const [error, setError] = useState(false);
   const { exit } = useApp();
 
-  // const [results, setResults] = useState<any>([]);
   useEffect(() => {
     setWorking(true);
 
@@ -27,22 +27,21 @@ export default function AuditLicenses({ options }: AuditLicensesOptions) {
       try {
         const result = await auditLicenses(process.cwd(), options.config);
         console.log("Result:", result);
-        // setResults(result);
+        // Here you would process the result and set the appropriate state
+        setWorking(false);
       } catch (err) {
-        // todo: handle errors properly
         console.error(err);
         setError(true);
         exit();
       }
     };
     void getResults();
-    setWorking(false);
   }, [exit, options.config]);
 
   if (error) {
     return (
       <Box borderStyle="single" borderColor="red">
-        <Text color="red">todo: error message handling</Text>
+        <Text color="red">An error occurred while auditing licenses.</Text>
       </Box>
     );
   }
@@ -51,38 +50,5 @@ export default function AuditLicenses({ options }: AuditLicensesOptions) {
     return <SpinnerWithLabel label="Processing licenses..." />;
   }
 
-  return (
-    <Box flexDirection="column">
-      {/* {options.verbose && !error && (
-        <Static items={processed}>
-          {(item) => (
-            <Box
-              key={item.modulePath}
-              flexDirection="column"
-              borderStyle="single"
-            >
-              <Text>Module path: {item.modulePath}</Text>
-              <Text>License: {item.license}</Text>
-              <Text>License path: {item.licensePath}</Text>
-            </Box>
-          )}
-        </Static>
-      )} */}
-      {/* <Box flexDirection="column" borderStyle="single" borderColor="white">
-        <Box>
-          <Text>Licenses found: {processed.length}</Text>
-        </Box>
-        <Box>
-          <Text>
-            Valid licenses: {processed.filter((item) => !item.error).length}
-          </Text>
-        </Box>
-        <Box>
-          <Text color="red">
-            Prohibited licenses: {processed.filter((item) => item.error).length}
-          </Text>
-        </Box>
-      </Box> */}
-    </Box>
-  );
+  return <AuditResult />;
 }
