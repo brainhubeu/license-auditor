@@ -1,5 +1,5 @@
 import { auditLicenses } from "@brainhubeu/license-auditor-core";
-import { ConfigSchema } from "@license-auditor/data";
+import { ConfigSchema, type LicenseAuditResult } from "@license-auditor/data";
 import { Box, Text, useApp } from "ink";
 import React, { useState, useEffect } from "react";
 import type { z } from "zod";
@@ -17,7 +17,8 @@ export type AuditLicensesOptions = {
 
 export default function AuditLicenses({ options }: AuditLicensesOptions) {
   const [working, setWorking] = useState(true);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
+  const [result, setResult] = useState<LicenseAuditResult | null>(null);
   const { exit } = useApp();
 
   useEffect(() => {
@@ -25,13 +26,16 @@ export default function AuditLicenses({ options }: AuditLicensesOptions) {
 
     const getResults = async () => {
       try {
-        const result = await auditLicenses(process.cwd(), options.config);
-        console.log("Result:", result);
-        // Here you would process the result and set the appropriate state
+        const auditResult = await auditLicenses(process.cwd(), options.config);
+        setResult(auditResult);
         setWorking(false);
+        exit();
       } catch (err) {
         console.error(err);
-        setError(true);
+        setError(
+          err instanceof Error ? err : new Error("An unknown error occurred"),
+        );
+        setWorking(false);
         exit();
       }
     };
@@ -41,14 +45,16 @@ export default function AuditLicenses({ options }: AuditLicensesOptions) {
   if (error) {
     return (
       <Box borderStyle="single" borderColor="red">
-        <Text color="red">An error occurred while auditing licenses.</Text>
+        <Text color="red">
+          An error occurred while auditing licenses: {error.message}
+        </Text>
       </Box>
     );
   }
 
-  if (working && !options.verbose) {
+  if (working || !result) {
     return <SpinnerWithLabel label="Processing licenses..." />;
   }
 
-  return <AuditResult />;
+  return <AuditResult result={result} />;
 }

@@ -1,56 +1,245 @@
+import type { LicenseAuditResult } from "@brainhubeu/license-auditor-core";
 import { render } from "ink";
 import React from "react";
-import FailureResult from "./components/FailureResult.js";
-import SuccessResult from "./components/SuccessResult.js";
-import UnknownResult from "./components/UnknownResult.js";
+import AuditResult from "./components/AuditResult.js";
 
 // This is a mock render for the license auditor
-// This will be removed before merging
+// This whole file will be removed before merging
 
-const mockGroupedByStatus = {
-  whitelist: [
-    {
-      package: "package1",
-      licensePath: "/path/to/package1/LICENSE",
-      license: { licenseId: "MIT" },
-    },
-    {
-      package: "package2",
-      licensePath: "/path/to/package2/LICENSE",
-      license: { licenseId: "Apache-2.0" },
-    },
-  ],
-  blacklist: [
-    {
-      package: "package3",
-      licensePath: "/path/to/package3/LICENSE",
-      license: { licenseId: "GPL-3.0" },
-    },
-  ],
-  unknown: [
-    {
-      package: "package4",
-      licensePath: "/path/to/package4/LICENSE",
-      license: { licenseId: "Unknown" },
-    },
-  ],
+const mockResult: LicenseAuditResult = {
+  notFound: new Set(),
+  groupedByStatus: {
+    whitelist: [
+      {
+        package: "package1",
+        path: "path/to/package",
+        licensePath: "/path/to/package1/LICENSE",
+        license: {
+          reference: "",
+          isDeprecatedLicenseId: false,
+          detailsUrl: "",
+          referenceNumber: 0,
+          name: "",
+          licenseId: "MIT",
+          seeAlso: [],
+          isOsiApproved: false,
+          status: "whitelist",
+        },
+      },
+      {
+        package: "package2",
+        path: "path/to/package",
+        licensePath: "/path/to/package2/LICENSE",
+        license: {
+          reference: "",
+          isDeprecatedLicenseId: false,
+          detailsUrl: "",
+          referenceNumber: 0,
+          name: "",
+          licenseId: "Apache-2.0",
+          seeAlso: [],
+          isOsiApproved: false,
+          status: "whitelist",
+        },
+      },
+    ],
+    blacklist: [
+      {
+        package: "package3",
+        path: "path/to/package",
+        // licensePath: "/path/to/package3/LICENSE",
+        licensePath:
+          "/Users/mateuszjarzebowskibownik/Brainhub/someLicenseFile.txt",
+        license: {
+          reference: "",
+          isDeprecatedLicenseId: false,
+          detailsUrl: "",
+          referenceNumber: 0,
+          name: "",
+          licenseId: "GPL-3.0",
+          seeAlso: [],
+          isOsiApproved: false,
+          status: "blacklist",
+        },
+      },
+    ],
+    unknown: [
+      {
+        package: "package5",
+        path: "path/to/package",
+        // licensePath: "/path/to/package3/LICENSE",
+        licensePath:
+          "/Users/mateuszjarzebowskibownik/Brainhub/someLicenseFile.txt",
+        license: {
+          reference: "",
+          isDeprecatedLicenseId: false,
+          detailsUrl: "",
+          referenceNumber: 0,
+          name: "",
+          licenseId: "0BSD",
+          seeAlso: [],
+          isOsiApproved: false,
+          status: "unknown",
+        },
+      },
+      {
+        package: "package6",
+        path: "path/to/package",
+        licensePath: "/path/to/package6/LICENSE",
+        license: {
+          reference: "",
+          isDeprecatedLicenseId: false,
+          detailsUrl: "",
+          referenceNumber: 0,
+          name: "",
+          licenseId: "0BSD",
+          seeAlso: [],
+          isOsiApproved: false,
+          status: "unknown",
+        },
+      },
+      {
+        package: "package7",
+        path: "path/to/package",
+        licensePath: "/path/to/package7/LICENSE",
+        license: {
+          reference: "",
+          isDeprecatedLicenseId: false,
+          detailsUrl: "",
+          referenceNumber: 0,
+          name: "",
+          licenseId: "0BSD",
+          seeAlso: [],
+          isOsiApproved: false,
+          status: "unknown",
+        },
+      },
+    ],
+  },
+};
+
+const populatedNotFound = new Set([
+  "axios",
+  "@somecompany/somepackage",
+  "lodash",
+]);
+
+const emptyMock: LicenseAuditResult = {
+  notFound: populatedNotFound,
+  groupedByStatus: { whitelist: [], blacklist: [], unknown: [] },
 };
 
 function renderSuccess() {
   render(
-    <SuccessResult whitelistedCount={mockGroupedByStatus.whitelist.length} />,
+    <AuditResult
+      result={{
+        groupedByStatus: {
+          ...mockResult.groupedByStatus,
+          blacklist: [],
+          unknown: [],
+        },
+        notFound: mockResult.notFound,
+      }}
+    />,
   );
 }
 
 function renderFailure() {
-  render(<FailureResult groupedByStatus={mockGroupedByStatus} />);
+  render(
+    <AuditResult
+      result={{
+        groupedByStatus: {
+          ...mockResult.groupedByStatus,
+          unknown: [],
+        },
+        notFound: populatedNotFound,
+      }}
+    />,
+  );
 }
 
-function renderUnknown() {
-  render(<UnknownResult groupedByStatus={mockGroupedByStatus} />);
+function renderFailedAndUnknown() {
+  render(
+    <AuditResult
+      result={{
+        groupedByStatus: {
+          ...mockResult.groupedByStatus,
+          whitelist: [],
+        },
+        notFound: mockResult.notFound,
+      }}
+    />,
+  );
+}
+
+function renderAll() {
+  render(<AuditResult result={mockResult} />);
+}
+
+function renderKnownAndUnknown() {
+  render(
+    <AuditResult
+      result={{
+        groupedByStatus: {
+          ...mockResult.groupedByStatus,
+          blacklist: [],
+        },
+        notFound: mockResult.notFound,
+      }}
+    />,
+  );
+}
+
+function renderFailedOnly() {
+  render(
+    <AuditResult
+      result={{
+        groupedByStatus: {
+          ...mockResult.groupedByStatus,
+          whitelist: [],
+          unknown: [],
+        },
+        notFound: mockResult.notFound,
+      }}
+    />,
+  );
+}
+
+function renderUnknownOnly() {
+  render(
+    <AuditResult
+      result={{
+        groupedByStatus: {
+          ...mockResult.groupedByStatus,
+          whitelist: [],
+          blacklist: [],
+        },
+        notFound: mockResult.notFound,
+      }}
+    />,
+  );
+}
+
+function renderEmpty() {
+  render(<AuditResult result={emptyMock} />);
+}
+
+function renderWithNotFound() {
+  const mockResultWithNotFound: LicenseAuditResult = {
+    ...mockResult,
+    notFound: populatedNotFound,
+  };
+
+  render(<AuditResult result={mockResultWithNotFound} />);
 }
 
 // Uncomment the component you want to render
 // renderSuccess();
-renderFailure();
-// renderUnknown();
+// renderFailure();
+// renderFailedOnly();
+// renderUnknownOnly();
+// renderFailedAndUnknown();
+// renderKnownAndUnknown();
+// renderAll();
+renderEmpty();
+// renderWithNotFound();

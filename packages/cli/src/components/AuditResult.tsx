@@ -1,91 +1,66 @@
+import type { LicenseAuditResult } from "@brainhubeu/license-auditor-core";
+import figures from "figures";
 import { Box, Text } from "ink";
 import React from "react";
 import FailureResult from "./FailureResult.js";
+import IncludingUnknownResult from "./IncludingUnknownResult.js";
 import SuccessResult from "./SuccessResult.js";
-import UnknownResult from "./UnknownResult.js";
 
-// Mock data for demonstration
-const mockResult = {
-  status: "includingUnknown" as const, // 'success' | 'failure' | 'noMatches' | 'includingUnknown'
-  groupedByStatus: {
-    whitelist: [
-      {
-        package: "package1",
-        licensePath: "/path/to/package1/LICENSE",
-        license: { licenseId: "MIT" },
-      },
-      {
-        package: "package2",
-        licensePath: "/path/to/package2/LICENSE",
-        license: { licenseId: "Apache-2.0" },
-      },
-    ],
-    blacklist: [
-      {
-        package: "package3",
-        licensePath: "/path/to/package3/LICENSE",
-        license: { licenseId: "GPL-3.0" },
-      },
-    ],
-    unknown: [
-      {
-        package: "package4",
-        licensePath: "/path/to/package4/LICENSE",
-        license: { licenseId: "Unknown" },
-      },
-    ],
-  },
-};
+function renderAuditResult(result: LicenseAuditResult) {
+  const hasWhitelisted = result.groupedByStatus.whitelist.length > 0;
+  const hasBlacklisted = result.groupedByStatus.blacklist.length > 0;
+  const hasUnknown = result.groupedByStatus.unknown.length > 0;
 
-// This whole status thingie will definitely be changed in the future
-// For now, I've focused on the layout and the components
-type Status = "success" | "failure" | "noMatches" | "includingUnknown";
+  switch (true) {
+    case hasWhitelisted && !hasBlacklisted && !hasUnknown:
+      return (
+        <SuccessResult
+          whitelistedCount={result.groupedByStatus.whitelist.length}
+        />
+      );
 
-type GroupedByStatus = {
-  whitelist: Array<{
-    package: string;
-    licensePath: string;
-    license: { licenseId: string };
-  }>;
-  blacklist: Array<{
-    package: string;
-    licensePath: string;
-    license: { licenseId: string };
-  }>;
-  unknown: Array<{
-    package: string;
-    licensePath: string;
-    license: { licenseId: string };
-  }>;
-};
+    case hasBlacklisted && !hasUnknown:
+      return <FailureResult groupedByStatus={result.groupedByStatus} />;
 
-export default function AuditResult() {
-  const { status, groupedByStatus } = mockResult;
+    default:
+      return (
+        <IncludingUnknownResult groupedByStatus={result.groupedByStatus} />
+      );
+  }
+}
+
+export default function AuditResult({
+  result,
+}: {
+  result: LicenseAuditResult;
+}) {
+  const auditResultComponent = renderAuditResult(result);
+  const hasNotFound = result.notFound.size > 0;
+  const describePackagesCount =
+    result.notFound.size === 1 ? "package is" : "packages are";
 
   return (
     <Box flexDirection="column">
-      <Box marginBottom={1}>
-        <Text backgroundColor="blue" color="white" bold>
-          {" License Audit Results "}
-        </Text>
-      </Box>
-      {renderResult(status, groupedByStatus)}
+      {auditResultComponent}
+      {hasNotFound && (
+        <Box flexDirection="column">
+          <Box>
+            <Text color="yellow">{figures.warning}</Text>
+            <Text>
+              {result.notFound.size} {describePackagesCount} missing license
+              information:
+            </Text>
+          </Box>
+          <Box flexDirection="column" marginLeft={2}>
+            {Array.from(result.notFound).map((packageName) => (
+              <Box key={packageName}>
+                <Text color="gray">{figures.pointerSmall}</Text>
+                <Text> {packageName}</Text>
+              </Box>
+            ))}
+          </Box>
+        </Box>
+      )}
     </Box>
   );
-}
-
-function renderResult(status: Status, groupedByStatus: GroupedByStatus) {
-  switch (status) {
-    case "success":
-      return (
-        <SuccessResult whitelistedCount={groupedByStatus.whitelist.length} />
-      );
-    case "failure":
-      return <FailureResult groupedByStatus={groupedByStatus} />;
-    case "noMatches":
-    case "includingUnknown":
-      return <UnknownResult groupedByStatus={groupedByStatus} />;
-    default:
-      return <Text>Unknown audit result status</Text>;
-  }
 }

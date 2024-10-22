@@ -1,25 +1,20 @@
+import type { LicenseAuditResult } from "@brainhubeu/license-auditor-core";
 import figures from "figures";
 import { Box, Text } from "ink";
 import React from "react";
+import { describeLicenseCount } from "../utils/describe-license-count.js";
 import LicenseList from "./LicenseList.js";
 
-interface FailureResultProps {
-  groupedByStatus: {
-    whitelist: Array<{
-      package: string;
-      licensePath: string;
-      license: { licenseId: string };
-    }>;
-    blacklist: Array<{
-      package: string;
-      licensePath: string;
-      license: { licenseId: string };
-    }>;
-  };
-}
+export default function FailureResult({
+  groupedByStatus,
+}: Omit<LicenseAuditResult, "notFound">) {
+  const whitelistResultText = describeLicenseCount(
+    groupedByStatus.whitelist.length,
+  );
+  const blacklistedResultText = describeLicenseCount(
+    groupedByStatus.blacklist.length,
+  );
 
-// Global TODO: handle the pluralization of "licenses"
-export default function FailureResult({ groupedByStatus }: FailureResultProps) {
   return (
     <Box flexDirection="column">
       <Box marginBottom={1} marginTop={1}>
@@ -29,14 +24,11 @@ export default function FailureResult({ groupedByStatus }: FailureResultProps) {
       </Box>
       <Box>
         <Text color="green">{figures.tick}</Text>
-        <Text>{groupedByStatus.whitelist.length} license(s) are compliant</Text>
+        <Text>{whitelistResultText} compliant</Text>
       </Box>
       <Box>
         <Text color="red">{figures.cross}</Text>
-        <Text>
-          {" "}
-          {groupedByStatus.blacklist.length} license(s) are blacklisted:
-        </Text>
+        <Text> {blacklistedResultText} blacklisted:</Text>
       </Box>
       <LicenseList licenses={groupedByStatus.blacklist} />
     </Box>
