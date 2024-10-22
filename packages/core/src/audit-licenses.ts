@@ -15,14 +15,14 @@ interface PackageInfo {
   };
 }
 
-interface LicenseInfo {
+export interface LicenseInfo {
   package: string;
   path: string;
   license: License & { status: LicenseStatus };
   licensePath: string | undefined;
 }
 
-interface LicenseAuditResult {
+export interface LicenseAuditResult {
   groupedByStatus: Record<LicenseStatus, LicenseInfo[]>;
   notFound: Set<string>;
 }

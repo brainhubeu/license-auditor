@@ -1,24 +1,21 @@
+import type { LicenseInfo } from "@brainhubeu/license-auditor-core";
 import figures from "figures";
 import { Box, Text } from "ink";
 import React from "react";
 
 interface LicenseListProps {
-  licenses: Array<{
-    package: string;
-    licensePath: string;
-    license: { licenseId: string };
-  }>;
+  licenses: LicenseInfo[];
 }
 
 export default function LicenseList({ licenses }: LicenseListProps) {
   return (
     <Box flexDirection="column" marginLeft={2}>
-      {licenses.map((license) => (
-        <Box key={license.package}>
+      {licenses.map((l) => (
+        <Box key={l.package}>
           <Text color="gray">{figures.pointerSmall}</Text>
-          <Text> {license.package} </Text>
-          <Text color="cyan">({license.license.licenseId})</Text>
-          <Text>: {license.licensePath}</Text>
+          <Text> {l.package} </Text>
+          <Text color="cyan">{l.license.licenseId}</Text>
+          <Text>: {l.licensePath}</Text>
         </Box>
       ))}
     </Box>

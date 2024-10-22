@@ -1,6 +1,8 @@
 import figures from "figures";
 import { Box, Text } from "ink";
 import React from "react";
+import { describeLicenseCount } from "../utils/describe-license-count.js";
+
 interface SuccessResultProps {
   whitelistedCount: number;
 }
@@ -8,6 +10,8 @@ interface SuccessResultProps {
 export default function SuccessResult({
   whitelistedCount,
 }: SuccessResultProps) {
+  const whitelistResultText = describeLicenseCount(whitelistedCount);
+
   return (
     <Box flexDirection="column">
       <Box marginBottom={1} marginTop={1}>
@@ -17,10 +21,7 @@ export default function SuccessResult({
       </Box>
       <Box>
         <Text color="green">{figures.pointerSmall}</Text>
-        <Text>
-          {" "}
-          {whitelistedCount} license(s) are compliant with the whitelist.
-        </Text>
+        <Text> {whitelistResultText} compliant with the whitelist.</Text>
       </Box>
     </Box>
   );
