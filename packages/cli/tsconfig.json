@@ -1,12 +1,10 @@
 {
-  "extends": "@sindresorhus/tsconfig",
+  "extends": "@license-auditor/typescript-config/base.json",
   "compilerOptions": {
     "outDir": "dist",
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "paths": {
-      "@brainhubeu/license-auditor-core": ["../core/src"]
-    }
+    "jsx": "react-jsx"
   },
   "exclude": ["node_modules", "./dist"]
 }
