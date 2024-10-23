@@ -5,7 +5,7 @@ import {
 import { Box, Text, useApp } from "ink";
 import React, { useState, useEffect } from "react";
 import { z as zod } from "zod";
-import AuditResult from "../components/AuditResult.js";
+import AuditResult from "../components/audit-result.js";
 import { SpinnerWithLabel } from "../components/spinner-with-label.js";
 import { cliOptions } from "../options.js";
 

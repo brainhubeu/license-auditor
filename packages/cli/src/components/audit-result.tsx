@@ -2,9 +2,9 @@ import type { LicenseAuditResult } from "@brainhubeu/license-auditor-core";
 import figures from "figures";
 import { Box, Text } from "ink";
 import React from "react";
-import FailureResult from "./FailureResult.js";
-import IncludingUnknownResult from "./IncludingUnknownResult.js";
-import SuccessResult from "./SuccessResult.js";
+import FailureResult from "./failure-result.js";
+import IncludingUnknownResult from "./including-unknown-result.js";
+import SuccessResult from "./success-result.js";
 
 function renderAuditResult(result: LicenseAuditResult) {
   const hasWhitelisted = result.groupedByStatus.whitelist.length > 0;
