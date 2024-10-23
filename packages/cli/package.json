@@ -12,8 +12,7 @@
   "files": ["dist"],
   "dependencies": {
     "@brainhubeu/license-auditor-core": "*",
-    "@license-auditor/config": "*",
-    "@license-auditor/licenses": "*",
+    "@license-auditor/data": "*",
     "@license-auditor/package-manager-finder": "*",
     "cosmiconfig": "9.0.0",
     "ink": "5.0.1",

@@ -1,5 +1,4 @@
-import type { ConfigType } from "@license-auditor/config";
-import type { License } from "@license-auditor/licenses";
+import type { ConfigType, License } from "@license-auditor/data";
 import { findPackageManager } from "@license-auditor/package-manager-finder";
 import { type LicenseStatus, checkLicenseStatus } from "./check-license-status";
 import { findDependencies } from "./dependency-finder/find-dependencies";

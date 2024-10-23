@@ -1,5 +1,5 @@
 /**
- * @type {import('@license-auditor/config').ConfigType}
+ * @type {import('@license-auditor/data').ConfigType}
  */
 
 const overrides = {
