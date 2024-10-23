@@ -1,4 +1,4 @@
-import type { License } from "@license-auditor/licenses";
+import type { License } from "@license-auditor/data";
 
 export interface LicensesWithPath {
   licenses: License[];

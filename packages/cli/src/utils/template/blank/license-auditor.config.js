@@ -1,11 +1,11 @@
 /**
- * @type {import('@license-auditor/config').ConfigType}
+ * @type {import('@license-auditor/data').ConfigType}
  */
 
-const overrides = {
+const config = {
   blacklist: [],
   whitelist: [],
   overrides: {},
 };
 
-export default overrides;
+export default config;
