@@ -1,7 +1,7 @@
 import type { LicenseAuditResult } from "@brainhubeu/license-auditor-core";
 import { render } from "ink";
 import React from "react";
-import AuditResult from "./components/AuditResult.js";
+import AuditResult from "./components/audit-result.js";
 
 // This is a mock render for the license auditor
 // This whole file will be removed before merging
@@ -234,12 +234,12 @@ function renderWithNotFound() {
 }
 
 // Uncomment the component you want to render
-// renderSuccess();
-// renderFailure();
-// renderFailedOnly();
-// renderUnknownOnly();
-// renderFailedAndUnknown();
-// renderKnownAndUnknown();
-// renderAll();
+renderSuccess();
+renderFailure();
+renderFailedOnly();
+renderUnknownOnly();
+renderFailedAndUnknown();
+renderKnownAndUnknown();
+renderAll();
 renderEmpty();
-// renderWithNotFound();
+renderWithNotFound();
