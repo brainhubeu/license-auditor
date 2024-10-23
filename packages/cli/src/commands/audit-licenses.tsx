@@ -1,17 +1,17 @@
 import { auditLicenses } from "@brainhubeu/license-auditor-core";
 import { Box, Text, useApp } from "ink";
 import React, { useState, useEffect } from "react";
-import zod from "zod";
+import type { z } from "zod";
 import { SpinnerWithLabel } from "../components/spinner-with-label.js";
 import { cliOptions } from "../options.js";
+import { ConfigSchema } from "@license-auditor/data";
 
 export const auditLicensesOptions = cliOptions.extend({
-  // todo: import config zod schema
-  config: zod.any(),
+  config: ConfigSchema,
 });
 
 export type AuditLicensesOptions = {
-  options: zod.infer<typeof auditLicensesOptions>;
+  options: z.infer<typeof auditLicensesOptions>;
 };
 
 export default function AuditLicenses({ options }: AuditLicensesOptions) {
