@@ -1,4 +1,9 @@
-import type { ConfigType, License } from "@license-auditor/data";
+import type {
+  ConfigType,
+  License,
+  LicenseAuditResult,
+  DetectedLicense,
+} from "@license-auditor/data";
 import { findPackageManager } from "@license-auditor/package-manager-finder";
 import { type LicenseStatus, checkLicenseStatus } from "./check-license-status";
 import { findDependencies } from "./dependency-finder/find-dependencies";
@@ -14,18 +19,6 @@ interface PackageInfo {
   };
 }
 
-interface LicenseInfo {
-  package: string;
-  path: string;
-  license: License & { status: LicenseStatus };
-  licensePath: string | undefined;
-}
-
-interface LicenseAuditResult {
-  groupedByStatus: Record<LicenseStatus, LicenseInfo[]>;
-  notFound: Map<string, { packagePath: string; errorMessage: string }>;
-}
-
 export async function auditLicenses(
   cwd: string,
   config: ConfigType,
@@ -34,7 +27,7 @@ export async function auditLicenses(
   const packagePaths = await findDependencies(packageManager, cwd);
 
   const resultMap = new Map<string, PackageInfo>();
-  const groupedByStatus: Record<LicenseStatus, LicenseInfo[]> = {
+  const groupedByStatus: Record<LicenseStatus, DetectedLicense[]> = {
     whitelist: [],
     blacklist: [],
     unknown: [],
