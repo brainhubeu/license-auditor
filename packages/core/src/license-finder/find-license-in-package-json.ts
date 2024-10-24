@@ -1,4 +1,4 @@
-import type { License } from "@license-auditor/licenses";
+import type { License } from "@license-auditor/data";
 import { findLicenseById } from "./find-license-by-id";
 
 function retrieveLicenseFromTypeField(license: unknown): License[] {

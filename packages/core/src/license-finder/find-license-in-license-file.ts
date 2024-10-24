@@ -1,6 +1,6 @@
 import { readFile } from "node:fs/promises";
 import * as path from "node:path";
-import { type License, licenseMap } from "@license-auditor/licenses";
+import { type License, LicenseSchema, licenseMap } from "@license-auditor/data";
 import type { LicensesWithPath } from "./licenses-with-path";
 
 const licenseFiles = [
@@ -21,7 +21,7 @@ function retrieveLicenseFromLicenseFileContent(content: string): License[] {
       ([key, value]) =>
         contentTokens.includes(key) || contentTokens.includes(value.name),
     )
-    .map((result) => result[1]);
+    .map((result) => LicenseSchema.parse(result[1]));
 
   return licenseArr;
 }
