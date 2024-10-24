@@ -13,6 +13,15 @@
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "cli:init": {
+      "cache": false,
+      "env": ["ROOT_DIR"],
+      "interactive": true
+    },
+    "cli": {
+      "cache": false,
+      "env": ["ROOT_DIR"]
     }
   }
 }

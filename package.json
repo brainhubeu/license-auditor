@@ -16,7 +16,9 @@
     "format-and-lint": "biome check .",
     "format-and-lint:fix": "biome check . --write",
     "typecheck": "turbo run typecheck",
-    "prepare": "husky"
+    "prepare": "husky",
+    "cli": "ROOT_DIR=$(pwd) turbo run cli",
+    "cli:init": "ROOT_DIR=$(pwd) turbo run cli:init"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.3",

@@ -14,7 +14,7 @@ const packagesToInstall = [
 
 export async function installPackages() {
   try {
-    const currentDir = process.cwd();
+    const currentDir = process.env["ROOT_DIR"] ?? process.cwd();
 
     const packageManager = await findPackageManager(currentDir);
 
