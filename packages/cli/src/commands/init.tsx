@@ -7,6 +7,8 @@ import { installPackages } from "../utils/install-packages.js";
 
 type ConfigTypeItem = { label: string; value: ConfigType };
 
+export const isDefault = true;
+
 const configTypeItems: ConfigTypeItem[] = [
   {
     label: "Use default lists",

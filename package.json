@@ -33,6 +33,9 @@
   },
   "packageManager": "npm@10.8.2",
   "workspaces": ["packages/*", "tooling/*"],
+  "bin": {
+    "@brainhubeu/license-auditor": "packages/cli/dist/cli.js"
+  },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
