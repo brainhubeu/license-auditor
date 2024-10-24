@@ -1,10 +1,10 @@
-import type { LicenseInfo } from "@brainhubeu/license-auditor-core";
+import type { DetectedLicense } from "@license-auditor/data";
 import figures from "figures";
 import { Box, Text } from "ink";
 import React from "react";
 
 interface LicenseListProps {
-  licenses: LicenseInfo[];
+  licenses: DetectedLicense[];
 }
 
 export default function LicenseList({ licenses }: LicenseListProps) {

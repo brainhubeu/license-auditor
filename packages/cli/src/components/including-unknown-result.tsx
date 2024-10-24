@@ -1,4 +1,4 @@
-import type { LicenseAuditResult } from "@brainhubeu/license-auditor-core";
+import type { LicenseAuditResult } from "@license-auditor/data";
 import figures from "figures";
 import { Box, Text } from "ink";
 import React from "react";

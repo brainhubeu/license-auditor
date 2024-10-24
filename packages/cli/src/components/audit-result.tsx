@@ -1,4 +1,4 @@
-import type { LicenseAuditResult } from "@brainhubeu/license-auditor-core";
+import type { LicenseAuditResult } from "@license-auditor/data";
 import figures from "figures";
 import { Box, Text } from "ink";
 import React from "react";
@@ -52,12 +52,14 @@ export default function AuditResult({
             </Text>
           </Box>
           <Box flexDirection="column" marginLeft={2}>
-            {Array.from(result.notFound).map((packageName) => (
-              <Box key={packageName}>
-                <Text color="gray">{figures.pointerSmall}</Text>
-                <Text> {packageName}</Text>
-              </Box>
-            ))}
+            {Array.from(result.notFound).map(
+              ([packageName, { packagePath }]) => (
+                <Box key={packagePath}>
+                  <Text color="gray">{figures.pointerSmall}</Text>
+                  <Text> {packageName}</Text>
+                </Box>
+              ),
+            )}
           </Box>
         </Box>
       )}

@@ -1,4 +1,4 @@
-import type { LicenseAuditResult } from "@brainhubeu/license-auditor-core";
+import type { LicenseAuditResult } from "@license-auditor/data";
 import { render } from "ink";
 import React from "react";
 import AuditResult from "./components/audit-result.js";
@@ -7,7 +7,7 @@ import AuditResult from "./components/audit-result.js";
 // This whole file will be removed before merging
 
 const mockResult: LicenseAuditResult = {
-  notFound: new Set(),
+  notFound: new Map(),
   groupedByStatus: {
     whitelist: [
       {
@@ -118,10 +118,22 @@ const mockResult: LicenseAuditResult = {
   },
 };
 
-const populatedNotFound = new Set([
-  "axios",
-  "@somecompany/somepackage",
-  "lodash",
+const populatedNotFound = new Map([
+  [
+    "axios",
+    {
+      packagePath: "path/to/axios",
+      errorMessage: "Incorrect package.json format",
+    },
+  ],
+  [
+    "@somecompany/somepackage",
+    {
+      packagePath: "path/to/somepackage",
+      errorMessage: "Error message",
+    },
+  ],
+  ["lodash", { packagePath: "path/to/lodash", errorMessage: "Error message" }],
 ]);
 
 const emptyMock: LicenseAuditResult = {
