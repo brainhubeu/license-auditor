@@ -8,4 +8,6 @@ export enum ConfigExtension {
   MJS = ".mjs",
   // biome-ignore lint/style/useNamingConvention: pascal case doesn't make sense for this enum
   TS = ".ts",
+  // biome-ignore lint/style/useNamingConvention: pascal case doesn't make sense for this enum
+  JSON = ".json",
 }
