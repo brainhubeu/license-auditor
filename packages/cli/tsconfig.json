@@ -3,10 +3,7 @@
   "compilerOptions": {
     "outDir": "dist",
     "skipLibCheck": true,
-    "esModuleInterop": true,
-    "paths": {
-      "@brainhubeu/license-auditor-core": ["../core/src"]
-    }
+    "esModuleInterop": true
   },
   "exclude": ["node_modules", "./dist"]
 }

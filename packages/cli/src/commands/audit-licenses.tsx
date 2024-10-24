@@ -17,7 +17,7 @@ export type AuditLicensesOptions = {
 
 export default function AuditLicenses({ options }: AuditLicensesOptions) {
   const [working, setWorking] = useState(true);
-  const [error, setError] = useState<Error | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<LicenseAuditResult | null>(null);
   const { exit } = useApp();
 
@@ -33,7 +33,7 @@ export default function AuditLicenses({ options }: AuditLicensesOptions) {
       } catch (err) {
         console.error(err);
         setError(
-          err instanceof Error ? err : new Error("An unknown error occurred"),
+          err instanceof Error ? err.message : "An unknown error occurred",
         );
         setWorking(false);
         exit();
@@ -46,7 +46,7 @@ export default function AuditLicenses({ options }: AuditLicensesOptions) {
     return (
       <Box borderStyle="single" borderColor="red">
         <Text color="red">
-          An error occurred while auditing licenses: {error.message}
+          An error occurred while auditing licenses: {error}
         </Text>
       </Box>
     );

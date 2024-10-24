@@ -4,12 +4,6 @@
   "private": true,
   "main": "./dist/audit-licenses.js",
   "types": "./dist/audit-licenses.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/audit-licenses.d.ts",
-      "default": "./dist/audit-licenses.js"
-    }
-  },
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",

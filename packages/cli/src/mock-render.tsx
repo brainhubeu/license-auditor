@@ -236,7 +236,7 @@ function renderEmpty() {
   render(<AuditResult result={emptyMock} />);
 }
 
-function renderWithNotFound() {
+function renderAllWithNotFound() {
   const mockResultWithNotFound: LicenseAuditResult = {
     ...mockResult,
     notFound: populatedNotFound,
@@ -246,12 +246,12 @@ function renderWithNotFound() {
 }
 
 // Uncomment the component you want to render
-renderSuccess();
-renderFailure();
-renderFailedOnly();
-renderUnknownOnly();
-renderFailedAndUnknown();
-renderKnownAndUnknown();
-renderAll();
-renderEmpty();
-renderWithNotFound();
+// renderSuccess();
+// renderFailure();
+// renderFailedOnly();
+// renderUnknownOnly();
+// renderFailedAndUnknown();
+// renderKnownAndUnknown();
+// renderAll();
+// renderEmpty();
+renderAllWithNotFound();

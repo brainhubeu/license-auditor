@@ -1,34 +1,30 @@
 import type { LicenseAuditResult } from "@license-auditor/data";
-import figures from "figures";
-import { Box, Text } from "ink";
+import { Box } from "ink";
 import React from "react";
-import { describeLicenseCount } from "../utils/describe-license-count.js";
 import LicenseList from "./license-list.js";
+import {
+  BlacklistedMessage,
+  CompliantMessage,
+  FailureHeaderMessage,
+} from "./result-messages.js";
 
 export default function FailureResult({
   groupedByStatus,
 }: Omit<LicenseAuditResult, "notFound">) {
-  const whitelistResultText = describeLicenseCount(
-    groupedByStatus.whitelist.length,
-  );
-  const blacklistedResultText = describeLicenseCount(
-    groupedByStatus.blacklist.length,
-  );
+  const hasWhitelisted = groupedByStatus.whitelist.length > 0;
 
   return (
     <Box flexDirection="column">
       <Box marginBottom={1} marginTop={1}>
-        <Text backgroundColor="red" color="white" bold>
-          {` ${figures.cross} LICENSE AUDIT FAILED `}
-        </Text>
+        <FailureHeaderMessage />
       </Box>
+      {hasWhitelisted && (
+        <Box>
+          <CompliantMessage count={groupedByStatus.whitelist.length} />
+        </Box>
+      )}
       <Box>
-        <Text color="green">{figures.tick}</Text>
-        <Text>{whitelistResultText} compliant</Text>
-      </Box>
-      <Box>
-        <Text color="red">{figures.cross}</Text>
-        <Text> {blacklistedResultText} blacklisted:</Text>
+        <BlacklistedMessage count={groupedByStatus.blacklist.length} />
       </Box>
       <LicenseList licenses={groupedByStatus.blacklist} />
     </Box>
