@@ -40,7 +40,6 @@ export default function AuditLicenses({ options }: AuditLicensesOptions) {
           parsedEnv.data.ROOT_DIR,
           options.config,
         );
-        console.log("Result:", result);
         setResult(result);
         setWorking(false);
         exit();
