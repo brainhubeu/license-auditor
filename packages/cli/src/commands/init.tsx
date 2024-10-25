@@ -1,36 +1,21 @@
-import { Box, Text, useApp } from "ink";
-import SelectInput from "ink-select-input";
+import figures from "figures";
+import { Text, useApp } from "ink";
 import React, { useEffect, useState } from "react";
+import SelectExtension from "../components/init/select-extension.js";
+import SelectListType from "../components/init/select-list-type.js";
 import { SpinnerWithLabel } from "../components/spinner-with-label.js";
-import { ConfigType, generateConfig } from "../utils/generate-config.js";
+import type { ConfigExtension } from "../constants/config-constants.js";
+import { type ConfigType, generateConfig } from "../utils/generate-config.js";
 import { installPackages } from "../utils/install-packages.js";
-
-type ConfigTypeItem = { label: string; value: ConfigType };
 
 export const isDefault = true;
 
-const configTypeItems: ConfigTypeItem[] = [
-  {
-    label: "Use default lists",
-    value: ConfigType.Default,
-  },
-  {
-    label: "Use blank lists",
-    value: ConfigType.Blank,
-  },
-] as const;
-
-// todo: allow generating config files other than .js
 export default function Init() {
   const { exit } = useApp();
   const [packagesInstalled, setPackagesInstalled] = useState(false);
-  const [resultMessage, setResultMessage] = useState("");
-
-  const handleSelectConfigType = async (item: ConfigTypeItem) => {
-    const message = await generateConfig(item.value);
-    setResultMessage(message);
-    setTimeout(exit, 1500);
-  };
+  const [listType, setListType] = useState<ConfigType | null>(null);
+  const [resultMessage, setResultMessage] = useState<string | null>(null);
+  const [isGeneratingConfig, setIsGeneratingConfig] = useState(false);
 
   useEffect(() => {
     void installPackages();
@@ -41,17 +26,33 @@ export default function Init() {
     return <SpinnerWithLabel label="Installing dependencies..." />;
   }
 
-  if (resultMessage) {
-    return <Text>{resultMessage}</Text>;
+  if (isGeneratingConfig) {
+    return <SpinnerWithLabel label="Generating configuration file..." />;
   }
 
-  return (
-    <Box flexDirection="column">
-      <Text>
-        Would you like to use the default license whitelist and banlist or
-        configure your own?
+  if (resultMessage) {
+    return (
+      <Text color="green">
+        {figures.tick} {resultMessage}
       </Text>
-      <SelectInput items={configTypeItems} onSelect={handleSelectConfigType} />
-    </Box>
-  );
+    );
+  }
+
+  if (!listType) {
+    return <SelectListType onConfigTypeSelected={setListType} />;
+  }
+
+  if (listType) {
+    const onExtensionSelected = async (extension: ConfigExtension) => {
+      setIsGeneratingConfig(true);
+      const message = await generateConfig(listType, extension);
+      setResultMessage(message);
+      setIsGeneratingConfig(false);
+      setTimeout(exit, 1500);
+    };
+
+    return <SelectExtension onExtensionSelected={onExtensionSelected} />;
+  }
+
+  return null;
 }
