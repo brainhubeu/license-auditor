@@ -48,7 +48,6 @@ export default function AuditResult({
       {verbose && <VerboseView result={result} />}
       {auditResultComponent}
       {hasNotFound && <NotFoundResult notFound={result.notFound} />}
-      <Text> </Text>
     </Box>
   );
 }

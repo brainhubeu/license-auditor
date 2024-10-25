@@ -257,7 +257,7 @@ function renderAllWithNotFound(verbose: boolean) {
 // Uncomment the component you want to render
 // The boolean parameter is for whether the component
 // should be rendered in verbose mode or not
-// renderSuccess(true);
+renderSuccess(true);
 // renderSuccess(false);
 
 // renderFailure(true);
@@ -281,5 +281,5 @@ function renderAllWithNotFound(verbose: boolean) {
 // renderEmpty(true);
 // renderEmpty(false);
 
-renderAllWithNotFound(true);
+// renderAllWithNotFound(true);
 // renderAllWithNotFound(false);
