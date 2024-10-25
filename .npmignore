@@ -3,8 +3,10 @@ src
 .github
 .husky
 .npmignore
+.gitignore
 
-# Local env files
+# Local files
+biome.json
 .env
 .env.local
 .env.development.local
