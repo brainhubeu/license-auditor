@@ -26,8 +26,12 @@ export default function AuditLicenses({ options }: AuditLicensesOptions) {
 
     const getResults = async () => {
       try {
-        const auditResult = await auditLicenses(process.cwd(), options.config);
-        setResult(auditResult);
+        const result = await auditLicenses(
+          process.env["ROOT_DIR"] ?? process.cwd(),
+          options.config,
+        );
+        console.log("Result:", result);
+        // setResults(result);
         setWorking(false);
         exit();
       } catch (err) {

@@ -22,7 +22,8 @@
       "recommended": true,
       "complexity": {
         "noExcessiveCognitiveComplexity": "error",
-        "useSimplifiedLogicExpression": "error"
+        "useSimplifiedLogicExpression": "error",
+        "useLiteralKeys": "off"
       },
       "style": {
         "noDefaultExport": "error",
