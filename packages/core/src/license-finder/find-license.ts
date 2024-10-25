@@ -11,9 +11,9 @@ export async function findLicenses(
   const packageJsonPath = path.join(packagePath, "package.json");
 
   const licenseFromPackageJson = findLicenseInPackageJson(packageJson);
-  if (licenseFromPackageJson.length > 0) {
+  if (licenseFromPackageJson.licenses.length > 0) {
     return {
-      licenses: licenseFromPackageJson,
+      ...licenseFromPackageJson,
       licensePath: packageJsonPath,
     };
   }

@@ -5,6 +5,7 @@ export interface DetectedLicense {
   packagePath: string;
   license: License & { status: LicenseStatus };
   licensePath: string | undefined;
+  needsVerification?: boolean;
 }
 
 export interface LicenseAuditResult {
