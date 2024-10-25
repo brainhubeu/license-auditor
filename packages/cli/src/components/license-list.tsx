@@ -1,7 +1,6 @@
 import type { LicenseInfo } from "@brainhubeu/license-auditor-core";
 import figures from "figures";
 import { Box, Text } from "ink";
-import React from "react";
 
 interface LicenseListProps {
   licenses: LicenseInfo[];

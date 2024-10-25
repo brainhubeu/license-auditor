@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { readConfiguration } from "../utils/read-configuration.js";
+import { readConfiguration } from "../utils/read-configuration";
 
 export function useReadConfiguration() {
   // todo: handle types

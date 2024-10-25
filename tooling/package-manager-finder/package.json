@@ -2,8 +2,14 @@
   "name": "@license-auditor/package-manager-finder",
   "version": "0.1.0",
   "private": true,
-  "main": "dist/find-package-manager.js",
-  "types": "dist/find-package-manager.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
   "scripts": {
     "build": "tsc",
     "typecheck": "tsc --noEmit"

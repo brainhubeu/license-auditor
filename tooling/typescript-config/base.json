@@ -1,14 +1,14 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
-  "extends": "@tsconfig/recommended/tsconfig.json",
+  "extends": ["@tsconfig/strictest/tsconfig", "@tsconfig/node-lts/tsconfig"],
   "display": "Default",
   "compilerOptions": {
+    "moduleDetection": "force",
+    "verbatimModuleSyntax": true,
+    "sourceMap": true,
     "declaration": true,
+    "composite": true,
     "declarationMap": true,
-    "incremental": false,
-    "isolatedModules": true,
-    "lib": ["es2022", "DOM", "DOM.Iterable"],
-    "noUncheckedIndexedAccess": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
   }
 }

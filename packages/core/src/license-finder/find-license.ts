@@ -22,6 +22,5 @@ export function findLicenses(
 
   return {
     licenses: [],
-    licensePath: undefined,
   };
 }

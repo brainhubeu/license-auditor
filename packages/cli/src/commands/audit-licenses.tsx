@@ -3,11 +3,11 @@ import {
   auditLicenses,
 } from "@brainhubeu/license-auditor-core";
 import { Box, Text, useApp } from "ink";
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { z as zod } from "zod";
-import AuditResult from "../components/audit-result.js";
-import { SpinnerWithLabel } from "../components/spinner-with-label.js";
-import { cliOptions } from "../options.js";
+import AuditResult from "../components/audit-result";
+import { SpinnerWithLabel } from "../components/spinner-with-label";
+import { cliOptions } from "../options";
 
 export const auditLicensesOptions = cliOptions.extend({
   config: zod.any(),

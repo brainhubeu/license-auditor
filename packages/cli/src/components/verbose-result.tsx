@@ -6,5 +6,5 @@ const tableData = [
 ];
 
 export default function VerboseResult() {
-  return <Table data={tableData} />;
+  return <Table.default data={tableData} />;
 }

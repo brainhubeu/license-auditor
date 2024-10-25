@@ -1,7 +1,6 @@
 import figures from "figures";
 import { Box, Text } from "ink";
-import React from "react";
-import { describeLicenseCount } from "../utils/describe-license-count.js";
+import { describeLicenseCount } from "../utils/describe-license-count";
 
 interface SuccessResultProps {
   whitelistedCount: number;

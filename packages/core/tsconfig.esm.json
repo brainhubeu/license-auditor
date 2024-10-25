@@ -1,0 +1,20 @@
+{
+	"extends": "@license-auditor/typescript-config/base.json",
+	"include": [
+		"**/*.ts",
+		"**/*.tsx"
+	],
+	"exclude": [
+		"node_modules",
+		"./dist"
+	],
+	"compilerOptions": {
+		"outDir": "./dist/esm",
+		"rootDir": "./src",
+		"baseUrl": ".",
+		"declarationDir": "./dist/types",
+		"module": "NodeNext",
+		"moduleResolution": "NodeNext",
+		"target": "ESNext"
+	}
+}

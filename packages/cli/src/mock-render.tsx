@@ -1,8 +1,8 @@
 import type { LicenseAuditResult } from "@brainhubeu/license-auditor-core";
 import { render } from "ink";
-import React from "react";
-import AuditResult from "./components/audit-result.js";
-import VerboseResult from "./components/verbose-result.js";
+
+import AuditResult from "./components/audit-result";
+// import VerboseResult from "./components/verbose-result";
 
 // This is a mock render for the license auditor
 // This whole file will be removed before merging
@@ -125,105 +125,105 @@ const populatedNotFound = new Set([
   "lodash",
 ]);
 
-const emptyMock: LicenseAuditResult = {
-  notFound: populatedNotFound,
-  groupedByStatus: { whitelist: [], blacklist: [], unknown: [] },
-};
+// const emptyMock: LicenseAuditResult = {
+//   notFound: populatedNotFound,
+//   groupedByStatus: { whitelist: [], blacklist: [], unknown: [] },
+// };
 
-function renderSuccess() {
-  render(
-    <AuditResult
-      result={{
-        groupedByStatus: {
-          ...mockResult.groupedByStatus,
-          blacklist: [],
-          unknown: [],
-        },
-        notFound: mockResult.notFound,
-      }}
-    />,
-  );
-}
+// function renderSuccess() {
+//   render(
+//     <AuditResult
+//       result={{
+//         groupedByStatus: {
+//           ...mockResult.groupedByStatus,
+//           blacklist: [],
+//           unknown: [],
+//         },
+//         notFound: mockResult.notFound,
+//       }}
+//     />,
+//   );
+// }
 
-function renderFailure() {
-  render(
-    <AuditResult
-      result={{
-        groupedByStatus: {
-          ...mockResult.groupedByStatus,
-          unknown: [],
-        },
-        notFound: populatedNotFound,
-      }}
-    />,
-  );
-}
+// function renderFailure() {
+//   render(
+//     <AuditResult
+//       result={{
+//         groupedByStatus: {
+//           ...mockResult.groupedByStatus,
+//           unknown: [],
+//         },
+//         notFound: populatedNotFound,
+//       }}
+//     />,
+//   );
+// }
 
-function renderFailedAndUnknown() {
-  render(
-    <AuditResult
-      result={{
-        groupedByStatus: {
-          ...mockResult.groupedByStatus,
-          whitelist: [],
-        },
-        notFound: mockResult.notFound,
-      }}
-    />,
-  );
-}
+// function renderFailedAndUnknown() {
+//   render(
+//     <AuditResult
+//       result={{
+//         groupedByStatus: {
+//           ...mockResult.groupedByStatus,
+//           whitelist: [],
+//         },
+//         notFound: mockResult.notFound,
+//       }}
+//     />,
+//   );
+// }
 
-function renderAll() {
-  render(<AuditResult result={mockResult} />);
-}
+// function renderAll() {
+//   render(<AuditResult result={mockResult} />);
+// }
 
-function renderKnownAndUnknown() {
-  render(
-    <AuditResult
-      result={{
-        groupedByStatus: {
-          ...mockResult.groupedByStatus,
-          blacklist: [],
-        },
-        notFound: mockResult.notFound,
-      }}
-    />,
-  );
-}
+// function renderKnownAndUnknown() {
+//   render(
+//     <AuditResult
+//       result={{
+//         groupedByStatus: {
+//           ...mockResult.groupedByStatus,
+//           blacklist: [],
+//         },
+//         notFound: mockResult.notFound,
+//       }}
+//     />,
+//   );
+// }
 
-function renderFailedOnly() {
-  render(
-    <AuditResult
-      result={{
-        groupedByStatus: {
-          ...mockResult.groupedByStatus,
-          whitelist: [],
-          unknown: [],
-        },
-        notFound: mockResult.notFound,
-      }}
-    />,
-  );
-}
+// function renderFailedOnly() {
+//   render(
+//     <AuditResult
+//       result={{
+//         groupedByStatus: {
+//           ...mockResult.groupedByStatus,
+//           whitelist: [],
+//           unknown: [],
+//         },
+//         notFound: mockResult.notFound,
+//       }}
+//     />,
+//   );
+// }
 
-function renderUnknownOnly() {
-  render(
-    <AuditResult
-      result={{
-        groupedByStatus: {
-          ...mockResult.groupedByStatus,
-          whitelist: [],
-          blacklist: [],
-        },
-        notFound: mockResult.notFound,
-      }}
-    />,
-  );
-}
+// function renderUnknownOnly() {
+//   render(
+//     <AuditResult
+//       result={{
+//         groupedByStatus: {
+//           ...mockResult.groupedByStatus,
+//           whitelist: [],
+//           blacklist: [],
+//         },
+//         notFound: mockResult.notFound,
+//       }}
+//     />,
+//   );
+// }
 
-function renderEmpty() {
-  render(<AuditResult result={emptyMock} />);
-}
+// function renderEmpty() {
+//   render(<AuditResult result={emptyMock} />);
+// }
 
 function renderWithNotFound() {
   const mockResultWithNotFound: LicenseAuditResult = {
@@ -234,9 +234,9 @@ function renderWithNotFound() {
   render(<AuditResult result={mockResultWithNotFound} />);
 }
 
-function renderVerbose() {
-  render(<VerboseResult />);
-}
+// function renderVerbose() {
+//   render(<VerboseResult />);
+// }
 
 // Uncomment the component you want to render
 // renderSuccess();

@@ -2,18 +2,24 @@
   "name": "@brainhubeu/license-auditor-core",
   "version": "0.1.0",
   "private": true,
-  "main": "./dist/audit-licenses.js",
-  "types": "./dist/audit-licenses.d.ts",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.mjs",
+  "types": "./dist/types/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/audit-licenses.d.ts",
-      "default": "./dist/audit-licenses.js"
+      "require": "./dist/cjs/index.js",
+      "import": "./dist/esm/index.mjs"
     }
   },
   "scripts": {
-    "build": "tsc",
+    "build": "npm run clean && npm run build:cjs && npm run build:esm",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:esm": "tsc -p tsconfig.esm.json && npm run rename:esm",
+    "rename:esm": "node ../../scripts/fix-mjs.js",
+    "clean": "rimraf dist && rimraf *.tsbuildinfo",
     "dev": "tsc --watch",
-    "start": "tsx src/audit-licenses.ts",
+    "start": "tsx src/index.ts",
     "typecheck": "tsc --noEmit --incremental false"
   },
   "dependencies": {
@@ -21,6 +27,7 @@
     "@license-auditor/licenses": "*",
     "@license-auditor/package-manager-finder": "*",
     "fast-glob": "3.3.2",
+    "rimraf": "6.0.1",
     "zod": "3.23.8"
   },
   "devDependencies": {

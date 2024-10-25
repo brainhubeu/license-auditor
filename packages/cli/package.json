@@ -3,16 +3,27 @@
   "version": "0.0.0",
   "license": "MIT",
   "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.mjs",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index.js",
+      "import": "./dist/esm/index.mjs"
+    }
+  },
   "scripts": {
-    "build": "tsc",
+    "build": "npm run clean && npm run build:cjs && npm run build:esm",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:esm": "tsc -p tsconfig.esm.json && npm run rename:esm",
+    "rename:esm": "node ../../scripts/fix-mjs.js",
+    "clean": "rimraf dist && rimraf *.tsbuildinfo",
     "dev": "tsc --watch",
     "cli": "tsx src/cli.tsx",
     "cli:init": "tsx src/cli.tsx init",
     "render-mock": "tsx --watch src/mock-render.tsx"
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "dependencies": {
     "@brainhubeu/license-auditor-core": "*",
     "@license-auditor/config": "*",
@@ -29,7 +40,6 @@
   },
   "devDependencies": {
     "@license-auditor/typescript-config": "*",
-    "@types/ink-table": "1.0.7",
     "@types/react": "18.3.11",
     "chalk": "5.2.0",
     "ink-testing-library": "3.0.0",

@@ -1,17 +1,18 @@
 import type { LicenseAuditResult } from "@brainhubeu/license-auditor-core";
 import figures from "figures";
 import { Box, Text } from "ink";
-import React from "react";
-import { describeLicenseCount } from "../utils/describe-license-count.js";
-import LicenseList from "./license-list.js";
+import { describeLicenseCount } from "../utils/describe-license-count";
+import { getResults, hasResults } from "../utils/get-results";
+import LicenseList from "./license-list";
 
 export default function IncludingUnknownResult({
   groupedByStatus,
 }: Omit<LicenseAuditResult, "notFound">) {
-  const noLicensesFound =
-    groupedByStatus.whitelist.length === 0 &&
-    groupedByStatus.blacklist.length === 0 &&
-    groupedByStatus.unknown.length === 0;
+  const noLicensesFound = ![
+    hasResults({ result: { groupedByStatus }, status: "whitelist" }),
+    hasResults({ result: { groupedByStatus }, status: "blacklist" }),
+    hasResults({ result: { groupedByStatus }, status: "unknown" }),
+  ].some(Boolean);
 
   if (noLicensesFound) {
     return (
@@ -33,17 +34,22 @@ export default function IncludingUnknownResult({
     );
   }
 
-  const hasBlacklisted = groupedByStatus.blacklist.length > 0;
+  const hasBlacklisted = hasResults({
+    result: { groupedByStatus },
+    status: "blacklist",
+  });
+
   const statusText = hasBlacklisted ? "FAILED" : "WARNING";
   const headerColor = hasBlacklisted ? "red" : "yellow";
+
   const whitelistResultText = describeLicenseCount(
-    groupedByStatus.whitelist.length,
+    getResults({ result: { groupedByStatus }, status: "whitelist" }).length,
   );
   const blacklistedResultText = describeLicenseCount(
-    groupedByStatus.blacklist.length,
+    getResults({ result: { groupedByStatus }, status: "blacklist" }).length,
   );
   const unknownResultText = describeLicenseCount(
-    groupedByStatus.unknown.length,
+    getResults({ result: { groupedByStatus }, status: "unknown" }).length,
   );
 
   return (
@@ -63,14 +69,24 @@ export default function IncludingUnknownResult({
             <Text color="red">{figures.cross}</Text>
             <Text> {blacklistedResultText} blacklisted:</Text>
           </Box>
-          <LicenseList licenses={groupedByStatus.blacklist} />
+          <LicenseList
+            licenses={getResults({
+              result: { groupedByStatus },
+              status: "blacklist",
+            })}
+          />
         </>
       )}
       <Box>
         <Text color="yellow">{figures.warning}</Text>
         <Text>{unknownResultText} unknown:</Text>
       </Box>
-      <LicenseList licenses={groupedByStatus.unknown} />
+      <LicenseList
+        licenses={getResults({
+          result: { groupedByStatus },
+          status: "blacklist",
+        })}
+      />
     </Box>
   );
 }

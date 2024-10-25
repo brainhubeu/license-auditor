@@ -1,9 +1,8 @@
 import { Box, Text } from "ink";
 import Spinner from "ink-spinner";
-import React from "react";
-import { useReadConfiguration } from "../hooks/use-read-config-file.js";
-import type { CliOptions } from "../options.js";
-import AuditLicenses from "./audit-licenses.js";
+import { useReadConfiguration } from "../hooks/use-read-config-file";
+import type { CliOptions } from "../options";
+import AuditLicenses from "./audit-licenses";
 
 export default function Index({ options }: CliOptions) {
   const { configFile } = useReadConfiguration();

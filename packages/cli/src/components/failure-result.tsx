@@ -1,19 +1,24 @@
 import type { LicenseAuditResult } from "@brainhubeu/license-auditor-core";
 import figures from "figures";
 import { Box, Text } from "ink";
-import React from "react";
-import { describeLicenseCount } from "../utils/describe-license-count.js";
-import LicenseList from "./license-list.js";
+import { describeLicenseCount } from "../utils/describe-license-count";
+import { getResults } from "../utils/get-results";
+import LicenseList from "./license-list";
 
 export default function FailureResult({
   groupedByStatus,
 }: Omit<LicenseAuditResult, "notFound">) {
   const whitelistResultText = describeLicenseCount(
-    groupedByStatus.whitelist.length,
+    getResults({ result: { groupedByStatus }, status: "whitelist" })?.length ??
+      0,
   );
-  const blacklistedResultText = describeLicenseCount(
-    groupedByStatus.blacklist.length,
-  );
+
+  const blackListed = getResults({
+    result: { groupedByStatus },
+    status: "blacklist",
+  });
+
+  const blacklistedResultText = describeLicenseCount(blackListed.length);
 
   return (
     <Box flexDirection="column">
@@ -30,7 +35,7 @@ export default function FailureResult({
         <Text color="red">{figures.cross}</Text>
         <Text> {blacklistedResultText} blacklisted:</Text>
       </Box>
-      <LicenseList licenses={groupedByStatus.blacklist} />
+      <LicenseList licenses={blackListed} />
     </Box>
   );
 }

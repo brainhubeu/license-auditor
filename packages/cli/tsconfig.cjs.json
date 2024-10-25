@@ -1,0 +1,22 @@
+{
+	"extends": "@license-auditor/typescript-config/base.json",
+	"include": [
+		"./src"
+	],
+	"exclude": [
+		"node_modules",
+		"./dist",
+		"./src/utils/template/default/license-auditor.config.js",
+		"license-auditor.config.js"
+	],
+	"compilerOptions": {
+		"outDir": "./dist/cjs",
+		"rootDir": "./src",
+		"baseUrl": ".",
+		"declarationDir": "./dist/types",
+		"module": "Node16",
+		"moduleResolution": "Node16",
+		"target": "ES2015",
+		"jsx": "react-jsx",
+	}
+}

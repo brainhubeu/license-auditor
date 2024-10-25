@@ -1,23 +1,21 @@
 import type { LicenseAuditResult } from "@brainhubeu/license-auditor-core";
 import figures from "figures";
 import { Box, Text } from "ink";
-import React from "react";
-import FailureResult from "./failure-result.js";
-import IncludingUnknownResult from "./including-unknown-result.js";
-import SuccessResult from "./success-result.js";
+import { getResults, hasResults } from "../utils/get-results";
+import FailureResult from "./failure-result";
+import IncludingUnknownResult from "./including-unknown-result";
+import SuccessResult from "./success-result";
 
 function renderAuditResult(result: LicenseAuditResult) {
-  const hasWhitelisted = result.groupedByStatus.whitelist.length > 0;
-  const hasBlacklisted = result.groupedByStatus.blacklist.length > 0;
-  const hasUnknown = result.groupedByStatus.unknown.length > 0;
+  const hasWhitelisted = hasResults({ result, status: "whitelist" });
+  const hasBlacklisted = hasResults({ result, status: "blacklist" });
+  const hasUnknown = hasResults({ result, status: "unknown" });
+
+  const whitelistedCount = getResults({ result, status: "whitelist" }).length;
 
   switch (true) {
     case hasWhitelisted && !hasBlacklisted && !hasUnknown:
-      return (
-        <SuccessResult
-          whitelistedCount={result.groupedByStatus.whitelist.length}
-        />
-      );
+      return <SuccessResult whitelistedCount={whitelistedCount} />;
 
     case hasBlacklisted && !hasUnknown:
       return <FailureResult groupedByStatus={result.groupedByStatus} />;
