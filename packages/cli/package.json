@@ -14,8 +14,10 @@
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
-    "cli": "tsx src/cli.tsx",
-    "cli:init": "tsx src/cli.tsx init",
+    "dev:cli": "tsx src/cli.tsx",
+    "dev:cli:init": "tsx src/cli.tsx init",
+    "cli": "node dist/cli.js",
+    "cli:init": "node dist/cli.js init",
     "render-mock": "tsx --watch src/mock-render.tsx",
     "typecheck": "tsc --noEmit true"
   },
