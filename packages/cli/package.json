@@ -7,7 +7,8 @@
     "build": "tsc",
     "dev": "tsc --watch",
     "cli": "tsx src/cli.tsx",
-    "cli:init": "tsx src/cli.tsx init"
+    "cli:init": "tsx src/cli.tsx init",
+    "render-mock": "tsx --watch src/mock-render.tsx"
   },
   "files": ["dist"],
   "dependencies": {
