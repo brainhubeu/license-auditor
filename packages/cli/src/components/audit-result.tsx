@@ -1,5 +1,5 @@
 import type { LicenseAuditResult } from "@license-auditor/data";
-import { Box, Text } from "ink";
+import { Box } from "ink";
 import FailureResult from "./failure-result.js";
 import IncludingUnknownResult from "./including-unknown-result.js";
 import NoLicensesFoundResult from "./no-licenses-found-result.js";
