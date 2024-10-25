@@ -27,7 +27,7 @@ export default function Init() {
   }
 
   if (isGeneratingConfig) {
-    <SpinnerWithLabel label="Generating configuration file..." />;
+    return <SpinnerWithLabel label="Generating configuration file..." />;
   }
 
   if (resultMessage) {
