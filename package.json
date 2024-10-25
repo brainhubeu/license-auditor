@@ -1,6 +1,6 @@
 {
   "name": "@brainhubeu/license-auditor",
-  "version": "2.0.0-alpha.1",
+  "version": "2.0.0-alpha.2",
   "description": "License Auditor helps you track and validate licenses inside your project. Prevents unwanted law complications. License Auditor includes a step in your pipeline and creates notifications about potential problems with used licenses. At the moment, a notification means a comment.",
   "repository": {
     "type": "git",
@@ -16,7 +16,9 @@
     "format-and-lint": "biome check .",
     "format-and-lint:fix": "biome check . --write",
     "typecheck": "turbo run typecheck",
-    "prepare": "husky"
+    "prepare": "husky",
+    "cli": "ROOT_DIR=$(pwd) turbo run cli",
+    "cli:init": "ROOT_DIR=$(pwd) turbo run cli:init"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.3",
@@ -31,6 +33,9 @@
   },
   "packageManager": "npm@10.8.2",
   "workspaces": ["packages/*", "tooling/*"],
+  "bin": {
+    "@brainhubeu/license-auditor": "packages/cli/dist/cli.js"
+  },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"

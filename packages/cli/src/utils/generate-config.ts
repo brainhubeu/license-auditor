@@ -9,7 +9,7 @@ export enum ConfigType {
 
 export async function generateConfig(configType: ConfigType) {
   try {
-    const currentDir = process.cwd();
+    const currentDir = process.env["ROOT_DIR"] ?? process.cwd();
 
     await fs.mkdir(currentDir, { recursive: true });
 
