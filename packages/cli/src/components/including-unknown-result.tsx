@@ -17,7 +17,7 @@ export default function IncludingUnknownResult({
 
   return (
     <Box flexDirection="column">
-      <Box marginBottom={1} marginTop={1}>
+      <Box marginBottom={1}>
         {hasBlacklisted ? <FailureHeaderMessage /> : <WarningHeaderMessage />}
       </Box>
       {hasWhitelisted && (

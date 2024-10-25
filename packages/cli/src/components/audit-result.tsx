@@ -1,10 +1,11 @@
 import type { LicenseAuditResult } from "@license-auditor/data";
-import { Box } from "ink";
+import { Box, Text } from "ink";
 import FailureResult from "./failure-result.js";
 import IncludingUnknownResult from "./including-unknown-result.js";
 import NoLicensesFoundResult from "./no-licenses-found-result.js";
 import NotFoundResult from "./not-found-result.js";
 import SuccessResult from "./success-result.js";
+import VerboseView from "./verbose-view.js";
 
 function renderAuditResult(result: LicenseAuditResult) {
   const hasWhitelisted = result.groupedByStatus.whitelist.length > 0;
@@ -34,16 +35,20 @@ function renderAuditResult(result: LicenseAuditResult) {
 
 export default function AuditResult({
   result,
+  verbose = false,
 }: {
   result: LicenseAuditResult;
+  verbose?: boolean;
 }) {
   const auditResultComponent = renderAuditResult(result);
   const hasNotFound = result.notFound.size > 0;
 
   return (
     <Box flexDirection="column">
+      {verbose && <VerboseView result={result} />}
       {auditResultComponent}
       {hasNotFound && <NotFoundResult notFound={result.notFound} />}
+      <Text> </Text>
     </Box>
   );
 }

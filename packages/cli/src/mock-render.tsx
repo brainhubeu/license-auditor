@@ -88,7 +88,7 @@ const mockResult: LicenseAuditResult = {
         licensePath: "/path/to/package6/LICENSE",
         license: {
           reference: "",
-          isDeprecatedLicenseId: false,
+          isDeprecatedLicenseId: true,
           detailsUrl: "",
           referenceNumber: 0,
           name: "",
@@ -104,7 +104,7 @@ const mockResult: LicenseAuditResult = {
         licensePath: "/path/to/package7/LICENSE",
         license: {
           reference: "",
-          isDeprecatedLicenseId: false,
+          isDeprecatedLicenseId: true,
           detailsUrl: "",
           referenceNumber: 0,
           name: "",
@@ -144,6 +144,7 @@ const emptyMock: LicenseAuditResult = {
 function renderSuccess() {
   render(
     <AuditResult
+      verbose={true}
       result={{
         groupedByStatus: {
           ...mockResult.groupedByStatus,
@@ -159,6 +160,7 @@ function renderSuccess() {
 function renderFailure() {
   render(
     <AuditResult
+      verbose={true}
       result={{
         groupedByStatus: {
           ...mockResult.groupedByStatus,
@@ -173,6 +175,7 @@ function renderFailure() {
 function renderFailedAndUnknown() {
   render(
     <AuditResult
+      verbose={true}
       result={{
         groupedByStatus: {
           ...mockResult.groupedByStatus,
@@ -185,12 +188,13 @@ function renderFailedAndUnknown() {
 }
 
 function renderAll() {
-  render(<AuditResult result={mockResult} />);
+  render(<AuditResult result={mockResult} verbose={true} />);
 }
 
 function renderKnownAndUnknown() {
   render(
     <AuditResult
+      verbose={true}
       result={{
         groupedByStatus: {
           ...mockResult.groupedByStatus,
@@ -205,6 +209,7 @@ function renderKnownAndUnknown() {
 function renderFailedOnly() {
   render(
     <AuditResult
+      verbose={true}
       result={{
         groupedByStatus: {
           ...mockResult.groupedByStatus,
@@ -220,6 +225,7 @@ function renderFailedOnly() {
 function renderUnknownOnly() {
   render(
     <AuditResult
+      verbose={true}
       result={{
         groupedByStatus: {
           ...mockResult.groupedByStatus,
@@ -233,7 +239,7 @@ function renderUnknownOnly() {
 }
 
 function renderEmpty() {
-  render(<AuditResult result={emptyMock} />);
+  render(<AuditResult result={emptyMock} verbose={true} />);
 }
 
 function renderAllWithNotFound() {
@@ -242,7 +248,11 @@ function renderAllWithNotFound() {
     notFound: populatedNotFound,
   };
 
-  render(<AuditResult result={mockResultWithNotFound} />);
+  render(<AuditResult result={mockResultWithNotFound} verbose={true} />);
+}
+
+function renderVerbose() {
+  render(<AuditResult result={mockResult} verbose={true} />);
 }
 
 // Uncomment the component you want to render
@@ -254,4 +264,5 @@ function renderAllWithNotFound() {
 // renderKnownAndUnknown();
 // renderAll();
 // renderEmpty();
-renderAllWithNotFound();
+// renderAllWithNotFound();
+renderVerbose();

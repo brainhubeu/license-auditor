@@ -70,5 +70,5 @@ export default function AuditLicenses({ options }: AuditLicensesOptions) {
     return <SpinnerWithLabel label="Processing licenses..." />;
   }
 
-  return <AuditResult result={result} />;
+  return <AuditResult result={result} verbose={options.verbose} />;
 }
