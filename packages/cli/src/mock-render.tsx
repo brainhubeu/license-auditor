@@ -130,10 +130,13 @@ const populatedNotFound = new Map([
     "@somecompany/somepackage",
     {
       packagePath: "path/to/somepackage",
-      errorMessage: "Error message",
+      errorMessage: "Error reading folder /path/to/somepackage",
     },
   ],
-  ["lodash", { packagePath: "path/to/lodash", errorMessage: "Error message" }],
+  [
+    "lodash",
+    { packagePath: "path/to/lodash", errorMessage: "I am an error message" },
+  ],
 ]);
 
 const emptyMock: LicenseAuditResult = {
@@ -141,10 +144,10 @@ const emptyMock: LicenseAuditResult = {
   groupedByStatus: { whitelist: [], blacklist: [], unknown: [] },
 };
 
-function renderSuccess() {
+function renderSuccess(verbose: boolean) {
   render(
     <AuditResult
-      verbose={true}
+      verbose={verbose}
       result={{
         groupedByStatus: {
           ...mockResult.groupedByStatus,
@@ -157,10 +160,10 @@ function renderSuccess() {
   );
 }
 
-function renderFailure() {
+function renderFailure(verbose: boolean) {
   render(
     <AuditResult
-      verbose={true}
+      verbose={verbose}
       result={{
         groupedByStatus: {
           ...mockResult.groupedByStatus,
@@ -172,10 +175,10 @@ function renderFailure() {
   );
 }
 
-function renderFailedAndUnknown() {
+function renderFailedAndUnknown(verbose: boolean) {
   render(
     <AuditResult
-      verbose={true}
+      verbose={verbose}
       result={{
         groupedByStatus: {
           ...mockResult.groupedByStatus,
@@ -187,14 +190,14 @@ function renderFailedAndUnknown() {
   );
 }
 
-function renderAll() {
-  render(<AuditResult result={mockResult} verbose={true} />);
+function renderAll(verbose: boolean) {
+  render(<AuditResult result={mockResult} verbose={verbose} />);
 }
 
-function renderKnownAndUnknown() {
+function renderKnownAndUnknown(verbose: boolean) {
   render(
     <AuditResult
-      verbose={true}
+      verbose={verbose}
       result={{
         groupedByStatus: {
           ...mockResult.groupedByStatus,
@@ -206,10 +209,10 @@ function renderKnownAndUnknown() {
   );
 }
 
-function renderFailedOnly() {
+function renderFailedOnly(verbose: boolean) {
   render(
     <AuditResult
-      verbose={true}
+      verbose={verbose}
       result={{
         groupedByStatus: {
           ...mockResult.groupedByStatus,
@@ -222,10 +225,10 @@ function renderFailedOnly() {
   );
 }
 
-function renderUnknownOnly() {
+function renderUnknownOnly(verbose: boolean) {
   render(
     <AuditResult
-      verbose={true}
+      verbose={verbose}
       result={{
         groupedByStatus: {
           ...mockResult.groupedByStatus,
@@ -238,31 +241,45 @@ function renderUnknownOnly() {
   );
 }
 
-function renderEmpty() {
-  render(<AuditResult result={emptyMock} verbose={true} />);
+function renderEmpty(verbose: boolean) {
+  render(<AuditResult result={emptyMock} verbose={verbose} />);
 }
 
-function renderAllWithNotFound() {
+function renderAllWithNotFound(verbose: boolean) {
   const mockResultWithNotFound: LicenseAuditResult = {
     ...mockResult,
     notFound: populatedNotFound,
   };
 
-  render(<AuditResult result={mockResultWithNotFound} verbose={true} />);
-}
-
-function renderVerbose() {
-  render(<AuditResult result={mockResult} verbose={true} />);
+  render(<AuditResult result={mockResultWithNotFound} verbose={verbose} />);
 }
 
 // Uncomment the component you want to render
-// renderSuccess();
-// renderFailure();
-// renderFailedOnly();
-// renderUnknownOnly();
-// renderFailedAndUnknown();
-// renderKnownAndUnknown();
-// renderAll();
-// renderEmpty();
-// renderAllWithNotFound();
-renderVerbose();
+// The boolean parameter is for whether the component
+// should be rendered in verbose mode or not
+// renderSuccess(true);
+// renderSuccess(false);
+
+// renderFailure(true);
+// renderFailure(false);
+
+// renderFailedOnly(true);
+// renderFailedOnly(false);
+
+// renderUnknownOnly(true);
+// renderUnknownOnly(false);
+
+// renderFailedAndUnknown(true);
+// renderFailedAndUnknown(false);
+
+// renderKnownAndUnknown(true);
+// renderKnownAndUnknown(false);
+
+// renderAll(true);
+// renderAll(false);
+
+// renderEmpty(true);
+// renderEmpty(false);
+
+renderAllWithNotFound(true);
+// renderAllWithNotFound(false);

@@ -1,8 +1,4 @@
-import type {
-  DetectedLicense,
-  LicenseAuditResult,
-  LicenseStatus,
-} from "@license-auditor/data";
+import type { DetectedLicense, LicenseStatus } from "@license-auditor/data";
 import figures from "figures";
 import { Box, Text } from "ink";
 import React from "react";
@@ -20,7 +16,7 @@ function getStatusIcon(status: LicenseStatus) {
   }
 }
 
-function LicenseDetails({ license }: { license: DetectedLicense }) {
+function FoundLicenseDetails({ license }: { license: DetectedLicense }) {
   return (
     <Box flexDirection="column" marginLeft={2}>
       <Text>
@@ -45,16 +41,11 @@ function LicenseDetails({ license }: { license: DetectedLicense }) {
           {license.license.isDeprecatedLicenseId ? "Yes" : "No"}
         </Text>
       </Text>
-      {license.license.detailsUrl && (
-        <Text>
-          Details: <Text color="cyan">{license.license.detailsUrl}</Text>
-        </Text>
-      )}
     </Box>
   );
 }
 
-function LicenseSection({
+export function FoundLicenseSection({
   title,
   licenses,
 }: { title: string; licenses: DetectedLicense[] }) {
@@ -66,46 +57,10 @@ function LicenseSection({
         return (
           <Box key={l.package} flexDirection="row" marginBottom={1}>
             <Text color={color}>{icon}</Text>
-            <LicenseDetails license={l} />
+            <FoundLicenseDetails license={l} />
           </Box>
         );
       })}
-    </Box>
-  );
-}
-
-export default function VerboseView({
-  result,
-}: { result: LicenseAuditResult }) {
-  const hasWhitelisted = result.groupedByStatus.whitelist.length > 0;
-  const hasBlacklisted = result.groupedByStatus.blacklist.length > 0;
-  const hasUnknown = result.groupedByStatus.unknown.length > 0;
-
-  return (
-    <Box flexDirection="column">
-      <Box marginBottom={1}>
-        <Text backgroundColor="cyan" color="black" bold>
-          {" Verbose License Audit Results "}
-        </Text>
-      </Box>
-      {hasWhitelisted && (
-        <LicenseSection
-          title="Whitelisted Licenses"
-          licenses={result.groupedByStatus.whitelist}
-        />
-      )}
-      {hasBlacklisted && (
-        <LicenseSection
-          title="Blacklisted Licenses"
-          licenses={result.groupedByStatus.blacklist}
-        />
-      )}
-      {hasUnknown && (
-        <LicenseSection
-          title="Unknown Licenses"
-          licenses={result.groupedByStatus.unknown}
-        />
-      )}
     </Box>
   );
 }
