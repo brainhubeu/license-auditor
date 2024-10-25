@@ -17,16 +17,25 @@ async function replaceExtension(
     currentDir,
     `license-auditor.config${extension}`,
   );
+  await fs.rename(jsFilePath, newFilePath);
+}
 
-  try {
-    await fs.rename(jsFilePath, newFilePath);
-  } catch (error) {
-    const message = `Failed to create the config file with the desired extension: ${extension}`;
-    if (error instanceof Error) {
-      throw new Error(`${message}, ${error.message}`);
-    }
-    throw new Error(message);
-  }
+async function copyConfigFile(
+  currentDir: string,
+  configType: ConfigType,
+  extension: ConfigExtension,
+) {
+  await fs.mkdir(currentDir, { recursive: true });
+
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = path.dirname(__filename);
+
+  const templateDir = path.resolve(__dirname, `template/${configType}`);
+  const templateFileName = `license-auditor.config${extension}`;
+  const templatePath = path.join(templateDir, templateFileName);
+
+  const destinationPath = path.join(currentDir, templateFileName);
+  await fs.copyFile(templatePath, destinationPath);
 }
 
 export async function generateConfig(
@@ -36,29 +45,11 @@ export async function generateConfig(
   try {
     const currentDir = process.env["ROOT_DIR"] ?? process.cwd();
 
-    await fs.mkdir(currentDir, { recursive: true });
+    await copyConfigFile(currentDir, configType, extension);
 
-    const __filename = fileURLToPath(import.meta.url);
-    const __dirname = path.dirname(__filename);
-
-    const templateDir = path.resolve(__dirname, `template/${configType}`);
-    await fs.cp(templateDir, currentDir, { recursive: true });
-
-    switch (extension) {
-      case ConfigExtension.MJS:
-        await replaceExtension(currentDir, extension);
-        break;
-      case ConfigExtension.TS:
-        // todo
-        break;
-      case ConfigExtension.CJS:
-        // todo
-        break;
-      case ConfigExtension.JSON:
-        // todo
-        break;
-      default:
-        break;
+    // mjs and js vary only in the file extension
+    if (extension === ConfigExtension.CJS) {
+      await replaceExtension(currentDir, extension);
     }
 
     return `Configured license-auditor with ${configType} license whitelist and blacklist at: ${currentDir}/license-auditor.config${extension}`;
