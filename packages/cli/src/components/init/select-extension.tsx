@@ -1,8 +1,8 @@
 import { Box, Spacer, Text } from "ink";
 import SelectInput from "ink-select-input";
 import React from "react";
-import { ConfigExtension } from "../../constants/config-constants.js";
-import type { SelectItem } from "../../constants/select-constants.js";
+import { ConfigExtension } from "../../constants/config-constants";
+import type { SelectItem } from "../../constants/select-constants";
 
 const configExtensionItems: SelectItem<ConfigExtension>[] = Object.entries(
   ConfigExtension,

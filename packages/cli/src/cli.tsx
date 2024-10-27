@@ -5,4 +5,6 @@ const app = new Pastel({
   importMeta: import.meta,
 });
 
-await app.run();
+(async () => {
+  await app.run();
+})();

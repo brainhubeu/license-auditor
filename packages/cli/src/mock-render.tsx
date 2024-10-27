@@ -1,7 +1,7 @@
 import type { LicenseAuditResult } from "@license-auditor/data";
 import { render } from "ink";
 import React from "react";
-import AuditResult from "./components/audit-result.js";
+import AuditResult from "./components/audit-result";
 
 // This is a mock render for the license auditor
 // This whole file will be removed before merging

@@ -1,11 +1,11 @@
 import { auditLicenses } from "@brainhubeu/license-auditor-core";
 import { ConfigSchema, type LicenseAuditResult } from "@license-auditor/data";
 import { Box, Text, useApp } from "ink";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import type { z } from "zod";
-import AuditResult from "../components/audit-result.js";
-import { SpinnerWithLabel } from "../components/spinner-with-label.js";
-import { cliOptions } from "../options.js";
+import AuditResult from "../components/audit-result";
+import { SpinnerWithLabel } from "../components/spinner-with-label";
+import { cliOptions } from "../options";
 
 export const auditLicensesOptions = cliOptions.extend({
   config: ConfigSchema,
@@ -31,7 +31,7 @@ export default function AuditLicenses({ options }: AuditLicensesOptions) {
           options.config,
         );
         console.log("Result:", result);
-        // setResults(result);
+        setResult(result);
         setWorking(false);
         exit();
       } catch (err) {

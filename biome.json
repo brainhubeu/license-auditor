@@ -23,7 +23,7 @@
       "complexity": {
         "noExcessiveCognitiveComplexity": "error",
         "useSimplifiedLogicExpression": "error",
-        "useLiteralKeys": "off"
+        "useLiteralKeys": "warn"
       },
       "style": {
         "noDefaultExport": "error",

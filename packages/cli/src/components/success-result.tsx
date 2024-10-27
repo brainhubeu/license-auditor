@@ -1,6 +1,6 @@
 import { Box } from "ink";
 import React from "react";
-import { CompliantMessage, SuccessHeaderMessage } from "./result-messages.js";
+import { CompliantMessage, SuccessHeaderMessage } from "./result-messages";
 
 interface SuccessResultProps {
   whitelistedCount: number;
