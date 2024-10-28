@@ -21,7 +21,8 @@
     "dev": "tsc --watch",
     "cli": "tsx src/cli.tsx",
     "cli:init": "tsx src/cli.tsx init",
-    "render-mock": "tsx --watch src/mock-render.tsx"
+    "render-mock": "tsx --watch src/mock-render.tsx",
+    "typecheck": "tsc --noEmit true -p tsconfig.esm.json"
   },
   "files": ["dist"],
   "dependencies": {
@@ -43,5 +44,6 @@
     "ink-testing-library": "3.0.0",
     "tsx": "4.19.1",
     "typescript": "5.6.2"
-  }
+  },
+  "typescript.tsconfig": "./tsconfig.esm.json"
 }

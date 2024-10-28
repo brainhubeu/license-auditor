@@ -1,0 +1,4 @@
+{
+    // use esm for local development
+    "extends": "./tsconfig.esm.json",
+}
