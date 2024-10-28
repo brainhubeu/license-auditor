@@ -11,6 +11,7 @@
     "declarationMap": true,
     "resolveJsonModule": true,
     "moduleResolution": "nodenext",
-    "module": "NodeNext"
+    "module": "NodeNext",
+    "allowImportingTsExtensions": true
   }
 }

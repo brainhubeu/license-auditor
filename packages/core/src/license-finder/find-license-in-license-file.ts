@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
 import * as path from "node:path";
 import { type License, LicenseSchema, licenseMap } from "@license-auditor/data";
-import type { LicensesWithPath } from "./licenses-with-path";
+import type { LicensesWithPath } from "./licenses-with-path.ts";
 
 const licenseFiles = [
   "LICENSE",

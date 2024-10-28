@@ -5,11 +5,14 @@ import type {
   LicenseAuditResult,
 } from "@license-auditor/data";
 import { findPackageManager } from "@license-auditor/package-manager-finder";
-import { type LicenseStatus, checkLicenseStatus } from "./check-license-status";
-import { findDependencies } from "./dependency-finder/find-dependencies";
-import { extractPackageName, readPackageJson } from "./file-utils";
-import { findLicenses } from "./license-finder/find-license";
-import type { LicensesWithPath } from "./license-finder/licenses-with-path";
+import {
+  type LicenseStatus,
+  checkLicenseStatus,
+} from "./check-license-status.ts";
+import { findDependencies } from "./dependency-finder/find-dependencies.ts";
+import { extractPackageName, readPackageJson } from "./file-utils.ts";
+import { findLicenses } from "./license-finder/find-license.ts";
+import type { LicensesWithPath } from "./license-finder/licenses-with-path.ts";
 
 interface PackageInfo {
   package: string;
@@ -68,7 +71,6 @@ export async function auditLicenses(
         notFound.set(packageName, { packagePath, errorMessage: errorMsg });
         continue;
       }
-      const licensesWithStatus = [];
       for (const license of licensesWithPath.licenses) {
         const status = checkLicenseStatus(license, config);
         const licenseWithStatus = {
@@ -81,8 +83,6 @@ export async function auditLicenses(
           license: licenseWithStatus,
           licensePath: licensesWithPath.licensePath,
         });
-
-        licensesWithStatus.push(licenseWithStatus);
       }
     }
   }

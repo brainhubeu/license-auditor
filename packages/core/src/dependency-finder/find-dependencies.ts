@@ -2,7 +2,7 @@ import type { SupportedPm } from "@license-auditor/package-manager-finder";
 import { findInternalPackages } from "./find-internal-packages";
 import { findNpmDependencies } from "./npm";
 import { findPnpmDependencies } from "./pnpm";
-import { findYarnClassicDependencies } from "./yarn-classic";
+import { findYarnClassicDependencies } from "./yarn-classic.ts";
 
 export async function findDependencies(
   packageManager: SupportedPm,
