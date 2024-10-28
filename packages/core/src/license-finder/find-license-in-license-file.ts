@@ -58,4 +58,5 @@ export async function parseLicenseFiles(
       return licenseFromLicenseFile;
     }
   }
+  return undefined;
 }
