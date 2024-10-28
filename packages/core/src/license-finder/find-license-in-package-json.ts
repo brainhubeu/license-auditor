@@ -1,5 +1,5 @@
 import type { License } from "@license-auditor/data";
-import { findLicenseById } from "./find-license-by-id.ts";
+import { findLicenseById } from "./find-license-by-id.js";
 
 function retrieveLicenseFromTypeField(license: unknown): License[] {
   if (typeof license === "object" && !!license && "type" in license) {

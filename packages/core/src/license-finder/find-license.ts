@@ -1,8 +1,8 @@
 import * as path from "node:path";
-import { parseLicenseFiles } from "./find-license-in-license-file.ts";
-import { findLicenseInPackageJson } from "./find-license-in-package-json.ts";
-import type { LicensesWithPath } from "./licenses-with-path.ts";
-import type { PackageJsonType } from "../file-utils.ts";
+import { parseLicenseFiles } from "./find-license-in-license-file.js";
+import { findLicenseInPackageJson } from "./find-license-in-package-json.js";
+import type { LicensesWithPath } from "./licenses-with-path.js";
+import type { PackageJsonType } from "../file-utils.js";
 
 export async function findLicenses(
   packageJson: PackageJsonType,

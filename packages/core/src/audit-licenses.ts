@@ -8,11 +8,11 @@ import { findPackageManager } from "@license-auditor/package-manager-finder";
 import {
   type LicenseStatus,
   checkLicenseStatus,
-} from "./check-license-status.ts";
-import { findDependencies } from "./dependency-finder/find-dependencies.ts";
-import { extractPackageName, readPackageJson } from "./file-utils.ts";
-import { findLicenses } from "./license-finder/find-license.ts";
-import type { LicensesWithPath } from "./license-finder/licenses-with-path.ts";
+} from "./check-license-status.js";
+import { findDependencies } from "./dependency-finder/find-dependencies.js";
+import { extractPackageName, readPackageJson } from "./file-utils.js";
+import { findLicenses } from "./license-finder/find-license.js";
+import type { LicensesWithPath } from "./license-finder/licenses-with-path.js";
 
 interface PackageInfo {
   package: string;

@@ -1,4 +1,4 @@
-import { execCommand } from "./exec-command.ts";
+import { execCommand } from "./exec-command.js";
 
 export const findNpmDepsCommand = "npm ls --all -p";
 
