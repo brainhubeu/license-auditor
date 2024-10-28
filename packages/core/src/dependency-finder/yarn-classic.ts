@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { z } from "zod";
-import { execCommand } from "./exec-command";
+import { execCommand } from "./exec-command.ts";
 
 const YarnDependencySchema = z.object({
   name: z.string(),

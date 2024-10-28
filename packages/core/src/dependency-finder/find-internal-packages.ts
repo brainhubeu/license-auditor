@@ -1,6 +1,6 @@
 import path from "node:path";
 import fg from "fast-glob";
-import { readPackageJson } from "../file-utils";
+import { readPackageJson } from "../file-utils.ts";
 
 interface PackageJson {
   name?: string;

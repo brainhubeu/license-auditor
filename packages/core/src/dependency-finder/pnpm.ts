@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { execCommand } from "./exec-command";
+import { execCommand } from "./exec-command.ts";
 
 const PnpmDependencySchema = z.object({
   from: z.string(),
