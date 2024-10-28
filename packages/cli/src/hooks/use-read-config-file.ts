@@ -1,7 +1,7 @@
 import { ConfigSchema } from "@license-auditor/data";
 import { useEffect, useState } from "react";
 import { z } from "zod";
-import { readConfiguration } from "../utils/read-configuration";
+import { readConfiguration } from "../utils/read-configuration.js";
 
 const ConfigFileSchema = z.object({
   config: ConfigSchema,

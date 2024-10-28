@@ -1,7 +1,6 @@
 import type { DetectedLicense } from "@license-auditor/data";
 import figures from "figures";
 import { Box, Text } from "ink";
-import React from "react";
 
 interface LicenseListProps {
   licenses: DetectedLicense[];

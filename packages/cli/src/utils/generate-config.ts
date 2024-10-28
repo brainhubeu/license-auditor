@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { ConfigExtension } from "../constants/config-constants";
+import { ConfigExtension } from "../constants/config-constants.js";
 
 export enum ConfigType {
   Default = "default",

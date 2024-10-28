@@ -1,6 +1,5 @@
 import figures from "figures";
 import { Text } from "ink";
-import React from "react";
 
 function describeLicenseCount(
   count: number,

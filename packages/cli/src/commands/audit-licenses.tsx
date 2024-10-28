@@ -1,11 +1,11 @@
 import { auditLicenses } from "@brainhubeu/license-auditor-core";
 import { ConfigSchema, type LicenseAuditResult } from "@license-auditor/data";
 import { Box, Text, useApp } from "ink";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import type { z } from "zod";
-import AuditResult from "../components/audit-result";
-import { SpinnerWithLabel } from "../components/spinner-with-label";
-import { cliOptions } from "../options";
+import AuditResult from "../components/audit-result.js";
+import { SpinnerWithLabel } from "../components/spinner-with-label.js";
+import { cliOptions } from "../options.js";
 
 export const auditLicensesOptions = cliOptions.extend({
   config: ConfigSchema,

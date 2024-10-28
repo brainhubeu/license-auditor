@@ -1,8 +1,7 @@
 import { Box, Text } from "ink";
 import SelectInput from "ink-select-input";
-import React from "react";
-import type { SelectItem } from "../../constants/select-constants";
-import { ConfigType } from "../../utils/generate-config";
+import type { SelectItem } from "../../constants/select-constants.js";
+import { ConfigType } from "../../utils/generate-config.js";
 
 const configTypeItems: SelectItem<ConfigType>[] = [
   {

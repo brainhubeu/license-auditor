@@ -1,11 +1,10 @@
 import type { LicenseAuditResult } from "@license-auditor/data";
 import { Box } from "ink";
-import React from "react";
-import FailureResult from "./failure-result";
-import IncludingUnknownResult from "./including-unknown-result";
-import NoLicensesFoundResult from "./no-licenses-found-result";
-import NotFoundResult from "./not-found-result";
-import SuccessResult from "./success-result";
+import FailureResult from "./failure-result.js";
+import IncludingUnknownResult from "./including-unknown-result.js";
+import NoLicensesFoundResult from "./no-licenses-found-result.js";
+import NotFoundResult from "./not-found-result.js";
+import SuccessResult from "./success-result.js";
 
 function renderAuditResult(result: LicenseAuditResult) {
   const hasWhitelisted = result.groupedByStatus.whitelist.length > 0;

@@ -1,14 +1,13 @@
 import type { LicenseAuditResult } from "@license-auditor/data";
 import { Box } from "ink";
-import React from "react";
-import LicenseList from "./license-list";
+import LicenseList from "./license-list.js";
 import {
   BlacklistedMessage,
   CompliantMessage,
   FailureHeaderMessage,
   UnknownMessage,
   WarningHeaderMessage,
-} from "./result-messages";
+} from "./result-messages.js";
 
 export default function IncludingUnknownResult({
   groupedByStatus,
