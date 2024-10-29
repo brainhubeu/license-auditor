@@ -1,15 +1,14 @@
 {
-    "extends": "@license-auditor/typescript-config/base.json",
-    "include": ["./src"],
-    "compilerOptions": {
-      "outDir": "./dist/esm",
-      "rootDir": "./src",
-      "baseUrl": ".",
-      "declarationDir": "./dist/types",
-      "module": "NodeNext",
-      "moduleResolution": "NodeNext",
-      "target": "ESNext",
-      "jsx": "react-jsx"
-    }
+  "extends": "@license-auditor/typescript-config/base.json",
+  "include": ["./src"],
+  "compilerOptions": {
+    "outDir": "./dist/esm",
+    "rootDir": "./src",
+    "baseUrl": ".",
+    "declarationDir": "./dist/types",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "target": "ESNext",
+    "jsx": "react-jsx"
   }
-  
+}
