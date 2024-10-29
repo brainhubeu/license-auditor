@@ -8,19 +8,15 @@
   "types": "./dist/types/index.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/cjs/index.js",
       "import": "./dist/esm/index.mjs",
       "types": "./dist/types/index.d.ts"
     }
   },
   "scripts": {
-    "build": "npm run clean && npm run build:cjs && npm run build:esm",
-    "build:cjs": "tsc -p tsconfig.cjs.json",
-    "build:esm": "tsc -p tsconfig.esm.json && npm run rename:esm",
-    "rename:esm": "node ../../scripts/fix-mjs.js",
-    "clean": "rimraf dist && rimraf *.tsbuildinfo",
+    "build": "tsc",
+    "dev": "tsc --watch",
     "start": "tsx src/audit-licenses.ts",
-    "typecheck": "tsc --noEmit true -p tsconfig.esm.json"
+    "typecheck": "tsc --noEmit true"
   },
   "dependencies": {
     "@license-auditor/data": "*",
@@ -33,6 +29,5 @@
     "@license-auditor/typescript-config": "*",
     "tsx": "4.19.1",
     "typescript": "5.6.2"
-  },
-  "typescript.tsconfig": "./tsconfig.esm.json"
+  }
 }

@@ -8,21 +8,16 @@
   "types": "./dist/types/index.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/cjs/index.js",
       "import": "./dist/esm/index.mjs"
     }
   },
   "scripts": {
-    "build": "npm run clean && npm run build:cjs && npm run build:esm",
-    "build:cjs": "tsc -p tsconfig.cjs.json",
-    "build:esm": "tsc -p tsconfig.esm.json && npm run rename:esm",
-    "rename:esm": "node ../../scripts/fix-mjs.js",
-    "clean": "rimraf dist && rimraf *.tsbuildinfo",
+    "build": "tsc",
     "dev": "tsc --watch",
     "cli": "tsx src/cli.tsx",
     "cli:init": "tsx src/cli.tsx init",
     "render-mock": "tsx --watch src/mock-render.tsx",
-    "typecheck": "tsc --noEmit true -p tsconfig.esm.json"
+    "typecheck": "tsc --noEmit true"
   },
   "files": ["dist"],
   "dependencies": {
@@ -44,6 +39,5 @@
     "ink-testing-library": "3.0.0",
     "tsx": "4.19.1",
     "typescript": "5.6.2"
-  },
-  "typescript.tsconfig": "./tsconfig.esm.json"
+  }
 }
