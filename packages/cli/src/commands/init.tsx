@@ -8,8 +8,6 @@ import type { ConfigExtension } from "../constants/config-constants.js";
 import { type ConfigType, generateConfig } from "../utils/generate-config.js";
 import { installPackages } from "../utils/install-packages.js";
 
-export const isDefault = true;
-
 export default function Init() {
   const { exit } = useApp();
   const [packagesInstalled, setPackagesInstalled] = useState(false);
