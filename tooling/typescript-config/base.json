@@ -10,7 +10,8 @@
     "composite": true,
     "declarationMap": true,
     "resolveJsonModule": true,
-    "moduleResolution": "nodenext",
-    "module": "NodeNext"
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext",
+    "target": "ESNext"
   }
 }

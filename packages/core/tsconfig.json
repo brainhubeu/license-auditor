@@ -3,12 +3,9 @@
   "include": ["**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "./dist"],
   "compilerOptions": {
-    "outDir": "./dist/esm",
+    "outDir": "./dist",
     "rootDir": "./src",
     "baseUrl": ".",
     "declarationDir": "./dist/types",
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "target": "ESNext"
   }
 }
