@@ -19,9 +19,7 @@
     "render-mock": "tsx --watch src/mock-render.tsx",
     "typecheck": "tsc --noEmit true"
   },
-  "files": [
-    "dist"
-  ],
+  "files": ["dist"],
   "dependencies": {
     "@brainhubeu/license-auditor-core": "*",
     "@license-auditor/data": "*",
