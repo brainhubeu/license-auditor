@@ -5,6 +5,7 @@ import IncludingUnknownResult from "./including-unknown-result.js";
 import NoLicensesFoundResult from "./no-licenses-found-result.js";
 import NotFoundResult from "./not-found-result.js";
 import SuccessResult from "./success-result.js";
+import { VerboseTable } from "./verbose-table.js";
 
 function renderAuditResult(result: LicenseAuditResult) {
   const hasWhitelisted = result.groupedByStatus.whitelist.length > 0;
@@ -42,6 +43,7 @@ export default function AuditResult({
 
   return (
     <Box flexDirection="column">
+      <VerboseTable />
       {auditResultComponent}
       {hasNotFound && <NotFoundResult notFound={result.notFound} />}
     </Box>
