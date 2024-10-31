@@ -12,17 +12,15 @@ const packagesToInstall = [
   "@brainhubeu/license-auditor-core",
 ] as const;
 
-export async function installPackages() {
+export async function installPackages(dir: string) {
   try {
-    const currentDir = process.env["ROOT_DIR"] ?? process.cwd();
-
-    const packageManager = await findPackageManager(currentDir);
+    const packageManager = await findPackageManager(dir);
 
     const installCommand = getInstallCommand(packageManager);
     console.log(`Installing packages using ${packageManager}...`);
 
     await execAsync(`${installCommand} ${packagesToInstall.join(" ")}`, {
-      cwd: currentDir,
+      cwd: dir,
     });
 
     console.log("Packages installed successfully.");

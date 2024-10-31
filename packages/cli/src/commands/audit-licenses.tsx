@@ -2,10 +2,11 @@ import { auditLicenses } from "@brainhubeu/license-auditor-core";
 import { ConfigSchema, type LicenseAuditResult } from "@license-auditor/data";
 import { Box, Text, useApp } from "ink";
 import { useEffect, useState } from "react";
-import { z } from "zod";
 import AuditResult from "../components/audit-result.js";
 import { SpinnerWithLabel } from "../components/spinner-with-label.js";
 import { cliOptions } from "../options.js";
+import { envSchema } from "../env.js";
+import type { z } from "zod";
 
 export const auditLicensesOptions = cliOptions.extend({
   config: ConfigSchema,
@@ -14,11 +15,6 @@ export const auditLicensesOptions = cliOptions.extend({
 export type AuditLicensesOptions = {
   options: z.infer<typeof auditLicensesOptions>;
 };
-
-const envSchema = z.object({
-  // biome-ignore lint/style/useNamingConvention: this is a constant
-  ROOT_DIR: z.string().min(1).default(process.cwd()),
-});
 
 export default function AuditLicenses({ options }: AuditLicensesOptions) {
   const [working, setWorking] = useState(true);

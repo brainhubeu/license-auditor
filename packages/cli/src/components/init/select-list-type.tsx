@@ -1,21 +1,21 @@
 import { Box, Text } from "ink";
 import SelectInput from "ink-select-input";
 import type { SelectItem } from "../../constants/select-constants.js";
-import { ConfigType } from "../../utils/generate-config.js";
+import { ConfigListType } from "../../utils/generate-config.js";
 
-const configTypeItems: SelectItem<ConfigType>[] = [
+const configTypeItems: SelectItem<ConfigListType>[] = [
   {
     label: "Use default lists",
-    value: ConfigType.Default,
+    value: ConfigListType.Default,
   },
   {
     label: "Use blank lists",
-    value: ConfigType.Blank,
+    value: ConfigListType.Blank,
   },
 ] as const;
 
 interface SelectListTypeProps {
-  onConfigTypeSelected: (configType: ConfigType) => void;
+  onConfigTypeSelected: (configType: ConfigListType) => void;
 }
 
 export default function SelectListType({

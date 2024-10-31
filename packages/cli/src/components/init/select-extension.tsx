@@ -11,7 +11,7 @@ const configExtensionItems: SelectItem<ConfigExtension>[] = Object.entries(
 }));
 
 interface SelectExtensionProps {
-  onExtensionSelected: (configType: ConfigExtension) => void;
+  onExtensionSelected: (configExtension: ConfigExtension) => void;
 }
 
 export default function SelectExtension({
