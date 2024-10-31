@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { licensesData } from "./licenses";
+import { licensesData } from "./licenses.js";
 
 export const licenses = licensesData.licenses;
 export const licenseMap = new Map(

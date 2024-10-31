@@ -1,3 +1,3 @@
-export * from "./config";
-export * from "./licenses";
-export * from "./license-audit-result";
+export * from "./config/index.js";
+export * from "./licenses/index.js";
+export * from "./license-audit-result/index.js";

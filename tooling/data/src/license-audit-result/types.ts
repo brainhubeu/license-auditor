@@ -1,4 +1,4 @@
-import type { License, LicenseStatus } from "../licenses";
+import type { License, LicenseStatus } from "../licenses/types.js";
 
 export interface DetectedLicense {
   package: string;

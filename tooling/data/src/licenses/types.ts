@@ -1,5 +1,5 @@
 import type { z } from "zod";
-import type { LicenseIdSchema, LicenseSchema } from "./schemas";
+import type { LicenseIdSchema, LicenseSchema } from "./schemas.js";
 
 export type LicenseId = z.infer<typeof LicenseIdSchema>;
 

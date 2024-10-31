@@ -1,23 +1,11 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { ConfigExtension } from "../constants/config-constants.js";
+import type { ConfigExtension } from "../constants/config-constants.js";
 
 export enum ConfigType {
   Default = "default",
   Blank = "blank",
-}
-
-async function replaceExtension(
-  currentDir: string,
-  extension: ConfigExtension,
-) {
-  const jsFilePath = path.join(currentDir, "license-auditor.config.js");
-  const newFilePath = path.join(
-    currentDir,
-    `license-auditor.config${extension}`,
-  );
-  await fs.rename(jsFilePath, newFilePath);
 }
 
 async function copyConfigFile(
@@ -46,11 +34,6 @@ export async function generateConfig(
     const currentDir = process.env["ROOT_DIR"] ?? process.cwd();
 
     await copyConfigFile(currentDir, configType, extension);
-
-    // mjs and js vary only in the file extension
-    if (extension === ConfigExtension.CJS) {
-      await replaceExtension(currentDir, extension);
-    }
 
     return `Configured license-auditor with ${configType} license whitelist and blacklist at: ${currentDir}/license-auditor.config${extension}`;
   } catch (err) {
