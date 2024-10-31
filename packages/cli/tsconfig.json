@@ -1,9 +1,11 @@
 {
-  "extends": "@sindresorhus/tsconfig",
+  "extends": "@license-auditor/typescript-config/base.json",
+  "include": ["./src"],
   "compilerOptions": {
-    "outDir": "dist",
-    "skipLibCheck": true,
-    "esModuleInterop": true
-  },
-  "exclude": ["node_modules", "./dist"]
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "baseUrl": ".",
+    "declarationDir": "./dist/types",
+    "jsx": "react-jsx"
+  }
 }

@@ -1,14 +1,12 @@
 import figures from "figures";
 import { Text, useApp } from "ink";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import SelectExtension from "../components/init/select-extension.js";
 import SelectListType from "../components/init/select-list-type.js";
 import { SpinnerWithLabel } from "../components/spinner-with-label.js";
 import type { ConfigExtension } from "../constants/config-constants.js";
 import { type ConfigType, generateConfig } from "../utils/generate-config.js";
 import { installPackages } from "../utils/install-packages.js";
-
-export const isDefault = true;
 
 export default function Init() {
   const { exit } = useApp();

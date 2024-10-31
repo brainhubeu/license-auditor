@@ -1,6 +1,5 @@
 import figures from "figures";
 import { Box, Text } from "ink";
-import React from "react";
 import { WarningHeaderMessage } from "./result-messages.js";
 
 export default function NoLicensesFoundResult() {
