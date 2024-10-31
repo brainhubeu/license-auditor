@@ -7,7 +7,6 @@
     "access": "public"
   },
   "devDependencies": {
-    "@total-typescript/ts-reset": "0.6.1",
     "@tsconfig/node-lts": "20.1.3",
     "@tsconfig/strictest": "2.0.5"
   }
