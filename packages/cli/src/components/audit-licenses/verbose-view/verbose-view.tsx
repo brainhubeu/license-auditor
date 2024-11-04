@@ -10,6 +10,9 @@ export default function VerboseView({
     ...result.groupedByStatus.unknown,
   ];
 
+  // todo: table
+  // react-ink uses ink 3.2.0 which is incompatible with ink 5
+  // we need to attempt to fork it and make it compatible
   return <Text>{JSON.stringify(data)}</Text>;
 }
 
