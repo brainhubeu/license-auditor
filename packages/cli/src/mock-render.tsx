@@ -11,7 +11,7 @@ const mockResult: LicenseAuditResult = {
   groupedByStatus: {
     whitelist: [
       {
-        package: "package1",
+        packageName: "package1",
         path: "path/to/package",
         licensePath: "/path/to/package1/LICENSE",
         license: {
@@ -27,7 +27,7 @@ const mockResult: LicenseAuditResult = {
         },
       },
       {
-        package: "package2",
+        packageName: "package2",
         path: "path/to/package",
         licensePath: "/path/to/package2/LICENSE",
         license: {
@@ -45,7 +45,7 @@ const mockResult: LicenseAuditResult = {
     ],
     blacklist: [
       {
-        package: "package3",
+        packageName: "package3",
         path: "path/to/package",
         // licensePath: "/path/to/package3/LICENSE",
         licensePath:
@@ -65,7 +65,7 @@ const mockResult: LicenseAuditResult = {
     ],
     unknown: [
       {
-        package: "package5",
+        packageName: "package5",
         path: "path/to/package",
         // licensePath: "/path/to/package3/LICENSE",
         licensePath:
@@ -83,12 +83,12 @@ const mockResult: LicenseAuditResult = {
         },
       },
       {
-        package: "package6",
+        packageName: "package6",
         path: "path/to/package",
         licensePath: "/path/to/package6/LICENSE",
         license: {
           reference: "",
-          isDeprecatedLicenseId: false,
+          isDeprecatedLicenseId: true,
           detailsUrl: "",
           referenceNumber: 0,
           name: "",
@@ -99,12 +99,12 @@ const mockResult: LicenseAuditResult = {
         },
       },
       {
-        package: "package7",
+        packageName: "package7",
         path: "path/to/package",
         licensePath: "/path/to/package7/LICENSE",
         license: {
           reference: "",
-          isDeprecatedLicenseId: false,
+          isDeprecatedLicenseId: true,
           detailsUrl: "",
           referenceNumber: 0,
           name: "",
@@ -130,10 +130,13 @@ const populatedNotFound = new Map([
     "@somecompany/somepackage",
     {
       packagePath: "path/to/somepackage",
-      errorMessage: "Error message",
+      errorMessage: "Error reading folder /path/to/somepackage",
     },
   ],
-  ["lodash", { packagePath: "path/to/lodash", errorMessage: "Error message" }],
+  [
+    "lodash",
+    { packagePath: "path/to/lodash", errorMessage: "I am an error message" },
+  ],
 ]);
 
 const emptyMock: LicenseAuditResult = {
@@ -141,9 +144,10 @@ const emptyMock: LicenseAuditResult = {
   groupedByStatus: { whitelist: [], blacklist: [], unknown: [] },
 };
 
-function renderSuccess() {
+function renderSuccess(verbose: boolean) {
   render(
     <AuditResult
+      verbose={verbose}
       result={{
         groupedByStatus: {
           ...mockResult.groupedByStatus,
@@ -156,9 +160,10 @@ function renderSuccess() {
   );
 }
 
-function renderFailure() {
+function renderFailure(verbose: boolean) {
   render(
     <AuditResult
+      verbose={verbose}
       result={{
         groupedByStatus: {
           ...mockResult.groupedByStatus,
@@ -170,9 +175,10 @@ function renderFailure() {
   );
 }
 
-function renderFailedAndUnknown() {
+function renderFailedAndUnknown(verbose: boolean) {
   render(
     <AuditResult
+      verbose={verbose}
       result={{
         groupedByStatus: {
           ...mockResult.groupedByStatus,
@@ -184,13 +190,14 @@ function renderFailedAndUnknown() {
   );
 }
 
-function renderAll() {
-  render(<AuditResult result={mockResult} />);
+function renderAll(verbose: boolean) {
+  render(<AuditResult result={mockResult} verbose={verbose} />);
 }
 
-function renderKnownAndUnknown() {
+function renderKnownAndUnknown(verbose: boolean) {
   render(
     <AuditResult
+      verbose={verbose}
       result={{
         groupedByStatus: {
           ...mockResult.groupedByStatus,
@@ -202,9 +209,10 @@ function renderKnownAndUnknown() {
   );
 }
 
-function renderFailedOnly() {
+function renderFailedOnly(verbose: boolean) {
   render(
     <AuditResult
+      verbose={verbose}
       result={{
         groupedByStatus: {
           ...mockResult.groupedByStatus,
@@ -217,9 +225,10 @@ function renderFailedOnly() {
   );
 }
 
-function renderUnknownOnly() {
+function renderUnknownOnly(verbose: boolean) {
   render(
     <AuditResult
+      verbose={verbose}
       result={{
         groupedByStatus: {
           ...mockResult.groupedByStatus,
@@ -232,26 +241,45 @@ function renderUnknownOnly() {
   );
 }
 
-function renderEmpty() {
-  render(<AuditResult result={emptyMock} />);
+function renderEmpty(verbose: boolean) {
+  render(<AuditResult result={emptyMock} verbose={verbose} />);
 }
 
-function renderAllWithNotFound() {
+function renderAllWithNotFound(verbose: boolean) {
   const mockResultWithNotFound: LicenseAuditResult = {
     ...mockResult,
     notFound: populatedNotFound,
   };
 
-  render(<AuditResult result={mockResultWithNotFound} />);
+  render(<AuditResult result={mockResultWithNotFound} verbose={verbose} />);
 }
 
 // Uncomment the component you want to render
-// renderSuccess();
-// renderFailure();
-// renderFailedOnly();
-// renderUnknownOnly();
-// renderFailedAndUnknown();
-// renderKnownAndUnknown();
-// renderAll();
-// renderEmpty();
-renderAllWithNotFound();
+// The boolean parameter is for whether the component
+// should be rendered in verbose mode or not
+// renderSuccess(true);
+// renderSuccess(false);
+
+// renderFailure(true);
+// renderFailure(false);
+
+// renderFailedOnly(true);
+// renderFailedOnly(false);
+
+// renderUnknownOnly(true);
+// renderUnknownOnly(false);
+
+// renderFailedAndUnknown(true);
+// renderFailedAndUnknown(false);
+
+// renderKnownAndUnknown(true);
+// renderKnownAndUnknown(false);
+
+renderAll(true);
+// renderAll(false);
+
+// renderEmpty(true);
+// renderEmpty(false);
+
+// renderAllWithNotFound(true);
+// renderAllWithNotFound(false);

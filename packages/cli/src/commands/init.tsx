@@ -1,56 +1,101 @@
-import figures from "figures";
-import { Text, useApp } from "ink";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { GenerateConfig } from "../components/init/generate-config.js";
+import { InstallPackages } from "../components/init/install-packages.js";
 import SelectExtension from "../components/init/select-extension.js";
 import SelectListType from "../components/init/select-list-type.js";
-import { SpinnerWithLabel } from "../components/spinner-with-label.js";
+import { ValidateEnv } from "../components/init/validate-env.js";
 import type { ConfigExtension } from "../constants/config-constants.js";
-import { type ConfigType, generateConfig } from "../utils/generate-config.js";
-import { installPackages } from "../utils/install-packages.js";
+import type { EnvType } from "../env.js";
+import type { ConfigListType } from "../utils/generate-config.js";
 
-export default function Init() {
-  const { exit } = useApp();
-  const [packagesInstalled, setPackagesInstalled] = useState(false);
-  const [listType, setListType] = useState<ConfigType | null>(null);
-  const [resultMessage, setResultMessage] = useState<string | null>(null);
-  const [isGeneratingConfig, setIsGeneratingConfig] = useState(false);
+enum Step {
+  ValidateEnv = "validateEnv",
+  InstallPackages = "installPackages",
+  SelectExtension = "selectExtension",
+  SelectListType = "selectListType",
+  GenerateConfig = "generateConfig",
+}
 
-  useEffect(() => {
-    void installPackages();
-    setPackagesInstalled(true);
-  }, []);
-
-  if (!packagesInstalled) {
-    return <SpinnerWithLabel label="Installing dependencies..." />;
-  }
-
-  if (isGeneratingConfig) {
-    return <SpinnerWithLabel label="Generating configuration file..." />;
-  }
-
-  if (resultMessage) {
-    return (
-      <Text color="green">
-        {figures.tick} {resultMessage}
-      </Text>
-    );
-  }
-
-  if (!listType) {
-    return <SelectListType onConfigTypeSelected={setListType} />;
-  }
-
-  if (listType) {
-    const onExtensionSelected = async (extension: ConfigExtension) => {
-      setIsGeneratingConfig(true);
-      const message = await generateConfig(listType, extension);
-      setResultMessage(message);
-      setIsGeneratingConfig(false);
-      setTimeout(exit, 1500);
+type WizardState =
+  | { step: Step.ValidateEnv }
+  | { step: Step.InstallPackages; env: EnvType }
+  | { step: Step.SelectExtension; env: EnvType }
+  | { step: Step.SelectListType; env: EnvType; extension: ConfigExtension }
+  | {
+      step: Step.GenerateConfig;
+      env: EnvType;
+      extension: ConfigExtension;
+      configListType: ConfigListType;
     };
 
-    return <SelectExtension onExtensionSelected={onExtensionSelected} />;
-  }
+export default function Init() {
+  const [wizardState, setWizardState] = useState<WizardState>({
+    step: Step.ValidateEnv,
+  });
 
-  return null;
+  switch (wizardState.step) {
+    case Step.ValidateEnv:
+      return (
+        <ValidateEnv
+          onSuccess={(env) =>
+            setWizardState({
+              step: Step.InstallPackages,
+              env,
+            })
+          }
+        />
+      );
+
+    case Step.InstallPackages:
+      return (
+        <InstallPackages
+          dir={wizardState.env.ROOT_DIR}
+          onPackagesInstalled={() =>
+            setWizardState({
+              step: Step.SelectExtension,
+              env: wizardState.env,
+            })
+          }
+        />
+      );
+
+    case Step.SelectExtension:
+      return (
+        <SelectExtension
+          onExtensionSelected={(extension) =>
+            setWizardState({
+              step: Step.SelectListType,
+              env: wizardState.env,
+              extension,
+            })
+          }
+        />
+      );
+
+    case Step.SelectListType:
+      return (
+        <SelectListType
+          onConfigTypeSelected={(configListType) =>
+            setWizardState({
+              step: Step.GenerateConfig,
+              env: wizardState.env,
+              extension: wizardState.extension,
+              configListType,
+            })
+          }
+        />
+      );
+
+    case Step.GenerateConfig:
+      return (
+        <GenerateConfig
+          dir={wizardState.env.ROOT_DIR}
+          extension={wizardState.extension}
+          configListType={wizardState.configListType}
+        />
+      );
+
+    default:
+      return null;
+  }
 }
