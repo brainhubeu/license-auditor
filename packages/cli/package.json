@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "type": "module",
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.mjs",
+  "main": "./dist/cli.js",
+  "module": "./dist/cli.js",
   "types": "./dist/types/index.d.ts",
   "exports": {
     ".": {
