@@ -1,7 +1,6 @@
 import type { DetectedLicense, LicenseStatus } from "@license-auditor/data";
 import figures from "figures";
 import { Box, Text } from "ink";
-import React from "react";
 
 function getStatusIcon(status: LicenseStatus) {
   switch (status) {
@@ -20,7 +19,7 @@ function FoundLicenseDetails({ license }: { license: DetectedLicense }) {
   return (
     <Box flexDirection="column" marginLeft={2}>
       <Text>
-        Package: <Text color="cyan">{license.package}</Text>
+        Package: <Text color="cyan">{license.packageName}</Text>
       </Text>
       <Text>
         License ID:{" "}
@@ -55,7 +54,7 @@ export function FoundLicenseSection({
       {licenses.map((l) => {
         const { icon, color } = getStatusIcon(l.license.status);
         return (
-          <Box key={l.package} flexDirection="row" marginBottom={1}>
+          <Box key={l.packageName} flexDirection="row" marginBottom={1}>
             <Text color={color}>{icon}</Text>
             <FoundLicenseDetails license={l} />
           </Box>

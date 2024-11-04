@@ -11,7 +11,7 @@ const mockResult: LicenseAuditResult = {
   groupedByStatus: {
     whitelist: [
       {
-        package: "package1",
+        packageName: "package1",
         path: "path/to/package",
         licensePath: "/path/to/package1/LICENSE",
         license: {
@@ -27,7 +27,7 @@ const mockResult: LicenseAuditResult = {
         },
       },
       {
-        package: "package2",
+        packageName: "package2",
         path: "path/to/package",
         licensePath: "/path/to/package2/LICENSE",
         license: {
@@ -45,7 +45,7 @@ const mockResult: LicenseAuditResult = {
     ],
     blacklist: [
       {
-        package: "package3",
+        packageName: "package3",
         path: "path/to/package",
         // licensePath: "/path/to/package3/LICENSE",
         licensePath:
@@ -65,7 +65,7 @@ const mockResult: LicenseAuditResult = {
     ],
     unknown: [
       {
-        package: "package5",
+        packageName: "package5",
         path: "path/to/package",
         // licensePath: "/path/to/package3/LICENSE",
         licensePath:
@@ -83,7 +83,7 @@ const mockResult: LicenseAuditResult = {
         },
       },
       {
-        package: "package6",
+        packageName: "package6",
         path: "path/to/package",
         licensePath: "/path/to/package6/LICENSE",
         license: {
@@ -99,7 +99,7 @@ const mockResult: LicenseAuditResult = {
         },
       },
       {
-        package: "package7",
+        packageName: "package7",
         path: "path/to/package",
         licensePath: "/path/to/package7/LICENSE",
         license: {
@@ -257,7 +257,7 @@ function renderAllWithNotFound(verbose: boolean) {
 // Uncomment the component you want to render
 // The boolean parameter is for whether the component
 // should be rendered in verbose mode or not
-renderSuccess(true);
+// renderSuccess(true);
 // renderSuccess(false);
 
 // renderFailure(true);
@@ -275,7 +275,7 @@ renderSuccess(true);
 // renderKnownAndUnknown(true);
 // renderKnownAndUnknown(false);
 
-// renderAll(true);
+renderAll(true);
 // renderAll(false);
 
 // renderEmpty(true);

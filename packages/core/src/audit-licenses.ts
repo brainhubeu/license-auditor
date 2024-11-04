@@ -78,8 +78,8 @@ export async function auditLicenses(
           status,
         };
         groupedByStatus[status].push({
-          package: packageName,
-          path: packagePath,
+          packageName,
+          packagePath,
           license: licenseWithStatus,
           licensePath: licensesWithPath.licensePath,
         });
