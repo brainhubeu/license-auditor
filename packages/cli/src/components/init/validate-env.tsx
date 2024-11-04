@@ -1,6 +1,6 @@
 import { useApp } from "ink";
-import { envSchema, type EnvType } from "../../env.js";
 import { useEffect } from "react";
+import { type EnvType, envSchema } from "../../env.js";
 import { SpinnerWithLabel } from "../spinner-with-label.js";
 
 interface ValidateEnvProps {

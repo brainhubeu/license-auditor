@@ -1,12 +1,12 @@
 import { useState } from "react";
+import { GenerateConfig } from "../components/init/generate-config.js";
 import { InstallPackages } from "../components/init/install-packages.js";
 import SelectExtension from "../components/init/select-extension.js";
 import SelectListType from "../components/init/select-list-type.js";
+import { ValidateEnv } from "../components/init/validate-env.js";
+import type { ConfigExtension } from "../constants/config-constants.js";
 import type { EnvType } from "../env.js";
 import type { ConfigListType } from "../utils/generate-config.js";
-import { ValidateEnv } from "../components/init/validate-env.js";
-import { GenerateConfig } from "../components/init/generate-config.js";
-import type { ConfigExtension } from "../constants/config-constants.js";
 
 enum Step {
   ValidateEnv = "validateEnv",

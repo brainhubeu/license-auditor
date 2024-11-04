@@ -1,3 +1,4 @@
+import figures from "figures";
 import { Text, useApp } from "ink";
 import { useEffect, useState } from "react";
 import type { ConfigExtension } from "../../constants/config-constants.js";
@@ -6,7 +7,6 @@ import {
   generateConfig,
 } from "../../utils/generate-config.js";
 import { SpinnerWithLabel } from "../spinner-with-label.js";
-import figures from "figures";
 
 interface GenerateConfigProps {
   configListType: ConfigListType;

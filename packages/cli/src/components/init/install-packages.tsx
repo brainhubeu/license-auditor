@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import figures from "figures";
+import { Text } from "ink";
+import { useEffect, useState } from "react";
 import { installPackages } from "../../utils/install-packages.js";
 import { SpinnerWithLabel } from "../spinner-with-label.js";
-import { Text } from "ink";
-import figures from "figures";
 
 interface InstallPackagesProps {
   dir: string;
