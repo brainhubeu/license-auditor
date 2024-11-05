@@ -13,6 +13,7 @@ biome.json
 .env.test.local
 .env.production.local
 tsconfig.json
+tsconfig.buildinfo
 
 # Turbo
 .turbo

@@ -20,6 +20,7 @@ biome.json
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+tsconfig.buildinfo
 
 # Misc
 .DS_Store
