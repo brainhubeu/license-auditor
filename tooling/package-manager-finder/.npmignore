@@ -14,6 +14,8 @@ biome.json
 .env.production.local
 tsconfig.json
 tsconfig.buildinfo
+dist/tsconfig.tsbuildinfo
+find-package-manager.ts
 
 # Turbo
 .turbo
