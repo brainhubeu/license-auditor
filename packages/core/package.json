@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@brainhubeu/license-auditor-data": "*",
-    "@license-auditor/package-manager-finder": "*",
+    "@brainhubeu/package-manager-finder": "*",
     "@total-typescript/ts-reset": "0.6.1",
     "fast-glob": "3.3.2",
     "rimraf": "6.0.1",

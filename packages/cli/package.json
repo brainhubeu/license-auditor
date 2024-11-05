@@ -25,7 +25,7 @@
   "dependencies": {
     "@brainhubeu/license-auditor-core": "*",
     "@brainhubeu/license-auditor-data": "0.0.1",
-    "@license-auditor/package-manager-finder": "*",
+    "@brainhubeu/package-manager-finder": "*",
     "@total-typescript/ts-reset": "0.6.1",
     "cosmiconfig": "9.0.0",
     "ink": "5.0.1",

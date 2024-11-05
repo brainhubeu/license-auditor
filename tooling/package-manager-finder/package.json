@@ -1,7 +1,9 @@
 {
-  "name": "@license-auditor/package-manager-finder",
-  "version": "0.1.0",
-  "private": true,
+  "name": "@brainhubeu/package-manager-finder",
+  "version": "0.0.1",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "./dist/find-package-manager.js",
   "types": "./dist/find-package-manager.d.ts",
   "type": "module",
