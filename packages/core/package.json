@@ -19,8 +19,8 @@
     "typecheck": "tsc --noEmit true"
   },
   "dependencies": {
-    "@brainhubeu/license-auditor-data": "*",
-    "@brainhubeu/package-manager-finder": "*",
+    "@brainhubeu/license-auditor-data": "0.0.1",
+    "@brainhubeu/package-manager-finder": "0.0.1",
     "@total-typescript/ts-reset": "0.6.1",
     "fast-glob": "3.3.2",
     "rimraf": "6.0.1",
