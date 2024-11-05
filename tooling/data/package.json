@@ -1,6 +1,6 @@
 {
-  "name": "@license-auditor/data",
-  "version": "0.0.1-alpha",
+  "name": "@brainhubeu/license-auditor-data",
+  "version": "0.0.1",
   "license": "MIT",
   "publishConfig": {
     "access": "public"

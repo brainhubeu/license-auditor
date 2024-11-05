@@ -1,5 +1,5 @@
-import type { ConfigType } from "@license-auditor/data";
-import type { License, LicenseId } from "@license-auditor/data";
+import type { ConfigType } from "@brainhubeu/license-auditor-data";
+import type { License, LicenseId } from "@brainhubeu/license-auditor-data";
 
 export type LicenseStatus = "whitelist" | "blacklist" | "unknown";
 
@@ -9,7 +9,7 @@ function belongsToList(list: LicenseId[], licenseId: LicenseId): boolean {
 
 export function checkLicenseStatus(
   license: License,
-  config: ConfigType,
+  config: ConfigType
 ): LicenseStatus {
   if (belongsToList(config.whitelist, license.licenseId)) {
     return "whitelist";

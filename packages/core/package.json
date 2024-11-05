@@ -19,7 +19,7 @@
     "typecheck": "tsc --noEmit true"
   },
   "dependencies": {
-    "@license-auditor/data": "*",
+    "@brainhubeu/license-auditor-data": "*",
     "@license-auditor/package-manager-finder": "*",
     "@total-typescript/ts-reset": "0.6.1",
     "fast-glob": "3.3.2",

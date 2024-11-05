@@ -1,4 +1,4 @@
-import type { License } from "@license-auditor/data";
+import type { License } from "@brainhubeu/license-auditor-data";
 import { findLicenseById } from "./find-license-by-id.js";
 
 function retrieveLicenseFromTypeField(license: unknown): License[] {
@@ -10,7 +10,7 @@ function retrieveLicenseFromTypeField(license: unknown): License[] {
 
 function retrieveLicenseByField<T extends string>(
   packageJson: object & Record<T, unknown>,
-  licenseField: T,
+  licenseField: T
 ): License[] {
   if (typeof packageJson[licenseField] === "string") {
     return findLicenseById(packageJson[licenseField]);

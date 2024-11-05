@@ -3,7 +3,7 @@ import type {
   DetectedLicense,
   License,
   LicenseAuditResult,
-} from "@license-auditor/data";
+} from "@brainhubeu/license-auditor-data";
 import { findPackageManager } from "@license-auditor/package-manager-finder";
 import {
   type LicenseStatus,
@@ -24,7 +24,7 @@ interface PackageInfo {
 
 export async function auditLicenses(
   cwd: string,
-  config: ConfigType,
+  config: ConfigType
 ): Promise<LicenseAuditResult> {
   const packageManager = await findPackageManager(cwd);
   const packagePaths = await findDependencies(packageManager, cwd);
@@ -62,7 +62,7 @@ export async function auditLicenses(
     if (packageJsonResult.packageJson) {
       const licensesWithPath = await findLicenses(
         packageJsonResult.packageJson,
-        packagePath,
+        packagePath
       );
 
       if (!licensesWithPath.licensePath) {
@@ -91,8 +91,8 @@ export async function auditLicenses(
     "Result:",
     Array.from(resultMap.values()).map(
       (p) =>
-        `${p.package}: ${p.result.licenses.map((l) => l.licenseId).join(", ")}`,
-    ),
+        `${p.package}: ${p.result.licenses.map((l) => l.licenseId).join(", ")}`
+    )
   );
   return {
     groupedByStatus,

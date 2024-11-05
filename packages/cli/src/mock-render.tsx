@@ -1,5 +1,5 @@
 // @ts-nocheck -- this is a mock render and the functions will come off as unused
-import type { LicenseAuditResult } from "@license-auditor/data";
+import type { LicenseAuditResult } from "@brainhubeu/license-auditor-data";
 import { render } from "ink";
 import AuditResult from "./components/audit-result.js";
 
@@ -152,7 +152,7 @@ function renderSuccess() {
         },
         notFound: mockResult.notFound,
       }}
-    />,
+    />
   );
 }
 
@@ -166,7 +166,7 @@ function renderFailure() {
         },
         notFound: populatedNotFound,
       }}
-    />,
+    />
   );
 }
 
@@ -180,7 +180,7 @@ function renderFailedAndUnknown() {
         },
         notFound: mockResult.notFound,
       }}
-    />,
+    />
   );
 }
 
@@ -198,7 +198,7 @@ function renderKnownAndUnknown() {
         },
         notFound: mockResult.notFound,
       }}
-    />,
+    />
   );
 }
 
@@ -213,7 +213,7 @@ function renderFailedOnly() {
         },
         notFound: mockResult.notFound,
       }}
-    />,
+    />
   );
 }
 
@@ -228,7 +228,7 @@ function renderUnknownOnly() {
         },
         notFound: mockResult.notFound,
       }}
-    />,
+    />
   );
 }
 
