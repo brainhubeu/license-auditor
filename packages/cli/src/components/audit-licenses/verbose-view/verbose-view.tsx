@@ -5,10 +5,9 @@ import Table from "ink-table";
 enum VerboseViewColumn {
   Status = 0,
   PackageName = 1,
-  PackagePath = 2,
-  LicenseId = 3,
+  License = 2,
+  Deprecated = 3,
   LicensePath = 4,
-  IsDeprecatedLicenseId = 5,
 }
 
 function getColorForStatus(status: LicenseStatus) {
@@ -32,10 +31,9 @@ export default function VerboseView({
   ].map((detectedLicense) => ({
     status: detectedLicense.license.status,
     "package name": detectedLicense.packageName,
-    // packagePath: detectedLicense.packagePath,
     license: detectedLicense.license.licenseId,
-    // licensePath: detectedLicense.licensePath,
     deprecated: detectedLicense.license.isDeprecatedLicenseId,
+    "license path": detectedLicense.licensePath,
   }));
 
   return (
@@ -49,13 +47,8 @@ export default function VerboseView({
                 {children}
               </Text>
             );
-          // case VerboseViewColumn.LicensePath:
-          // case VerboseViewColumn.PackagePath:
-          //   return (
-          //     <Box width={50}>
-          //       <Text wrap="truncate-start">{children}</Text>
-          //     </Box>
-          //   );
+          case VerboseViewColumn.LicensePath:
+            return <Text wrap="truncate-start">{children}</Text>;
           default:
             return <Text>{children}</Text>;
         }
