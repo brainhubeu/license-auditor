@@ -23,7 +23,7 @@
   },
   "files": ["dist"],
   "dependencies": {
-    "@brainhubeu/license-auditor-core": "*",
+    "@brainhubeu/license-auditor-core": "0.0.1",
     "@brainhubeu/license-auditor-data": "0.0.1",
     "@brainhubeu/package-manager-finder": "0.0.1",
     "@total-typescript/ts-reset": "0.6.1",
