@@ -31,6 +31,7 @@ export async function generateConfig(
   extension: ConfigExtension,
 ) {
   try {
+    // biome-ignore lint/complexity/useLiteralKeys: literal key needed to access ROOT_DIR env
     const currentDir = process.env["ROOT_DIR"] ?? process.cwd();
 
     await copyConfigFile(currentDir, configType, extension);
