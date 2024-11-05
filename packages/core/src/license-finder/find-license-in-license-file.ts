@@ -23,7 +23,7 @@ function retrieveLicenseFromLicenseFileContent(content: string): License[] {
   const licenseArr = [...licenseMap]
     .filter(
       ([key, value]) =>
-        contentTokens.includes(key) || contentTokens.includes(value.name)
+        contentTokens.includes(key) || contentTokens.includes(value.name),
     )
     .map((result) => LicenseSchema.parse(result[1]));
 
@@ -31,7 +31,7 @@ function retrieveLicenseFromLicenseFileContent(content: string): License[] {
 }
 
 export async function findLicenseInLicenseFile(
-  filename: string
+  filename: string,
 ): Promise<LicensesWithPath> {
   try {
     const content = await readFile(filename, "utf-8");
@@ -52,7 +52,7 @@ export async function findLicenseInLicenseFile(
 }
 
 export async function parseLicenseFiles(
-  packagePath: string
+  packagePath: string,
 ): Promise<LicensesWithPath | undefined> {
   let licensePath: string;
   for (const licenseFile of licenseFiles) {

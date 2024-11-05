@@ -10,7 +10,7 @@ function retrieveLicenseFromTypeField(license: unknown): License[] {
 
 function retrieveLicenseByField<T extends string>(
   packageJson: object & Record<T, unknown>,
-  licenseField: T
+  licenseField: T,
 ): License[] {
   if (typeof packageJson[licenseField] === "string") {
     return findLicenseById(packageJson[licenseField]);

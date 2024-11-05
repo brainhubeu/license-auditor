@@ -11,6 +11,7 @@ const packagesToInstall = ["@brainhubeu/license-auditor-cli"] as const;
 
 export async function installPackages() {
   try {
+    // biome-ignore lint/complexity/useLiteralKeys: literal key needed to access ROOT_DIR env
     const currentDir = process.env["ROOT_DIR"] ?? process.cwd();
 
     const packageManager = await findPackageManager(currentDir);

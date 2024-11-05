@@ -152,7 +152,7 @@ function renderSuccess() {
         },
         notFound: mockResult.notFound,
       }}
-    />
+    />,
   );
 }
 
@@ -166,7 +166,7 @@ function renderFailure() {
         },
         notFound: populatedNotFound,
       }}
-    />
+    />,
   );
 }
 
@@ -180,7 +180,7 @@ function renderFailedAndUnknown() {
         },
         notFound: mockResult.notFound,
       }}
-    />
+    />,
   );
 }
 
@@ -198,7 +198,7 @@ function renderKnownAndUnknown() {
         },
         notFound: mockResult.notFound,
       }}
-    />
+    />,
   );
 }
 
@@ -213,7 +213,7 @@ function renderFailedOnly() {
         },
         notFound: mockResult.notFound,
       }}
-    />
+    />,
   );
 }
 
@@ -228,7 +228,7 @@ function renderUnknownOnly() {
         },
         notFound: mockResult.notFound,
       }}
-    />
+    />,
   );
 }
 

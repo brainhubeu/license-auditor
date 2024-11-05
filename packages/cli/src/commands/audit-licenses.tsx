@@ -41,7 +41,7 @@ export default function AuditLicenses({ options }: AuditLicensesOptions) {
         }
         const result = await auditLicenses(
           parsedEnv.data.ROOT_DIR,
-          options.config
+          options.config,
         );
         setResult(result);
         setWorking(false);
@@ -49,7 +49,7 @@ export default function AuditLicenses({ options }: AuditLicensesOptions) {
       } catch (err) {
         console.error(err);
         setError(
-          err instanceof Error ? err.message : "An unknown error occurred"
+          err instanceof Error ? err.message : "An unknown error occurred",
         );
         setWorking(false);
         exit();

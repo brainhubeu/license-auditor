@@ -9,7 +9,7 @@ function belongsToList(list: LicenseId[], licenseId: LicenseId): boolean {
 
 export function checkLicenseStatus(
   license: License,
-  config: ConfigType
+  config: ConfigType,
 ): LicenseStatus {
   if (belongsToList(config.whitelist, license.licenseId)) {
     return "whitelist";
