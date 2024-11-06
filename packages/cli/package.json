@@ -3,12 +3,12 @@
   "version": "0.0.0",
   "license": "MIT",
   "type": "module",
-  "module": "./dist/esm/index.mjs",
+  "main": "./dist/cli.js",
+  "module": "./dist/cli.js",
   "types": "./dist/types/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/esm/index.mjs",
-      "types": "./dist/types/index.d.ts"
+      "import": "./dist/cli.js"
     }
   },
   "scripts": {
