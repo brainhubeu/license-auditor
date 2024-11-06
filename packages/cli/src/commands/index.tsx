@@ -1,8 +1,8 @@
 import { Box, Text } from "ink";
 import Spinner from "ink-spinner";
-import { useReadConfiguration } from "../hooks/use-read-config-file.js";
-import AuditLicenses from "../components/audit-licenses/audit-licenses.js";
 import { z } from "zod";
+import AuditLicenses from "../components/audit-licenses/audit-licenses.js";
+import { useReadConfiguration } from "../hooks/use-read-config-file.js";
 
 export const options = z.object({
   verbose: z.boolean().default(false).describe("Verbose output"),

@@ -2,9 +2,9 @@ import { auditLicenses } from "@brainhubeu/license-auditor-core";
 import type { ConfigType, LicenseAuditResult } from "@license-auditor/data";
 import { Box, Text, useApp } from "ink";
 import { useEffect, useState } from "react";
-import AuditResult from "./audit-result.js";
-import { SpinnerWithLabel } from "../spinner-with-label.js";
 import { envSchema } from "../../env.js";
+import { SpinnerWithLabel } from "../spinner-with-label.js";
+import AuditResult from "./audit-result.js";
 
 export type AuditLicensesProps = {
   verbose: boolean;
