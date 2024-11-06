@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "module": "./dist/esm/index.mjs",
+  "module": "./dist/index.js",
   "exports": {
     ".": {
       "import": "./dist/index.js",
