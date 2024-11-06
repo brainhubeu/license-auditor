@@ -35,7 +35,7 @@ function renderAuditResult(result: LicenseAuditResult) {
 
 export default function AuditResult({
   result,
-  verbose = true,
+  verbose = false,
 }: {
   result: LicenseAuditResult;
   verbose?: boolean;
