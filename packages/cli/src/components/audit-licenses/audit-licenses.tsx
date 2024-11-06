@@ -3,10 +3,10 @@ import { ConfigSchema, type LicenseAuditResult } from "@license-auditor/data";
 import { Box, Text, useApp } from "ink";
 import { useEffect, useState } from "react";
 import type { z } from "zod";
-import AuditResult from "../components/audit-licenses/audit-result.js";
-import { SpinnerWithLabel } from "../components/spinner-with-label.js";
-import { envSchema } from "../env.js";
-import { cliOptions } from "../options.js";
+import AuditResult from "./audit-result.js";
+import { SpinnerWithLabel } from "../spinner-with-label.js";
+import { envSchema } from "../../env.js";
+import { cliOptions } from "../../options.js";
 
 export const auditLicensesOptions = cliOptions.extend({
   config: ConfigSchema,
