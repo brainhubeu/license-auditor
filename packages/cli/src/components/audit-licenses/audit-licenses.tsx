@@ -1,22 +1,26 @@
 import { auditLicenses } from "@brainhubeu/license-auditor-core";
-import { ConfigSchema, type LicenseAuditResult } from "@license-auditor/data";
+import type {
+  ConfigType,
+  LicenseAuditResult,
+  LicenseStatus,
+} from "@license-auditor/data";
 import { Box, Text, useApp } from "ink";
 import { useEffect, useState } from "react";
-import type { z } from "zod";
-import AuditResult from "../components/audit-licenses/audit-result.js";
-import { SpinnerWithLabel } from "../components/spinner-with-label.js";
-import { envSchema } from "../env.js";
-import { cliOptions } from "../options.js";
+import { envSchema } from "../../env.js";
+import { SpinnerWithLabel } from "../spinner-with-label.js";
+import AuditResult from "./audit-result.js";
 
-export const auditLicensesOptions = cliOptions.extend({
-  config: ConfigSchema,
-});
-
-export type AuditLicensesOptions = {
-  options: z.infer<typeof auditLicensesOptions>;
+export type AuditLicensesProps = {
+  verbose: boolean;
+  config: ConfigType;
+  filter: LicenseStatus | undefined;
 };
 
-export default function AuditLicenses({ options }: AuditLicensesOptions) {
+export default function AuditLicenses({
+  verbose,
+  config,
+  filter,
+}: AuditLicensesProps) {
   const [working, setWorking] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<LicenseAuditResult | null>(null);
@@ -32,11 +36,7 @@ export default function AuditLicenses({ options }: AuditLicensesOptions) {
           setError(parsedEnv.error.message);
           return;
         }
-        const result = await auditLicenses(
-          parsedEnv.data.ROOT_DIR,
-          options.config,
-        );
-        console.log("Result:", result);
+        const result = await auditLicenses(parsedEnv.data.ROOT_DIR, config);
         setResult(result);
         setWorking(false);
         exit();
@@ -50,7 +50,7 @@ export default function AuditLicenses({ options }: AuditLicensesOptions) {
       }
     };
     void getResults();
-  }, [exit, options.config]);
+  }, [exit, config]);
 
   if (error) {
     return (
@@ -66,5 +66,5 @@ export default function AuditLicenses({ options }: AuditLicensesOptions) {
     return <SpinnerWithLabel label="Processing licenses..." />;
   }
 
-  return <AuditResult result={result} verbose={options.verbose} />;
+  return <AuditResult result={result} verbose={verbose} filter={filter} />;
 }

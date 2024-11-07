@@ -1,4 +1,4 @@
-import type { LicenseAuditResult } from "@license-auditor/data";
+import type { LicenseAuditResult, LicenseStatus } from "@license-auditor/data";
 import { Box } from "ink";
 import FailureResult from "./failure-result.js";
 import IncludingUnknownResult from "./including-unknown-result.js";
@@ -7,7 +7,7 @@ import NotFoundResult from "./not-found-result.js";
 import SuccessResult from "./success-result.js";
 import VerboseView from "./verbose-view/verbose-view.js";
 
-function renderAuditResult(result: LicenseAuditResult) {
+function ResultForStatus({ result }: { result: LicenseAuditResult }) {
   const hasWhitelisted = result.groupedByStatus.whitelist.length > 0;
   const hasBlacklisted = result.groupedByStatus.blacklist.length > 0;
   const hasUnknown = result.groupedByStatus.unknown.length > 0;
@@ -33,20 +33,23 @@ function renderAuditResult(result: LicenseAuditResult) {
   }
 }
 
+interface AuditResultProps {
+  result: LicenseAuditResult;
+  verbose: boolean;
+  filter: LicenseStatus | undefined;
+}
+
 export default function AuditResult({
   result,
-  verbose = false,
-}: {
-  result: LicenseAuditResult;
-  verbose?: boolean;
-}) {
-  const auditResultComponent = renderAuditResult(result);
+  verbose,
+  filter,
+}: AuditResultProps) {
   const hasNotFound = result.notFound.size > 0;
 
   return (
     <Box flexDirection="column">
-      {verbose && <VerboseView result={result} />}
-      {auditResultComponent}
+      {verbose && <VerboseView result={result} filter={filter} />}
+      <ResultForStatus result={result} />
       {hasNotFound && <NotFoundResult notFound={result.notFound} />}
     </Box>
   );

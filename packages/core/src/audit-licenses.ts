@@ -1,7 +1,6 @@
 import type {
   ConfigType,
   DetectedLicense,
-  License,
   LicenseAuditResult,
 } from "@license-auditor/data";
 import { findPackageManager } from "@license-auditor/package-manager-finder";
@@ -12,15 +11,6 @@ import {
 import { findDependencies } from "./dependency-finder/find-dependencies.js";
 import { extractPackageName, readPackageJson } from "./file-utils.js";
 import { findLicenses } from "./license-finder/find-license.js";
-import type { LicensesWithPath } from "./license-finder/licenses-with-path.js";
-
-interface PackageInfo {
-  package: string;
-  path: string;
-  result: LicensesWithPath & {
-    licenses: (License & { status: LicenseStatus })[];
-  };
-}
 
 export async function auditLicenses(
   cwd: string,
@@ -29,7 +19,7 @@ export async function auditLicenses(
   const packageManager = await findPackageManager(cwd);
   const packagePaths = await findDependencies(packageManager, cwd);
 
-  const resultMap = new Map<string, PackageInfo>();
+  const resultMap = new Map<string, DetectedLicense[]>();
   const groupedByStatus: Record<LicenseStatus, DetectedLicense[]> = {
     whitelist: [],
     blacklist: [],
@@ -71,27 +61,30 @@ export async function auditLicenses(
         notFound.set(packageName, { packagePath, errorMessage: errorMsg });
         continue;
       }
+      const detectedLicenses: DetectedLicense[] = [];
       for (const license of licensesWithPath.licenses) {
         const status = checkLicenseStatus(license, config);
-        const licenseWithStatus = {
-          ...license,
-          status,
-        };
-        groupedByStatus[status].push({
+        const detectedLicense = {
           packageName,
           packagePath,
-          license: licenseWithStatus,
+          license: {
+            ...license,
+            status,
+          },
           licensePath: licensesWithPath.licensePath,
-        });
+        };
+        groupedByStatus[status].push(detectedLicense);
+        detectedLicenses.push(detectedLicense);
       }
+      resultMap.set(packageName, detectedLicenses);
     }
   }
 
   console.log(
     "Result:",
-    Array.from(resultMap.values()).map(
-      (p) =>
-        `${p.package}: ${p.result.licenses.map((l) => l.licenseId).join(", ")}`,
+    Array.from(resultMap.entries()).map(
+      ([key, value]) =>
+        `${key}: ${value.map((v) => v.license.licenseId).join(", ")}`,
     ),
   );
   return {
