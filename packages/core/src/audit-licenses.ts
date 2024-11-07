@@ -11,6 +11,7 @@ import {
 import { findDependencies } from "./dependency-finder/find-dependencies.js";
 import { extractPackageName, readPackageJson } from "./file-utils.js";
 import { findLicenses } from "./license-finder/find-license.js";
+import { evaluateLicenseExpression } from "./evaluate-license-expression.js";
 
 export async function auditLicenses(
   cwd: string,
@@ -40,53 +41,68 @@ export async function auditLicenses(
     }
     const packageJsonResult = readPackageJson(packagePath);
 
-    if (packageJsonResult.errorMessage) {
+    if (packageJsonResult.errorMessage || !packageJsonResult.packageJson) {
       notFound.set(packageName, {
         packagePath,
-        errorMessage: packageJsonResult.errorMessage,
+        errorMessage:
+          packageJsonResult.errorMessage ?? "package.json not found",
       });
       continue;
     }
     // todo: handle needsVerification case when license path exists but no licenses have been found
 
-    if (packageJsonResult.packageJson) {
-      const licensesWithPath = await findLicenses(
-        packageJsonResult.packageJson,
-        packagePath,
-      );
+    const licensesWithPath = await findLicenses(
+      packageJsonResult.packageJson,
+      packagePath,
+    );
 
-      if (!licensesWithPath.licensePath) {
-        const errorMsg = `No license found in ${packagePath}`;
-        console.warn(errorMsg);
-        notFound.set(packageName, { packagePath, errorMessage: errorMsg });
-        continue;
-      }
-      const detectedLicenses: DetectedLicense[] = [];
-      for (const license of licensesWithPath.licenses) {
-        const status = checkLicenseStatus(license, config);
-        const detectedLicense = {
-          packageName,
-          packagePath,
-          license: {
-            ...license,
-            status,
-          },
-          licensePath: licensesWithPath.licensePath,
-        };
-        groupedByStatus[status].push(detectedLicense);
-        detectedLicenses.push(detectedLicense);
-      }
-      resultMap.set(packageName, detectedLicenses);
+    if (!licensesWithPath.licensePath) {
+      const errorMsg = `No license found in ${packagePath}`;
+      console.warn(errorMsg);
+      notFound.set(packageName, { packagePath, errorMessage: errorMsg });
+      continue;
     }
+
+    if (licensesWithPath.licenseExpression) {
+      const status = evaluateLicenseExpression(
+        licensesWithPath.licenseExpressionParsed,
+        config,
+      );
+      console.log(
+        "Package",
+        packageName,
+        "has license expression",
+        licensesWithPath.licenseExpressionParsed,
+        "with status",
+        status,
+      );
+    }
+
+    const detectedLicenses: DetectedLicense[] = [];
+    for (const license of licensesWithPath.licenses) {
+      const status = checkLicenseStatus(license, config);
+      const detectedLicense = {
+        packageName,
+        packagePath,
+        license: {
+          ...license,
+          status,
+        },
+        licensePath: licensesWithPath.licensePath,
+      };
+      groupedByStatus[status].push(detectedLicense);
+      detectedLicenses.push(detectedLicense);
+    }
+    resultMap.set(packageName, detectedLicenses);
   }
 
-  console.log(
-    "Result:",
-    Array.from(resultMap.entries()).map(
-      ([key, value]) =>
-        `${key}: ${value.map((v) => v.license.licenseId).join(", ")}`,
-    ),
-  );
+  // console.log(
+  //   "Result:",
+  //   Array.from(resultMap.entries()).map(
+  //     ([key, value]) =>
+  //       `${key}: ${value.map((v) => v.license.licenseId).join(", ")}`,
+  //   ),
+  // );
   return {
     groupedByStatus,
     notFound,

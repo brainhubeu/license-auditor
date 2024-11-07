@@ -3,6 +3,7 @@ import type { PackageJsonType } from "../file-utils.js";
 import { findLicenseById } from "./find-license-by-id.js";
 import type { ResolvedLicenses } from "./licenses-with-path.js";
 import { parseLicenseLogicalExpression } from "./parse-license-logical-expression.js";
+import { extractLicensesFromExpression } from "./extract-licenses-from-expression.js";
 
 function retrieveLicenseFromTypeField(license: unknown): License[] {
   if (typeof license === "object" && !!license && "type" in license) {
@@ -35,14 +36,15 @@ function retrieveLicenseByField<T extends "license" | "licenses">(
         licenses: licenseById,
       };
     }
-    const licenseByExpression = parseLicenseLogicalExpression(
+
+    const licenseExpressionParsed = parseLicenseLogicalExpression(
       packageJson[licenseField],
     );
-    if (licenseByExpression) {
+    if (licenseExpressionParsed) {
       return {
-        licenses: [],
+        licenses: extractLicensesFromExpression(licenseExpressionParsed),
         licenseExpression: packageJson[licenseField],
-        licenseExpressionParsed: licenseByExpression,
+        licenseExpressionParsed,
       };
     }
   }
