@@ -1,4 +1,4 @@
-import type { LicenseAuditResult } from "@license-auditor/data";
+import type { LicenseAuditResult, LicenseStatus } from "@license-auditor/data";
 import { Box } from "ink";
 import FailureResult from "./failure-result.js";
 import IncludingUnknownResult from "./including-unknown-result.js";
@@ -33,19 +33,23 @@ function renderAuditResult(result: LicenseAuditResult) {
   }
 }
 
+interface AuditResultProps {
+  result: LicenseAuditResult;
+  verbose: boolean;
+  filter: LicenseStatus | undefined;
+}
+
 export default function AuditResult({
   result,
-  verbose = false,
-}: {
-  result: LicenseAuditResult;
-  verbose?: boolean;
-}) {
+  verbose,
+  filter,
+}: AuditResultProps) {
   const auditResultComponent = renderAuditResult(result);
   const hasNotFound = result.notFound.size > 0;
 
   return (
     <Box flexDirection="column">
-      {verbose && <VerboseView result={result} />}
+      {verbose && <VerboseView result={result} filter={filter} />}
       {auditResultComponent}
       {hasNotFound && <NotFoundResult notFound={result.notFound} />}
     </Box>

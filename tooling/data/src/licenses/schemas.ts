@@ -23,3 +23,9 @@ export const LicenseSchema = z.object({
   seeAlso: z.array(z.string().url()),
   isOsiApproved: z.boolean(),
 });
+
+export const LicenseStatusSchema = z.union([
+  z.literal("whitelist"),
+  z.literal("blacklist"),
+  z.literal("unknown"),
+]);

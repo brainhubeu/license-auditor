@@ -22,14 +22,25 @@ function getColorForStatus(status: LicenseStatus) {
   }
 }
 
-export default function VerboseView({
-  result,
-}: { result: LicenseAuditResult }) {
-  const data = [
+interface VerboseViewProps {
+  result: LicenseAuditResult;
+  filter: LicenseStatus | undefined;
+}
+
+export default function VerboseView({ result, filter }: VerboseViewProps) {
+  let combinedResult = [
     ...result.groupedByStatus.whitelist,
     ...result.groupedByStatus.blacklist,
     ...result.groupedByStatus.unknown,
-  ].map((detectedLicense) => ({
+  ];
+
+  if (filter) {
+    combinedResult = combinedResult.filter(
+      (license) => license.license.status === filter,
+    );
+  }
+
+  const data = combinedResult.map((detectedLicense) => ({
     status: detectedLicense.license.status,
     "package name": truncateText(detectedLicense.packageName),
     license: detectedLicense.license.licenseId,

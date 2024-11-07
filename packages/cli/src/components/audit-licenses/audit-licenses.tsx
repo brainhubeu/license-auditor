@@ -1,5 +1,9 @@
 import { auditLicenses } from "@brainhubeu/license-auditor-core";
-import type { ConfigType, LicenseAuditResult } from "@license-auditor/data";
+import type {
+  ConfigType,
+  LicenseAuditResult,
+  LicenseStatus,
+} from "@license-auditor/data";
 import { Box, Text, useApp } from "ink";
 import { useEffect, useState } from "react";
 import { envSchema } from "../../env.js";
@@ -9,9 +13,14 @@ import AuditResult from "./audit-result.js";
 export type AuditLicensesProps = {
   verbose: boolean;
   config: ConfigType;
+  filter: LicenseStatus | undefined;
 };
 
-export default function AuditLicenses({ verbose, config }: AuditLicensesProps) {
+export default function AuditLicenses({
+  verbose,
+  config,
+  filter,
+}: AuditLicensesProps) {
   const [working, setWorking] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<LicenseAuditResult | null>(null);
@@ -57,5 +66,5 @@ export default function AuditLicenses({ verbose, config }: AuditLicensesProps) {
     return <SpinnerWithLabel label="Processing licenses..." />;
   }
 
-  return <AuditResult result={result} verbose={verbose} />;
+  return <AuditResult result={result} verbose={verbose} filter={filter} />;
 }
