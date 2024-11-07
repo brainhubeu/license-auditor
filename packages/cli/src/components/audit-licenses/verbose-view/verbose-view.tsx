@@ -47,6 +47,14 @@ export default function VerboseView({ result, filter }: VerboseViewProps) {
     deprecated: detectedLicense.license.isDeprecatedLicenseId,
   }));
 
+  if (!data.length) {
+    return (
+      <Text color="yellow">
+        No licenses found {filter ? `with status ${filter}` : ""}
+      </Text>
+    );
+  }
+
   return (
     <Table
       data={data}

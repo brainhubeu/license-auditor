@@ -7,7 +7,7 @@ import NotFoundResult from "./not-found-result.js";
 import SuccessResult from "./success-result.js";
 import VerboseView from "./verbose-view/verbose-view.js";
 
-function renderAuditResult(result: LicenseAuditResult) {
+function ResultForStatus({ result }: { result: LicenseAuditResult }) {
   const hasWhitelisted = result.groupedByStatus.whitelist.length > 0;
   const hasBlacklisted = result.groupedByStatus.blacklist.length > 0;
   const hasUnknown = result.groupedByStatus.unknown.length > 0;
@@ -44,13 +44,12 @@ export default function AuditResult({
   verbose,
   filter,
 }: AuditResultProps) {
-  const auditResultComponent = renderAuditResult(result);
   const hasNotFound = result.notFound.size > 0;
 
   return (
     <Box flexDirection="column">
       {verbose && <VerboseView result={result} filter={filter} />}
-      {auditResultComponent}
+      <ResultForStatus result={result} />
       {hasNotFound && <NotFoundResult notFound={result.notFound} />}
     </Box>
   );
