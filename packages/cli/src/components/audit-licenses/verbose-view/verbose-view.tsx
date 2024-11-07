@@ -1,6 +1,7 @@
 import type { LicenseAuditResult, LicenseStatus } from "@license-auditor/data";
 import { Text } from "ink";
 import Table from "ink-table";
+import { truncateText } from "../../../utils/truncate-text.js";
 
 enum VerboseViewColumn {
   Status = 0,
@@ -30,10 +31,9 @@ export default function VerboseView({
     ...result.groupedByStatus.unknown,
   ].map((detectedLicense) => ({
     status: detectedLicense.license.status,
-    "package name": detectedLicense.packageName,
+    "package name": truncateText(detectedLicense.packageName),
     license: detectedLicense.license.licenseId,
     deprecated: detectedLicense.license.isDeprecatedLicenseId,
-    "license path": detectedLicense.licensePath,
   }));
 
   return (
@@ -47,8 +47,6 @@ export default function VerboseView({
                 {children}
               </Text>
             );
-          case VerboseViewColumn.LicensePath:
-            return <Text wrap="truncate-start">{children}</Text>;
           default:
             return <Text>{children}</Text>;
         }
