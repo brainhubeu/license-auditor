@@ -33,7 +33,7 @@ export async function findLicenseInLicenseFile(
     const content = await readFile(filename, "utf-8");
 
     if (!content) {
-      return { licenses: [], licensePath: undefined };
+      return { licenses: [], licensePath: undefined, needsVerification: false };
     }
     const foundLicenses = retrieveLicenseFromLicenseFileContent(content);
 
@@ -43,7 +43,7 @@ export async function findLicenseInLicenseFile(
       needsVerification: foundLicenses.length !== 1,
     };
   } catch {
-    return { licenses: [], licensePath: undefined };
+    return { licenses: [], licensePath: undefined, needsVerification: false };
   }
 }
 

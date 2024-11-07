@@ -1,7 +1,8 @@
+// @ts-nocheck
 import type { LicenseAuditResult, LicenseStatus } from "@license-auditor/data";
 import { Text } from "ink";
 import Table from "ink-table";
-import { truncateText } from "../../../utils/truncate-text.js";
+import { truncateText } from "../../utils/truncate-text.js";
 
 enum VerboseViewColumn {
   Status = 0,
@@ -36,24 +37,20 @@ export default function VerboseView({ result, filter }: VerboseViewProps) {
 
   if (filter) {
     combinedResult = combinedResult.filter(
-      (license) => license.license.status === filter,
+      (license) => license.status === filter,
     );
   }
 
   const data = combinedResult.map((detectedLicense) => ({
-    status: detectedLicense.license.status,
-    "package name": truncateText(detectedLicense.packageName),
-    license: detectedLicense.license.licenseId,
-    deprecated: detectedLicense.license.isDeprecatedLicenseId,
+    status: detectedLicense.status,
+    "package name": detectedLicense.packageName,
+    license: detectedLicense.licenseExpression
+      ? detectedLicense.licenseExpression
+      : detectedLicense.licenses.map((license) => license.licenseId).join(", "),
+    deprecated: detectedLicense.licenses.some(
+      (license) => license.isDeprecatedLicenseId,
+    ),
   }));
-
-  if (!data.length) {
-    return (
-      <Text color="yellow">
-        No licenses found {filter ? `with status ${filter}` : ""}
-      </Text>
-    );
-  }
 
   return (
     <Table

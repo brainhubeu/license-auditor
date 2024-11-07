@@ -15,6 +15,7 @@ export async function findLicenses(
     return {
       ...licenseFromPackageJson,
       licensePath: packageJsonPath,
+      needsVerification: false,
     };
   }
 
@@ -26,5 +27,6 @@ export async function findLicenses(
   return {
     licenses: [],
     licensePath: undefined,
+    needsVerification: false,
   };
 }

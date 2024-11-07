@@ -3,18 +3,25 @@ import figures from "figures";
 import { Box, Text } from "ink";
 
 interface LicenseListProps {
-  licenses: DetectedLicense[];
+  detectedLicenses: DetectedLicense[];
 }
 
-export default function LicenseList({ licenses }: LicenseListProps) {
+export default function LicenseList({ detectedLicenses }: LicenseListProps) {
   return (
     <Box flexDirection="column" marginLeft={2}>
-      {licenses.map((l) => (
-        <Box key={l.packageName}>
+      {detectedLicenses.map((detectedLicense) => (
+        <Box key={detectedLicense.packageName}>
           <Text color="gray">{figures.pointerSmall}</Text>
-          <Text> {l.packageName} </Text>
-          <Text color="cyan">{l.license.licenseId}</Text>
-          <Text>: {l.licensePath}</Text>
+          <Text> {detectedLicense.packageName} </Text>
+          {detectedLicense.licenses.map((license) => (
+            <Text
+              color="cyan"
+              key={`${detectedLicense.packageName}-${license.licenseId}`}
+            >
+              {license.licenseId}
+            </Text>
+          ))}
+          <Text>: {detectedLicense.licensePath}</Text>
         </Box>
       ))}
     </Box>

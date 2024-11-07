@@ -3,9 +3,11 @@ import type { License, LicenseStatus } from "../licenses/types.js";
 export interface DetectedLicense {
   packageName: string;
   packagePath: string;
-  license: License & { status: LicenseStatus };
+  licenses: License[];
+  status: LicenseStatus;
   licensePath: string | undefined;
-  needsVerification?: boolean;
+  licenseExpression: string | undefined;
+  needsVerification: boolean | undefined;
 }
 
 export interface LicenseAuditResult {

@@ -30,13 +30,13 @@ export default function IncludingUnknownResult({
           <Box>
             <BlacklistedMessage count={groupedByStatus.blacklist.length} />
           </Box>
-          <LicenseList licenses={groupedByStatus.blacklist} />
+          <LicenseList detectedLicenses={groupedByStatus.blacklist} />
         </>
       )}
       <Box>
         <UnknownMessage count={groupedByStatus.unknown.length} />
       </Box>
-      <LicenseList licenses={groupedByStatus.unknown} />
+      <LicenseList detectedLicenses={groupedByStatus.unknown} />
     </Box>
   );
 }
