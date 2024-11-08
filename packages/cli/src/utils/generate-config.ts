@@ -11,7 +11,7 @@ export enum ConfigType {
 async function copyConfigFile(
   currentDir: string,
   configType: ConfigType,
-  extension: ConfigExtension
+  extension: ConfigExtension,
 ) {
   await fs.mkdir(currentDir, { recursive: true });
 
@@ -20,7 +20,7 @@ async function copyConfigFile(
 
   const templateDir = path.resolve(
     __dirname,
-    `../public/template/${configType}`
+    `../public/template/${configType}`,
   );
 
   const templateFileName = `license-auditor.config${extension}`;
@@ -32,7 +32,7 @@ async function copyConfigFile(
 
 export async function generateConfig(
   configType: ConfigType,
-  extension: ConfigExtension
+  extension: ConfigExtension,
 ) {
   try {
     // biome-ignore lint/complexity/useLiteralKeys: literal key needed to access ROOT_DIR env
