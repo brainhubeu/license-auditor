@@ -4,6 +4,8 @@ import { defineConfig } from "tsup";
 export default defineConfig({
   entry: ["find-package-manager.ts"],
   format: ["esm"],
+  platform: "node",
+  target: "esnext",
   dts: true,
   clean: true,
   outDir: "dist",

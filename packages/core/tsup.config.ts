@@ -4,9 +4,10 @@ import { defineConfig } from "tsup";
 export default defineConfig({
   entry: ["src/**/*.ts"],
   format: ["esm"],
+  platform: "node",
+  target: "esnext",
   dts: true,
   clean: true,
   outDir: "dist",
   sourcemap: true,
-  noExternal: ["fast-glob"],
 });

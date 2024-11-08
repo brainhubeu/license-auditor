@@ -14,7 +14,7 @@
     }
   },
   "scripts": {
-    "build": "tsup",
+    "build": "tsup-node",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

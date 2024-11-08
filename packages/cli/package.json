@@ -12,7 +12,7 @@
     }
   },
   "scripts": {
-    "build": "tsup",
+    "build": "tsup-node",
     "dev": "tsc --watch",
     "dev:cli": "tsx src/cli.tsx",
     "dev:cli:init": "tsx src/cli.tsx init",

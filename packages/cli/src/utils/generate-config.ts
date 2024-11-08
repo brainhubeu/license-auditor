@@ -1,5 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import type { ConfigExtension } from "../constants/config-constants.js";
 
 export enum ConfigType {
@@ -10,13 +11,18 @@ export enum ConfigType {
 async function copyConfigFile(
   currentDir: string,
   configType: ConfigType,
-  extension: ConfigExtension,
+  extension: ConfigExtension
 ) {
   await fs.mkdir(currentDir, { recursive: true });
 
+  const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);
 
-  const templateDir = path.resolve(__dirname, `template/${configType}`);
+  const templateDir = path.resolve(
+    __dirname,
+    `../public/template/${configType}`
+  );
+  console.log(templateDir);
   const templateFileName = `license-auditor.config${extension}`;
   const templatePath = path.join(templateDir, templateFileName);
 
@@ -26,7 +32,7 @@ async function copyConfigFile(
 
 export async function generateConfig(
   configType: ConfigType,
-  extension: ConfigExtension,
+  extension: ConfigExtension
 ) {
   try {
     // biome-ignore lint/complexity/useLiteralKeys: literal key needed to access ROOT_DIR env
