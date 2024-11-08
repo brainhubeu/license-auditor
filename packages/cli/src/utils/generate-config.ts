@@ -22,7 +22,7 @@ async function copyConfigFile(
     __dirname,
     `../public/template/${configType}`
   );
-  console.log(templateDir);
+
   const templateFileName = `license-auditor.config${extension}`;
   const templatePath = path.join(templateDir, templateFileName);
 
