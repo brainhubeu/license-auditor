@@ -1,6 +1,5 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 import type { ConfigExtension } from "../constants/config-constants.js";
 
 export enum ConfigType {
@@ -15,7 +14,6 @@ async function copyConfigFile(
 ) {
   await fs.mkdir(currentDir, { recursive: true });
 
-  const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);
 
   const templateDir = path.resolve(__dirname, `template/${configType}`);

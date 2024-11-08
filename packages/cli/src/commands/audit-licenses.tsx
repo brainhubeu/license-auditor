@@ -1,8 +1,5 @@
 import { auditLicenses } from "@brainhubeu/license-auditor-core";
-import {
-  ConfigSchema,
-  type LicenseAuditResult,
-} from "@brainhubeu/license-auditor-data";
+import { ConfigSchema, type LicenseAuditResult } from "@license-auditor/data";
 import { Box, Text, useApp } from "ink";
 import { useEffect, useState } from "react";
 import { z } from "zod";

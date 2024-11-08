@@ -3,7 +3,7 @@ import { promisify } from "node:util";
 import {
   type SupportedPm,
   findPackageManager,
-} from "@brainhubeu/package-manager-finder";
+} from "@license-auditor/package-manager-finder";
 
 const execAsync = promisify(exec);
 

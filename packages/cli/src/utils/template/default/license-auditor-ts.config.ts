@@ -1,4 +1,4 @@
-import type { ConfigType } from "@brainhubeu/license-auditor-data";
+import type { ConfigType } from "@license-auditor/data";
 
 const config: ConfigType = {
   blacklist: [

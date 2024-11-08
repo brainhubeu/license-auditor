@@ -1,5 +1,5 @@
 /**
- * @type {import('@brainhubeu/license-auditor-data').ConfigType}
+ * @type {import('@license-auditor/data').ConfigType}
  */
 
 const config = {

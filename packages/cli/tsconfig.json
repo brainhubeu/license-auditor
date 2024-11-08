@@ -6,6 +6,8 @@
     "rootDir": "./src",
     "baseUrl": ".",
     "declarationDir": "./dist/types",
+    "allowJs": true,
+    "composite": false,
     "jsx": "react-jsx"
   }
 }

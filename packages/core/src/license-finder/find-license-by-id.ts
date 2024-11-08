@@ -1,4 +1,4 @@
-import { type License, licenseMap } from "@brainhubeu/license-auditor-data";
+import { type License, licenseMap } from "@license-auditor/data";
 
 export function findLicenseById(licenseId: unknown): License[] {
   if (typeof licenseId === "string" && licenseMap.has(licenseId)) {

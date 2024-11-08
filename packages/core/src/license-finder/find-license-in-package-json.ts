@@ -1,4 +1,4 @@
-import type { License } from "@brainhubeu/license-auditor-data";
+import type { License } from "@license-auditor/data";
 import { findLicenseById } from "./find-license-by-id.js";
 
 function retrieveLicenseFromTypeField(license: unknown): License[] {

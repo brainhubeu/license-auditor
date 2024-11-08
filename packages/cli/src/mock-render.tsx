@@ -1,5 +1,5 @@
 // @ts-nocheck -- this is a mock render and the functions will come off as unused
-import type { LicenseAuditResult } from "@brainhubeu/license-auditor-data";
+import type { LicenseAuditResult } from "@license-auditor/data";
 import { render } from "ink";
 import AuditResult from "./components/audit-result.js";
 

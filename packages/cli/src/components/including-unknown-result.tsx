@@ -1,4 +1,4 @@
-import type { LicenseAuditResult } from "@brainhubeu/license-auditor-data";
+import type { LicenseAuditResult } from "@license-auditor/data";
 import { Box } from "ink";
 import LicenseList from "./license-list.js";
 import {

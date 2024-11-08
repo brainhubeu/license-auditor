@@ -1,4 +1,4 @@
-import type { DetectedLicense } from "@brainhubeu/license-auditor-data";
+import type { DetectedLicense } from "@license-auditor/data";
 import figures from "figures";
 import { Box, Text } from "ink";
 

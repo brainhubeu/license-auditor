@@ -3,8 +3,8 @@ import type {
   DetectedLicense,
   License,
   LicenseAuditResult,
-} from "@brainhubeu/license-auditor-data";
-import { findPackageManager } from "@brainhubeu/package-manager-finder";
+} from "@license-auditor/data";
+import { findPackageManager } from "@license-auditor/package-manager-finder";
 import {
   type LicenseStatus,
   checkLicenseStatus,

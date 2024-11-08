@@ -1,4 +1,4 @@
-import type { License } from "@brainhubeu/license-auditor-data";
+import type { License } from "@license-auditor/data";
 
 export interface LicensesWithPath {
   licenses: License[];

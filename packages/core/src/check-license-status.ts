@@ -1,5 +1,5 @@
-import type { ConfigType } from "@brainhubeu/license-auditor-data";
-import type { License, LicenseId } from "@brainhubeu/license-auditor-data";
+import type { ConfigType } from "@license-auditor/data";
+import type { License, LicenseId } from "@license-auditor/data";
 
 export type LicenseStatus = "whitelist" | "blacklist" | "unknown";
 
