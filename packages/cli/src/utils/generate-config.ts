@@ -18,9 +18,11 @@ async function copyConfigFile(
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = path.dirname(__filename);
 
+  const isInDist = __dirname.includes("/dist");
+
   const templateDir = path.resolve(
     __dirname,
-    `../public/template/${configType}`,
+    `${isInDist ? "" : "../public/"}template/${configType}`,
   );
 
   const templateFileName = `license-auditor.config${extension}`;
