@@ -10,4 +10,8 @@ export default defineConfig({
   clean: true,
   outDir: "dist",
   sourcemap: true,
+  noExternal: ["fast-glob"],
+  banner: {
+    js: "import { createRequire } from 'module'; const require = createRequire(import.meta.url);",
+  },
 });
