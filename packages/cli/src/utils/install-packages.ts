@@ -9,18 +9,15 @@ const execAsync = promisify(exec);
 
 const packagesToInstall = ["@brainhubeu/license-auditor-cli"] as const;
 
-export async function installPackages() {
+export async function installPackages(dir: string) {
   try {
-    // biome-ignore lint/complexity/useLiteralKeys: literal key needed to access ROOT_DIR env
-    const currentDir = process.env["ROOT_DIR"] ?? process.cwd();
-
-    const packageManager = await findPackageManager(currentDir);
+    const packageManager = await findPackageManager(dir);
 
     const installCommand = getInstallCommand(packageManager);
     console.log(`Installing packages using ${packageManager}...`);
 
     await execAsync(`${installCommand} ${packagesToInstall.join(" ")}`, {
-      cwd: currentDir,
+      cwd: dir,
     });
 
     console.log("Packages installed successfully.");

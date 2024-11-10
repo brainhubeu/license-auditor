@@ -10,7 +10,7 @@ export default function SuccessResult({
 }: SuccessResultProps) {
   return (
     <Box flexDirection="column">
-      <Box marginBottom={1} marginTop={1}>
+      <Box marginBottom={1}>
         <SuccessHeaderMessage />
       </Box>
       <Box>

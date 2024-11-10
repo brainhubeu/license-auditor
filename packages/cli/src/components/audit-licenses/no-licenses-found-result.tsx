@@ -5,7 +5,7 @@ import { WarningHeaderMessage } from "./result-messages.js";
 export default function NoLicensesFoundResult() {
   return (
     <Box flexDirection="column">
-      <Box marginBottom={1} marginTop={1}>
+      <Box marginBottom={1}>
         <WarningHeaderMessage />
       </Box>
       <Box>

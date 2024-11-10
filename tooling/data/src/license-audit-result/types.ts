@@ -1,8 +1,8 @@
 import type { License, LicenseStatus } from "../licenses/types.js";
 
 export interface DetectedLicense {
-  package: string;
-  path: string;
+  packageName: string;
+  packagePath: string;
   license: License & { status: LicenseStatus };
   licensePath: string | undefined;
 }

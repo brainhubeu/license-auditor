@@ -22,12 +22,12 @@ coverage
 out/
 build
 dist
+tsconfig.tsbuildinfo
 
 # Debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-tsconfig.buildinfo
 
 # Misc
 .DS_Store

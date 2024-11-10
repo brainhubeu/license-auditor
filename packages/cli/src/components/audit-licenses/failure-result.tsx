@@ -14,7 +14,7 @@ export default function FailureResult({
 
   return (
     <Box flexDirection="column">
-      <Box marginBottom={1} marginTop={1}>
+      <Box marginBottom={1}>
         <FailureHeaderMessage />
       </Box>
       {hasWhitelisted && (

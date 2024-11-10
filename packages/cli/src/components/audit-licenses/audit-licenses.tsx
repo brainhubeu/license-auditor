@@ -1,26 +1,26 @@
 import { auditLicenses } from "@brainhubeu/license-auditor-core";
-import { ConfigSchema, type LicenseAuditResult } from "@license-auditor/data";
+import type {
+  ConfigType,
+  LicenseAuditResult,
+  LicenseStatus,
+} from "@license-auditor/data";
 import { Box, Text, useApp } from "ink";
 import { useEffect, useState } from "react";
-import { z } from "zod";
-import AuditResult from "../components/audit-result.js";
-import { SpinnerWithLabel } from "../components/spinner-with-label.js";
-import { cliOptions } from "../options.js";
+import { envSchema } from "../../env.js";
+import { SpinnerWithLabel } from "../spinner-with-label.js";
+import AuditResult from "./audit-result.js";
 
-export const auditLicensesOptions = cliOptions.extend({
-  config: ConfigSchema,
-});
-
-export type AuditLicensesOptions = {
-  options: z.infer<typeof auditLicensesOptions>;
+export type AuditLicensesProps = {
+  verbose: boolean;
+  config: ConfigType;
+  filter: LicenseStatus | undefined;
 };
 
-const envSchema = z.object({
-  // biome-ignore lint/style/useNamingConvention: this is a constant
-  ROOT_DIR: z.string().min(1).default(process.cwd()),
-});
-
-export default function AuditLicenses({ options }: AuditLicensesOptions) {
+export default function AuditLicenses({
+  verbose,
+  config,
+  filter,
+}: AuditLicensesProps) {
   const [working, setWorking] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [result, setResult] = useState<LicenseAuditResult | null>(null);
@@ -36,24 +36,21 @@ export default function AuditLicenses({ options }: AuditLicensesOptions) {
           setError(parsedEnv.error.message);
           return;
         }
-        const result = await auditLicenses(
-          parsedEnv.data.ROOT_DIR,
-          options.config,
-        );
+        const result = await auditLicenses(parsedEnv.data.ROOT_DIR, config);
         setResult(result);
         setWorking(false);
         exit();
       } catch (err) {
         console.error(err);
         setError(
-          err instanceof Error ? err.message : "An unknown error occurred",
+          err instanceof Error ? err.message : "An unknown error occurred"
         );
         setWorking(false);
         exit();
       }
     };
     void getResults();
-  }, [exit, options.config]);
+  }, [exit, config]);
 
   if (error) {
     return (
@@ -69,5 +66,5 @@ export default function AuditLicenses({ options }: AuditLicensesOptions) {
     return <SpinnerWithLabel label="Processing licenses..." />;
   }
 
-  return <AuditResult result={result} />;
+  return <AuditResult result={result} verbose={verbose} filter={filter} />;
 }

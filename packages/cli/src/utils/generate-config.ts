@@ -3,15 +3,15 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import type { ConfigExtension } from "../constants/config-constants.js";
 
-export enum ConfigType {
+export enum ConfigListType {
   Default = "default",
   Blank = "blank",
 }
 
 async function copyConfigFile(
   currentDir: string,
-  configType: ConfigType,
-  extension: ConfigExtension,
+  configListType: ConfigListType,
+  extension: ConfigExtension
 ) {
   await fs.mkdir(currentDir, { recursive: true });
 
@@ -22,7 +22,7 @@ async function copyConfigFile(
 
   const templateDir = path.resolve(
     __dirname,
-    `${isInDist ? "" : "../public/"}template/${configType}`,
+    `${isInDist ? "" : "../public/"}template/${configListType}`
   );
 
   const templateFileName = `license-auditor.config${extension}`;
@@ -33,16 +33,14 @@ async function copyConfigFile(
 }
 
 export async function generateConfig(
-  configType: ConfigType,
+  configListType: ConfigListType,
   extension: ConfigExtension,
+  dir: string
 ) {
   try {
-    // biome-ignore lint/complexity/useLiteralKeys: literal key needed to access ROOT_DIR env
-    const currentDir = process.env["ROOT_DIR"] ?? process.cwd();
+    await copyConfigFile(dir, configListType, extension);
 
-    await copyConfigFile(currentDir, configType, extension);
-
-    return `Configured license-auditor with ${configType} license whitelist and blacklist at: ${currentDir}/license-auditor.config${extension}`;
+    return `Configured license-auditor with ${configListType} license whitelist and blacklist at: ${dir}/license-auditor.config${extension}`;
   } catch (err) {
     console.log(err);
     // todo: proper error handling
