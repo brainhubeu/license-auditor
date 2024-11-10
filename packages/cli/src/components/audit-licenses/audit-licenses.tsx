@@ -43,7 +43,7 @@ export default function AuditLicenses({
       } catch (err) {
         console.error(err);
         setError(
-          err instanceof Error ? err.message : "An unknown error occurred"
+          err instanceof Error ? err.message : "An unknown error occurred",
         );
         setWorking(false);
         exit();

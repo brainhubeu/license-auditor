@@ -156,7 +156,7 @@ function renderSuccess(verbose: boolean) {
         },
         notFound: mockResult.notFound,
       }}
-    />
+    />,
   );
 }
 
@@ -171,7 +171,7 @@ function renderFailure(verbose: boolean) {
         },
         notFound: populatedNotFound,
       }}
-    />
+    />,
   );
 }
 
@@ -186,7 +186,7 @@ function renderFailedAndUnknown(verbose: boolean) {
         },
         notFound: mockResult.notFound,
       }}
-    />
+    />,
   );
 }
 
@@ -205,7 +205,7 @@ function renderKnownAndUnknown(verbose: boolean) {
         },
         notFound: mockResult.notFound,
       }}
-    />
+    />,
   );
 }
 
@@ -221,7 +221,7 @@ function renderFailedOnly(verbose: boolean) {
         },
         notFound: mockResult.notFound,
       }}
-    />
+    />,
   );
 }
 
@@ -237,7 +237,7 @@ function renderUnknownOnly(verbose: boolean) {
         },
         notFound: mockResult.notFound,
       }}
-    />
+    />,
   );
 }
 
