@@ -1,5 +1,5 @@
 import { Box, Static, Text } from "ink";
-import { useMemo, type ReactNode } from "react";
+import { type ReactNode, useMemo } from "react";
 
 export interface Column<T extends Record<string, string>> {
   title: string;

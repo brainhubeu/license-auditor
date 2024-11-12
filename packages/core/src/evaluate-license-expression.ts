@@ -1,7 +1,7 @@
 import type { ConfigType, LicenseStatus } from "@license-auditor/data";
 import type { Info } from "spdx-expression-parse";
-import { findLicenseById } from "./license-finder/find-license-by-id.js";
 import { checkLicenseStatus } from "./check-license-status.js";
+import { findLicenseById } from "./license-finder/find-license-by-id.js";
 
 export function evaluateLicenseExpression(
   parsedLicenseExpression: Info,

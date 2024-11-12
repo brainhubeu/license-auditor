@@ -1,7 +1,7 @@
 import type { LicenseAuditResult, LicenseStatus } from "@license-auditor/data";
 import { Text } from "ink";
-import { Table, type Column } from "../table.js";
 import { useMemo } from "react";
+import { type Column, Table } from "../table.js";
 
 function getColorForStatus(status: LicenseStatus) {
   switch (status) {

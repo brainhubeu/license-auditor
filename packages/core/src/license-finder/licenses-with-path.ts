@@ -1,4 +1,4 @@
-import type { License, DetectedLicense } from "@license-auditor/data";
+import type { DetectedLicense, License } from "@license-auditor/data";
 import type { Info } from "spdx-expression-parse";
 
 export type LicensesWithPath = Pick<

@@ -1,9 +1,9 @@
 import type { License } from "@license-auditor/data";
 import type { PackageJsonType } from "../file-utils.js";
+import { extractLicensesFromExpression } from "./extract-licenses-from-expression.js";
 import { findLicenseById } from "./find-license-by-id.js";
 import type { ResolvedLicenses } from "./licenses-with-path.js";
 import { parseLicenseLogicalExpression } from "./parse-license-logical-expression.js";
-import { extractLicensesFromExpression } from "./extract-licenses-from-expression.js";
 
 function retrieveLicenseFromTypeField(license: unknown): License[] {
   if (typeof license === "object" && !!license && "type" in license) {
