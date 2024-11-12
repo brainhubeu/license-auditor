@@ -17,11 +17,8 @@
     "build": "tsup-node",
     "typecheck": "tsc --noEmit"
   },
-  "dependencies": {
-    "detect-package-manager": "3.0.2",
-    "execa": "9.5.1"
-  },
   "devDependencies": {
+    "detect-package-manager": "3.0.2",
     "@types/node": "20.16.12",
     "tsup": "8.3.5",
     "typescript": "5.6.2"
