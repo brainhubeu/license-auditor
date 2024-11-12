@@ -78,7 +78,7 @@ export async function auditLicenses(
     "Result:",
     Array.from(resultMap.entries()).map(
       ([key, value]) =>
-        `${key}: ${value.map((v) => v.license.licenseId).join(", ")}`,
+        `${key}: ${value.licenses.map((v) => v.licenseId).join(", ")}`,
     ),
   );
   return {
