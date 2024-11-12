@@ -1,4 +1,4 @@
-import { Box, Text } from "ink";
+import { Box, Static, Text } from "ink";
 import { useMemo, type ReactNode } from "react";
 
 export interface Column<T extends Record<string, string>> {
@@ -28,7 +28,6 @@ export function Table<T extends Record<string, string>>({
     return columnsWithWidth;
   }, [columns, data]);
 
-  // create a horizontal line
   const createHorizontalLine = (
     leftChar: string,
     midChar: string,
@@ -36,7 +35,7 @@ export function Table<T extends Record<string, string>>({
   ) => {
     let line = leftChar;
     for (let i = 0; i < columnsWithWidth.length; i++) {
-      line += "─".repeat((columnsWithWidth.at(i)?.width ?? 0) + 2); // +2 for padding
+      line += "─".repeat((columnsWithWidth[i]?.width ?? 0) + 2); // +2 for padding
       if (i < columns.length - 1) {
         line += midChar;
       }
@@ -49,9 +48,8 @@ export function Table<T extends Record<string, string>>({
   const headerSeparator = createHorizontalLine("├", "┼", "┤");
   const bottomLine = createHorizontalLine("└", "┴", "┘");
 
-  // create header row
   const headerRow = (
-    <Box flexDirection="row">
+    <Box flexDirection="row" key="header-row">
       <Text>│</Text>
       {columnsWithWidth.map((columnWithWidth) => {
         const content = columnWithWidth.title.padEnd(
@@ -68,33 +66,32 @@ export function Table<T extends Record<string, string>>({
     </Box>
   );
 
-  const dataRows = data.map((row, rowIndex) => (
-    <Box key={Object.values(row).join(",")} flexDirection="row">
-      <Text>│</Text>
-      {columnsWithWidth.map((columnWithWidth, colIndex) => {
-        const cellValue = row[columnWithWidth.accessor]?.toString() ?? "";
-        const cellContent = columnWithWidth.cell ? (
-          columnWithWidth.cell(row)
-        ) : (
-          <Text>{cellValue.padEnd(columnWithWidth.width, " ")}</Text>
-        );
-        return (
-          <Text key={`${columnWithWidth.title}-${rowIndex}-${colIndex}`}>
-            {" "}
-            {cellContent} {"│"}
-          </Text>
-        );
-      })}
-    </Box>
-  ));
+  const tableContent = [
+    <Text key="top-line">{topLine}</Text>,
+    headerRow,
+    <Text key="header-separator">{headerSeparator}</Text>,
+    ...data.map((row, rowIndex) => (
+      <Box key={Object.values(row).join(",")} flexDirection="row">
+        <Text>│</Text>
+        {columnsWithWidth.map((columnWithWidth, colIndex) => {
+          const cellValue = row[columnWithWidth.accessor]?.toString() ?? "";
+          const cellContent = columnWithWidth.cell ? (
+            columnWithWidth.cell(row)
+          ) : (
+            <Text>{cellValue.padEnd(columnWithWidth.width, " ")}</Text>
+          );
+          return (
+            <Text key={`${columnWithWidth.title}-${rowIndex}-${colIndex}`}>
+              {" "}
+              {cellContent} {"│"}
+            </Text>
+          );
+        })}
+      </Box>
+    )),
+    <Text key="bottom-line">{bottomLine}</Text>,
+  ];
 
-  return (
-    <Box flexDirection="column">
-      <Text>{topLine}</Text>
-      {headerRow}
-      <Text>{headerSeparator}</Text>
-      {dataRows}
-      <Text>{bottomLine}</Text>
-    </Box>
-  );
+  // render entire table content at once with Static to prevent re-renders
+  return <Static items={tableContent}>{(item) => item}</Static>;
 }
