@@ -9,7 +9,7 @@ export default defineConfig({
   target: "esnext",
   clean: true,
   outDir: "dist",
-  sourcemap: true,
+  sourcemap: false,
   noExternal: [
     "@brainhubeu/license-auditor-core",
     "@license-auditor/data",
