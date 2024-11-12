@@ -11,7 +11,7 @@ export enum ConfigListType {
 async function copyConfigFile(
   currentDir: string,
   configListType: ConfigListType,
-  extension: ConfigExtension
+  extension: ConfigExtension,
 ) {
   await fs.mkdir(currentDir, { recursive: true });
 
@@ -22,7 +22,7 @@ async function copyConfigFile(
 
   const templateDir = path.resolve(
     __dirname,
-    `${isInDist ? "" : "../public/"}template/${configListType}`
+    `${isInDist ? "" : "../public/"}template/${configListType}`,
   );
 
   const templateFileName = `license-auditor.config${extension}`;
@@ -35,7 +35,7 @@ async function copyConfigFile(
 export async function generateConfig(
   configListType: ConfigListType,
   extension: ConfigExtension,
-  dir: string
+  dir: string,
 ) {
   try {
     await copyConfigFile(dir, configListType, extension);

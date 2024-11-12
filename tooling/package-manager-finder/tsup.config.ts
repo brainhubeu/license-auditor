@@ -10,8 +10,4 @@ export default defineConfig({
   clean: true,
   outDir: "dist",
   sourcemap: true,
-  noExternal: ["detect-package-manager", "execa"],
-  banner: {
-    js: "import { createRequire } from 'module'; const require = createRequire(import.meta.url);",
-  },
 });

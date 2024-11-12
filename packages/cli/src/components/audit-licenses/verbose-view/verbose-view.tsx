@@ -16,7 +16,7 @@ export default function VerboseView({ result, filter }: VerboseViewProps) {
 
   if (filter) {
     combinedResult = combinedResult.filter(
-      (license) => license.license.status === filter
+      (license) => license.license.status === filter,
     );
   }
 
