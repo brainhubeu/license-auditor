@@ -74,13 +74,13 @@ export async function auditLicenses(
     resultMap.set(packageName, detectedLicense);
   }
 
-  // console.log(
-  //   "Result:",
-  //   Array.from(resultMap.entries()).map(
-  //     ([key, value]) =>
-  //       `${key}: ${value.map((v) => v.license.licenseId).join(", ")}`,
-  //   ),
-  // );
+  console.log(
+    "Result:",
+    Array.from(resultMap.entries()).map(
+      ([key, value]) =>
+        `${key}: ${value.map((v) => v.license.licenseId).join(", ")}`,
+    ),
+  );
   return {
     groupedByStatus,
     notFound,
