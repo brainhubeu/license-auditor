@@ -14,6 +14,5 @@ export default defineConfig({
     "@brainhubeu/license-auditor-core",
     "@license-auditor/data",
     "@license-auditor/package-manager-finder",
-    "detect-package-manager",
   ],
 });
