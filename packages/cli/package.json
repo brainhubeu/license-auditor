@@ -5,10 +5,11 @@
   "type": "module",
   "main": "./dist/cli.js",
   "module": "./dist/cli.js",
-  "types": "./dist/types/index.d.ts",
+  "types": "./dist/types.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/cli.js"
+      "import": "./dist/cli.js",
+      "types": "./dist.types.d.ts"
     }
   },
   "scripts": {
