@@ -6,6 +6,8 @@ import AuditLicenses from "../components/audit-licenses/audit-licenses.js";
 import { JSON_RESULT_FILE_NAME } from "../constants/options-constants.js";
 import { useReadConfiguration } from "../hooks/use-read-config-file.js";
 import { useValidateJsonPath } from "../hooks/use-validate-json-path.js";
+import { ConfigErrorHandler } from "../components/config-error-handler.js";
+import { EmptyConfigFileHandler } from "../components/empty-configuration-file-handler.js";
 
 export const options = z.object({
   verbose: z.boolean().default(false).describe("Verbose output"),
@@ -29,11 +31,11 @@ export default function Index({ options }: Options) {
   const validateJsonResult = useValidateJsonPath(options.json);
 
   if (error) {
-    return (
-      <Box flexDirection="column">
-        <Text>{error.message}</Text>
-      </Box>
-    );
+    return <ConfigErrorHandler error={error} />;
+  }
+
+  if (configFile?.isEmpty) {
+    return <EmptyConfigFileHandler configFile={configFile} />;
   }
 
   if (configFile?.config && validateJsonResult.validated) {

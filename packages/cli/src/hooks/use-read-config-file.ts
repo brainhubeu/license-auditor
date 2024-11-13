@@ -5,20 +5,20 @@ import { readConfiguration } from "../utils/read-configuration.js";
 
 const ConfigFileSchema = z.object({
   config: ConfigSchema,
+  isEmpty: z.boolean().optional(),
   filepath: z.string(),
 });
 
-type ConfigFileType = z.infer<typeof ConfigFileSchema>;
+export type ConfigFileType = z.infer<typeof ConfigFileSchema>;
 
-enum ReadConfigurationErrorType {
+export enum ReadConfigErrorType {
   NotFound = 0,
   Invalid = 1,
-  Empty = 2,
 }
 
-interface ReadConfigurationError {
+export interface ReadConfigurationError {
   message: string;
-  type: ReadConfigurationErrorType;
+  type: ReadConfigErrorType;
 }
 
 export function useReadConfiguration() {
@@ -32,15 +32,7 @@ export function useReadConfiguration() {
       if (!configFile) {
         setError({
           message: "Configuration file not found",
-          type: ReadConfigurationErrorType.NotFound,
-        });
-        return;
-      }
-
-      if (configFile.isEmpty) {
-        setError({
-          message: "Configuration file is empty",
-          type: ReadConfigurationErrorType.Empty,
+          type: ReadConfigErrorType.NotFound,
         });
         return;
       }
@@ -49,9 +41,8 @@ export function useReadConfiguration() {
       if (parsed.error) {
         setError({
           message: `Invalid configuration file at ${configFile.filepath}: ${parsed.error}`,
-          type: ReadConfigurationErrorType.Invalid,
+          type: ReadConfigErrorType.Invalid,
         });
-        return;
       }
 
       setConfigFile(parsed.data);
