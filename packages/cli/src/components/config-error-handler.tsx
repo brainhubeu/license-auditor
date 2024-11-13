@@ -6,11 +6,22 @@ import {
 import Init from "../commands/init.js";
 import { useState } from "react";
 import SelectInput from "ink-select-input";
-import { booleanSelectItems } from "../utils/boolean-select-items.js";
+import type { SelectItem } from "../constants/select-constants.js";
 
 interface ReadConfigurationErrorProps {
   error: ReadConfigurationError;
 }
+
+export const booleanSelectItems: SelectItem<boolean>[] = [
+  {
+    label: "Yes",
+    value: true,
+  },
+  {
+    label: "No",
+    value: false,
+  },
+] as const;
 
 export function ConfigErrorHandler({ error }: ReadConfigurationErrorProps) {
   switch (error.type) {
