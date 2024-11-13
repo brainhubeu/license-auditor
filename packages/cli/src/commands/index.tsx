@@ -25,20 +25,20 @@ export type Options = {
 };
 
 export default function Index({ options }: Options) {
-  const { configFile } = useReadConfiguration();
+  const { configFile, error } = useReadConfiguration();
   const validateJsonResult = useValidateJsonPath(options.json);
 
-  if (!configFile) {
-    return <Text>No configuration file found</Text>;
-  }
-
-  if (configFile.isEmpty) {
-    return <Text>Configuration file is empty</Text>;
+  if (error) {
+    return (
+      <Box flexDirection="column">
+        <Text>{error.message}</Text>
+      </Box>
+    );
   }
 
   if (configFile?.config && validateJsonResult.validated) {
     return (
-      <Box>
+      <Box flexDirection="column">
         <Text>Loaded configuration file: {configFile.filepath}</Text>
         <AuditLicenses
           verbose={options.verbose}
