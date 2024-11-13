@@ -40,7 +40,7 @@ export function useReadConfiguration() {
       const parsed = ConfigFileSchema.safeParse(configFile);
       if (parsed.error) {
         setError({
-          message: `Invalid configuration file at ${configFile.filepath}: ${parsed.error}`,
+          message: `Invalid configuration file at ${configFile.filepath}: ${parsed.error.message}`,
           type: ReadConfigErrorType.Invalid,
         });
       }
