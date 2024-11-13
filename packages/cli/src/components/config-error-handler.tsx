@@ -1,12 +1,12 @@
 import { Box, Text, useApp } from "ink";
+import SelectInput from "ink-select-input";
+import { useState } from "react";
+import Init from "../commands/init.js";
+import type { SelectItem } from "../constants/select-constants.js";
 import {
   ReadConfigErrorType,
   type ReadConfigurationError,
 } from "../hooks/use-read-config-file.js";
-import Init from "../commands/init.js";
-import { useState } from "react";
-import SelectInput from "ink-select-input";
-import type { SelectItem } from "../constants/select-constants.js";
 
 interface ReadConfigurationErrorProps {
   error: ReadConfigurationError;
