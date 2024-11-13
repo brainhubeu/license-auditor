@@ -28,16 +28,25 @@ export default function Index({ options }: Options) {
   const { configFile } = useReadConfiguration();
   const validateJsonResult = useValidateJsonPath(options.json);
 
-  // todo: handle errors thrown in readConfiguration - prompt the user accordingly
-  // for now let's assume all is well and the file's been found
+  if (!configFile) {
+    return <Text>No configuration file found</Text>;
+  }
+
+  if (configFile.isEmpty) {
+    return <Text>Configuration file is empty</Text>;
+  }
+
   if (configFile?.config && validateJsonResult.validated) {
     return (
-      <AuditLicenses
-        verbose={options.verbose}
-        config={configFile.config}
-        filter={options.filter}
-        json={validateJsonResult.path}
-      />
+      <Box>
+        <Text>Loaded configuration file: {configFile.filepath}</Text>
+        <AuditLicenses
+          verbose={options.verbose}
+          config={configFile.config}
+          filter={options.filter}
+          json={validateJsonResult.path}
+        />
+      </Box>
     );
   }
 

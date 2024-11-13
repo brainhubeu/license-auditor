@@ -17,7 +17,7 @@ export function useReadConfiguration() {
   useEffect(() => {
     async function assignConfigFile() {
       const configFile = await readConfiguration();
-      // todo: handle configFile.isEmpty case
+
       const parsed = ConfigFileSchema.safeParse(configFile);
       if (parsed.error) {
         throw new Error(`Invalid configuration file: ${parsed.error}`);
