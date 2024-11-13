@@ -1,4 +1,4 @@
-import { Box, Text } from "ink";
+import { Box, Text, useApp } from "ink";
 import type { ConfigFileType } from "../hooks/use-read-config-file.js";
 import SelectInput from "ink-select-input";
 import { booleanSelectItems } from "../utils/boolean-select-items.js";
@@ -12,6 +12,7 @@ interface EmptyConfigurationFileHandlerProps {
 export function EmptyConfigFileHandler({
   configFile,
 }: EmptyConfigurationFileHandlerProps) {
+  const { exit } = useApp();
   const [shouldFillConfig, setShouldFillConfig] = useState(false);
 
   if (shouldFillConfig) {
@@ -26,7 +27,12 @@ export function EmptyConfigFileHandler({
       <Text>Would you like to fill it now? (Y/n)</Text>
       <SelectInput
         items={booleanSelectItems}
-        onSelect={(item) => setShouldFillConfig(item.value)}
+        onSelect={(item) => {
+          if (!item.value) {
+            exit();
+          }
+          setShouldFillConfig(item.value);
+        }}
       />
     </Box>
   );

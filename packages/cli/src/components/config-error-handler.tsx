@@ -1,4 +1,4 @@
-import { Box, Text } from "ink";
+import { Box, Text, useApp } from "ink";
 import {
   ReadConfigErrorType,
   type ReadConfigurationError,
@@ -22,6 +22,7 @@ export function ConfigErrorHandler({ error }: ReadConfigurationErrorProps) {
 }
 
 function ConfigFileNotFoundHandler({ message }: { message: string }) {
+  const { exit } = useApp();
   const [shouldCreateConfig, setShouldCreateConfig] = useState(false);
 
   if (shouldCreateConfig) {
@@ -34,7 +35,12 @@ function ConfigFileNotFoundHandler({ message }: { message: string }) {
       <Text>Would you like to create a configuration file now? (Y/n)</Text>
       <SelectInput
         items={booleanSelectItems}
-        onSelect={(item) => setShouldCreateConfig(item.value)}
+        onSelect={(item) => {
+          if (!item.value) {
+            exit();
+          }
+          setShouldCreateConfig(item.value);
+        }}
       />
     </Box>
   );
