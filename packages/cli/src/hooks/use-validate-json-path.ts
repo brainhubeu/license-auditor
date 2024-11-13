@@ -6,7 +6,7 @@ import { JSON_RESULT_FILE_NAME } from "../constants/options-constants.js";
 
 export const useValidateJsonPath = (json: string | boolean | undefined) => {
   const [validated, setValidated] = useState(false);
-  const [jsonPath, setJsonPath] = useState<string | undefined>(undefined);
+  const [jsonPath, setJsonPath] = useState<string | undefined>();
 
   useEffect(() => {
     async function validatePath() {
