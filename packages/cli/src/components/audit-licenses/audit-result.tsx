@@ -5,7 +5,7 @@ import IncludingUnknownResult from "./including-unknown-result.js";
 import NoLicensesFoundResult from "./no-licenses-found-result.js";
 import NotFoundResult from "./not-found-result.js";
 import SuccessResult from "./success-result.js";
-import VerboseView from "./verbose-view/verbose-view.js";
+import VerboseView from "./verbose-view.js";
 
 function ResultForStatus({ result }: { result: LicenseAuditResult }) {
   const hasWhitelisted = result.groupedByStatus.whitelist.length > 0;

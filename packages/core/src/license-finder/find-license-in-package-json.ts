@@ -1,5 +1,9 @@
 import type { License } from "@license-auditor/data";
+import type { PackageJsonType } from "../file-utils.js";
+import { extractLicensesFromExpression } from "./extract-licenses-from-expression.js";
 import { findLicenseById } from "./find-license-by-id.js";
+import type { ResolvedLicenses } from "./licenses-with-path.js";
+import { parseLicenseLogicalExpression } from "./parse-license-logical-expression.js";
 
 function retrieveLicenseFromTypeField(license: unknown): License[] {
   if (typeof license === "object" && !!license && "type" in license) {
@@ -8,31 +12,65 @@ function retrieveLicenseFromTypeField(license: unknown): License[] {
   return [];
 }
 
-function retrieveLicenseByField<T extends string>(
-  packageJson: object & Record<T, unknown>,
+function handleOutdatedFormats(packageJsonField: unknown): License[] {
+  if (Array.isArray(packageJsonField)) {
+    return packageJsonField.flatMap((l) => {
+      const licenses = findLicenseById(l);
+      if (!licenses.length) {
+        licenses.push(...retrieveLicenseFromTypeField(l));
+      }
+      return licenses;
+    });
+  }
+  return retrieveLicenseFromTypeField(packageJsonField);
+}
+
+function retrieveLicenseByField<T extends "license" | "licenses">(
+  packageJson: PackageJsonType,
   licenseField: T,
-): License[] {
+): ResolvedLicenses {
   if (typeof packageJson[licenseField] === "string") {
-    return findLicenseById(packageJson[licenseField]);
+    const licenseById = findLicenseById(packageJson[licenseField]);
+    if (licenseById.length > 0) {
+      return {
+        licenses: licenseById,
+      };
+    }
+
+    const licenseExpressionParsed = parseLicenseLogicalExpression(
+      packageJson[licenseField],
+    );
+    if (licenseExpressionParsed) {
+      return {
+        licenses: extractLicensesFromExpression(licenseExpressionParsed),
+        licenseExpression: packageJson[licenseField],
+        licenseExpressionParsed,
+      };
+    }
   }
 
   if (typeof packageJson[licenseField] === "object") {
-    if (Array.isArray(packageJson[licenseField])) {
-      return packageJson[licenseField]
-        .flatMap((l) => findLicenseById(l) ?? retrieveLicenseFromTypeField(l))
-        .filter(Boolean);
-    }
-    return retrieveLicenseFromTypeField(packageJson[licenseField]);
+    const fromOutdatedFormat = handleOutdatedFormats(packageJson[licenseField]);
+    return {
+      licenses: fromOutdatedFormat,
+    };
   }
-  return [];
+
+  return {
+    licenses: [],
+  };
 }
 
-export function findLicenseInPackageJson(packageJson: object): License[] {
-  if ("license" in packageJson) {
+export function findLicenseInPackageJson(
+  packageJson: PackageJsonType,
+): ResolvedLicenses {
+  if (packageJson.license) {
     return retrieveLicenseByField(packageJson, "license");
   }
-  if ("licenses" in packageJson) {
+  if (packageJson.licenses) {
     return retrieveLicenseByField(packageJson, "licenses");
   }
-  return [];
+  return {
+    licenses: [],
+  };
 }

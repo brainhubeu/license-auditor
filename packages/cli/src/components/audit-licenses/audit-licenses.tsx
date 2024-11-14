@@ -7,6 +7,7 @@ import type {
 import { Box, Text, useApp } from "ink";
 import { useEffect, useState } from "react";
 import { envSchema } from "../../env.js";
+import { saveResultToJson } from "../../utils/save-result-to-json.js";
 import { SpinnerWithLabel } from "../spinner-with-label.js";
 import AuditResult from "./audit-result.js";
 
@@ -14,12 +15,14 @@ export type AuditLicensesProps = {
   verbose: boolean;
   config: ConfigType;
   filter: LicenseStatus | undefined;
+  json: string | undefined;
 };
 
 export default function AuditLicenses({
   verbose,
   config,
   filter,
+  json,
 }: AuditLicensesProps) {
   const [working, setWorking] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -51,6 +54,12 @@ export default function AuditLicenses({
     };
     void getResults();
   }, [exit, config]);
+
+  useEffect(() => {
+    if (result && json) {
+      saveResultToJson(result, json);
+    }
+  }, [json, result]);
 
   if (error) {
     return (

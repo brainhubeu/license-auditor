@@ -2,10 +2,9 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 import { z } from "zod";
 
-interface PackageJsonResult {
-  packageJson?: PackageJsonType;
-  errorMessage?: string;
-}
+type PackageJsonResult =
+  | { success: true; packageJson: PackageJsonType }
+  | { success: false; errorMessage: string };
 
 export const packageJsonSchema = z.object({
   name: z.string().optional(),
@@ -27,17 +26,17 @@ export function readPackageJson(packagePath: string): PackageJsonResult {
     if (validationResult.error) {
       console.warn(`Failed validation of package.json at ${packageJsonPath}`);
       console.warn(validationResult.error.message);
-      return { errorMessage: validationResult.error.message };
+      return { errorMessage: validationResult.error.message, success: false };
     }
 
     if (validationResult.success) {
-      return { packageJson: validationResult.data };
+      return { packageJson: validationResult.data, success: true };
     }
   }
   // unsure how often such case happens and whether the license verification should be skipped
   const errorMsg = `package.json not found for package at ${packagePath}`;
   console.warn(errorMsg);
-  return { errorMessage: errorMsg };
+  return { errorMessage: errorMsg, success: false };
 }
 
 // done this way to avoid reading package.json when checking for an existing value in Map
