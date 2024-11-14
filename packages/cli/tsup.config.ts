@@ -10,6 +10,9 @@ export default defineConfig({
   clean: true,
   outDir: "dist",
   sourcemap: false,
+  banner: {
+    js: "import { createRequire } from 'module'; const require = createRequire(import.meta.url);",
+  },
   noExternal: [
     "@brainhubeu/license-auditor-core",
     "@license-auditor/data",
