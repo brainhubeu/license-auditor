@@ -19,10 +19,12 @@ export async function findInternalPackages(
   const internalPackages = await Promise.all(
     entries.map(async (entry) => {
       const fullPath = path.join(projectRoot, entry);
-      const packageJson = readPackageJson(
-        path.dirname(fullPath),
-      ) as PackageJson;
-      return packageJson.name;
+
+      const packageJsonResult = readPackageJson(path.dirname(fullPath));
+
+      if (packageJsonResult.success) {
+        return packageJsonResult.packageJson.name;
+      }
     }),
   );
 
