@@ -25,7 +25,7 @@ export default function FailureResult({
       <Box>
         <BlacklistedMessage count={groupedByStatus.blacklist.length} />
       </Box>
-      <LicenseList licenses={groupedByStatus.blacklist} />
+      <LicenseList detectedLicenses={groupedByStatus.blacklist} />
     </Box>
   );
 }
