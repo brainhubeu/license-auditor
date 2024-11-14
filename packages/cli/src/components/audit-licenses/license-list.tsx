@@ -13,14 +13,15 @@ export default function LicenseList({ detectedLicenses }: LicenseListProps) {
         <Box key={detectedLicense.packageName}>
           <Text color="gray">{figures.pointerSmall}</Text>
           <Text> {detectedLicense.packageName} </Text>
-          {detectedLicense.licenses.map((license) => (
-            <Text
-              color="cyan"
-              key={`${detectedLicense.packageName}-${license.licenseId}`}
-            >
-              {license.licenseId}
+          {detectedLicense.licenseExpression ? (
+            <Text color="cyan">{detectedLicense.licenseExpression}</Text>
+          ) : (
+            <Text color="cyan">
+              {detectedLicense.licenses
+                .map((detectedLicense) => detectedLicense.licenseId)
+                .join(", ")}
             </Text>
-          ))}
+          )}
           <Text>: {detectedLicense.licensePath}</Text>
         </Box>
       ))}
