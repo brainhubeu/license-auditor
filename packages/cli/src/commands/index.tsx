@@ -3,6 +3,7 @@ import { Box, Text } from "ink";
 import Spinner from "ink-spinner";
 import { z } from "zod";
 import AuditLicenses from "../components/audit-licenses/audit-licenses.js";
+import { ConfigErrorHandler } from "../components/config-error-handler.js";
 import { JSON_RESULT_FILE_NAME } from "../constants/options-constants.js";
 import { useReadConfiguration } from "../hooks/use-read-config-file.js";
 import { useValidateJsonPath } from "../hooks/use-validate-json-path.js";
@@ -25,19 +26,24 @@ export type Options = {
 };
 
 export default function Index({ options }: Options) {
-  const { configFile } = useReadConfiguration();
+  const { configFile, error } = useReadConfiguration();
   const validateJsonResult = useValidateJsonPath(options.json);
 
-  // todo: handle errors thrown in readConfiguration - prompt the user accordingly
-  // for now let's assume all is well and the file's been found
+  if (error) {
+    return <ConfigErrorHandler error={error} />;
+  }
+
   if (configFile?.config && validateJsonResult.validated) {
     return (
-      <AuditLicenses
-        verbose={options.verbose}
-        config={configFile.config}
-        filter={options.filter}
-        json={validateJsonResult.path}
-      />
+      <Box flexDirection="column">
+        <Text>Loaded configuration file: {configFile.filepath}</Text>
+        <AuditLicenses
+          verbose={options.verbose}
+          config={configFile.config}
+          filter={options.filter}
+          json={validateJsonResult.path}
+        />
+      </Box>
     );
   }
 
