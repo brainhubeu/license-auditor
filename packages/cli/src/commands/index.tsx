@@ -3,10 +3,10 @@ import { Box, Text } from "ink";
 import Spinner from "ink-spinner";
 import { z } from "zod";
 import AuditLicenses from "../components/audit-licenses/audit-licenses.js";
+import { ConfigErrorHandler } from "../components/config-error-handler.js";
 import { JSON_RESULT_FILE_NAME } from "../constants/options-constants.js";
 import { useReadConfiguration } from "../hooks/use-read-config-file.js";
 import { useValidateJsonPath } from "../hooks/use-validate-json-path.js";
-import { ConfigErrorHandler } from "../components/config-error-handler.js";
 
 export const options = z.object({
   verbose: z.boolean().default(false).describe("Verbose output"),
