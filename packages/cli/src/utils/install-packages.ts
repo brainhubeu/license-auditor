@@ -7,7 +7,7 @@ import {
 
 const execAsync = promisify(exec);
 
-const packagesToInstall = ["@brainhubeu/license-auditor-cli"] as const;
+const packagesToInstall = ["@brainhubeu/license-auditor-cli@alpha"] as const;
 
 export async function installPackages(dir: string) {
   try {
