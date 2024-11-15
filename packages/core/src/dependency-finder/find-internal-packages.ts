@@ -2,10 +2,6 @@ import path from "node:path";
 import fg from "fast-glob";
 import { readPackageJson } from "../file-utils.js";
 
-interface PackageJson {
-  name?: string;
-}
-
 export async function findInternalPackages(
   projectRoot: string,
 ): Promise<string[]> {
@@ -19,14 +15,15 @@ export async function findInternalPackages(
   const internalPackages = await Promise.all(
     entries.map(async (entry) => {
       const fullPath = path.join(projectRoot, entry);
-      const packageJson = readPackageJson(
-        path.dirname(fullPath),
-      ) as PackageJson;
-      return packageJson.name;
+
+      const packageJsonResult = readPackageJson(path.dirname(fullPath));
+
+      if (packageJsonResult.success) {
+        return packageJsonResult.packageJson.name;
+      }
+      return undefined;
     }),
   );
 
-  return internalPackages.filter(
-    (name): name is string => typeof name === "string",
-  );
+  return internalPackages.filter((name) => typeof name === "string");
 }
