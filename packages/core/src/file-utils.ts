@@ -8,6 +8,7 @@ type PackageJsonResult =
 
 export const packageJsonSchema = z.object({
   name: z.string().optional(),
+  version: z.string().optional(),
   license: z.string().optional(),
   licenses: z.array(z.string()).optional(),
 });
@@ -42,6 +43,16 @@ export function readPackageJson(packagePath: string): PackageJsonResult {
 // done this way to avoid reading package.json when checking for an existing value in Map
 // if it proves unreliable reading package.json will be inevitable
 export function extractPackageName(packagePath: string): string {
+  const packageResult = readPackageJson(packagePath);
+
+  if (packageResult.success) {
+    const { packageJson } = packageResult;
+
+    if (packageJson?.name && packageJson.version) {
+      return `${packageJson.name}@${packageJson.version}`;
+    }
+  }
+
   const baseName = path.basename(packagePath);
   const parentName = path.basename(path.dirname(packagePath));
 
