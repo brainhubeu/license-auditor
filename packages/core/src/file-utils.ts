@@ -40,8 +40,7 @@ export function readPackageJson(packagePath: string): PackageJsonResult {
   return { errorMessage: errorMsg, success: false };
 }
 
-// done this way to avoid reading package.json when checking for an existing value in Map
-// if it proves unreliable reading package.json will be inevitable
+// reading package.json turned out to be inevitable since we want to include version in the key
 export function extractPackageName(packagePath: string): string {
   const packageResult = readPackageJson(packagePath);
 
