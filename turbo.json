@@ -21,7 +21,8 @@
     },
     "cli": {
       "cache": false,
-      "env": ["ROOT_DIR"]
+      "env": ["ROOT_DIR"],
+      "interactive": true
     }
   }
 }
