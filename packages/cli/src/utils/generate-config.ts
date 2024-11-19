@@ -26,19 +26,37 @@ async function copyConfigFile(
   await fs.copyFile(templatePath, destinationPath);
 }
 
+type GenerateConfigError = {
+  error: { message: string };
+  success: false;
+};
+
+type GenerateConfigSuccess = {
+  success: true;
+};
+
+type GenerateConfigResult = GenerateConfigSuccess | GenerateConfigError;
+
 export async function generateConfig(
   configListType: ConfigListType,
   extension: ConfigExtension,
   dir: string,
-) {
+): Promise<GenerateConfigResult> {
   try {
     await copyConfigFile(dir, configListType, extension);
-
-    return `Configured license-auditor with ${configListType} license whitelist and blacklist at: ${dir}/license-auditor.config${extension}`;
-  } catch (err) {
-    console.log(err);
-    // todo: proper error handling
-    // this is temporary and lacks actual guidance on how to resolve the issue
-    throw new Error("Failed to complete license configuration");
+    return {
+      success: true,
+    };
+  } catch (error) {
+    if (error instanceof Error) {
+      return {
+        success: false,
+        error: { message: error.message },
+      };
+    }
+    return {
+      success: false,
+      error: { message: "Unknown error" },
+    };
   }
 }
