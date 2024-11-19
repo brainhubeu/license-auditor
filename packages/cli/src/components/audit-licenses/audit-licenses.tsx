@@ -4,11 +4,12 @@ import type {
   LicenseAuditResult,
   LicenseStatus,
 } from "@license-auditor/data";
-import { Box, Text, useApp } from "ink";
+import { useApp } from "ink";
 import { useEffect, useState } from "react";
 import { envSchema } from "../../env.js";
 import { saveResultToJson } from "../../utils/save-result-to-json.js";
 import { SpinnerWithLabel } from "../spinner-with-label.js";
+import ErrorBox from "./error-box.js";
 import AuditResult from "./audit-result.js";
 
 export type AuditLicensesProps = {
@@ -26,6 +27,7 @@ export default function AuditLicenses({
 }: AuditLicensesProps) {
   const [working, setWorking] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [warning, setWarning] = useState<string | null>(null);
   const [result, setResult] = useState<LicenseAuditResult | null>(null);
   const { exit } = useApp();
 
@@ -39,8 +41,14 @@ export default function AuditLicenses({
           setError(parsedEnv.error.message);
           return;
         }
-        const result = await auditLicenses(parsedEnv.data.ROOT_DIR, config);
+        const { warning, ...result } = await auditLicenses(
+          parsedEnv.data.ROOT_DIR,
+          config,
+        );
         setResult(result);
+        if (warning) {
+          setWarning(warning);
+        }
         setWorking(false);
         exit();
       } catch (err) {
@@ -63,11 +71,7 @@ export default function AuditLicenses({
 
   if (error) {
     return (
-      <Box borderStyle="single" borderColor="red">
-        <Text color="red">
-          An error occurred while auditing licenses: {error}
-        </Text>
-      </Box>
+      <ErrorBox>An error occurred while auditing licenses: {error}</ErrorBox>
     );
   }
 
@@ -75,5 +79,12 @@ export default function AuditLicenses({
     return <SpinnerWithLabel label="Processing licenses..." />;
   }
 
-  return <AuditResult result={result} verbose={verbose} filter={filter} />;
+  return (
+    <AuditResult
+      result={result}
+      verbose={verbose}
+      filter={filter}
+      warning={warning}
+    />
+  );
 }

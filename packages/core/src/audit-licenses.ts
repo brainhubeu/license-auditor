@@ -15,7 +15,10 @@ export async function auditLicenses(
   config: ConfigType,
 ): Promise<LicenseAuditResult> {
   const packageManager = await findPackageManager(cwd);
-  const packagePaths = await findDependencies(packageManager, cwd);
+  const { dependencies: packagePaths, warning } = await findDependencies(
+    packageManager,
+    cwd,
+  );
 
   const resultMap = new Map<string, DetectedLicense>();
   const groupedByStatus: Record<LicenseStatus, DetectedLicense[]> = {
@@ -81,6 +84,13 @@ export async function auditLicenses(
         `${key}: ${value.licenses.map((v) => v.licenseId).join(", ")}`,
     ),
   );
+  if (warning) {
+    return {
+      groupedByStatus,
+      notFound,
+      warning,
+    };
+  }
   return {
     groupedByStatus,
     notFound,

@@ -13,4 +13,5 @@ export interface DetectedLicense {
 export interface LicenseAuditResult {
   groupedByStatus: Record<LicenseStatus, DetectedLicense[]>;
   notFound: Map<string, { packagePath: string; errorMessage: string }>;
+  warning?: string;
 }

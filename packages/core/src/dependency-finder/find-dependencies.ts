@@ -7,21 +7,26 @@ import { findYarnClassicDependencies } from "./yarn-classic.js";
 export async function findDependencies(
   packageManager: SupportedPm,
   projectRoot: string,
-): Promise<string[]> {
-  const [dependencies, internalPackages] = await Promise.all([
+): Promise<{ dependencies: string[]; warning?: string }> {
+  const [{ dependencyPaths, warning }, internalPackages] = await Promise.all([
     findExternalDependencies(packageManager, projectRoot),
     findInternalPackages(projectRoot),
   ]);
 
-  return dependencies.filter(
+  const dependencies = dependencyPaths.filter(
     (dep) => !internalPackages.some((internalPkg) => dep.endsWith(internalPkg)),
   );
+
+  if (warning) {
+    return { dependencies, warning };
+  }
+  return { dependencies };
 }
 
 function findExternalDependencies(
   packageManager: SupportedPm,
   projectRoot: string,
-): Promise<string[]> {
+): Promise<{ dependencyPaths: string[]; warning?: string }> {
   switch (packageManager) {
     case "npm":
       return findNpmDependencies(projectRoot);

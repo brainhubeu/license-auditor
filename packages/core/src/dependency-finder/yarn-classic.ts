@@ -25,7 +25,7 @@ export const findYarnClassicDepsCommand = "yarn list --depth=0 --json -R";
 
 export async function findYarnClassicDependencies(
   projectRoot: string,
-): Promise<string[]> {
+): Promise<{ dependencyPaths: string[] }> {
   const output = await execCommand(findYarnClassicDepsCommand, projectRoot);
   const dependenciesList = JSON.parse(output);
 
@@ -34,10 +34,12 @@ export async function findYarnClassicDependencies(
     throw new Error("Invalid yarn list --depth=0 --json -R output");
   }
 
-  return await extractDependencyPaths(
+  const dependencyPaths = await extractDependencyPaths(
     validationResult.data.data.trees,
     projectRoot,
   );
+
+  return { dependencyPaths };
 }
 
 async function extractDependencyPaths(

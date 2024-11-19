@@ -21,7 +21,7 @@ export const findPnpmDepsCommand = "pnpm ls --json";
 
 export async function findPnpmDependencies(
   projectRoot: string,
-): Promise<string[]> {
+): Promise<{ dependencyPaths: string[] }> {
   const output = await execCommand(findPnpmDepsCommand, projectRoot);
   const parsedOutput = JSON.parse(output);
 
@@ -37,15 +37,15 @@ export async function findPnpmDependencies(
     throw new Error("No pnpm output data found");
   }
 
-  const dependenciesPaths: string[] = [];
+  const dependencyPaths: string[] = [];
 
   const dependencies = pnpmOutput.dependencies ?? {};
   const devDependencies = pnpmOutput.devDependencies ?? {};
 
-  dependenciesPaths.push(...extractDependencyPaths(dependencies));
-  dependenciesPaths.push(...extractDependencyPaths(devDependencies));
+  dependencyPaths.push(...extractDependencyPaths(dependencies));
+  dependencyPaths.push(...extractDependencyPaths(devDependencies));
 
-  return dependenciesPaths;
+  return { dependencyPaths };
 }
 
 const extractDependencyPaths = (

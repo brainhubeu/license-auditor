@@ -1,5 +1,6 @@
 import type { LicenseAuditResult, LicenseStatus } from "@license-auditor/data";
 import { Box } from "ink";
+import ErrorBox from "./error-box.js";
 import FailureResult from "./failure-result.js";
 import IncludingUnknownResult from "./including-unknown-result.js";
 import NoLicensesFoundResult from "./no-licenses-found-result.js";
@@ -37,12 +38,14 @@ interface AuditResultProps {
   result: LicenseAuditResult;
   verbose: boolean;
   filter: LicenseStatus | undefined;
+  warning?: string | null;
 }
 
 export default function AuditResult({
   result,
   verbose,
   filter,
+  warning,
 }: AuditResultProps) {
   const hasNotFound = result.notFound.size > 0;
 
@@ -51,6 +54,7 @@ export default function AuditResult({
       {verbose && <VerboseView result={result} filter={filter} />}
       <ResultForStatus result={result} />
       {hasNotFound && <NotFoundResult notFound={result.notFound} />}
+      {warning && <ErrorBox color="yellow">{warning}</ErrorBox>}
     </Box>
   );
 }
