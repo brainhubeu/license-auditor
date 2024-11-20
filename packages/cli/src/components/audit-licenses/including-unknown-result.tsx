@@ -5,17 +5,13 @@ import {
   BlacklistedMessage,
   CompliantMessage,
   FailureHeaderMessage,
-  OverrideMessage,
   UnknownMessage,
   WarningHeaderMessage,
 } from "./result-messages.js";
 
 export default function IncludingUnknownResult({
   groupedByStatus,
-  overrideCount,
-}: Omit<LicenseAuditResult, "notFound" | "excluded" | "assigned"> & {
-  overrideCount: number;
-}) {
+}: Omit<LicenseAuditResult, "notFound" | "excluded" | "assigned">) {
   const hasWhitelisted = groupedByStatus.whitelist.length > 0;
   const hasBlacklisted = groupedByStatus.blacklist.length > 0;
 
@@ -41,11 +37,6 @@ export default function IncludingUnknownResult({
         <UnknownMessage count={groupedByStatus.unknown.length} />
       </Box>
       <LicenseList detectedLicenses={groupedByStatus.unknown} />
-      {overrideCount > 0 ? (
-        <Box>
-          <OverrideMessage count={overrideCount} />
-        </Box>
-      ) : null}
     </Box>
   );
 }

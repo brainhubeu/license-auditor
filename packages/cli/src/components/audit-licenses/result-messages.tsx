@@ -1,5 +1,5 @@
 import figures from "figures";
-import { Text } from "ink";
+import { Box, Text } from "ink";
 
 function describeLicenseCount(
   count: number,
@@ -48,14 +48,18 @@ export function UnknownMessage({ count }: MessageProps) {
 }
 
 export function OverrideMessage({ count }: MessageProps) {
+  if (!count) {
+    return null;
+  }
+
   return (
-    <>
+    <Box flexDirection="row">
       <Text color="grey">{figures.warning}</Text>
       <Text>
         Skipped audit for {describeLicenseCount(count, "license", "licenses")}{" "}
         defined in the config file overrides field.
       </Text>
-    </>
+    </Box>
   );
 }
 

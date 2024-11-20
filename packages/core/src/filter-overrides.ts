@@ -23,21 +23,25 @@ export function filterOverrides({
     return { excluded, assigned, filteredPackagePaths: packagePaths };
   }
 
-  const packages = packagePaths.map((packagePath) => ({
+  const foundPackages = packagePaths.map((packagePath) => ({
     packagePath,
     packageName: extractPackageName(packagePath),
   }));
 
   if (overrides.excluded) {
     excluded = overrides.excluded.filter((excludedPackage) =>
-      packages.some((pckg) => pckg.packageName === excludedPackage),
+      foundPackages.some(
+        (foundPackage) => foundPackage.packageName === excludedPackage,
+      ),
     );
   }
 
   if (overrides.assignments) {
     const filteredPackages = Object.entries(overrides.assignments).filter(
       ([packageName]) =>
-        packages.some((pckg) => pckg.packageName === packageName),
+        foundPackages.some(
+          (foundPackage) => foundPackage.packageName === packageName,
+        ),
     );
 
     for (const [packageName, license] of filteredPackages) {
@@ -45,19 +49,19 @@ export function filterOverrides({
     }
   }
 
-  const filteredPackagePaths = packages
+  const filteredPackagePaths = foundPackages
     .filter(
-      (pckg) =>
+      (foundPackage) =>
         !(
           excluded.some(
-            (excludedPackage) => excludedPackage === pckg.packageName,
+            (excludedPackage) => excludedPackage === foundPackage.packageName,
           ) ||
           Object.keys(assigned).some(
-            (assignedPackage) => assignedPackage === pckg.packageName,
+            (assignedPackage) => assignedPackage === foundPackage.packageName,
           )
         ),
     )
-    .map((pckg) => pckg.packagePath);
+    .map((foundPackage) => foundPackage.packagePath);
 
   return { excluded, assigned, filteredPackagePaths };
 }
