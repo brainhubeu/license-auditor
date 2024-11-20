@@ -1,6 +1,11 @@
 import { readFile } from "node:fs/promises";
 import * as path from "node:path";
-import { type License, LicenseSchema, licenseMap } from "@license-auditor/data";
+import {
+  type License,
+  LicenseSchema,
+  type VerificationStatus,
+  licenseMap,
+} from "@license-auditor/data";
 import type { LicensesWithPath } from "./licenses-with-path.js";
 
 const licenseFiles = [
@@ -33,17 +38,31 @@ export async function findLicenseInLicenseFile(
     const content = await readFile(filename, "utf-8");
 
     if (!content) {
-      return { licenses: [], licensePath: undefined, needsVerification: false };
+      return {
+        licenses: [],
+        licensePath: undefined,
+        needsVerification: false,
+        verificationStatus: "licenseFileExistsButNoLicense",
+      };
     }
+
     const foundLicenses = retrieveLicenseFromLicenseFileContent(content);
+
+    const verificationStatus = getVerificationStatus(foundLicenses);
 
     return {
       licenses: foundLicenses,
       licensePath: filename,
       needsVerification: foundLicenses.length !== 1,
+      verificationStatus,
     };
   } catch {
-    return { licenses: [], licensePath: undefined, needsVerification: false };
+    return {
+      licenses: [],
+      licensePath: undefined,
+      needsVerification: false,
+      verificationStatus: "licenseFileReadError",
+    };
   }
 }
 
@@ -62,4 +81,14 @@ export async function parseLicenseFiles(
     }
   }
   return undefined;
+}
+
+function getVerificationStatus(foundLicenses: License[]): VerificationStatus {
+  if (foundLicenses.length > 1) {
+    return "moreThanOneLicenseFromLicenseFile";
+  }
+  if (foundLicenses.length === 0) {
+    return "licenseFileExistsButNoLicense";
+  }
+  return "ok";
 }

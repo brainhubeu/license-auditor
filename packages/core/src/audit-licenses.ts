@@ -2,6 +2,7 @@ import type {
   ConfigType,
   DetectedLicense,
   LicenseAuditResult,
+  VerificationStatus,
 } from "@license-auditor/data";
 import { findPackageManager } from "@license-auditor/package-manager-finder";
 import type { LicenseStatus } from "./check-license-status.js";
@@ -29,10 +30,22 @@ export async function auditLicenses(
     { packagePath: string; errorMessage: string }
   >();
 
+  const needsUserVerification = new Map<
+    string,
+    {
+      packagePath: string;
+      status: VerificationStatus;
+    }
+  >();
+
   for (const packagePath of packagePaths) {
     const packageName = extractPackageName(packagePath);
 
-    if (resultMap.has(packageName) || notFound.has(packageName)) {
+    if (
+      resultMap.has(packageName) ||
+      notFound.has(packageName) ||
+      needsUserVerification.has(packageName)
+    ) {
       continue;
     }
 
@@ -58,13 +71,10 @@ export async function auditLicenses(
       continue;
     }
 
-    if (
-      licensesWithPath.licenses.length === 0 &&
-      licensesWithPath.needsVerification
-    ) {
-      notFound.set(packageName, {
+    if (licensesWithPath.verificationStatus !== "ok") {
+      needsUserVerification.set(packageName, {
         packagePath,
-        errorMessage: `We’ve found a license file, but no matching licenses in it ${licensesWithPath.licensePath}. Please review package ${packageName} and assign a matching license or skip the check by listing it in the overrides field of the config file`,
+        status: licensesWithPath.verificationStatus,
       });
       continue;
     }
@@ -79,6 +89,7 @@ export async function auditLicenses(
       licenseExpression: licensesWithPath.licenseExpression,
       licensePath: licensesWithPath.licensePath,
       needsVerification: licensesWithPath.needsVerification,
+      verificationStatus: licensesWithPath.verificationStatus,
     };
 
     groupedByStatus[status].push(detectedLicense);
@@ -95,5 +106,6 @@ export async function auditLicenses(
   return {
     groupedByStatus,
     notFound,
+    needsUserVerification,
   };
 }
