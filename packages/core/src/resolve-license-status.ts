@@ -7,8 +7,16 @@ export function resolveLicenseStatus(
   licensesWithPath: LicensesWithPath,
   config: ConfigType,
 ): LicenseStatus {
-  const { licenses, licenseExpression, licenseExpressionParsed } =
-    licensesWithPath;
+  const {
+    licenses,
+    licenseExpression,
+    licenseExpressionParsed,
+    needsVerification,
+  } = licensesWithPath;
+
+  if (needsVerification) {
+    return "unknown";
+  }
 
   if (licenseExpression) {
     return evaluateLicenseExpression(licenseExpressionParsed, config);
