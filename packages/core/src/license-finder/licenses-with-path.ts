@@ -3,7 +3,7 @@ import type { Info } from "spdx-expression-parse";
 
 export type LicensesWithPath = Pick<
   DetectedLicense,
-  "licensePath" | "needsVerification" | "verificationStatus"
+  "licensePath" | "verificationStatus"
 > &
   ResolvedLicenses;
 

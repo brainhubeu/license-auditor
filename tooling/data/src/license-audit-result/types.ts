@@ -11,7 +11,6 @@ export interface DetectedLicense {
   status: LicenseStatus;
   licensePath: string | undefined;
   licenseExpression: string | undefined;
-  needsVerification: boolean | undefined;
   verificationStatus: VerificationStatus;
 }
 

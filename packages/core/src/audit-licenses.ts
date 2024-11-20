@@ -88,7 +88,6 @@ export async function auditLicenses(
       licenses: licensesWithPath.licenses,
       licenseExpression: licensesWithPath.licenseExpression,
       licensePath: licensesWithPath.licensePath,
-      needsVerification: licensesWithPath.needsVerification,
       verificationStatus: licensesWithPath.verificationStatus,
     };
 

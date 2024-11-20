@@ -41,7 +41,6 @@ export async function findLicenseInLicenseFile(
       return {
         licenses: [],
         licensePath: undefined,
-        needsVerification: false,
         verificationStatus: "licenseFileExistsButNoLicense",
       };
     }
@@ -53,14 +52,12 @@ export async function findLicenseInLicenseFile(
     return {
       licenses: foundLicenses,
       licensePath: filename,
-      needsVerification: foundLicenses.length !== 1,
       verificationStatus,
     };
   } catch {
     return {
       licenses: [],
       licensePath: undefined,
-      needsVerification: false,
       verificationStatus: "licenseFileReadError",
     };
   }
