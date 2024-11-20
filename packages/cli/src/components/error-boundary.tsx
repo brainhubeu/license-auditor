@@ -1,6 +1,7 @@
 import { Box, Text } from "ink";
 import type { ReactNode } from "react";
 import React from "react";
+import { z } from "zod";
 
 interface ErrorBoundaryState {
   isCrashed: boolean;
@@ -11,11 +12,12 @@ interface ErrorBoundaryProps {
   children: ReactNode;
 }
 
-const hasMessage = (arg: unknown): arg is { message: string } =>
-  typeof arg === "object" &&
-  arg !== null &&
-  "message" in arg &&
-  typeof arg.message === "string";
+const HasMessageSchema = z.object({
+  message: z.string(),
+});
+
+const hasMessage = (arg: unknown): arg is z.infer<typeof HasMessageSchema> =>
+  HasMessageSchema.safeParse(arg).success;
 
 export class ErrorBoundary extends React.Component<
   ErrorBoundaryProps,
