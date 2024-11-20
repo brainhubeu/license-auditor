@@ -5,11 +5,15 @@ import {
   BlacklistedMessage,
   CompliantMessage,
   FailureHeaderMessage,
+  OverrideMessage,
 } from "./result-messages.js";
 
 export default function FailureResult({
   groupedByStatus,
-}: Omit<LicenseAuditResult, "notFound">) {
+  overrideCount,
+}: Omit<LicenseAuditResult, "excluded" | "assigned" | "notFound"> & {
+  overrideCount: number;
+}) {
   const hasWhitelisted = groupedByStatus.whitelist.length > 0;
 
   return (
@@ -26,6 +30,11 @@ export default function FailureResult({
         <BlacklistedMessage count={groupedByStatus.blacklist.length} />
       </Box>
       <LicenseList detectedLicenses={groupedByStatus.blacklist} />
+      {overrideCount > 0 ? (
+        <Box>
+          <OverrideMessage count={overrideCount} />
+        </Box>
+      ) : null}
     </Box>
   );
 }

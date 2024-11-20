@@ -5,7 +5,10 @@
 const config = {
   blacklist: [],
   whitelist: [],
-  overrides: {},
+  overrides: {
+    assignments: {},
+    excluded: [],
+  },
 };
 
 export default config;

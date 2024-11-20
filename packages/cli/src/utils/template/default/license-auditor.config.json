@@ -379,5 +379,8 @@
     "WTFPL",
     "Zlib"
   ],
-  "overrides": {}
+  "overrides": {
+    "assignments": {},
+    "excluded": []
+  }
 }

@@ -2,5 +2,8 @@
   "$schema": "../config-schema.json",
   "blacklist": [""],
   "whitelist": [],
-  "overrides": {}
+  "overrides": {
+    "assignments": {},
+    "excluded": []
+  }
 }

@@ -382,7 +382,10 @@ const config: ConfigType = {
   ],
   overrides: {
     /* Assign licenses to packages manually */
-    // 'package-name': 'license-type',
+    // assignments: { 'package-name': 'license-type'... },
+    // excluded: ['package-name'...]
+    assignments: {},
+    excluded: [],
   },
 };
 

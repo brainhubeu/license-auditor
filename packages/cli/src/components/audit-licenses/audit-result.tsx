@@ -11,24 +11,35 @@ function ResultForStatus({ result }: { result: LicenseAuditResult }) {
   const hasWhitelisted = result.groupedByStatus.whitelist.length > 0;
   const hasBlacklisted = result.groupedByStatus.blacklist.length > 0;
   const hasUnknown = result.groupedByStatus.unknown.length > 0;
+  const overrideCount =
+    result.excluded.length + Object.keys(result.assigned).length;
 
   switch (true) {
     case hasWhitelisted && !hasBlacklisted && !hasUnknown:
       return (
         <SuccessResult
           whitelistedCount={result.groupedByStatus.whitelist.length}
+          overrideCount={overrideCount}
         />
       );
 
     case hasBlacklisted && !hasUnknown:
-      return <FailureResult groupedByStatus={result.groupedByStatus} />;
+      return (
+        <FailureResult
+          groupedByStatus={result.groupedByStatus}
+          overrideCount={overrideCount}
+        />
+      );
 
     case !(hasWhitelisted || hasBlacklisted || hasUnknown):
       return <NoLicensesFoundResult />;
 
     default:
       return (
-        <IncludingUnknownResult groupedByStatus={result.groupedByStatus} />
+        <IncludingUnknownResult
+          groupedByStatus={result.groupedByStatus}
+          overrideCount={overrideCount}
+        />
       );
   }
 }

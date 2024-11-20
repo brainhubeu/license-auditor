@@ -694,6 +694,14 @@
           "type": "object",
           "additionalProperties": {
             "$ref": "#/definitions/ConfigSchema/properties/blacklist/items"
+          },
+          "properties": {
+            "assignments": {
+              "type": "object"
+            },
+            "excluded": {
+              "type": "array"
+            }
           }
         }
       },

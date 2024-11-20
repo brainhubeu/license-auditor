@@ -47,6 +47,18 @@ export function UnknownMessage({ count }: MessageProps) {
   );
 }
 
+export function OverrideMessage({ count }: MessageProps) {
+  return (
+    <>
+      <Text color="grey">{figures.warning}</Text>
+      <Text>
+        Skipped audit for {describeLicenseCount(count, "license", "licenses")}{" "}
+        defined in the config file overrides field.
+      </Text>
+    </>
+  );
+}
+
 export function SuccessHeaderMessage() {
   return (
     <Text backgroundColor="green" color="black" bold>
