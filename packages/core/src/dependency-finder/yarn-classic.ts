@@ -23,11 +23,17 @@ const YarnListOutputSchema = z.object({
 type YarnDependency = z.infer<typeof YarnDependencySchema>;
 
 export const findYarnClassicDepsCommand = "yarn list --depth=0 --json -R";
+export const findYarnClassicProdDepsCommand =
+  "yarn list --depth=0 --json -R --prod";
 
 export async function findYarnClassicDependencies(
   projectRoot: string,
+  production?: boolean | undefined,
 ): Promise<string[]> {
-  const output = await execCommand(findYarnClassicDepsCommand, projectRoot);
+  const output = await execCommand(
+    production ? findYarnClassicProdDepsCommand : findYarnClassicDepsCommand,
+    projectRoot,
+  );
   const dependenciesList = JSON.parse(output);
 
   const validationResult = YarnListOutputSchema.safeParse(dependenciesList);

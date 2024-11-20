@@ -16,9 +16,13 @@ export function InstallPackages({
   const [packagesInstalled, setPackagesInstalled] = useState(false);
 
   useEffect(() => {
-    void installPackages(dir);
-    setPackagesInstalled(true);
-    onPackagesInstalled();
+    const callInstallPackages = async () => {
+      await installPackages(dir);
+      setPackagesInstalled(true);
+      onPackagesInstalled();
+    };
+
+    void callInstallPackages();
   }, [dir, onPackagesInstalled]);
 
   if (!packagesInstalled) {
