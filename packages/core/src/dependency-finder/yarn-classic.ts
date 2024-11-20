@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { z } from "zod";
+import { FindDependenciesException } from "../exceptions/find-dependecies.exception.js";
 import { execCommand } from "./exec-command.js";
 
 const YarnDependencySchema = z.object({
@@ -31,7 +32,12 @@ export async function findYarnClassicDependencies(
 
   const validationResult = YarnListOutputSchema.safeParse(dependenciesList);
   if (!validationResult.success) {
-    throw new Error("Invalid yarn list --depth=0 --json -R output");
+    throw new FindDependenciesException(
+      "Invalid yarn list --depth=0 --json -R output",
+      {
+        originalError: validationResult.error,
+      },
+    );
   }
 
   return await extractDependencyPaths(

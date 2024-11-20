@@ -1,6 +1,8 @@
 import { exec } from "node:child_process";
 import { promisify } from "node:util";
 
+import { ExecCommandException } from "../exceptions/index.js";
+
 const execAsync = promisify(exec);
 
 export async function execCommand(
@@ -12,10 +14,13 @@ export async function execCommand(
     return stdout;
   } catch (error) {
     if (error instanceof Error) {
-      throw new Error(
+      throw new ExecCommandException(
         `Error executing command ${command}: ${error.name} - ${error.message}`,
+        { originalError: error },
       );
     }
-    throw new Error(`Error executing command ${command}`);
+    throw new ExecCommandException(`Error executing command ${command}`, {
+      originalError: error,
+    });
   }
 }
