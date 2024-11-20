@@ -46,15 +46,13 @@ export default function AuditResult({
   filter,
 }: AuditResultProps) {
   const hasNotFound = result.notFound.size > 0;
-  const overrideCount =
-    result.excluded.length + Object.keys(result.assigned).length;
 
   return (
     <Box flexDirection="column">
       {verbose && <VerboseView result={result} filter={filter} />}
       <ResultForStatus result={result} />
       {hasNotFound && <NotFoundResult notFound={result.notFound} />}
-      <OverrideMessage count={overrideCount} />
+      <OverrideMessage overrides={result.overrides} />
     </Box>
   );
 }

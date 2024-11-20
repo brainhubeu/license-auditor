@@ -20,7 +20,10 @@ export type ExcludedType = NonNullable<
 
 export interface LicenseAuditResult {
   groupedByStatus: Record<LicenseStatus, DetectedLicense[]>;
-  excluded: ExcludedType;
-  assigned: AssignedType;
   notFound: Map<string, { packagePath: string; errorMessage: string }>;
+  overrides: {
+    assigned: AssignedType;
+    excluded: ExcludedType;
+    extraOverrides: string[];
+  };
 }

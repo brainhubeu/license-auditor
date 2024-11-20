@@ -34,10 +34,17 @@ export async function auditLicenses(
     { packagePath: string; errorMessage: string }
   >();
 
-  const { excluded, assigned, filteredPackagePaths } = filterOverrides({
-    packagePaths,
-    overrides: config.overrides,
-  });
+  const foundPackages: Pick<DetectedLicense, "packageName" | "packagePath">[] =
+    packagePaths.map((packagePath) => ({
+      packagePath,
+      packageName: extractPackageName(packagePath),
+    }));
+
+  const { excluded, assigned, filteredPackages, extraOverrides } =
+    filterOverrides({
+      foundPackages,
+      overrides: config.overrides,
+    });
 
   for (const [assignedPackageName, assignedLicense] of Object.entries(
     assigned,
@@ -58,9 +65,7 @@ export async function auditLicenses(
     }
   }
 
-  for (const packagePath of filteredPackagePaths) {
-    const packageName = extractPackageName(packagePath);
-
+  for (const { packageName, packagePath } of filteredPackages) {
     if (resultMap.has(packageName) || notFound.has(packageName)) {
       continue;
     }
@@ -68,7 +73,7 @@ export async function auditLicenses(
     const packageJsonResult = readPackageJson(packagePath);
     if (!packageJsonResult.success) {
       notFound.set(packageName, {
-        packagePath,
+        packagePath: packagePath,
         errorMessage: packageJsonResult.errorMessage,
       });
       continue;
@@ -124,7 +129,10 @@ export async function auditLicenses(
   return {
     groupedByStatus,
     notFound,
-    excluded,
-    assigned,
+    overrides: {
+      excluded,
+      assigned,
+      extraOverrides,
+    },
   };
 }

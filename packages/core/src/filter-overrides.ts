@@ -3,65 +3,69 @@ import type {
   ExcludedType,
   OverridesType,
 } from "@license-auditor/data";
-import { extractPackageName } from "./file-utils.js";
 
 export function filterOverrides({
-  packagePaths,
+  foundPackages,
   overrides,
 }: {
-  packagePaths: string[];
-  overrides?: OverridesType | undefined;
+  foundPackages: {
+    packageName: string;
+    packagePath: string;
+  }[];
+  overrides: OverridesType | undefined;
 }): {
   excluded: ExcludedType;
   assigned: AssignedType;
-  filteredPackagePaths: string[];
+  extraOverrides: string[];
+  filteredPackages: {
+    packageName: string;
+    packagePath: string;
+  }[];
 } {
-  let excluded: ExcludedType = [];
-  const assigned: AssignedType = {};
-
   if (!overrides) {
-    return { excluded, assigned, filteredPackagePaths: packagePaths };
+    return {
+      excluded: [],
+      assigned: {},
+      filteredPackages: foundPackages,
+      extraOverrides: [],
+    };
   }
 
-  const foundPackages = packagePaths.map((packagePath) => ({
-    packagePath,
-    packageName: extractPackageName(packagePath),
-  }));
+  const { assignments, excluded } = overrides;
 
-  if (overrides.excluded) {
-    excluded = overrides.excluded.filter((excludedPackage) =>
-      foundPackages.some(
-        (foundPackage) => foundPackage.packageName === excludedPackage,
+  const filteredPackages = foundPackages.filter(
+    (foundPackage) =>
+      !(
+        excluded?.some(
+          (excludedPackage) => excludedPackage === foundPackage.packageName,
+        ) ||
+        (assignments &&
+          Object.keys(assignments).some(
+            (assignedPackage) => assignedPackage === foundPackage.packageName,
+          ))
       ),
-    );
-  }
+  );
 
-  if (overrides.assignments) {
-    const filteredPackages = Object.entries(overrides.assignments).filter(
+  const extraAssigned =
+    assignments &&
+    Object.keys(assignments).filter(
       ([packageName]) =>
-        foundPackages.some(
+        !foundPackages.some(
           (foundPackage) => foundPackage.packageName === packageName,
         ),
     );
 
-    for (const [packageName, license] of filteredPackages) {
-      assigned[packageName] = license;
-    }
-  }
+  const extraExcluded = excluded?.filter(
+    (excludedPackage) =>
+      !foundPackages.some(
+        (foundPackage) => foundPackage.packageName === excludedPackage,
+      ),
+  );
 
-  const filteredPackagePaths = foundPackages
-    .filter(
-      (foundPackage) =>
-        !(
-          excluded.some(
-            (excludedPackage) => excludedPackage === foundPackage.packageName,
-          ) ||
-          Object.keys(assigned).some(
-            (assignedPackage) => assignedPackage === foundPackage.packageName,
-          )
-        ),
-    )
-    .map((foundPackage) => foundPackage.packagePath);
-
-  return { excluded, assigned, filteredPackagePaths };
+  return {
+    excluded: excluded ?? [],
+    assigned: assignments ?? {},
+    filteredPackages,
+    extraOverrides: [...(extraAssigned ?? []), ...(extraExcluded ?? [])],
+  };
 }

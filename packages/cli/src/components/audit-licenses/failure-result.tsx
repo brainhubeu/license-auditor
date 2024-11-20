@@ -9,7 +9,7 @@ import {
 
 export default function FailureResult({
   groupedByStatus,
-}: Omit<LicenseAuditResult, "excluded" | "assigned" | "notFound">) {
+}: Pick<LicenseAuditResult, "groupedByStatus">) {
   const hasWhitelisted = groupedByStatus.whitelist.length > 0;
 
   return (

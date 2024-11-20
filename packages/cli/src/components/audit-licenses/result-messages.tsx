@@ -1,3 +1,4 @@
+import type { LicenseAuditResult } from "@license-auditor/data";
 import figures from "figures";
 import { Box, Text } from "ink";
 
@@ -47,18 +48,41 @@ export function UnknownMessage({ count }: MessageProps) {
   );
 }
 
-export function OverrideMessage({ count }: MessageProps) {
-  if (!count) {
+export function OverrideMessage({
+  overrides,
+}: Pick<LicenseAuditResult, "overrides">) {
+  const overrideCount =
+    overrides.excluded.length + Object.keys(overrides.assigned).length;
+  if (!overrideCount) {
     return null;
   }
 
   return (
-    <Box flexDirection="row">
-      <Text color="grey">{figures.warning}</Text>
-      <Text>
-        Skipped audit for {describeLicenseCount(count, "license", "licenses")}{" "}
-        defined in the config file overrides field.
-      </Text>
+    <Box flexDirection="column">
+      <Box>
+        <Text color="grey">{figures.warning} </Text>
+        <Text>
+          Skipped audit for{" "}
+          {describeLicenseCount(overrideCount, "license", "licenses")} defined
+          in the config file overrides field.
+        </Text>
+      </Box>
+      {overrides.extraOverrides.length > 0 ? (
+        <Box flexDirection="column">
+          <Box>
+            <Text color="grey">{figures.warning} </Text>
+            <Text>
+              Following packages listed in the overrides field weren't found:
+            </Text>
+          </Box>
+          {overrides.extraOverrides.map((extraOverride) => (
+            <Box key={extraOverride} marginLeft={2}>
+              <Text color="gray">{figures.pointerSmall} </Text>
+              <Text>{extraOverride}</Text>
+            </Box>
+          ))}
+        </Box>
+      ) : null}
     </Box>
   );
 }
