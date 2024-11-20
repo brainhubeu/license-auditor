@@ -59,9 +59,6 @@ describe("packageJsonSchema", () => {
 
   describe("should fail", () => {
     test("when license is not valid and licenses are missing", () => {
-      console.log(
-        packageJsonSchema.safeParse({ name: "invalid", license: 400 }),
-      );
       expect(
         packageJsonSchema.safeParse({ name: "invalid", license: 400 }).success,
       ).toBe(false);
