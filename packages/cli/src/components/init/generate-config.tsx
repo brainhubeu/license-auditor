@@ -26,7 +26,7 @@ export function GenerateConfig({
     const callGenerateConfig = async () => {
       const message = await generateConfig(configListType, extension, dir);
       setResultMessage(message);
-      setTimeout(exit, 1500);
+      exit();
     };
     void callGenerateConfig();
   }, [configListType, extension, dir, exit]);
