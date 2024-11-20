@@ -1,10 +1,9 @@
-import type { OverridesType } from "@license-auditor/data";
+import type {
+  OverridesType,
+  AssignedType,
+  ExcludedType,
+} from "@license-auditor/data";
 import { extractPackageName } from "./file-utils.js";
-
-type ExcludedType = NonNullable<Pick<OverridesType, "excluded">["excluded"]>;
-type AssignedType = NonNullable<
-  Pick<OverridesType, "assignments">["assignments"]
->;
 
 export function filterOverrides({
   packagePaths,
@@ -31,14 +30,14 @@ export function filterOverrides({
 
   if (overrides.excluded) {
     excluded = overrides.excluded.filter((excludedPackage) =>
-      packages.some((pckg) => pckg.packageName === excludedPackage),
+      packages.some((pckg) => pckg.packageName === excludedPackage)
     );
   }
 
   if (overrides.assignments) {
     const filteredPackages = Object.entries(overrides.assignments).filter(
       ([packageName]) =>
-        packages.some((pckg) => pckg.packageName === packageName),
+        packages.some((pckg) => pckg.packageName === packageName)
     );
 
     for (const [packageName, license] of filteredPackages) {
@@ -51,12 +50,12 @@ export function filterOverrides({
       (pckg) =>
         !(
           excluded.some(
-            (excludedPackage) => excludedPackage === pckg.packageName,
+            (excludedPackage) => excludedPackage === pckg.packageName
           ) ||
           Object.keys(assigned).some(
-            (assignedPackage) => assignedPackage === pckg.packageName,
+            (assignedPackage) => assignedPackage === pckg.packageName
           )
-        ),
+        )
     )
     .map((pckg) => pckg.packagePath);
 

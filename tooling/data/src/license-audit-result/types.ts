@@ -11,9 +11,16 @@ export interface DetectedLicense {
   needsVerification: boolean | undefined;
 }
 
+export type AssignedType = NonNullable<
+  Pick<OverridesType, "assignments">["assignments"]
+>;
+export type ExcludedType = NonNullable<
+  Pick<OverridesType, "excluded">["excluded"]
+>;
+
 export interface LicenseAuditResult {
   groupedByStatus: Record<LicenseStatus, DetectedLicense[]>;
-  excluded: string[];
-  assigned: NonNullable<Pick<OverridesType, "assignments">["assignments"]>;
+  excluded: ExcludedType;
+  assigned: AssignedType;
   notFound: Map<string, { packagePath: string; errorMessage: string }>;
 }
