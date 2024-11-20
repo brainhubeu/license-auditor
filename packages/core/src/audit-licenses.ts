@@ -39,24 +39,22 @@ export async function auditLicenses(
     overrides: config.overrides,
   });
 
-  if (Object.keys(assigned).length > 0) {
-    for (const [assignedPackageName, assignedLicense] of Object.entries(
-      assigned,
-    )) {
-      const license = findLicenseById(assignedLicense)[0];
+  for (const [assignedPackageName, assignedLicense] of Object.entries(
+    assigned,
+  )) {
+    const license = findLicenseById(assignedLicense)[0];
 
-      if (license) {
-        const status = checkLicenseStatus(license, config);
-        groupedByStatus[status].push({
-          packageName: assignedPackageName,
-          packagePath: "",
-          licenses: [license],
-          status: status,
-          licenseExpression: "",
-          needsVerification: false,
-          licensePath: "",
-        });
-      }
+    if (license) {
+      const status = checkLicenseStatus(license, config);
+      groupedByStatus[status].push({
+        packageName: assignedPackageName,
+        packagePath: "",
+        licenses: [license],
+        status: status,
+        licenseExpression: "",
+        needsVerification: false,
+        licensePath: "",
+      });
     }
   }
 
