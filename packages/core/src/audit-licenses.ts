@@ -58,24 +58,6 @@ export async function auditLicenses(
         });
       }
     }
-    // Object.entries(assigned).forEach(
-    //   ([assignedPackageName, assignedLicense]) => {
-    //     const license = findLicenseById(assignedLicense)[0];
-
-    //     if (license) {
-    //       const status = checkLicenseStatus(license, config);
-    //       groupedByStatus[status].push({
-    //         packageName: assignedPackageName,
-    //         packagePath: "",
-    //         licenses: [license],
-    //         status: status,
-    //         licenseExpression: "",
-    //         needsVerification: false,
-    //         licensePath: "",
-    //       });
-    //     }
-    //   },
-    // );
   }
 
   for (const packagePath of filteredPackagePaths) {
@@ -123,13 +105,13 @@ export async function auditLicenses(
     resultMap.set(packageName, detectedLicense);
   }
 
-  // console.log(
-  //   "Result:",
-  //   Array.from(resultMap.entries()).map(
-  //     ([key, value]) =>
-  //       `${key}: ${value.licenses.map((v) => v.licenseId).join(", ")}`
-  //   )
-  // );
+  console.log(
+    "Result:",
+    Array.from(resultMap.entries()).map(
+      ([key, value]) =>
+        `${key}: ${value.licenses.map((v) => v.licenseId).join(", ")}`,
+    ),
+  );
   return {
     groupedByStatus,
     notFound,
