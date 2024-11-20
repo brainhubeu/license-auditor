@@ -16,6 +16,7 @@ export type AuditLicensesProps = {
   config: ConfigType;
   filter: LicenseStatus | undefined;
   json: string | undefined;
+  production?: boolean | undefined;
 };
 
 export default function AuditLicenses({
@@ -23,6 +24,7 @@ export default function AuditLicenses({
   config,
   filter,
   json,
+  production,
 }: AuditLicensesProps) {
   const [working, setWorking] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -39,7 +41,11 @@ export default function AuditLicenses({
           setError(parsedEnv.error.message);
           return;
         }
-        const result = await auditLicenses(parsedEnv.data.ROOT_DIR, config);
+        const result = await auditLicenses(
+          parsedEnv.data.ROOT_DIR,
+          config,
+          production,
+        );
         setResult(result);
         setWorking(false);
         exit();
@@ -53,7 +59,7 @@ export default function AuditLicenses({
       }
     };
     void getResults();
-  }, [exit, config]);
+  }, [exit, config, production]);
 
   useEffect(() => {
     if (result && json) {

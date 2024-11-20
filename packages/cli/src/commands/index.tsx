@@ -19,6 +19,9 @@ export const options = z.object({
     .describe(
       `Save the result to a JSON file. If no path is not provided, a file named ${JSON_RESULT_FILE_NAME} will be created in the current directory.`,
     ),
+  production: z
+    .boolean()
+    .describe(`Don't check licenses in development dependencies`),
 });
 
 export type Options = {
@@ -42,6 +45,7 @@ export default function Index({ options }: Options) {
           config={configFile.config}
           filter={options.filter}
           json={validateJsonResult.path}
+          production={options.production}
         />
       </Box>
     );
