@@ -4,9 +4,14 @@ import type {
   LicenseAuditResult,
 } from "@license-auditor/data";
 import { findPackageManager } from "@license-auditor/package-manager-finder";
-import type { LicenseStatus } from "./check-license-status.js";
+import {
+  type LicenseStatus,
+  checkLicenseStatus,
+} from "./check-license-status.js";
 import { findDependencies } from "./dependency-finder/find-dependencies.js";
 import { extractPackageName, readPackageJson } from "./file-utils.js";
+import { filterOverrides } from "./filter-overrides.js";
+import { findLicenseById } from "./license-finder/find-license-by-id.js";
 import { findLicenses } from "./license-finder/find-license.js";
 import { resolveLicenseStatus } from "./resolve-license-status.js";
 
@@ -29,7 +34,51 @@ export async function auditLicenses(
     { packagePath: string; errorMessage: string }
   >();
 
-  for (const packagePath of packagePaths) {
+  const { excluded, assigned, filteredPackagePaths } = filterOverrides({
+    packagePaths,
+    overrides: config.overrides,
+  });
+
+  if (Object.keys(assigned).length > 0) {
+    for (const [assignedPackageName, assignedLicense] of Object.entries(
+      assigned,
+    )) {
+      const license = findLicenseById(assignedLicense)[0];
+
+      if (license) {
+        const status = checkLicenseStatus(license, config);
+        groupedByStatus[status].push({
+          packageName: assignedPackageName,
+          packagePath: "",
+          licenses: [license],
+          status: status,
+          licenseExpression: "",
+          needsVerification: false,
+          licensePath: "",
+        });
+      }
+    }
+    // Object.entries(assigned).forEach(
+    //   ([assignedPackageName, assignedLicense]) => {
+    //     const license = findLicenseById(assignedLicense)[0];
+
+    //     if (license) {
+    //       const status = checkLicenseStatus(license, config);
+    //       groupedByStatus[status].push({
+    //         packageName: assignedPackageName,
+    //         packagePath: "",
+    //         licenses: [license],
+    //         status: status,
+    //         licenseExpression: "",
+    //         needsVerification: false,
+    //         licensePath: "",
+    //       });
+    //     }
+    //   },
+    // );
+  }
+
+  for (const packagePath of filteredPackagePaths) {
     const packageName = extractPackageName(packagePath);
 
     if (resultMap.has(packageName) || notFound.has(packageName)) {
@@ -74,15 +123,17 @@ export async function auditLicenses(
     resultMap.set(packageName, detectedLicense);
   }
 
-  console.log(
-    "Result:",
-    Array.from(resultMap.entries()).map(
-      ([key, value]) =>
-        `${key}: ${value.licenses.map((v) => v.licenseId).join(", ")}`,
-    ),
-  );
+  // console.log(
+  //   "Result:",
+  //   Array.from(resultMap.entries()).map(
+  //     ([key, value]) =>
+  //       `${key}: ${value.licenses.map((v) => v.licenseId).join(", ")}`
+  //   )
+  // );
   return {
     groupedByStatus,
     notFound,
+    excluded,
+    assigned,
   };
 }

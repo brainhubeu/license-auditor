@@ -1,3 +1,4 @@
+import type { OverridesType } from "../config/types.js";
 import type { License, LicenseStatus } from "../licenses/types.js";
 
 export interface DetectedLicense {
@@ -12,5 +13,7 @@ export interface DetectedLicense {
 
 export interface LicenseAuditResult {
   groupedByStatus: Record<LicenseStatus, DetectedLicense[]>;
+  excluded: string[];
+  assigned: NonNullable<Pick<OverridesType, "assignments">["assignments"]>;
   notFound: Map<string, { packagePath: string; errorMessage: string }>;
 }
