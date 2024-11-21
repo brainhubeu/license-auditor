@@ -7,7 +7,7 @@ import {
 import {
   type SupportedPm,
   findPackageManager,
-} from "@license-auditor/package-manager-finder";
+} from "@brainhubeu/license-auditor-core";
 
 const execAsync = promisify(exec);
 
