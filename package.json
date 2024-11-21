@@ -21,6 +21,7 @@
     "cli:init": "ROOT_DIR=$(pwd) turbo run cli:init",
     "dev:cli": "ROOT_DIR=$(pwd) turbo run cli",
     "dev:cli:init": "ROOT_DIR=$(pwd) turbo run cli:init",
+    "test:coverage": "turbo run test:coverage",
     "test:unit": "turbo run test:unit"
   },
   "devDependencies": {
@@ -36,10 +37,7 @@
     "node": ">=20"
   },
   "packageManager": "npm@10.8.2",
-  "workspaces": [
-    "packages/*",
-    "tooling/*"
-  ],
+  "workspaces": ["packages/*", "tooling/*"],
   "bin": {
     "@brainhubeu/license-auditor": "packages/cli/dist/cli.js"
   },
