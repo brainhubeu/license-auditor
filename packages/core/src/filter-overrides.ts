@@ -46,29 +46,29 @@ export function filterOverrides({
       !(
         off?.some(
           (excludedPackage) =>
-            excludedPackage === getPackageName(foundPackage.packageName)
+            excludedPackage === getPackageName(foundPackage.packageName),
         ) ||
         warn?.some(
           (warnPackage) =>
-            warnPackage === getPackageName(foundPackage.packageName)
+            warnPackage === getPackageName(foundPackage.packageName),
         )
-      )
+      ),
   );
 
   const notFoundWarn = warn?.filter(
     (packageName) =>
       !foundPackages.some(
         (foundPackage) =>
-          getPackageName(foundPackage.packageName) === packageName
-      )
+          getPackageName(foundPackage.packageName) === packageName,
+      ),
   );
 
   const notFoundOff = off?.filter(
     (packageName) =>
       !foundPackages.some(
         (foundPackage) =>
-          getPackageName(foundPackage.packageName) === packageName
-      )
+          getPackageName(foundPackage.packageName) === packageName,
+      ),
   );
 
   return {
