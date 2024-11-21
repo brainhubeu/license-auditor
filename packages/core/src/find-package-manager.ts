@@ -1,4 +1,5 @@
 import { type PM, detect, getNpmVersion } from "detect-package-manager";
+import { UnsupportedPackageManagerException } from "./exceptions/unsupported-package-manager.exception.js";
 
 export type SupportedPm = Omit<PM, "bun" | "yarn"> | "yarn-classic";
 
@@ -12,13 +13,13 @@ export async function findPackageManager(cwd?: string): Promise<SupportedPm> {
       return "yarn-classic";
     }
 
-    throw new Error(
+    throw new UnsupportedPackageManagerException(
       "Currently only Yarn Classic (version 1.x) is supported, not the modern versions.",
     );
   }
 
   if (packageManager === "bun") {
-    throw new Error("Bun is not supported yet");
+    throw new UnsupportedPackageManagerException("Bun is not supported yet");
   }
 
   return packageManager;
