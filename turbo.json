@@ -14,12 +14,20 @@
       "cache": false,
       "persistent": true
     },
+    "cli": {
+      "cache": false,
+      "env": ["ROOT_DIR"]
+    },
     "cli:init": {
       "cache": false,
       "env": ["ROOT_DIR"],
       "interactive": true
     },
-    "cli": {
+    "dev:cli": {
+      "cache": false,
+      "env": ["ROOT_DIR"]
+    },
+    "dev:cli:init": {
       "cache": false,
       "env": ["ROOT_DIR"],
       "interactive": true
