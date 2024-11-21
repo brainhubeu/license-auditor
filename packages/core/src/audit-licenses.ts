@@ -5,7 +5,11 @@ import type {
 } from "@license-auditor/data";
 import type { LicenseStatus } from "./check-license-status.js";
 import { findDependencies } from "./dependency-finder/find-dependencies.js";
-import { extractPackageName, readPackageJson } from "./file-utils.js";
+import {
+  extractPackageNameFromPath,
+  extractPackageNameWithVersion,
+  readPackageJson,
+} from "./file-utils.js";
 import { findPackageManager } from "./find-package-manager.js";
 import { findLicenses } from "./license-finder/find-license.js";
 import { parseVerificationStatusToMessage } from "./parse-verification-status-to-message.js";
@@ -44,22 +48,24 @@ export async function auditLicenses(
   >();
 
   for (const packagePath of packagePaths) {
-    const packageName = extractPackageName(packagePath);
+    const packageJsonResult = readPackageJson(packagePath);
+    const packageNameFromPath = extractPackageNameFromPath(packagePath);
+    if (!packageJsonResult.success) {
+      notFound.set(packageNameFromPath, {
+        packagePath,
+        errorMessage: packageJsonResult.errorMessage,
+      });
+      continue;
+    }
 
+    const packageName =
+      extractPackageNameWithVersion(packageJsonResult.packageJson) ??
+      packageNameFromPath;
     if (
       resultMap.has(packageName) ||
       notFound.has(packageName) ||
       needsUserVerification.has(packageName)
     ) {
-      continue;
-    }
-
-    const packageJsonResult = readPackageJson(packagePath);
-    if (!packageJsonResult.success) {
-      notFound.set(packageName, {
-        packagePath,
-        errorMessage: packageJsonResult.errorMessage,
-      });
       continue;
     }
 

@@ -59,7 +59,10 @@ export function readPackageJson(packagePath: string): PackageJsonResult {
     }
 
     if (validationResult.success) {
-      return { packageJson: validationResult.data, success: true };
+      return {
+        packageJson: validationResult.data,
+        success: true,
+      };
     }
   }
   // unsure how often such case happens and whether the license verification should be skipped
@@ -69,17 +72,16 @@ export function readPackageJson(packagePath: string): PackageJsonResult {
 }
 
 // reading package.json turned out to be inevitable since we want to include version in the key
-export function extractPackageName(packagePath: string): string {
-  const packageResult = readPackageJson(packagePath);
-
-  if (packageResult.success) {
-    const { packageJson } = packageResult;
-
-    if (packageJson?.name && packageJson.version) {
-      return `${packageJson.name}@${packageJson.version}`;
-    }
+export function extractPackageNameWithVersion(
+  packageJson: PackageJsonType,
+): string | undefined {
+  if (packageJson?.name && packageJson.version) {
+    undefined;
   }
+  return `${packageJson.name}@${packageJson.version}`;
+}
 
+export function extractPackageNameFromPath(packagePath: string): string {
   const baseName = path.basename(packagePath);
   const parentName = path.basename(path.dirname(packagePath));
 
