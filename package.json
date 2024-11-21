@@ -22,12 +22,12 @@
     "dev:cli": "ROOT_DIR=$(pwd) turbo run cli",
     "dev:cli:init": "ROOT_DIR=$(pwd) turbo run cli:init",
     "test:coverage": "turbo run test:coverage",
-    "test:unit": "turbo run test:unit"
+    "test:unit": "turbo run test:unit",
+    "test:upload-coverage": "cat packages/core/coverage/lcov.info | codecov"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.3",
     "@tsconfig/recommended": "1.0.7",
-    "coveralls": "3.1.1",
     "cz-conventional-changelog": "3.3.0",
     "husky": "9.1.6",
     "turbo": "2.1.3",
