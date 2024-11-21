@@ -61,6 +61,7 @@ export async function auditLicenses(
     const licensesWithPath = await findLicenses(
       packageJsonResult.packageJson,
       packagePath,
+      config,
     );
 
     if (!licensesWithPath.licensePath) {
