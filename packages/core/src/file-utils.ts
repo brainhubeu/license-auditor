@@ -6,12 +6,40 @@ type PackageJsonResult =
   | { success: true; packageJson: PackageJsonType }
   | { success: false; errorMessage: string };
 
-export const packageJsonSchema = z.object({
-  name: z.string().optional(),
-  version: z.string().optional(),
-  license: z.string().optional(),
-  licenses: z.array(z.string()).optional(),
-});
+const packageLicenseObjectSchema = z
+  .object({
+    type: z.string(),
+    url: z.string(),
+  })
+  .transform((license) => license.type);
+
+const licenseFieldSchema = z.union([z.string(), packageLicenseObjectSchema]);
+
+const licensesFieldSchema = z.union([
+  z.array(z.string()),
+  z.array(packageLicenseObjectSchema),
+]);
+
+export const packageJsonSchema = z.union([
+  z.object({
+    name: z.string().optional(),
+    version: z.string().optional(),
+    license: licenseFieldSchema.optional(),
+    licenses: licensesFieldSchema.optional(),
+  }),
+  z.object({
+    name: z.string().optional(),
+    version: z.string().optional(),
+    license: licenseFieldSchema,
+    licenses: z.any().transform(() => undefined),
+  }),
+  z.object({
+    name: z.string().optional(),
+    version: z.string().optional(),
+    license: z.any().transform(() => undefined),
+    licenses: licensesFieldSchema,
+  }),
+]);
 
 export type PackageJsonType = z.infer<typeof packageJsonSchema>;
 

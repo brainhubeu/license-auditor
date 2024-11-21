@@ -13,9 +13,14 @@ import { resolveLicenseStatus } from "./resolve-license-status.js";
 export async function auditLicenses(
   cwd: string,
   config: ConfigType,
+  production?: boolean | undefined,
 ): Promise<LicenseAuditResult> {
   const packageManager = await findPackageManager(cwd);
-  const packagePaths = await findDependencies(packageManager, cwd);
+  const packagePaths = await findDependencies({
+    packageManager,
+    projectRoot: cwd,
+    production,
+  });
 
   const resultMap = new Map<string, DetectedLicense>();
   const groupedByStatus: Record<LicenseStatus, DetectedLicense[]> = {
@@ -44,7 +49,6 @@ export async function auditLicenses(
       });
       continue;
     }
-    // todo: handle needsVerification case when license path exists but no licenses have been found
 
     const licensesWithPath = await findLicenses(
       packageJsonResult.packageJson,
@@ -59,7 +63,19 @@ export async function auditLicenses(
       continue;
     }
 
+    if (
+      licensesWithPath.licenses.length === 0 &&
+      licensesWithPath.needsVerification
+    ) {
+      notFound.set(packageName, {
+        packagePath,
+        errorMessage: `We’ve found a license file, but no matching licenses in it ${licensesWithPath.licensePath}. Please review package ${packageName} and assign a matching license or skip the check by listing it in the overrides field of the config file`,
+      });
+      continue;
+    }
+
     const status = resolveLicenseStatus(licensesWithPath, config);
+
     const detectedLicense: DetectedLicense = {
       packageName,
       packagePath,

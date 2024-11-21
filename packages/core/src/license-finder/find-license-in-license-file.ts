@@ -54,7 +54,10 @@ export async function parseLicenseFiles(
   for (const licenseFile of licenseFiles) {
     licensePath = path.join(packagePath, licenseFile);
     const licenseFromLicenseFile = await findLicenseInLicenseFile(licensePath);
-    if (licenseFromLicenseFile.licenses.length > 0) {
+    if (
+      licenseFromLicenseFile.licenses.length > 0 ||
+      licenseFromLicenseFile.licensePath
+    ) {
       return licenseFromLicenseFile;
     }
   }
