@@ -18,13 +18,10 @@ export async function installPackages(dir: string) {
     const packageManager = await findPackageManager(dir);
 
     const installCommand = getInstallCommand(packageManager);
-    console.log(`Installing packages using ${packageManager}...`);
 
     await execAsync(`${installCommand} ${packagesToInstall.join(" ")}`, {
       cwd: dir,
     });
-
-    console.log("Packages installed successfully.");
   } catch (err) {
     throw new InstallPackagesException("Failed to install dependencies", {
       originalError: err,
