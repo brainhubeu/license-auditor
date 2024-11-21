@@ -6,8 +6,8 @@ const config = {
   blacklist: [],
   whitelist: [],
   overrides: {
-    assignments: {},
-    excluded: [],
+    warn: [],
+    off: [],
   },
 };
 

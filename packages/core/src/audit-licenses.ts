@@ -1,15 +1,10 @@
-import {
-  type ConfigType,
-  type DetectedLicense,
-  type License,
-  type LicenseAuditResult,
-  licenseMap,
+import type {
+  ConfigType,
+  DetectedLicense,
+  LicenseAuditResult,
 } from "@license-auditor/data";
 import { findPackageManager } from "@license-auditor/package-manager-finder";
-import {
-  type LicenseStatus,
-  checkLicenseStatus,
-} from "./check-license-status.js";
+import type { LicenseStatus } from "./check-license-status.js";
 import { findDependencies } from "./dependency-finder/find-dependencies.js";
 import { extractPackageName, readPackageJson } from "./file-utils.js";
 import { filterOverrides } from "./filter-overrides.js";
@@ -46,30 +41,11 @@ export async function auditLicenses(
       packageName: extractPackageName(packagePath),
     }));
 
-  const { excluded, assigned, filteredPackages, extraOverrides } =
+  const { validOverrides, filteredPackages, notFoundOverrides } =
     filterOverrides({
       foundPackages,
       overrides: config.overrides,
     });
-
-  for (const [assignedPackageName, assignedLicense] of Object.entries(
-    assigned,
-  )) {
-    const license = licenseMap.get(assignedLicense) as unknown as License; // using the assertion due to 'readonly' properties interfering with type inference
-
-    if (license) {
-      const status = checkLicenseStatus(license, config);
-      groupedByStatus[status].push({
-        packageName: assignedPackageName,
-        packagePath: "",
-        licenses: [license],
-        status: status,
-        licenseExpression: "",
-        needsVerification: false,
-        licensePath: "",
-      });
-    }
-  }
 
   for (const { packageName, packagePath } of filteredPackages) {
     if (resultMap.has(packageName) || notFound.has(packageName)) {
@@ -79,7 +55,7 @@ export async function auditLicenses(
     const packageJsonResult = readPackageJson(packagePath);
     if (!packageJsonResult.success) {
       notFound.set(packageName, {
-        packagePath: packagePath,
+        packagePath,
         errorMessage: packageJsonResult.errorMessage,
       });
       continue;
@@ -136,9 +112,8 @@ export async function auditLicenses(
     groupedByStatus,
     notFound,
     overrides: {
-      excluded,
-      assigned,
-      extraOverrides,
+      validOverrides,
+      notFoundOverrides,
     },
   };
 }

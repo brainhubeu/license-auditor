@@ -696,10 +696,10 @@
             "$ref": "#/definitions/ConfigSchema/properties/blacklist/items"
           },
           "properties": {
-            "assignments": {
-              "type": "object"
+            "warn": {
+              "type": "array"
             },
-            "excluded": {
+            "off": {
               "type": "array"
             }
           }

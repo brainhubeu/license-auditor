@@ -1,4 +1,3 @@
-import type { OverridesType } from "../config/types.js";
 import type { License, LicenseStatus } from "../licenses/types.js";
 
 export interface DetectedLicense {
@@ -11,19 +10,14 @@ export interface DetectedLicense {
   needsVerification: boolean | undefined;
 }
 
-export type AssignedType = NonNullable<
-  Pick<OverridesType, "assignments">["assignments"]
->;
-export type ExcludedType = NonNullable<
-  Pick<OverridesType, "excluded">["excluded"]
->;
-
 export interface LicenseAuditResult {
   groupedByStatus: Record<LicenseStatus, DetectedLicense[]>;
   notFound: Map<string, { packagePath: string; errorMessage: string }>;
   overrides: {
-    assigned: AssignedType;
-    excluded: ExcludedType;
-    extraOverrides: string[];
+    validOverrides: {
+      warnOverrides: string[];
+      offOverrides: string[];
+    };
+    notFoundOverrides: string[];
   };
 }

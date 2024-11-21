@@ -383,11 +383,11 @@ const config = {
     "Zlib",
   ],
   overrides: {
-    /* Assign licenses to packages manually */
-    // assignments: { 'package-name': 'license-type' },
-    // excluded: ['package-name']
-    assignments: {},
-    excluded: [],
+    // exclude packages from audit
+    // warn: ['package-name'],
+    // off: ['package-name']
+    warn: [],
+    off: [],
   },
 };
 

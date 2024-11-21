@@ -3,7 +3,7 @@
   "blacklist": [""],
   "whitelist": [],
   "overrides": {
-    "assignments": {},
-    "excluded": []
+    "warn": [],
+    "off": []
   }
 }

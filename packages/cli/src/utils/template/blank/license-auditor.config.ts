@@ -4,8 +4,8 @@ const config: ConfigType = {
   blacklist: [],
   whitelist: [],
   overrides: {
-    assignments: {},
-    excluded: [],
+    warn: [],
+    off: [],
   },
 };
 

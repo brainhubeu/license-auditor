@@ -380,7 +380,7 @@
     "Zlib"
   ],
   "overrides": {
-    "assignments": {},
-    "excluded": []
+    "warn": [],
+    "off": []
   }
 }
