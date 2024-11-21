@@ -28,13 +28,13 @@ export const packageJsonSchema = z.union([
   }),
   z.object({
     name: z.string().optional(),
-    license: licenseFieldSchema.optional(),
+    license: licenseFieldSchema,
     licenses: z.any().transform(() => undefined),
   }),
   z.object({
     name: z.string().optional(),
     license: z.any().transform(() => undefined),
-    licenses: licensesFieldSchema.optional(),
+    licenses: licensesFieldSchema,
   }),
 ]);
 

@@ -18,7 +18,8 @@
     "typecheck": "turbo run typecheck",
     "prepare": "husky",
     "cli": "ROOT_DIR=$(pwd) turbo run cli",
-    "cli:init": "ROOT_DIR=$(pwd) turbo run cli:init"
+    "cli:init": "ROOT_DIR=$(pwd) turbo run cli:init",
+    "test:unit": "turbo run test:unit"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.3",
