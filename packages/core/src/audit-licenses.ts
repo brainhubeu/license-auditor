@@ -19,9 +19,14 @@ import { resolveLicenseStatus } from "./resolve-license-status.js";
 export async function auditLicenses(
   cwd: string,
   config: ConfigType,
+  production?: boolean | undefined,
 ): Promise<LicenseAuditResult> {
   const packageManager = await findPackageManager(cwd);
-  const packagePaths = await findDependencies(packageManager, cwd);
+  const packagePaths = await findDependencies({
+    packageManager,
+    projectRoot: cwd,
+    production,
+  });
 
   const resultMap = new Map<string, DetectedLicense>();
   const groupedByStatus: Record<LicenseStatus, DetectedLicense[]> = {
