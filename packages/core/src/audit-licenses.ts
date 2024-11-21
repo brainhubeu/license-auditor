@@ -2,13 +2,13 @@ import type {
   ConfigType,
   DetectedLicense,
   LicenseAuditResult,
-  VerificationStatus,
 } from "@license-auditor/data";
 import { findPackageManager } from "@license-auditor/package-manager-finder";
 import type { LicenseStatus } from "./check-license-status.js";
 import { findDependencies } from "./dependency-finder/find-dependencies.js";
 import { extractPackageName, readPackageJson } from "./file-utils.js";
 import { findLicenses } from "./license-finder/find-license.js";
+import { parseVerificationStatusToMessage } from "./parse-verification-status-to-message.js";
 import { resolveLicenseStatus } from "./resolve-license-status.js";
 
 export async function auditLicenses(
@@ -34,7 +34,7 @@ export async function auditLicenses(
     string,
     {
       packagePath: string;
-      status: VerificationStatus;
+      verificationMessage: string;
     }
   >();
 
@@ -74,7 +74,11 @@ export async function auditLicenses(
     if (licensesWithPath.verificationStatus !== "ok") {
       needsUserVerification.set(packageName, {
         packagePath,
-        status: licensesWithPath.verificationStatus,
+        verificationMessage: parseVerificationStatusToMessage(
+          licensesWithPath.verificationStatus,
+          packageName,
+          packagePath,
+        ),
       });
       continue;
     }

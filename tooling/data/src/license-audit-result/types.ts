@@ -19,6 +19,6 @@ export interface LicenseAuditResult {
   notFound: Map<string, { packagePath: string; errorMessage: string }>;
   needsUserVerification: Map<
     string,
-    { packagePath: string; status: VerificationStatus }
+    { packagePath: string; verificationMessage: string }
   >;
 }
