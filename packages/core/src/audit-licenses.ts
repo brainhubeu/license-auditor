@@ -1,7 +1,9 @@
-import type {
-  ConfigType,
-  DetectedLicense,
-  LicenseAuditResult,
+import {
+  type ConfigType,
+  type DetectedLicense,
+  type License,
+  type LicenseAuditResult,
+  licenseMap,
 } from "@license-auditor/data";
 import { findPackageManager } from "@license-auditor/package-manager-finder";
 import {
@@ -11,7 +13,6 @@ import {
 import { findDependencies } from "./dependency-finder/find-dependencies.js";
 import { extractPackageName, readPackageJson } from "./file-utils.js";
 import { filterOverrides } from "./filter-overrides.js";
-import { findLicenseById } from "./license-finder/find-license-by-id.js";
 import { findLicenses } from "./license-finder/find-license.js";
 import { resolveLicenseStatus } from "./resolve-license-status.js";
 
@@ -49,7 +50,7 @@ export async function auditLicenses(
   for (const [assignedPackageName, assignedLicense] of Object.entries(
     assigned,
   )) {
-    const license = findLicenseById(assignedLicense)[0];
+    const license = licenseMap.get(assignedLicense) as unknown as License; // using the assertion due to 'readonly' properties interfering with type inference
 
     if (license) {
       const status = checkLicenseStatus(license, config);
