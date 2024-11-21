@@ -23,18 +23,21 @@ const licensesFieldSchema = z.union([
 export const packageJsonSchema = z.union([
   z.object({
     name: z.string().optional(),
+    version: z.string().optional(),
     license: licenseFieldSchema.optional(),
     licenses: licensesFieldSchema.optional(),
   }),
   z.object({
     name: z.string().optional(),
-    license: licenseFieldSchema.optional(),
+    version: z.string().optional(),
+    license: licenseFieldSchema,
     licenses: z.any().transform(() => undefined),
   }),
   z.object({
     name: z.string().optional(),
+    version: z.string().optional(),
     license: z.any().transform(() => undefined),
-    licenses: licensesFieldSchema.optional(),
+    licenses: licensesFieldSchema,
   }),
 ]);
 
@@ -65,9 +68,18 @@ export function readPackageJson(packagePath: string): PackageJsonResult {
   return { errorMessage: errorMsg, success: false };
 }
 
-// done this way to avoid reading package.json when checking for an existing value in Map
-// if it proves unreliable reading package.json will be inevitable
+// reading package.json turned out to be inevitable since we want to include version in the key
 export function extractPackageName(packagePath: string): string {
+  const packageResult = readPackageJson(packagePath);
+
+  if (packageResult.success) {
+    const { packageJson } = packageResult;
+
+    if (packageJson?.name && packageJson.version) {
+      return `${packageJson.name}@${packageJson.version}`;
+    }
+  }
+
   const baseName = path.basename(packagePath);
   const parentName = path.basename(path.dirname(packagePath));
 

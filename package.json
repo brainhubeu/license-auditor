@@ -20,7 +20,8 @@
     "cli": "ROOT_DIR=$(pwd) turbo run cli",
     "cli:init": "ROOT_DIR=$(pwd) turbo run cli:init",
     "dev:cli": "ROOT_DIR=$(pwd) turbo run cli",
-    "dev:cli:init": "ROOT_DIR=$(pwd) turbo run cli:init"
+    "dev:cli:init": "ROOT_DIR=$(pwd) turbo run cli:init",
+    "test:unit": "turbo run test:unit"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.3",
