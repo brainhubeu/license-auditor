@@ -75,10 +75,10 @@ export function readPackageJson(packagePath: string): PackageJsonResult {
 export function extractPackageNameWithVersion(
   packageJson: PackageJsonType,
 ): string | undefined {
-  if (packageJson?.name && packageJson.version) {
-    undefined;
+  if (packageJson?.name && packageJson?.version) {
+    return `${packageJson.name}@${packageJson.version}`;
   }
-  return `${packageJson.name}@${packageJson.version}`;
+  return undefined;
 }
 
 export function extractPackageNameFromPath(packagePath: string): string {
