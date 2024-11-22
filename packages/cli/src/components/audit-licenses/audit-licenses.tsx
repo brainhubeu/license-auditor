@@ -9,14 +9,15 @@ import { useEffect, useState } from "react";
 import { envSchema } from "../../env.js";
 import { saveResultToJson } from "../../utils/save-result-to-json.js";
 import { SpinnerWithLabel } from "../spinner-with-label.js";
-import ErrorBox from "./error-box.js";
 import AuditResult from "./audit-result.js";
+import ErrorBox from "./error-box.js";
 
 export type AuditLicensesProps = {
   verbose: boolean;
   config: ConfigType;
   filter: LicenseStatus | undefined;
   json: string | undefined;
+  production?: boolean | undefined;
 };
 
 export default function AuditLicenses({
@@ -24,6 +25,7 @@ export default function AuditLicenses({
   config,
   filter,
   json,
+  production,
 }: AuditLicensesProps) {
   const [working, setWorking] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -44,6 +46,7 @@ export default function AuditLicenses({
         const { warning, ...result } = await auditLicenses(
           parsedEnv.data.ROOT_DIR,
           config,
+          production,
         );
         setResult(result);
         if (warning) {
@@ -61,7 +64,7 @@ export default function AuditLicenses({
       }
     };
     void getResults();
-  }, [exit, config]);
+  }, [exit, config, production]);
 
   useEffect(() => {
     if (result && json) {
@@ -85,6 +88,7 @@ export default function AuditLicenses({
       verbose={verbose}
       filter={filter}
       warning={warning}
+      overrides={config.overrides}
     />
   );
 }

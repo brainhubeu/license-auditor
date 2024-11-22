@@ -3,22 +3,30 @@ import type {
   DetectedLicense,
   LicenseAuditResult,
 } from "@license-auditor/data";
-import { findPackageManager } from "@license-auditor/package-manager-finder";
 import type { LicenseStatus } from "./check-license-status.js";
 import { findDependencies } from "./dependency-finder/find-dependencies.js";
-import { extractPackageName, readPackageJson } from "./file-utils.js";
+import {
+  extractPackageNameFromPath,
+  extractPackageNameWithVersion,
+  readPackageJson,
+} from "./file-utils.js";
+import { filterOverrides } from "./filter-overrides.js";
+import { findPackageManager } from "./find-package-manager.js";
 import { findLicenses } from "./license-finder/find-license.js";
+import { parseVerificationStatusToMessage } from "./parse-verification-status-to-message.js";
 import { resolveLicenseStatus } from "./resolve-license-status.js";
 
 export async function auditLicenses(
   cwd: string,
   config: ConfigType,
+  production?: boolean | undefined,
 ): Promise<LicenseAuditResult> {
   const packageManager = await findPackageManager(cwd);
-  const { dependencies: packagePaths, warning } = await findDependencies(
+  const { dependencies: packagePaths, warning } = await findDependencies({
     packageManager,
-    cwd,
-  );
+    projectRoot: cwd,
+    production,
+  });
 
   const resultMap = new Map<string, DetectedLicense>();
   const groupedByStatus: Record<LicenseStatus, DetectedLicense[]> = {
@@ -32,22 +40,48 @@ export async function auditLicenses(
     { packagePath: string; errorMessage: string }
   >();
 
-  for (const packagePath of packagePaths) {
-    const packageName = extractPackageName(packagePath);
-
-    if (resultMap.has(packageName) || notFound.has(packageName)) {
-      continue;
+  const needsUserVerification = new Map<
+    string,
+    {
+      packagePath: string;
+      verificationMessage: string;
     }
+  >();
 
+  const foundPackages: Pick<DetectedLicense, "packageName" | "packagePath">[] =
+    packagePaths.map((packagePath) => ({
+      packagePath,
+      packageName: extractPackageNameFromPath(packagePath),
+    }));
+
+  const { filteredPackages, notFoundOverrides } = filterOverrides({
+    foundPackages,
+    overrides: config.overrides,
+  });
+
+  for (const {
+    packageName: packageNameFromPath,
+    packagePath,
+  } of filteredPackages) {
     const packageJsonResult = readPackageJson(packagePath);
     if (!packageJsonResult.success) {
-      notFound.set(packageName, {
+      notFound.set(packageNameFromPath, {
         packagePath,
         errorMessage: packageJsonResult.errorMessage,
       });
       continue;
     }
-    // todo: handle needsVerification case when license path exists but no licenses have been found
+
+    const packageName =
+      extractPackageNameWithVersion(packageJsonResult.packageJson) ??
+      packageNameFromPath;
+    if (
+      resultMap.has(packageName) ||
+      notFound.has(packageName) ||
+      needsUserVerification.has(packageName)
+    ) {
+      continue;
+    }
 
     const licensesWithPath = await findLicenses(
       packageJsonResult.packageJson,
@@ -62,7 +96,20 @@ export async function auditLicenses(
       continue;
     }
 
+    if (licensesWithPath.verificationStatus !== "ok") {
+      needsUserVerification.set(packageName, {
+        packagePath,
+        verificationMessage: parseVerificationStatusToMessage(
+          licensesWithPath.verificationStatus,
+          packageName,
+          packagePath,
+        ),
+      });
+      continue;
+    }
+
     const status = resolveLicenseStatus(licensesWithPath, config);
+
     const detectedLicense: DetectedLicense = {
       packageName,
       packagePath,
@@ -70,7 +117,7 @@ export async function auditLicenses(
       licenses: licensesWithPath.licenses,
       licenseExpression: licensesWithPath.licenseExpression,
       licensePath: licensesWithPath.licensePath,
-      needsVerification: licensesWithPath.needsVerification,
+      verificationStatus: licensesWithPath.verificationStatus,
     };
 
     groupedByStatus[status].push(detectedLicense);
@@ -84,15 +131,14 @@ export async function auditLicenses(
         `${key}: ${value.licenses.map((v) => v.licenseId).join(", ")}`,
     ),
   );
-  if (warning) {
-    return {
-      groupedByStatus,
-      notFound,
-      warning,
-    };
-  }
+
   return {
     groupedByStatus,
     notFound,
+    overrides: {
+      notFoundOverrides,
+    },
+    needsUserVerification,
+    warning,
   };
 }

@@ -1,17 +1,25 @@
-import type { SupportedPm } from "@license-auditor/package-manager-finder";
+import type { DependenciesResult } from "@license-auditor/data";
+import { UnsupportedPackageManagerException } from "../exceptions/unsupported-package-manager.exception.js";
+import type { SupportedPm } from "../find-package-manager.js";
 import { findInternalPackages } from "./find-internal-packages.js";
 import { findNpmDependencies } from "./npm.js";
 import { findPnpmDependencies } from "./pnpm.js";
 import { findYarnClassicDependencies } from "./yarn-classic.js";
 
-export async function findDependencies(
-  packageManager: SupportedPm,
-  projectRoot: string,
-): Promise<{ dependencies: string[]; warning?: string }> {
-  const [{ dependencyPaths, warning }, internalPackages] = await Promise.all([
-    findExternalDependencies(packageManager, projectRoot),
-    findInternalPackages(projectRoot),
-  ]);
+export async function findDependencies({
+  packageManager,
+  projectRoot,
+  production,
+}: {
+  packageManager: SupportedPm;
+  projectRoot: string;
+  production?: boolean | undefined;
+}): Promise<DependenciesResult> {
+  const [{ dependencies: dependencyPaths, warning }, internalPackages] =
+    await Promise.all([
+      findExternalDependencies({ packageManager, projectRoot, production }),
+      findInternalPackages(projectRoot),
+    ]);
 
   const dependencies = dependencyPaths.filter(
     (dep) => !internalPackages.some((internalPkg) => dep.endsWith(internalPkg)),
@@ -23,18 +31,25 @@ export async function findDependencies(
   return { dependencies };
 }
 
-function findExternalDependencies(
-  packageManager: SupportedPm,
-  projectRoot: string,
-): Promise<{ dependencyPaths: string[]; warning?: string }> {
+function findExternalDependencies({
+  packageManager,
+  projectRoot,
+  production,
+}: {
+  packageManager: SupportedPm;
+  projectRoot: string;
+  production?: boolean | undefined;
+}): Promise<DependenciesResult> {
   switch (packageManager) {
     case "npm":
-      return findNpmDependencies(projectRoot);
+      return findNpmDependencies(projectRoot, production);
     case "pnpm":
-      return findPnpmDependencies(projectRoot);
+      return findPnpmDependencies(projectRoot, production);
     case "yarn-classic":
-      return findYarnClassicDependencies(projectRoot);
+      return findYarnClassicDependencies(projectRoot, production);
     default:
-      throw new Error("Unsupported package manager");
+      throw new UnsupportedPackageManagerException(
+        "Unsupported package manager",
+      );
   }
 }

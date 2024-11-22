@@ -29,3 +29,11 @@ export const LicenseStatusSchema = z.union([
   z.literal("blacklist"),
   z.literal("unknown"),
 ]);
+
+export const VerificationStatusSchema = z.union([
+  z.literal("ok"),
+  z.literal("licenseFileExistsButNoLicense"),
+  z.literal("moreThanOneLicenseFromLicenseFile"),
+  z.literal("licenseFileReadError"),
+  z.literal("licenseNotFound"),
+]);

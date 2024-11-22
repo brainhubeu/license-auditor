@@ -1,6 +1,8 @@
 import fs from "node:fs/promises";
 import path from "node:path";
+import type { DependenciesResult } from "@license-auditor/data";
 import { z } from "zod";
+import { FindDependenciesException } from "../exceptions/find-dependecies.exception.js";
 import { execCommand } from "./exec-command.js";
 
 const YarnDependencySchema = z.object({
@@ -22,16 +24,27 @@ const YarnListOutputSchema = z.object({
 type YarnDependency = z.infer<typeof YarnDependencySchema>;
 
 export const findYarnClassicDepsCommand = "yarn list --depth=0 --json -R";
+export const findYarnClassicProdDepsCommand =
+  "yarn list --depth=0 --json -R --prod";
 
 export async function findYarnClassicDependencies(
   projectRoot: string,
-): Promise<{ dependencyPaths: string[] }> {
-  const output = await execCommand(findYarnClassicDepsCommand, projectRoot);
+  production?: boolean | undefined,
+): Promise<DependenciesResult> {
+  const output = await execCommand(
+    production ? findYarnClassicProdDepsCommand : findYarnClassicDepsCommand,
+    projectRoot,
+  );
   const dependenciesList = JSON.parse(output);
 
   const validationResult = YarnListOutputSchema.safeParse(dependenciesList);
   if (!validationResult.success) {
-    throw new Error("Invalid yarn list --depth=0 --json -R output");
+    throw new FindDependenciesException(
+      "Invalid yarn list --depth=0 --json -R output",
+      {
+        originalError: validationResult.error,
+      },
+    );
   }
 
   const dependencyPaths = await extractDependencyPaths(
@@ -39,7 +52,7 @@ export async function findYarnClassicDependencies(
     projectRoot,
   );
 
-  return { dependencyPaths };
+  return { dependencies: dependencyPaths };
 }
 
 async function extractDependencyPaths(

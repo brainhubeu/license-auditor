@@ -4,7 +4,7 @@ import { Box, Text } from "ink";
 export default function NotFoundResult({
   notFound,
 }: {
-  notFound: Map<string, { packagePath: string }>;
+  notFound: Map<string, { packagePath: string; errorMessage: string }>;
 }) {
   const describePackagesCount =
     notFound.size === 1 ? "package is" : "packages are";
@@ -18,15 +18,21 @@ export default function NotFoundResult({
         </Text>
       </Box>
       <Box flexDirection="column" marginLeft={2}>
-        {Array.from(notFound).map(([packageName, { packagePath }]) => (
-          <Box key={packagePath}>
-            <Text color="gray">{figures.pointerSmall}</Text>
-            <Text>
-              {" "}
-              {packageName}: {packagePath}
-            </Text>
-          </Box>
-        ))}
+        {Array.from(notFound).map(
+          ([packageName, { packagePath, errorMessage }]) => (
+            <Box key={packagePath}>
+              <Text color="gray">{figures.pointerSmall}</Text>
+              {errorMessage ? (
+                <Text>{errorMessage}</Text>
+              ) : (
+                <Text>
+                  {" "}
+                  {packageName}: {packagePath}
+                </Text>
+              )}
+            </Box>
+          ),
+        )}
       </Box>
     </Box>
   );

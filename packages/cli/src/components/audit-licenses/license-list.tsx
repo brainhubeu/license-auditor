@@ -9,22 +9,22 @@ interface LicenseListProps {
 export default function LicenseList({ detectedLicenses }: LicenseListProps) {
   return (
     <Box flexDirection="column" marginLeft={2}>
-      {detectedLicenses.map((detectedLicense) => (
-        <Box key={detectedLicense.packageName}>
-          <Text color="gray">{figures.pointerSmall}</Text>
-          <Text> {detectedLicense.packageName} </Text>
-          {detectedLicense.licenseExpression ? (
-            <Text color="cyan">{detectedLicense.licenseExpression}</Text>
-          ) : (
-            <Text color="cyan">
-              {detectedLicense.licenses
-                .map((detectedLicense) => detectedLicense.licenseId)
-                .join(", ")}
-            </Text>
-          )}
-          <Text>: {detectedLicense.licensePath}</Text>
-        </Box>
-      ))}
+      {detectedLicenses.map(
+        ({ packageName, licenseExpression, licenses, licensePath }) => (
+          <Box key={packageName}>
+            <Text color="gray">{figures.pointerSmall}</Text>
+            <Text> {packageName} </Text>
+            {licenseExpression ? (
+              <Text color="cyan">{licenseExpression}</Text>
+            ) : (
+              <Text color="cyan">
+                {licenses.map(({ licenseId }) => licenseId).join(", ")}
+              </Text>
+            )}
+            <Text>: {licensePath}</Text>
+          </Box>
+        ),
+      )}
     </Box>
   );
 }

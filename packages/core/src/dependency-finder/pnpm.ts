@@ -1,4 +1,6 @@
+import type { DependenciesResult } from "@license-auditor/data";
 import { z } from "zod";
+import { FindDependenciesException } from "../exceptions/find-dependecies.exception.js";
 import { execCommand } from "./exec-command.js";
 
 const PnpmDependencySchema = z.object({
@@ -18,23 +20,33 @@ const PnpmListDependenciesOutputSchema = z
 type PnpmDependency = z.infer<typeof PnpmDependencySchema>;
 
 export const findPnpmDepsCommand = "pnpm ls --json";
+export const findPnpmProdDepsCommand = "pnpm ls --json --prod";
 
 export async function findPnpmDependencies(
   projectRoot: string,
-): Promise<{ dependencyPaths: string[] }> {
-  const output = await execCommand(findPnpmDepsCommand, projectRoot);
+  production?: boolean | undefined,
+): Promise<DependenciesResult> {
+  const output = await execCommand(
+    production ? findPnpmProdDepsCommand : findPnpmDepsCommand,
+    projectRoot,
+  );
   const parsedOutput = JSON.parse(output);
 
   const validationResult = z
     .array(PnpmListDependenciesOutputSchema)
     .safeParse(parsedOutput);
   if (!validationResult.success) {
-    throw new Error("Invalid pnpm ls --json output format");
+    throw new FindDependenciesException(
+      "Invalid pnpm ls --json output format",
+      {
+        originalError: validationResult.error,
+      },
+    );
   }
 
   const pnpmOutput = validationResult.data[0];
   if (!pnpmOutput) {
-    throw new Error("No pnpm output data found");
+    throw new FindDependenciesException("No pnpm output data found");
   }
 
   const dependencyPaths: string[] = [];
@@ -45,7 +57,7 @@ export async function findPnpmDependencies(
   dependencyPaths.push(...extractDependencyPaths(dependencies));
   dependencyPaths.push(...extractDependencyPaths(devDependencies));
 
-  return { dependencyPaths };
+  return { dependencies: dependencyPaths };
 }
 
 const extractDependencyPaths = (

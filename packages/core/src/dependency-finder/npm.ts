@@ -1,14 +1,22 @@
+import type { DependenciesResult } from "@license-auditor/data";
 import { CommandExecutionError } from "../errors.js";
 import { execCommand } from "./exec-command.js";
 
 export const findNpmDepsCommand = "npm ls --all -p";
+export const findNpmProdDepsCommand = "npm ls --all -p --omit=dev";
 
 export async function findNpmDependencies(
   projectRoot: string,
-): Promise<{ dependencyPaths: string[]; warning?: string }> {
+  production?: boolean | undefined,
+): Promise<DependenciesResult> {
   const { output, warning } = await (async () => {
     try {
-      return { output: await execCommand(findNpmDepsCommand, projectRoot) };
+      return {
+        output: await execCommand(
+          production ? findNpmProdDepsCommand : findNpmDepsCommand,
+          projectRoot,
+        ),
+      };
     } catch (error) {
       if (error instanceof CommandExecutionError) {
         if (/missing:.+required by/.test(error.stderr)) {
@@ -25,12 +33,12 @@ export async function findNpmDependencies(
   // Remove the first line, as npm always prints the project root first
   const lines = output.split("\n").slice(1);
 
-  const dependencyPaths = lines
+  const dependencies = lines
     .filter((line) => line.trim() !== "")
     .map((line) => line.trim());
 
   if (warning) {
-    return { dependencyPaths, warning };
+    return { dependencies, warning };
   }
-  return { dependencyPaths };
+  return { dependencies };
 }

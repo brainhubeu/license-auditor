@@ -1,8 +1,14 @@
-import type { LicenseAuditResult, LicenseStatus } from "@license-auditor/data";
+import type {
+  ConfigType,
+  LicenseAuditResult,
+  LicenseStatus,
+} from "@license-auditor/data";
 import { Box } from "ink";
+import { OverrideResult } from "../override-result.js";
 import ErrorBox from "./error-box.js";
 import FailureResult from "./failure-result.js";
 import IncludingUnknownResult from "./including-unknown-result.js";
+import NeedsUserVerificationResult from "./needs-user-verification-result.js";
 import NoLicensesFoundResult from "./no-licenses-found-result.js";
 import NotFoundResult from "./not-found-result.js";
 import SuccessResult from "./success-result.js";
@@ -39,6 +45,7 @@ interface AuditResultProps {
   verbose: boolean;
   filter: LicenseStatus | undefined;
   warning?: string | null;
+  overrides: Pick<ConfigType, "overrides">["overrides"];
 }
 
 export default function AuditResult({
@@ -46,8 +53,10 @@ export default function AuditResult({
   verbose,
   filter,
   warning,
+  overrides,
 }: AuditResultProps) {
   const hasNotFound = result.notFound.size > 0;
+  const hasNeedsUserVerification = result.needsUserVerification.size > 0;
 
   return (
     <Box flexDirection="column">
@@ -55,6 +64,17 @@ export default function AuditResult({
       <ResultForStatus result={result} />
       {hasNotFound && <NotFoundResult notFound={result.notFound} />}
       {warning && <ErrorBox color="yellow">{warning}</ErrorBox>}
+      {verbose && (
+        <OverrideResult
+          configOverrides={overrides}
+          resultOverrides={result.overrides}
+        />
+      )}
+      {hasNeedsUserVerification && (
+        <NeedsUserVerificationResult
+          needsUserVerification={result.needsUserVerification}
+        />
+      )}
     </Box>
   );
 }
