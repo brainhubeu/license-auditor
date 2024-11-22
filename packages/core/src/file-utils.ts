@@ -64,7 +64,6 @@ export function readPackageJson(packagePath: string): PackageJsonResult {
   }
   // unsure how often such case happens and whether the license verification should be skipped
   const errorMsg = `package.json not found for package at ${packagePath}`;
-  console.warn(errorMsg);
   return { errorMessage: errorMsg, success: false };
 }
 

@@ -104,13 +104,6 @@ export async function auditLicenses(
     resultMap.set(packageName, detectedLicense);
   }
 
-  console.log(
-    "Result:",
-    Array.from(resultMap.entries()).map(
-      ([key, value]) =>
-        `${key}: ${value.licenses.map((v) => v.licenseId).join(", ")}`,
-    ),
-  );
   return {
     groupedByStatus,
     notFound,
