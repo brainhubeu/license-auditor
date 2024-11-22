@@ -22,7 +22,7 @@ export async function auditLicenses(
   production?: boolean | undefined,
 ): Promise<LicenseAuditResult> {
   const packageManager = await findPackageManager(cwd);
-  const packagePaths = await findDependencies({
+  const { dependencies: packagePaths, warning } = await findDependencies({
     packageManager,
     projectRoot: cwd,
     production,
@@ -131,6 +131,7 @@ export async function auditLicenses(
         `${key}: ${value.licenses.map((v) => v.licenseId).join(", ")}`,
     ),
   );
+
   return {
     groupedByStatus,
     notFound,
@@ -138,5 +139,6 @@ export async function auditLicenses(
       notFoundOverrides,
     },
     needsUserVerification,
+    warning,
   };
 }

@@ -5,6 +5,7 @@ import type {
 } from "@license-auditor/data";
 import { Box } from "ink";
 import { OverrideResult } from "../override-result.js";
+import ErrorBox from "./error-box.js";
 import FailureResult from "./failure-result.js";
 import IncludingUnknownResult from "./including-unknown-result.js";
 import NeedsUserVerificationResult from "./needs-user-verification-result.js";
@@ -43,6 +44,7 @@ interface AuditResultProps {
   result: LicenseAuditResult;
   verbose: boolean;
   filter: LicenseStatus | undefined;
+  warning?: string | null;
   overrides: Pick<ConfigType, "overrides">["overrides"];
 }
 
@@ -50,6 +52,7 @@ export default function AuditResult({
   result,
   verbose,
   filter,
+  warning,
   overrides,
 }: AuditResultProps) {
   const hasNotFound = result.notFound.size > 0;
@@ -60,6 +63,7 @@ export default function AuditResult({
       {verbose && <VerboseView result={result} filter={filter} />}
       <ResultForStatus result={result} />
       {hasNotFound && <NotFoundResult notFound={result.notFound} />}
+      {warning && <ErrorBox color="yellow">{warning}</ErrorBox>}
       {verbose && (
         <OverrideResult
           configOverrides={overrides}
