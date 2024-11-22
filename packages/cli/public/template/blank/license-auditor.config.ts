@@ -3,10 +3,7 @@ import type { ConfigType } from "@brainhubeu/license-auditor-cli";
 const config: ConfigType = {
   blacklist: [],
   whitelist: [],
-  overrides: {
-    warn: [],
-    off: [],
-  },
+  overrides: {},
 };
 
 export default config;

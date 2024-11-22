@@ -14,10 +14,6 @@ export interface LicenseAuditResult {
   groupedByStatus: Record<LicenseStatus, DetectedLicense[]>;
   notFound: Map<string, { packagePath: string; errorMessage: string }>;
   overrides: {
-    validOverrides: {
-      warnOverrides: string[];
-      offOverrides: string[];
-    };
     notFoundOverrides: string[];
   };
 }

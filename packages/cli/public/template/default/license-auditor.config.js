@@ -384,10 +384,8 @@ const config = {
   ],
   overrides: {
     // exclude packages from audit
-    // warn: ['package-name'],
-    // off: ['package-name']
-    warn: [],
-    off: [],
+    // 'package-name-warn': 'warn',
+    // 'package-name-off': 'off',
   },
 };
 

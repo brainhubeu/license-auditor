@@ -694,14 +694,6 @@
           "type": "object",
           "additionalProperties": {
             "$ref": "#/definitions/ConfigSchema/properties/blacklist/items"
-          },
-          "properties": {
-            "warn": {
-              "type": "array"
-            },
-            "off": {
-              "type": "array"
-            }
           }
         }
       },

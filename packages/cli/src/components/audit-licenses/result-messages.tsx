@@ -1,4 +1,4 @@
-import type { LicenseAuditResult } from "@license-auditor/data";
+import type { ConfigType, LicenseAuditResult } from "@license-auditor/data";
 import figures from "figures";
 import { Box, Text } from "ink";
 
@@ -49,14 +49,25 @@ export function UnknownMessage({ count }: MessageProps) {
 }
 
 export function OverrideMessage({
-  overrides,
-}: Pick<LicenseAuditResult, "overrides">) {
-  const overrideCount =
-    overrides.validOverrides.warnOverrides.length +
-    overrides.validOverrides.offOverrides.length;
+  configOverrides,
+  resultOverrides,
+}: {
+  configOverrides: Pick<ConfigType, "overrides">["overrides"];
+  resultOverrides: Pick<LicenseAuditResult, "overrides">["overrides"];
+}) {
+  if (!configOverrides) {
+    return null;
+  }
+
+  const overrideCount = Object.keys(configOverrides).length;
+
   if (!overrideCount) {
     return null;
   }
+
+  const warns = Object.entries(configOverrides)
+    .filter(([_packageName, severity]) => severity === "warn")
+    .map(([packageName]) => packageName);
 
   return (
     <Box flexDirection="column">
@@ -68,7 +79,7 @@ export function OverrideMessage({
           in the config file overrides field.
         </Text>
       </Box>
-      {overrides.validOverrides.warnOverrides.length > 0 ? (
+      {warns.length > 0 ? (
         <Box flexDirection="column">
           <Box>
             <Text color="grey">{figures.warning} </Text>
@@ -76,7 +87,7 @@ export function OverrideMessage({
               Following packages were marked in the warning override field:
             </Text>
           </Box>
-          {overrides.validOverrides.warnOverrides.map((warnOverride) => (
+          {warns.map((warnOverride) => (
             <Box key={warnOverride} marginLeft={2}>
               <Text>{figures.pointerSmall} </Text>
               <Text color="yellow">{warnOverride}</Text>
@@ -84,7 +95,7 @@ export function OverrideMessage({
           ))}
         </Box>
       ) : null}
-      {overrides.notFoundOverrides.length > 0 ? (
+      {resultOverrides.notFoundOverrides.length > 0 ? (
         <Box flexDirection="column">
           <Box>
             <Text color="grey">{figures.warning} </Text>
@@ -92,10 +103,10 @@ export function OverrideMessage({
               Following packages listed in the overrides field weren't found:
             </Text>
           </Box>
-          {overrides.notFoundOverrides.map((extraOverride) => (
-            <Box key={extraOverride} marginLeft={2}>
+          {resultOverrides.notFoundOverrides.map((notFoundOverride) => (
+            <Box key={notFoundOverride} marginLeft={2}>
               <Text color="gray">{figures.pointerSmall} </Text>
-              <Text>{extraOverride}</Text>
+              <Text>{notFoundOverride}</Text>
             </Box>
           ))}
         </Box>

@@ -379,8 +379,5 @@
     "WTFPL",
     "Zlib"
   ],
-  "overrides": {
-    "warn": [],
-    "off": []
-  }
+  "overrides": {}
 }

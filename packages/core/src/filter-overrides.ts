@@ -18,52 +18,28 @@ export function filterOverrides({
   foundPackages: Pick<DetectedLicense, "packageName" | "packagePath">[];
   overrides: OverridesType | undefined;
 }): {
-  validOverrides: {
-    warnOverrides: string[];
-    offOverrides: string[];
-  };
   notFoundOverrides: string[];
   filteredPackages: {
     packageName: string;
     packagePath: string;
   }[];
 } {
-  if (!overrides) {
+  if (!overrides || Object.keys(overrides).length === 0) {
     return {
-      validOverrides: {
-        warnOverrides: [],
-        offOverrides: [],
-      },
       filteredPackages: foundPackages,
       notFoundOverrides: [],
     };
   }
 
-  const { off, warn } = overrides;
-
   const filteredPackages = foundPackages.filter(
     (foundPackage) =>
-      !(
-        off?.some(
-          (excludedPackage) =>
-            excludedPackage === getPackageName(foundPackage.packageName),
-        ) ||
-        warn?.some(
-          (warnPackage) =>
-            warnPackage === getPackageName(foundPackage.packageName),
-        )
+      !Object.keys(overrides).some(
+        (excludedPackage) =>
+          excludedPackage === getPackageName(foundPackage.packageName),
       ),
   );
 
-  const notFoundWarn = warn?.filter(
-    (packageName) =>
-      !foundPackages.some(
-        (foundPackage) =>
-          getPackageName(foundPackage.packageName) === packageName,
-      ),
-  );
-
-  const notFoundOff = off?.filter(
+  const notFoundOverrides = Object.keys(overrides).filter(
     (packageName) =>
       !foundPackages.some(
         (foundPackage) =>
@@ -72,11 +48,7 @@ export function filterOverrides({
   );
 
   return {
-    validOverrides: {
-      warnOverrides: overrides.warn ?? [],
-      offOverrides: overrides.off ?? [],
-    },
     filteredPackages,
-    notFoundOverrides: [...(notFoundWarn ?? []), ...(notFoundOff ?? [])],
+    notFoundOverrides,
   };
 }

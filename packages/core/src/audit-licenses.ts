@@ -41,11 +41,10 @@ export async function auditLicenses(
       packageName: extractPackageName(packagePath),
     }));
 
-  const { validOverrides, filteredPackages, notFoundOverrides } =
-    filterOverrides({
-      foundPackages,
-      overrides: config.overrides,
-    });
+  const { filteredPackages, notFoundOverrides } = filterOverrides({
+    foundPackages,
+    overrides: config.overrides,
+  });
 
   for (const { packageName, packagePath } of filteredPackages) {
     if (resultMap.has(packageName) || notFound.has(packageName)) {
@@ -112,7 +111,6 @@ export async function auditLicenses(
     groupedByStatus,
     notFound,
     overrides: {
-      validOverrides,
       notFoundOverrides,
     },
   };
