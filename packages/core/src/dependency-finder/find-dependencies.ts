@@ -1,5 +1,5 @@
-import type { SupportedPm } from "../find-package-manager.js";
 import { UnsupportedPackageManagerException } from "../exceptions/unsupported-package-manager.exception.js";
+import type { SupportedPm } from "../find-package-manager.js";
 import { findInternalPackages } from "./find-internal-packages.js";
 import { findNpmDependencies } from "./npm.js";
 import { findPnpmDependencies } from "./pnpm.js";
