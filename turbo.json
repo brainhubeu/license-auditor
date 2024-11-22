@@ -24,6 +24,7 @@
       "env": ["ROOT_DIR"],
       "interactive": true
     },
-    "test:unit": {}
+    "test:unit": {},
+    "test:e2e": {}
   }
 }
