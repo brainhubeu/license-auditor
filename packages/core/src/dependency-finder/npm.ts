@@ -1,6 +1,6 @@
 import type { DependenciesResult } from "@license-auditor/data";
+import { ExecCommandException } from "../exceptions/index.js";
 import { execCommand } from "./exec-command.js";
-import { ExecCommandException } from '../exceptions/index.js';
 
 export const findNpmDepsCommand = "npm ls --all -p";
 export const findNpmProdDepsCommand = "npm ls --all -p --omit=dev";
