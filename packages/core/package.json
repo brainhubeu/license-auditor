@@ -19,7 +19,8 @@
     "dev": "tsc --watch",
     "start": "tsx src/audit-licenses.ts",
     "typecheck": "tsc --noEmit true",
-    "test:unit": "vitest run"
+    "test:unit": "vitest run",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@license-auditor/data": "*",
@@ -33,6 +34,7 @@
     "@license-auditor/typescript-config": "*",
     "tsup": "8.3.5",
     "@types/spdx-expression-parse": "3.0.5",
+    "@vitest/coverage-v8": "2.1.5",
     "tsx": "4.19.1",
     "typescript": "5.6.2",
     "vitest": "2.1.5"
