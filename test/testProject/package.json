@@ -1,0 +1,12 @@
+{
+  "name": "testproject",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "run": "echo \"Nope\""
+  },
+  "private": true,
+  "dependencies": {
+    "express": "5.0.1"
+  }
+}

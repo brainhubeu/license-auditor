@@ -47,5 +47,5 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }} # Required for private repos
           # todo: use lcov-result-merge to combine more results
           files: ./packages/core/coverage/lcov.info
-          flags: unit 
+          flags: unit
           fail_ci_if_error: true
