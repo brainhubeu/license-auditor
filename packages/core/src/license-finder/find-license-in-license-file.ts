@@ -24,8 +24,6 @@ function retrieveLicenseFromLicenseFileContent(content: string): {
   return { licenses: licenseArr };
 }
 
-//To avoid reading wrong license files, for example license-auditor.config.ts if file is named LICENSE-[SOME-TEXT]
-//we will check if SOME-TEXT is a valid license name
 function retrieveLicenseFromLicenseFileName(filePath: string): {
   licenses: License[];
 } {
@@ -164,7 +162,7 @@ async function handleMultipleLicenseFiles(
     };
   }
 
-  if (allLicenses.length !== licenseFiles.length) {
+  if (allLicenses.length < licenseFiles.length) {
     return {
       licenses: allLicenses,
       licensePath: packagePath,
@@ -172,6 +170,14 @@ async function handleMultipleLicenseFiles(
     };
   }
 
+  // TO CODE REVIEWER:
+  // We're also checking if all licenses are whitelisted in `resolveLicenseStatus`.
+  // The difference is that this check provides a clearer error message for the user.
+  // In `resolveLicenseStatus`, we only return an "unknown" status for any licenses that aren't whitelisted.
+  // Let me know if you'd like me to remove this additional check.
+  //
+  // requires check version message: ›Not all licenses are whitelisted for package braces in path license-auditor/node_modules/braces. Please review the package
+  // unknown version message: › braces LGPL-3.0, MIT: node_modules/braces
   const allLicensesWhitelisted = allLicenses.every((license) => {
     const licenseStatus = checkLicenseStatus(license, config);
     return licenseStatus === "whitelist";
@@ -184,6 +190,7 @@ async function handleMultipleLicenseFiles(
       verificationStatus: "notAllLicensesWhitelisted",
     };
   }
+  /////
 
   return {
     licenses: allLicenses,
