@@ -35,6 +35,7 @@
       "interactive": true
     },
     "test:unit": {},
-    "test:coverage": {}
+    "test:coverage": {},
+    "test:e2e": {}
   }
 }
