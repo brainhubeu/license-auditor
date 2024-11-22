@@ -8,6 +8,7 @@ import { findDependencies } from "./dependency-finder/find-dependencies.js";
 import { extractPackageName, readPackageJson } from "./file-utils.js";
 import { findPackageManager } from "./find-package-manager.js";
 import { findLicenses } from "./license-finder/find-license.js";
+import { parseVerificationStatusToMessage } from "./parse-verification-status-to-message.js";
 import { resolveLicenseStatus } from "./resolve-license-status.js";
 
 export async function auditLicenses(
@@ -34,10 +35,22 @@ export async function auditLicenses(
     { packagePath: string; errorMessage: string }
   >();
 
+  const needsUserVerification = new Map<
+    string,
+    {
+      packagePath: string;
+      verificationMessage: string;
+    }
+  >();
+
   for (const packagePath of packagePaths) {
     const packageName = extractPackageName(packagePath);
 
-    if (resultMap.has(packageName) || notFound.has(packageName)) {
+    if (
+      resultMap.has(packageName) ||
+      notFound.has(packageName) ||
+      needsUserVerification.has(packageName)
+    ) {
       continue;
     }
 
@@ -63,13 +76,14 @@ export async function auditLicenses(
       continue;
     }
 
-    if (
-      licensesWithPath.licenses.length === 0 &&
-      licensesWithPath.needsVerification
-    ) {
-      notFound.set(packageName, {
+    if (licensesWithPath.verificationStatus !== "ok") {
+      needsUserVerification.set(packageName, {
         packagePath,
-        errorMessage: `We’ve found a license file, but no matching licenses in it ${licensesWithPath.licensePath}. Please review package ${packageName} and assign a matching license or skip the check by listing it in the overrides field of the config file`,
+        verificationMessage: parseVerificationStatusToMessage(
+          licensesWithPath.verificationStatus,
+          packageName,
+          packagePath,
+        ),
       });
       continue;
     }
@@ -83,7 +97,7 @@ export async function auditLicenses(
       licenses: licensesWithPath.licenses,
       licenseExpression: licensesWithPath.licenseExpression,
       licensePath: licensesWithPath.licensePath,
-      needsVerification: licensesWithPath.needsVerification,
+      verificationStatus: licensesWithPath.verificationStatus,
     };
 
     groupedByStatus[status].push(detectedLicense);
@@ -100,5 +114,6 @@ export async function auditLicenses(
   return {
     groupedByStatus,
     notFound,
+    needsUserVerification,
   };
 }
