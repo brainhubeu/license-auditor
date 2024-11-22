@@ -3,11 +3,15 @@ import type {
   DetectedLicense,
   LicenseAuditResult,
 } from "@license-auditor/data";
-import { findPackageManager } from "@license-auditor/package-manager-finder";
 import type { LicenseStatus } from "./check-license-status.js";
 import { findDependencies } from "./dependency-finder/find-dependencies.js";
-import { extractPackageName, readPackageJson } from "./file-utils.js";
+import {
+  extractPackageNameFromPath,
+  extractPackageNameWithVersion,
+  readPackageJson,
+} from "./file-utils.js";
 import { filterOverrides } from "./filter-overrides.js";
+import { findPackageManager } from "./find-package-manager.js";
 import { findLicenses } from "./license-finder/find-license.js";
 import { parseVerificationStatusToMessage } from "./parse-verification-status-to-message.js";
 import { resolveLicenseStatus } from "./resolve-license-status.js";
@@ -47,7 +51,7 @@ export async function auditLicenses(
   const foundPackages: Pick<DetectedLicense, "packageName" | "packagePath">[] =
     packagePaths.map((packagePath) => ({
       packagePath,
-      packageName: extractPackageName(packagePath),
+      packageName: extractPackageNameFromPath(packagePath),
     }));
 
   const { filteredPackages, notFoundOverrides } = filterOverrides({
@@ -55,21 +59,27 @@ export async function auditLicenses(
     overrides: config.overrides,
   });
 
-  for (const { packageName, packagePath } of filteredPackages) {
+  for (const {
+    packageName: packageNameFromPath,
+    packagePath,
+  } of filteredPackages) {
+    const packageJsonResult = readPackageJson(packagePath);
+    if (!packageJsonResult.success) {
+      notFound.set(packageNameFromPath, {
+        packagePath,
+        errorMessage: packageJsonResult.errorMessage,
+      });
+      continue;
+    }
+
+    const packageName =
+      extractPackageNameWithVersion(packageJsonResult.packageJson) ??
+      packageNameFromPath;
     if (
       resultMap.has(packageName) ||
       notFound.has(packageName) ||
       needsUserVerification.has(packageName)
     ) {
-      continue;
-    }
-
-    const packageJsonResult = readPackageJson(packagePath);
-    if (!packageJsonResult.success) {
-      notFound.set(packageName, {
-        packagePath,
-        errorMessage: packageJsonResult.errorMessage,
-      });
       continue;
     }
 

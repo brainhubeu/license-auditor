@@ -25,7 +25,7 @@ export function OverrideResult({
     .map(([packageName]) => packageName);
 
   return (
-    <Box flexDirection="column">
+    <Box flexDirection="column" marginTop={1}>
       <Box>
         <Text color="grey">{figures.warning} </Text>
         <Text>
@@ -35,7 +35,7 @@ export function OverrideResult({
         </Text>
       </Box>
       {warns.length > 0 ? (
-        <Box flexDirection="column">
+        <Box flexDirection="column" marginTop={1}>
           <Box>
             <Text color="grey">{figures.warning} </Text>
             <Text>Packages skipped with a warning:</Text>
@@ -49,7 +49,7 @@ export function OverrideResult({
         </Box>
       ) : null}
       {resultOverrides.notFoundOverrides.length > 0 ? (
-        <Box flexDirection="column">
+        <Box flexDirection="column" marginTop={1}>
           <Box>
             <Text color="grey">{figures.warning} </Text>
             <Text>Packages listed in the overrides field but not found:</Text>

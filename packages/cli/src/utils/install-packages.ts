@@ -2,12 +2,10 @@ import { exec } from "node:child_process";
 import { promisify } from "node:util";
 import {
   InstallPackagesException,
-  UnsupportedPackageManagerException,
-} from "@brainhubeu/license-auditor-core";
-import {
   type SupportedPm,
+  UnsupportedPackageManagerException,
   findPackageManager,
-} from "@license-auditor/package-manager-finder";
+} from "@brainhubeu/license-auditor-core";
 
 const execAsync = promisify(exec);
 

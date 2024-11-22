@@ -21,7 +21,9 @@
     "cli:init": "ROOT_DIR=$(pwd) turbo run cli:init",
     "dev:cli": "ROOT_DIR=$(pwd) turbo run cli",
     "dev:cli:init": "ROOT_DIR=$(pwd) turbo run cli:init",
-    "test:unit": "turbo run test:unit"
+    "test:coverage": "turbo run test:coverage",
+    "test:unit": "turbo run test:unit",
+    "test:upload-coverage": "cat packages/core/coverage/lcov.info | codecov"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.3",
