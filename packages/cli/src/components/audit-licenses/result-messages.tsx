@@ -1,7 +1,7 @@
 import figures from "figures";
 import { Text } from "ink";
 
-function describeLicenseCount(
+export function describeLicenseCount(
   count: number,
   singular: string,
   plural: string,
