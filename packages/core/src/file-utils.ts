@@ -53,8 +53,6 @@ export function readPackageJson(packagePath: string): PackageJsonResult {
     const validationResult = packageJsonSchema.safeParse(parsedPackageJson);
 
     if (validationResult.error) {
-      console.warn(`Failed validation of package.json at ${packageJsonPath}`);
-      console.warn(validationResult.error.message);
       return { errorMessage: validationResult.error.message, success: false };
     }
 
