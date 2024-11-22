@@ -10,6 +10,7 @@ import {
   extractPackageNameWithVersion,
   readPackageJson,
 } from "./file-utils.js";
+import { filterOverrides } from "./filter-overrides.js";
 import { findPackageManager } from "./find-package-manager.js";
 import { findLicenses } from "./license-finder/find-license.js";
 import { parseVerificationStatusToMessage } from "./parse-verification-status-to-message.js";
@@ -47,9 +48,22 @@ export async function auditLicenses(
     }
   >();
 
-  for (const packagePath of packagePaths) {
+  const foundPackages: Pick<DetectedLicense, "packageName" | "packagePath">[] =
+    packagePaths.map((packagePath) => ({
+      packagePath,
+      packageName: extractPackageNameFromPath(packagePath),
+    }));
+
+  const { filteredPackages, notFoundOverrides } = filterOverrides({
+    foundPackages,
+    overrides: config.overrides,
+  });
+
+  for (const {
+    packageName: packageNameFromPath,
+    packagePath,
+  } of filteredPackages) {
     const packageJsonResult = readPackageJson(packagePath);
-    const packageNameFromPath = extractPackageNameFromPath(packagePath);
     if (!packageJsonResult.success) {
       notFound.set(packageNameFromPath, {
         packagePath,
@@ -120,6 +134,9 @@ export async function auditLicenses(
   return {
     groupedByStatus,
     notFound,
+    overrides: {
+      notFoundOverrides,
+    },
     needsUserVerification,
   };
 }

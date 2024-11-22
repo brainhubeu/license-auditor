@@ -17,6 +17,9 @@ export interface DetectedLicense {
 export interface LicenseAuditResult {
   groupedByStatus: Record<LicenseStatus, DetectedLicense[]>;
   notFound: Map<string, { packagePath: string; errorMessage: string }>;
+  overrides: {
+    notFoundOverrides: string[];
+  };
   needsUserVerification: Map<
     string,
     { packagePath: string; verificationMessage: string }

@@ -1,11 +1,11 @@
 import type { LicenseAuditResult } from "@license-auditor/data";
 import figures from "figures";
 import { Box, Text } from "ink";
-import { describeLicenseCount } from "./result-messages.js";
+import { describeLicenseCount } from "../../utils/describe-license-count.js";
 
 export default function NeedsUserVerificationResult({
   needsUserVerification,
-}: Omit<LicenseAuditResult, "notFound" | "groupedByStatus">) {
+}: Omit<LicenseAuditResult, "notFound" | "groupedByStatus" | "overrides">) {
   const describePackagesCount = describeLicenseCount(
     needsUserVerification.size,
     "package is",

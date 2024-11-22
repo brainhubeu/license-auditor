@@ -1,14 +1,6 @@
 import figures from "figures";
 import { Text } from "ink";
-
-export function describeLicenseCount(
-  count: number,
-  singular: string,
-  plural: string,
-): string {
-  const phrase = count === 1 ? singular : plural;
-  return `${count} ${phrase}`;
-}
+import { describeLicenseCount } from "../../utils/describe-license-count.js";
 
 interface MessageProps {
   count: number;

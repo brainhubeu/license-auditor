@@ -81,5 +81,12 @@ export default function AuditLicenses({
     return <SpinnerWithLabel label="Processing licenses..." />;
   }
 
-  return <AuditResult result={result} verbose={verbose} filter={filter} />;
+  return (
+    <AuditResult
+      result={result}
+      verbose={verbose}
+      filter={filter}
+      overrides={config.overrides}
+    />
+  );
 }
