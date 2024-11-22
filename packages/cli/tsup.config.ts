@@ -16,6 +16,5 @@ export default defineConfig({
   noExternal: [
     "@brainhubeu/license-auditor-core",
     "@license-auditor/data",
-    "@license-auditor/package-manager-finder",
   ],
 });

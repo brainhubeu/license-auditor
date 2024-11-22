@@ -36,7 +36,6 @@
   "devDependencies": {
     "@brainhubeu/license-auditor-core": "*",
     "@license-auditor/data": "*",
-    "@license-auditor/package-manager-finder": "*",
     "@license-auditor/typescript-config": "*",
     "@types/react": "18.3.11",
     "chalk": "5.2.0",
