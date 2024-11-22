@@ -1,7 +1,7 @@
 import * as pty from "node-pty";
 
 export type CliCommand = {
-  file: string;
+  command: string;
   args: string[];
   cwd?: string;
   env?: Record<string, string>;
@@ -11,7 +11,7 @@ export async function runCliCommand(command: CliCommand) {
   return new Promise<{ output: string; errorCode: number }>(
     (resolve, reject) => {
       try {
-        const cli = pty.spawn(command.file, command.args, {
+        const cli = pty.spawn(command.command, command.args, {
           cwd: command.cwd,
           env: command.env,
         });

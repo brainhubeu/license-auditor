@@ -8,7 +8,7 @@ describe("license-auditor", () => {
   describe("cli", () => {
     test("audits compliant packages correctly", async (context: TestContext) => {
       const { output, errorCode } = await runCliCommand({
-        file: "npx",
+        command: "npx",
         args: [getCliPath()],
         cwd: context.testDirectory,
       });
@@ -28,7 +28,7 @@ describe("license-auditor", () => {
       );
 
       const { output, errorCode } = await runCliCommand({
-        file: "npx",
+        command: "npx",
         args: [getCliPath()],
         cwd: context.testDirectory,
       });
