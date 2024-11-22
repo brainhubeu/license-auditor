@@ -1,6 +1,6 @@
 {
   "name": "@brainhubeu/license-auditor",
-  "version": "2.0.0-alpha.2",
+  "version": "2.0.0-alpha.3",
   "description": "License Auditor helps you track and validate licenses inside your project. Prevents unwanted law complications. License Auditor includes a step in your pipeline and creates notifications about potential problems with used licenses. At the moment, a notification means a comment.",
   "repository": {
     "type": "git",
@@ -19,6 +19,8 @@
     "prepare": "husky",
     "cli": "ROOT_DIR=$(pwd) turbo run cli",
     "cli:init": "ROOT_DIR=$(pwd) turbo run cli:init",
+    "dev:cli": "ROOT_DIR=$(pwd) turbo run cli",
+    "dev:cli:init": "ROOT_DIR=$(pwd) turbo run cli:init",
     "test:unit": "turbo run test:unit"
   },
   "devDependencies": {

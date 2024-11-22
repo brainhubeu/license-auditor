@@ -1,4 +1,4 @@
-import type { ConfigType } from "@license-auditor/data";
+import type { ConfigType } from "@brainhubeu/license-auditor-cli";
 
 const config: ConfigType = {
   blacklist: [
@@ -381,8 +381,11 @@ const config: ConfigType = {
     "Zlib",
   ],
   overrides: {
-    /* Assign licenses to packages manually */
-    // 'package-name': 'license-type',
+    // exclude packages from audit
+    // warn: ['package-name'],
+    // off: ['package-name']
+    warn: [],
+    off: [],
   },
 };
 

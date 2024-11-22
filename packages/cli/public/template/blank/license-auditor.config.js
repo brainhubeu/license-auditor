@@ -1,6 +1,8 @@
-import type { ConfigType } from "@license-auditor/data";
+/**
+ * @type {import('@brainhubeu/license-auditor-cli').ConfigType}
+ */
 
-const config: ConfigType = {
+const config = {
   blacklist: [],
   whitelist: [],
   overrides: {

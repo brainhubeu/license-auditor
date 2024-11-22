@@ -1,7 +1,7 @@
 // @ts-nocheck -- this is a mock render and the functions will come off as unused
 import type { LicenseAuditResult } from "@license-auditor/data";
 import { render } from "ink";
-import AuditResult from "./components/audit-result.js";
+import AuditResult from "./components/audit-licenses/audit-result";
 
 // This is a mock render for the license auditor
 // This whole file will be removed before merging

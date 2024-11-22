@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import type { ConfigExtension } from "../constants/config-constants.js";
+import { ConfigExtension } from "../constants/config-constants.js";
 
 export enum ConfigListType {
   Default = "default",
@@ -19,7 +19,11 @@ async function copyConfigFile(
   const __dirname = path.dirname(__filename);
 
   const templateDir = path.resolve(__dirname, `template/${configListType}`);
-  const templateFileName = `license-auditor.config${extension}`;
+
+  const templateFileName =
+    extension === ConfigExtension.JSON
+      ? ".license-auditorrc.json"
+      : `license-auditor.config${extension}`;
   const templatePath = path.join(templateDir, templateFileName);
 
   const destinationPath = path.join(currentDir, templateFileName);
