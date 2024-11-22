@@ -13,9 +13,5 @@ export default defineConfig({
   banner: {
     js: "import { createRequire } from 'module'; const require = createRequire(import.meta.url);",
   },
-  noExternal: [
-    "@brainhubeu/license-auditor-core",
-    "@license-auditor/data",
-    "@license-auditor/package-manager-finder",
-  ],
+  noExternal: ["@brainhubeu/license-auditor-core", "@license-auditor/data"],
 });
