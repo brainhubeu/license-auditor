@@ -1,16 +1,17 @@
 import { exec } from "node:child_process";
 import { promisify } from "node:util";
 import {
+  InstallPackagesException,
+  UnsupportedPackageManagerException,
+} from "@brainhubeu/license-auditor-core";
+import {
   type SupportedPm,
   findPackageManager,
 } from "@license-auditor/package-manager-finder";
 
 const execAsync = promisify(exec);
 
-const packagesToInstall = [
-  "@brainhubeu/license-auditor-cli",
-  "@brainhubeu/license-auditor-core",
-] as const;
+const packagesToInstall = ["@brainhubeu/license-auditor-cli@alpha"] as const;
 
 export async function installPackages(dir: string) {
   try {
@@ -25,9 +26,9 @@ export async function installPackages(dir: string) {
 
     console.log("Packages installed successfully.");
   } catch (err) {
-    // todo: proper error handling and guidance on what to do
-    console.error(err);
-    throw new Error("Failed to install dependencies");
+    throw new InstallPackagesException("Failed to install dependencies", {
+      originalError: err,
+    });
   }
 }
 
@@ -40,6 +41,8 @@ function getInstallCommand(packageManager: SupportedPm): string {
     case "yarn-classic":
       return "yarn add --dev";
     default:
-      throw new Error(`Unsupported package manager: ${packageManager}`);
+      throw new UnsupportedPackageManagerException(
+        `Unsupported package manager: ${packageManager}`,
+      );
   }
 }

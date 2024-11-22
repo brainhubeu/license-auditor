@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
+import { ValidateJsonPathException } from "@brainhubeu/license-auditor-core";
 import { useEffect, useState } from "react";
 import { JSON_RESULT_FILE_NAME } from "../constants/options-constants.js";
 
@@ -22,7 +23,9 @@ export const useValidateJsonPath = (json: string | boolean | undefined) => {
 
       const statParentInfo = await statPath(parentDirPath);
       if (!statParentInfo) {
-        throw new Error(`Path ${parentDirPath} does not exist`);
+        throw new ValidateJsonPathException(
+          `Path ${parentDirPath} does not exist`,
+        );
       }
 
       const statPathInfo = await statPath(jsonPath);
