@@ -38,9 +38,7 @@ export function OverrideResult({
         <Box flexDirection="column">
           <Box>
             <Text color="grey">{figures.warning} </Text>
-            <Text>
-              Following packages were marked in the warning override field:
-            </Text>
+            <Text>Packages skipped with a warning:</Text>
           </Box>
           {warns.map((warnOverride) => (
             <Box key={warnOverride} marginLeft={2}>
@@ -54,9 +52,7 @@ export function OverrideResult({
         <Box flexDirection="column">
           <Box>
             <Text color="grey">{figures.warning} </Text>
-            <Text>
-              Following packages listed in the overrides field weren't found:
-            </Text>
+            <Text>Packages listed in the overrides field but not found:</Text>
           </Box>
           {resultOverrides.notFoundOverrides.map((notFoundOverride) => (
             <Box key={notFoundOverride} marginLeft={2}>

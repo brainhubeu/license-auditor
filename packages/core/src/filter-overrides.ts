@@ -31,20 +31,18 @@ export function filterOverrides({
     };
   }
 
+  const excludedPackageNames = new Set(Object.keys(overrides));
+  const foundPackageNames = new Set(
+    foundPackages.map((foundPackage) =>
+      getPackageName(foundPackage.packageName),
+    ),
+  );
   const filteredPackages = foundPackages.filter(
     (foundPackage) =>
-      !Object.keys(overrides).some(
-        (excludedPackage) =>
-          excludedPackage === getPackageName(foundPackage.packageName),
-      ),
+      !excludedPackageNames.has(getPackageName(foundPackage.packageName)),
   );
-
-  const notFoundOverrides = Object.keys(overrides).filter(
-    (packageName) =>
-      !foundPackages.some(
-        (foundPackage) =>
-          getPackageName(foundPackage.packageName) === packageName,
-      ),
+  const notFoundOverrides = Array.from(excludedPackageNames).filter(
+    (packageName) => !foundPackageNames.has(packageName),
   );
 
   return {
