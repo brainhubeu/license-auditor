@@ -1,4 +1,5 @@
 import type { SupportedPm } from "@license-auditor/package-manager-finder";
+import { UnsupportedPackageManagerException } from "../exceptions/unsupported-package-manager.exception.js";
 import { findInternalPackages } from "./find-internal-packages.js";
 import { findNpmDependencies } from "./npm.js";
 import { findPnpmDependencies } from "./pnpm.js";
@@ -40,6 +41,8 @@ function findExternalDependencies({
     case "yarn-classic":
       return findYarnClassicDependencies(projectRoot, production);
     default:
-      throw new Error("Unsupported package manager");
+      throw new UnsupportedPackageManagerException(
+        "Unsupported package manager",
+      );
   }
 }
