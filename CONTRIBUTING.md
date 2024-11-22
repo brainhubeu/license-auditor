@@ -17,3 +17,7 @@
 
 - If you want to run the tool in a different directory, use `npx [...path]/license-auditor/packages/dist/cli.js`
 - Be mindful of user permissions (eg. [chown on cli.js](https://stackoverflow.com/questions/53455753/ubuntu-create-react-app-fails-with-permission-denied/53455921#53455921))
+
+### Testing
+
+- run `test:unit` from the project root

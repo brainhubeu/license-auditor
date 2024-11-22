@@ -1,5 +1,13 @@
 # license-auditor
 
+## Prerequisites
+
+### Supported package managers
+
+- npm
+- yarn classic (v1)
+- pnpm
+
 ## Getting started
 
 To start using License Auditor, in the root of your project run
@@ -40,4 +48,3 @@ All licenses are sourced from [SPDX license list](https://spdx.org/licenses/)
 - `overrides` - an object with the specified severity:
   - `warn` - package should be omitted from audit, but it will produce a warning,
   - `off`- package should be completely omitted from the audit.
-  
