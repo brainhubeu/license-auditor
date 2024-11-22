@@ -4,11 +4,11 @@ import type {
   LicenseStatus,
 } from "@license-auditor/data";
 import { Box } from "ink";
+import { OverrideResult } from "../override-result.js";
 import FailureResult from "./failure-result.js";
 import IncludingUnknownResult from "./including-unknown-result.js";
 import NoLicensesFoundResult from "./no-licenses-found-result.js";
 import NotFoundResult from "./not-found-result.js";
-import { OverrideMessage } from "./result-messages.js";
 import SuccessResult from "./success-result.js";
 import VerboseView from "./verbose-view.js";
 
@@ -58,7 +58,7 @@ export default function AuditResult({
       {verbose && <VerboseView result={result} filter={filter} />}
       <ResultForStatus result={result} />
       {hasNotFound && <NotFoundResult notFound={result.notFound} />}
-      <OverrideMessage
+      <OverrideResult
         configOverrides={overrides}
         resultOverrides={result.overrides}
       />
