@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { FindDependenciesException } from "../exceptions/find-dependecies.exception.js";
 import { execCommand } from "./exec-command.js";
 
 const PnpmDependencySchema = z.object({
@@ -34,12 +35,17 @@ export async function findPnpmDependencies(
     .array(PnpmListDependenciesOutputSchema)
     .safeParse(parsedOutput);
   if (!validationResult.success) {
-    throw new Error("Invalid pnpm ls --json output format");
+    throw new FindDependenciesException(
+      "Invalid pnpm ls --json output format",
+      {
+        originalError: validationResult.error,
+      },
+    );
   }
 
   const pnpmOutput = validationResult.data[0];
   if (!pnpmOutput) {
-    throw new Error("No pnpm output data found");
+    throw new FindDependenciesException("No pnpm output data found");
   }
 
   const dependenciesPaths: string[] = [];

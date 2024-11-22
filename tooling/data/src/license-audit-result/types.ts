@@ -1,4 +1,8 @@
-import type { License, LicenseStatus } from "../licenses/types.js";
+import type {
+  License,
+  LicenseStatus,
+  VerificationStatus,
+} from "../licenses/types.js";
 
 export interface DetectedLicense {
   packageName: string;
@@ -7,7 +11,7 @@ export interface DetectedLicense {
   status: LicenseStatus;
   licensePath: string | undefined;
   licenseExpression: string | undefined;
-  needsVerification: boolean | undefined;
+  verificationStatus: VerificationStatus;
 }
 
 export interface LicenseAuditResult {
@@ -16,4 +20,8 @@ export interface LicenseAuditResult {
   overrides: {
     notFoundOverrides: string[];
   };
+  needsUserVerification: Map<
+    string,
+    { packagePath: string; verificationMessage: string }
+  >;
 }

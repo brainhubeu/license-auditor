@@ -11,7 +11,10 @@ import {
 
 export default function IncludingUnknownResult({
   groupedByStatus,
-}: Pick<LicenseAuditResult, "groupedByStatus">) {
+}: Omit<
+  LicenseAuditResult,
+  "notFound" | "needsUserVerification" | "overrides"
+>) {
   const hasWhitelisted = groupedByStatus.whitelist.length > 0;
   const hasBlacklisted = groupedByStatus.blacklist.length > 0;
 

@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import { type EnvType, envSchema } from "../../env.js";
 import { SpinnerWithLabel } from "../spinner-with-label.js";
 
+import { InvalidEnvironmentVariablesException } from "@brainhubeu/license-auditor-core";
+
 interface ValidateEnvProps {
   onSuccess: (env: EnvType) => void;
 }
@@ -14,7 +16,14 @@ export function ValidateEnv({ onSuccess }: ValidateEnvProps) {
     const parsedEnv = envSchema.safeParse(process.env);
 
     if (parsedEnv.error) {
-      exit(new Error(parsedEnv.error.message));
+      exit(
+        new InvalidEnvironmentVariablesException(
+          "Failed to parse environment variables",
+          {
+            originalError: parsedEnv.error,
+          },
+        ),
+      );
     }
 
     if (parsedEnv.success) {

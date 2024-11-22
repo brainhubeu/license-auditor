@@ -7,6 +7,7 @@ import { Box } from "ink";
 import { OverrideResult } from "../override-result.js";
 import FailureResult from "./failure-result.js";
 import IncludingUnknownResult from "./including-unknown-result.js";
+import NeedsUserVerificationResult from "./needs-user-verification-result.js";
 import NoLicensesFoundResult from "./no-licenses-found-result.js";
 import NotFoundResult from "./not-found-result.js";
 import SuccessResult from "./success-result.js";
@@ -52,6 +53,7 @@ export default function AuditResult({
   overrides,
 }: AuditResultProps) {
   const hasNotFound = result.notFound.size > 0;
+  const hasNeedsUserVerification = result.needsUserVerification.size > 0;
 
   return (
     <Box flexDirection="column">
@@ -62,6 +64,11 @@ export default function AuditResult({
         configOverrides={overrides}
         resultOverrides={result.overrides}
       />
+      {hasNeedsUserVerification && (
+        <NeedsUserVerificationResult
+          needsUserVerification={result.needsUserVerification}
+        />
+      )}
     </Box>
   );
 }
