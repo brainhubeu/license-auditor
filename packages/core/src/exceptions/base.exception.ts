@@ -10,7 +10,7 @@ export class BaseException extends Error {
     super(message, {
       cause: {
         errorCode,
-        ...(context ? { originalError: context.originalError } : {}),
+        ...(context ?? {}),
       },
     });
     this.errorCode = errorCode;

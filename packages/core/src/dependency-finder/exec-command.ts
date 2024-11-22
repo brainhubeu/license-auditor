@@ -1,18 +1,22 @@
 import { exec } from "node:child_process";
-import { CommandExecutionError } from "../errors.js";
+
+import { ExecCommandException } from '../exceptions/index.js';
 
 export async function execCommand(
   command: string,
   cwd: string,
 ): Promise<string> {
   return new Promise((resolve, reject) => {
-    exec(command, { cwd }, (_, stdout, stderr) => {
+    exec(command, { cwd }, (error, stdout, stderr) => {
       if (stderr) {
         reject(
-          new CommandExecutionError(
+          new ExecCommandException(
             `Command "${command}" returned error.`,
-            stdout,
-            stderr,
+            {
+              originalError: error,
+              stdout,
+              stderr,
+            }
           ),
         );
       }

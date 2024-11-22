@@ -1,6 +1,6 @@
 import type { DependenciesResult } from "@license-auditor/data";
-import { CommandExecutionError } from "../errors.js";
 import { execCommand } from "./exec-command.js";
+import { ExecCommandException } from '../exceptions/index.js';
 
 export const findNpmDepsCommand = "npm ls --all -p";
 export const findNpmProdDepsCommand = "npm ls --all -p --omit=dev";
@@ -18,7 +18,7 @@ export async function findNpmDependencies(
         ),
       };
     } catch (error) {
-      if (error instanceof CommandExecutionError) {
+      if (error instanceof ExecCommandException) {
         if (/missing:.+required by/.test(error.stderr)) {
           return {
             output: error.stdout,
