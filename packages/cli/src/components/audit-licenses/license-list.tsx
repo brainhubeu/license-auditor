@@ -15,7 +15,7 @@ export default function LicenseList({
     <Box flexDirection="column" marginLeft={2}>
       {detectedLicenses.map(
         ({ packageName, licenseExpression, licenses, licensePath }) => (
-          <Box key={packageName}>
+          <Box key={packageName} marginBottom={verbose ? 1 : 0}>
             <Text color="gray">{figures.pointerSmall}</Text>
             <Text> {packageName} </Text>
             {licenseExpression ? (

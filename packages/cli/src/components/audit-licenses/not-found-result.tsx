@@ -22,14 +22,15 @@ export default function NotFoundResult({
       <Box flexDirection="column" marginLeft={2}>
         {Array.from(notFound).map(
           ([packageName, { packagePath, errorMessage }]) => (
-            <Box key={packagePath}>
+            <Box key={packagePath} marginBottom={verbose ? 1 : 0}>
               <Text color="gray">{figures.pointerSmall}</Text>
               {verbose ? (
                 <Text>
+                  {" "}
                   {packageName}: {packagePath} Error: {errorMessage}
                 </Text>
               ) : (
-                <Text>{packageName}</Text>
+                <Text> {packageName} </Text>
               )}
             </Box>
           ),

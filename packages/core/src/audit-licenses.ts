@@ -69,7 +69,10 @@ export async function auditLicenses(
       config,
     );
 
-    if (!licensesWithPath.licensePath) {
+    if (
+      !licensesWithPath.licensePath ||
+      licensesWithPath.verificationStatus === "licenseNotFound"
+    ) {
       notFound.set(packageName, {
         packagePath,
         errorMessage: `License not found in ${packagePath}`,
