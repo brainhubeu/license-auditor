@@ -14,7 +14,7 @@ import { resolveLicenseStatus } from "./resolve-license-status.js";
 export async function auditLicenses(
   cwd: string,
   config: ConfigType,
-  production?: boolean | undefined
+  production?: boolean | undefined,
 ): Promise<LicenseAuditResult> {
   const packageManager = await findPackageManager(cwd);
   const packagePaths = await findDependencies({
@@ -65,7 +65,7 @@ export async function auditLicenses(
 
     const licensesWithPath = await findLicenses(
       packageJsonResult.packageJson,
-      packagePath
+      packagePath,
     );
 
     if (!licensesWithPath.licensePath) {
