@@ -20,8 +20,7 @@
     "start": "tsx src/audit-licenses.ts",
     "typecheck": "tsc --noEmit true",
     "test:unit": "vitest run",
-    "test:coverage": "vitest run --coverage",
-    "test:unit": "vitest run"
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@license-auditor/data": "*",
