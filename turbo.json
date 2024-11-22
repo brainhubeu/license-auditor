@@ -14,17 +14,27 @@
       "cache": false,
       "persistent": true
     },
-    "cli:init": {
-      "cache": false,
-      "env": ["ROOT_DIR"],
-      "interactive": true
-    },
     "cli": {
       "cache": false,
       "env": ["ROOT_DIR"],
       "interactive": true
     },
+    "cli:init": {
+      "cache": false,
+      "env": ["ROOT_DIR"],
+      "interactive": true
+    },
+    "dev:cli": {
+      "cache": false,
+      "env": ["ROOT_DIR"],
+      "interactive": true
+    },
+    "dev:cli:init": {
+      "cache": false,
+      "env": ["ROOT_DIR"],
+      "interactive": true
+    },
     "test:unit": {},
-    "test:e2e": {}
+    "test:coverage": {}
   }
 }

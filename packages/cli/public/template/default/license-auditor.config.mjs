@@ -1,6 +1,8 @@
-import type { ConfigType } from "@license-auditor/data";
+/**
+ * @type {import('@brainhubeu/license-auditor-cli').ConfigType}
+ */
 
-const config: ConfigType = {
+const config = {
   blacklist: [
     "AAL",
     "ADSL",
@@ -381,8 +383,9 @@ const config: ConfigType = {
     "Zlib",
   ],
   overrides: {
-    /* Assign licenses to packages manually */
-    // 'package-name': 'license-type',
+    // exclude packages from audit
+    // 'package-name-warn': 'warn',
+    // 'package-name-off': 'off',
   },
 };
 
