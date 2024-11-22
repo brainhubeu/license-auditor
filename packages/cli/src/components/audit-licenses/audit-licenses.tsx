@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { envSchema } from "../../env.js";
 import { saveResultToJson } from "../../utils/save-result-to-json.js";
 import { SpinnerWithLabel } from "../spinner-with-label.js";
+import AdditionalInfo from "./additional-info.js";
 import AuditResult from "./audit-result.js";
 
 export type AuditLicensesProps = {
@@ -81,5 +82,10 @@ export default function AuditLicenses({
     return <SpinnerWithLabel label="Processing licenses..." />;
   }
 
-  return <AuditResult result={result} verbose={verbose} filter={filter} />;
+  return (
+    <Box flexDirection="column">
+      <AuditResult result={result} verbose={verbose} filter={filter} />
+      <AdditionalInfo verbose={verbose} />
+    </Box>
+  );
 }

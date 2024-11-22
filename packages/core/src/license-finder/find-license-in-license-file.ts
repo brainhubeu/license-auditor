@@ -127,14 +127,14 @@ async function handleSingleLicenseFile(
   if (licenseFromLicenseFile.licenses.length === 0) {
     return {
       licenses: [],
-      licensePath: packagePath,
+      licensePath: licensePath,
       verificationStatus: "licenseFileExistsButNoLicense",
     };
   }
 
   return {
     licenses: licenseFromLicenseFile.licenses,
-    licensePath: packagePath,
+    licensePath: licensePath,
     verificationStatus: "ok",
   };
 }

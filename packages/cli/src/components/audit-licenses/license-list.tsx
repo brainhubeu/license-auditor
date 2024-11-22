@@ -4,9 +4,13 @@ import { Box, Text } from "ink";
 
 interface LicenseListProps {
   detectedLicenses: DetectedLicense[];
+  verbose: boolean;
 }
 
-export default function LicenseList({ detectedLicenses }: LicenseListProps) {
+export default function LicenseList({
+  detectedLicenses,
+  verbose,
+}: LicenseListProps) {
   return (
     <Box flexDirection="column" marginLeft={2}>
       {detectedLicenses.map(
@@ -21,7 +25,7 @@ export default function LicenseList({ detectedLicenses }: LicenseListProps) {
                 {licenses.map(({ licenseId }) => licenseId).join(", ")}
               </Text>
             )}
-            <Text>: {licensePath}</Text>
+            {verbose && <Text>: {licensePath}</Text>}
           </Box>
         ),
       )}

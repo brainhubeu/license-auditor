@@ -11,7 +11,10 @@ import {
 
 export default function IncludingUnknownResult({
   groupedByStatus,
-}: Omit<LicenseAuditResult, "notFound" | "needsUserVerification">) {
+  verbose,
+}: Omit<LicenseAuditResult, "notFound" | "needsUserVerification"> & {
+  verbose: boolean;
+}) {
   const hasWhitelisted = groupedByStatus.whitelist.length > 0;
   const hasBlacklisted = groupedByStatus.blacklist.length > 0;
 
@@ -30,13 +33,19 @@ export default function IncludingUnknownResult({
           <Box>
             <BlacklistedMessage count={groupedByStatus.blacklist.length} />
           </Box>
-          <LicenseList detectedLicenses={groupedByStatus.blacklist} />
+          <LicenseList
+            detectedLicenses={groupedByStatus.blacklist}
+            verbose={verbose}
+          />
         </>
       )}
       <Box>
         <UnknownMessage count={groupedByStatus.unknown.length} />
       </Box>
-      <LicenseList detectedLicenses={groupedByStatus.unknown} />
+      <LicenseList
+        detectedLicenses={groupedByStatus.unknown}
+        verbose={verbose}
+      />
     </Box>
   );
 }
