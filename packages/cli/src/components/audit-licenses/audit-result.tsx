@@ -60,10 +60,12 @@ export default function AuditResult({
       {verbose && <VerboseView result={result} filter={filter} />}
       <ResultForStatus result={result} />
       {hasNotFound && <NotFoundResult notFound={result.notFound} />}
-      <OverrideResult
-        configOverrides={overrides}
-        resultOverrides={result.overrides}
-      />
+      {verbose && (
+        <OverrideResult
+          configOverrides={overrides}
+          resultOverrides={result.overrides}
+        />
+      )}
       {hasNeedsUserVerification && (
         <NeedsUserVerificationResult
           needsUserVerification={result.needsUserVerification}
