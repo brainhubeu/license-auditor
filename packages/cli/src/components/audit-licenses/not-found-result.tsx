@@ -1,10 +1,15 @@
+import type { LicenseAuditResult } from "@license-auditor/data";
 import figures from "figures";
 import { Box, Text } from "ink";
 
 export default function NotFoundResult({
   notFound,
-}: {
-  notFound: Map<string, { packagePath: string; errorMessage: string }>;
+  verbose,
+}: Omit<
+  LicenseAuditResult,
+  "needsUserVerification" | "groupedByStatus" | "overrides"
+> & {
+  verbose: boolean;
 }) {
   const describePackagesCount =
     notFound.size === 1 ? "package is" : "packages are";
@@ -20,15 +25,15 @@ export default function NotFoundResult({
       <Box flexDirection="column" marginLeft={2}>
         {Array.from(notFound).map(
           ([packageName, { packagePath, errorMessage }]) => (
-            <Box key={packagePath}>
+            <Box key={packagePath} marginBottom={verbose ? 1 : 0}>
               <Text color="gray">{figures.pointerSmall}</Text>
-              {errorMessage ? (
-                <Text>{errorMessage}</Text>
-              ) : (
+              {verbose ? (
                 <Text>
                   {" "}
-                  {packageName}: {packagePath}
+                  {packageName}: {packagePath} Error: {errorMessage}
                 </Text>
+              ) : (
+                <Text> {packageName} </Text>
               )}
             </Box>
           ),

@@ -2,6 +2,7 @@ import { ConfigSchema } from "@license-auditor/data";
 import { useEffect, useState } from "react";
 import { z } from "zod";
 import { readConfiguration } from "../utils/read-configuration.js";
+import { readDefaultConfig } from "../utils/read-default-config.js";
 
 const ConfigFileSchema = z.object({
   config: ConfigSchema,
@@ -21,12 +22,28 @@ export interface ReadConfigurationError {
   type: ReadConfigErrorType;
 }
 
-export function useReadConfiguration() {
+interface UseReadConfigurationProps {
+  useDefaults?: boolean;
+}
+
+export function useReadConfiguration({
+  useDefaults,
+}: UseReadConfigurationProps) {
   const [configFile, setConfigFile] = useState<ConfigFileType>();
   const [error, setError] = useState<ReadConfigurationError | null>(null);
 
   useEffect(() => {
     async function assignConfigFile() {
+      if (useDefaults) {
+        const { config, templateDir } = await readDefaultConfig();
+
+        setConfigFile({
+          config,
+          filepath: templateDir,
+        });
+        return;
+      }
+
       const configFile = await readConfiguration();
 
       if (!configFile) {
@@ -48,7 +65,7 @@ export function useReadConfiguration() {
       setConfigFile(parsed.data);
     }
     void assignConfigFile();
-  }, []);
+  }, [useDefaults]);
 
   return { configFile, error };
 }
