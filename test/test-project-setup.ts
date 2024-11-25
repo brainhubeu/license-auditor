@@ -11,7 +11,7 @@ beforeAll(async () => {
   await fs.copyFile(
     path.resolve(
       __dirname,
-      "../packages/cli/src/utils/template/default/license-auditor.config.ts",
+      "../packages/cli/public/template/default/license-auditor.config.ts",
     ),
     path.resolve(__dirname, "testProject", "license-auditor.config.ts"),
   );
@@ -25,7 +25,7 @@ beforeEach(async (context: TestContext) => {
   const testDirectory = path.resolve(
     __dirname,
     "temp",
-    `testProject-${Date.now()}`,
+    `testProject-${Math.random().toString(36).substring(2)}`,
   );
   await fs.cp(path.resolve(__dirname, "testProject"), testDirectory, {
     recursive: true,
