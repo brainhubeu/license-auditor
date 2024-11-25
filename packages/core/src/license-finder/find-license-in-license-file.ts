@@ -166,7 +166,7 @@ async function handleMultipleLicenseFiles(
     return {
       licenses: allLicenses,
       licensePath: packagePath,
-      verificationStatus: "notAllLicensesFounded",
+      verificationStatus: "notAllLicensesFound",
     };
   }
 

@@ -34,6 +34,6 @@ export const VerificationStatusSchema = z.union([
   z.literal("ok"),
   z.literal("licenseFileExistsButNoLicense"),
   z.literal("notAllLicensesWhitelisted"),
-  z.literal("notAllLicensesFounded"),
+  z.literal("notAllLicensesFound"),
   z.literal("licenseNotFound"),
 ]);

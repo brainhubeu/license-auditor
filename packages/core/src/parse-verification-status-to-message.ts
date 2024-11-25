@@ -10,7 +10,7 @@ const verificationMessages: Readonly<
     `We’ve found a license file, but no matching licenses in it in path ${packagePath}. Please review package ${packageName} and assign a matching license or skip the check by listing it in the overrides field of the config file.`,
   licenseNotFound: (packagePath, packageName): string =>
     `We couldn’t find a license for package ${packageName} in path ${packagePath}. Please review the package and assign a matching license or skip the check by listing it in the overrides field of the config file.`,
-  notAllLicensesFounded: (packagePath, packageName): string =>
+  notAllLicensesFound: (packagePath, packageName): string =>
     `We found some, but not all licenses for package ${packageName} in path ${packagePath}. Please review the package and assign a matching license or skip the check by listing it in the overrides field of the config file.`,
   notAllLicensesWhitelisted: (packagePath, packageName): string =>
     `Not all licenses are whitelisted for package ${packageName} in path ${packagePath}. Please review the package`,
