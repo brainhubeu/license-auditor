@@ -16,7 +16,8 @@
     },
     "cli": {
       "cache": false,
-      "env": ["ROOT_DIR"]
+      "env": ["ROOT_DIR"],
+      "interactive": true
     },
     "cli:init": {
       "cache": false,
@@ -25,13 +26,15 @@
     },
     "dev:cli": {
       "cache": false,
-      "env": ["ROOT_DIR"]
+      "env": ["ROOT_DIR"],
+      "interactive": true
     },
     "dev:cli:init": {
       "cache": false,
       "env": ["ROOT_DIR"],
       "interactive": true
     },
-    "test:unit": {}
+    "test:unit": {},
+    "test:coverage": {}
   }
 }

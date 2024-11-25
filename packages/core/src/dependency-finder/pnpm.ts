@@ -1,3 +1,4 @@
+import type { DependenciesResult } from "@license-auditor/data";
 import { z } from "zod";
 import { FindDependenciesException } from "../exceptions/find-dependecies.exception.js";
 import { execCommand } from "./exec-command.js";
@@ -24,7 +25,7 @@ export const findPnpmProdDepsCommand = "pnpm ls --json --prod";
 export async function findPnpmDependencies(
   projectRoot: string,
   production?: boolean | undefined,
-): Promise<string[]> {
+): Promise<DependenciesResult> {
   const output = await execCommand(
     production ? findPnpmProdDepsCommand : findPnpmDepsCommand,
     projectRoot,
@@ -48,15 +49,15 @@ export async function findPnpmDependencies(
     throw new FindDependenciesException("No pnpm output data found");
   }
 
-  const dependenciesPaths: string[] = [];
+  const dependencyPaths: string[] = [];
 
   const dependencies = pnpmOutput.dependencies ?? {};
   const devDependencies = pnpmOutput.devDependencies ?? {};
 
-  dependenciesPaths.push(...extractDependencyPaths(dependencies));
-  dependenciesPaths.push(...extractDependencyPaths(devDependencies));
+  dependencyPaths.push(...extractDependencyPaths(dependencies));
+  dependencyPaths.push(...extractDependencyPaths(devDependencies));
 
-  return dependenciesPaths;
+  return { dependencies: dependencyPaths };
 }
 
 const extractDependencyPaths = (

@@ -1,5 +1,6 @@
 import fs from "node:fs/promises";
 import path from "node:path";
+import type { DependenciesResult } from "@license-auditor/data";
 import { z } from "zod";
 import { FindDependenciesException } from "../exceptions/find-dependecies.exception.js";
 import { execCommand } from "./exec-command.js";
@@ -29,7 +30,7 @@ export const findYarnClassicProdDepsCommand =
 export async function findYarnClassicDependencies(
   projectRoot: string,
   production?: boolean | undefined,
-): Promise<string[]> {
+): Promise<DependenciesResult> {
   const output = await execCommand(
     production ? findYarnClassicProdDepsCommand : findYarnClassicDepsCommand,
     projectRoot,
@@ -46,10 +47,12 @@ export async function findYarnClassicDependencies(
     );
   }
 
-  return await extractDependencyPaths(
+  const dependencyPaths = await extractDependencyPaths(
     validationResult.data.data.trees,
     projectRoot,
   );
+
+  return { dependencies: dependencyPaths };
 }
 
 async function extractDependencyPaths(
