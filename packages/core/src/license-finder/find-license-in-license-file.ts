@@ -9,7 +9,7 @@ import {
 import { checkLicenseStatus } from "../check-license-status.js";
 import type { LicensesWithPath } from "./licenses-with-path.js";
 
-function retrieveLicenseFromLicenseFileContent(content: string): {
+export function retrieveLicenseFromLicenseFileContent(content: string): {
   licenses: License[];
 } {
   const contentTokens = content.split(/[ ,]+/);
@@ -24,7 +24,7 @@ function retrieveLicenseFromLicenseFileContent(content: string): {
   return { licenses: licenseArr };
 }
 
-function retrieveLicenseFromLicenseFileName(filePath: string): {
+export function retrieveLicenseFromLicenseFileName(filePath: string): {
   licenses: License[];
 } {
   const licenseNameMatch = filePath.match(/LICENSE-([^\/]+?)(\.md|\.txt)?$/i);
@@ -170,14 +170,6 @@ async function handleMultipleLicenseFiles(
     };
   }
 
-  // TO CODE REVIEWER:
-  // We're also checking if all licenses are whitelisted in `resolveLicenseStatus`.
-  // The difference is that this check provides a clearer error message for the user.
-  // In `resolveLicenseStatus`, we only return an "unknown" status for any licenses that aren't whitelisted.
-  // Let me know if you'd like me to remove this additional check.
-  //
-  // requires check version message: ›Not all licenses are whitelisted for package braces in path license-auditor/node_modules/braces. Please review the package
-  // unknown version message: › braces LGPL-3.0, MIT: node_modules/braces
   const allLicensesWhitelisted = allLicenses.every((license) => {
     const licenseStatus = checkLicenseStatus(license, config);
     return licenseStatus === "whitelist";
@@ -190,7 +182,6 @@ async function handleMultipleLicenseFiles(
       verificationStatus: "notAllLicensesWhitelisted",
     };
   }
-  /////
 
   return {
     licenses: allLicenses,
