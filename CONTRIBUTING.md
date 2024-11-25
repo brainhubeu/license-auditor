@@ -20,4 +20,5 @@
 
 ### Testing
 
-- run `test:unit` from the project root
+- To run unit tests, run `test:unit` from the project root
+- To run E2E tests, run `test:e2e` from the project root
