@@ -53,8 +53,6 @@ export function readPackageJson(packagePath: string): PackageJsonResult {
     const validationResult = packageJsonSchema.safeParse(parsedPackageJson);
 
     if (validationResult.error) {
-      console.warn(`Failed validation of package.json at ${packageJsonPath}`);
-      console.warn(validationResult.error.message);
       return { errorMessage: validationResult.error.message, success: false };
     }
 
@@ -67,7 +65,6 @@ export function readPackageJson(packagePath: string): PackageJsonResult {
   }
   // unsure how often such case happens and whether the license verification should be skipped
   const errorMsg = `package.json not found for package at ${packagePath}`;
-  console.warn(errorMsg);
   return { errorMessage: errorMsg, success: false };
 }
 
