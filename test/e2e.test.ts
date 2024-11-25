@@ -72,7 +72,7 @@ describe("license-auditor", () => {
 
 		describe("parse license files", () => {
 			defaultTest(
-				"parse license files: single license file with correct license",
+				"single license file with correct license",
 				async ({ testDirectory }) => {
 					await addPackage(
 						testDirectory,
@@ -95,7 +95,7 @@ describe("license-auditor", () => {
 			);
 
 			defaultTest(
-				"parse license files: one correct license file and one incorrect license file",
+				"one correct license file and one incorrect license file",
 				async ({ testDirectory }) => {
 					await addPackage(
 						testDirectory,
@@ -124,7 +124,7 @@ describe("license-auditor", () => {
 			);
 
 			defaultTest(
-				"parse license files: single license file with incorrect license",
+				"single license file with incorrect license",
 				async ({ testDirectory }) => {
 					await addPackage(
 						testDirectory,
@@ -150,7 +150,7 @@ describe("license-auditor", () => {
 			);
 
 			defaultTest(
-				"parse license files: two license files with correct licenses",
+				"two license files with correct licenses",
 				async ({ testDirectory }) => {
 					await addPackage(
 						testDirectory,
@@ -176,7 +176,7 @@ describe("license-auditor", () => {
 			);
 
 			defaultTest(
-				"parse license files: two license files, one correct and one not whitelisted",
+				"two license files, one correct and one not whitelisted",
 				async ({ testDirectory }) => {
 					await addPackage(
 						testDirectory,
