@@ -3,10 +3,15 @@ import type {
   DetectedLicense,
   LicenseAuditResult,
 } from "@license-auditor/data";
-import { findPackageManager } from "@license-auditor/package-manager-finder";
 import type { LicenseStatus } from "./check-license-status.js";
 import { findDependencies } from "./dependency-finder/find-dependencies.js";
-import { extractPackageName, readPackageJson } from "./file-utils.js";
+import {
+  extractPackageNameFromPath,
+  extractPackageNameWithVersion,
+  readPackageJson,
+} from "./file-utils.js";
+import { filterOverrides } from "./filter-overrides.js";
+import { findPackageManager } from "./find-package-manager.js";
 import { findLicenses } from "./license-finder/find-license.js";
 import { parseVerificationStatusToMessage } from "./parse-verification-status-to-message.js";
 import { resolveLicenseStatus } from "./resolve-license-status.js";
@@ -17,7 +22,7 @@ export async function auditLicenses(
   production?: boolean | undefined,
 ): Promise<LicenseAuditResult> {
   const packageManager = await findPackageManager(cwd);
-  const packagePaths = await findDependencies({
+  const { dependencies: packagePaths, warning } = await findDependencies({
     packageManager,
     projectRoot: cwd,
     production,
@@ -43,23 +48,38 @@ export async function auditLicenses(
     }
   >();
 
-  for (const packagePath of packagePaths) {
-    const packageName = extractPackageName(packagePath);
+  const foundPackages: Pick<DetectedLicense, "packageName" | "packagePath">[] =
+    packagePaths.map((packagePath) => ({
+      packagePath,
+      packageName: extractPackageNameFromPath(packagePath),
+    }));
 
+  const { filteredPackages, notFoundOverrides } = filterOverrides({
+    foundPackages,
+    overrides: config.overrides,
+  });
+
+  for (const {
+    packageName: packageNameFromPath,
+    packagePath,
+  } of filteredPackages) {
+    const packageJsonResult = readPackageJson(packagePath);
+    if (!packageJsonResult.success) {
+      notFound.set(packageNameFromPath, {
+        packagePath,
+        errorMessage: packageJsonResult.errorMessage,
+      });
+      continue;
+    }
+
+    const packageName =
+      extractPackageNameWithVersion(packageJsonResult.packageJson) ??
+      packageNameFromPath;
     if (
       resultMap.has(packageName) ||
       notFound.has(packageName) ||
       needsUserVerification.has(packageName)
     ) {
-      continue;
-    }
-
-    const packageJsonResult = readPackageJson(packagePath);
-    if (!packageJsonResult.success) {
-      notFound.set(packageName, {
-        packagePath,
-        errorMessage: packageJsonResult.errorMessage,
-      });
       continue;
     }
 
@@ -107,6 +127,10 @@ export async function auditLicenses(
   return {
     groupedByStatus,
     notFound,
+    overrides: {
+      notFoundOverrides,
+    },
     needsUserVerification,
+    warning,
   };
 }

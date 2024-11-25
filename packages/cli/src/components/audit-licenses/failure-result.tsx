@@ -9,7 +9,10 @@ import {
 
 export default function FailureResult({
   groupedByStatus,
-}: Omit<LicenseAuditResult, "notFound" | "needsUserVerification">) {
+}: Omit<
+  LicenseAuditResult,
+  "notFound" | "needsUserVerification" | "overrides"
+>) {
   const hasWhitelisted = groupedByStatus.whitelist.length > 0;
 
   return (
