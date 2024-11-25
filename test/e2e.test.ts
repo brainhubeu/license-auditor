@@ -1,59 +1,69 @@
-import * as fs from "node:fs/promises";
-import * as path from "node:path";
-import { describe, expect, test } from "vitest";
-import type { TestContext } from "./test-project-setup";
+import { describe, expect } from "vitest";
 import { addPackage } from "./utils/add-package";
-import { execAsync } from "./utils/exec-async";
 import { getCliPath } from "./utils/get-cli-path";
 import { runCliCommand } from "./utils/run-cli-command";
 
+import { defaultTest, legacyPeerDepsTest } from "./fixtures";
+
 describe("license-auditor", () => {
   describe("cli", () => {
-    test("audits compliant packages correctly", async (context: TestContext) => {
+    defaultTest(
+      "audits compliant packages correctly",
+      async ({ testDirectory }) => {
+        const { output, errorCode } = await runCliCommand({
+          command: "npx",
+          args: [getCliPath()],
+          cwd: testDirectory,
+        });
+
+        expect(errorCode).toBe(0);
+        expect(output).toContain("246 licenses are compliant");
+      },
+    );
+
+    defaultTest(
+      "detects non-compliant packages correctly",
+      async ({ testDirectory }) => {
+        await addPackage(
+          testDirectory,
+          "node_modules/testing-blueoak-package",
+          {
+            version: "1.0.0",
+            license: "BlueOak-1.0.0",
+          },
+        );
+
+        const { output, errorCode } = await runCliCommand({
+          command: "npx",
+          args: [getCliPath()],
+          cwd: testDirectory,
+        });
+
+        expect(errorCode).toBe(0);
+        expect(output).toContain("246 licenses are compliant");
+        expect(output).toContain("2 licenses are blacklisted");
+      },
+    );
+
+    defaultTest(
+      "audits compliant production-only dependencies",
+      async ({ testDirectory }) => {
+        const { output, errorCode } = await runCliCommand({
+          command: "npx",
+          args: [getCliPath(), "--production"],
+          cwd: testDirectory,
+        });
+
+        expect(errorCode).toBe(0);
+        expect(output).toContain("77 licenses are compliant");
+      },
+    );
+
+    legacyPeerDepsTest("legacy peer deps", async ({ testDirectory }) => {
       const { output, errorCode } = await runCliCommand({
         command: "npx",
         args: [getCliPath()],
-        cwd: context.testDirectory,
-      });
-
-      expect(errorCode).toBe(0);
-      expect(output).toContain("246 licenses are compliant");
-    });
-
-    test("detects non-compliant packages correctly", async (context: TestContext) => {
-      await addPackage(
-        context.testDirectory,
-        "node_modules/testing-blueoak-package",
-        {
-          version: "1.0.0",
-          license: "BlueOak-1.0.0",
-        },
-      );
-
-      const { output, errorCode } = await runCliCommand({
-        command: "npx",
-        args: [getCliPath()],
-        cwd: context.testDirectory,
-      });
-
-      expect(errorCode).toBe(0);
-      expect(output).toContain("246 licenses are compliant");
-      expect(output).toContain("2 licenses are blacklisted");
-    });
-
-    test("legacy peer deps", async (context: TestContext) => {
-      await fs.rm(path.resolve(context.testDirectory, "node_modules"), {
-        recursive: true,
-        force: true,
-      });
-      await execAsync("npm i --legacy-peer-deps", {
-        cwd: path.resolve(__dirname, "testProject"),
-      });
-
-      const { output, errorCode } = await runCliCommand({
-        command: "npx",
-        args: [getCliPath()],
-        cwd: context.testDirectory,
+        cwd: testDirectory,
       });
 
       expect(errorCode).toBe(0);
