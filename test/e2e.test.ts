@@ -16,6 +16,7 @@ describe("license-auditor", () => {
           cwd: testDirectory,
         });
 
+        console.log("first output", output);
         expect(errorCode).toBe(0);
         expect(output).toContain("246 licenses are compliant");
       },
