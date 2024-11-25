@@ -35,6 +35,7 @@ The results will be printed in the console.
 - `--filter [filter]` - Filter verbose output by license status - whitelist, blacklist, or unknown
 - `--json [json]` - Save the result to a JSON file. If no path is not provided, a file named license-auditor.results.json will be created in the current directory.
 - `--production` - Skip the audit for licenses in development dependencies (default: false)
+- `--default-config` - Run audit with default whitelist/blacklist configuration
 
 > [!IMPORTANT]
 > Verify dev dependencies if they generate code, embed assets, or otherwise impact the final product, as their licenses might impose restrictions. Always prioritize reviewing both when in doubt or if your project may be redistributed or commercialized.
