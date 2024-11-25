@@ -22,6 +22,9 @@ export const options = z.object({
   production: z
     .boolean()
     .describe(`Don't check licenses in development dependencies`),
+  defaultConfig: z // pacsalCase options are converted to kebab-case, so the flag is actually --default-config
+    .boolean()
+    .describe("Run audit with default whitelist/blacklist configuration"),
 });
 
 export type Options = {
@@ -29,7 +32,9 @@ export type Options = {
 };
 
 export default function Index({ options }: Options) {
-  const { configFile, error } = useReadConfiguration();
+  const { configFile, error } = useReadConfiguration({
+    useDefaults: options.defaultConfig,
+  });
   const validateJsonResult = useValidateJsonPath(options.json);
 
   if (error) {
