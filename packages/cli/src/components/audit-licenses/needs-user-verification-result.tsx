@@ -5,7 +5,10 @@ import { describeLicenseCount } from "../../utils/describe-license-count.js";
 
 export default function NeedsUserVerificationResult({
   needsUserVerification,
-}: Omit<LicenseAuditResult, "notFound" | "groupedByStatus" | "overrides">) {
+  verbose,
+}: Omit<LicenseAuditResult, "notFound" | "groupedByStatus" | "overrides"> & {
+  verbose: boolean;
+}) {
   const describePackagesCount = describeLicenseCount(
     needsUserVerification.size,
     "package is",
@@ -16,14 +19,18 @@ export default function NeedsUserVerificationResult({
     <Box flexDirection="column">
       <Box>
         <Text color="yellow">{figures.warning}</Text>
-        <Text>{describePackagesCount} requires manual checking:</Text>
+        <Text>{describePackagesCount} requiring manual checking:</Text>
       </Box>
       <Box flexDirection="column" marginLeft={2}>
         {Array.from(needsUserVerification).map(
           ([packageName, { verificationMessage }]) => (
-            <Box key={packageName}>
+            <Box key={packageName} marginBottom={verbose ? 1 : 0}>
               <Text color="gray">{figures.pointerSmall}</Text>
-              <Text>{verificationMessage}</Text>
+              {verbose ? (
+                <Text> {verificationMessage} </Text>
+              ) : (
+                <Text> {packageName} </Text>
+              )}
             </Box>
           ),
         )}

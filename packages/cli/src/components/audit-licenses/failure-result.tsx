@@ -9,10 +9,13 @@ import {
 
 export default function FailureResult({
   groupedByStatus,
+  verbose,
 }: Omit<
   LicenseAuditResult,
   "notFound" | "needsUserVerification" | "overrides"
->) {
+> & {
+  verbose: boolean;
+}) {
   const hasWhitelisted = groupedByStatus.whitelist.length > 0;
 
   return (
@@ -28,7 +31,10 @@ export default function FailureResult({
       <Box>
         <BlacklistedMessage count={groupedByStatus.blacklist.length} />
       </Box>
-      <LicenseList detectedLicenses={groupedByStatus.blacklist} />
+      <LicenseList
+        detectedLicenses={groupedByStatus.blacklist}
+        verbose={verbose}
+      />
     </Box>
   );
 }

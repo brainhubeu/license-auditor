@@ -14,7 +14,10 @@ import NotFoundResult from "./not-found-result.js";
 import SuccessResult from "./success-result.js";
 import VerboseView from "./verbose-view.js";
 
-function ResultForStatus({ result }: { result: LicenseAuditResult }) {
+function ResultForStatus({
+  result,
+  verbose,
+}: { result: LicenseAuditResult; verbose: boolean }) {
   const hasWhitelisted = result.groupedByStatus.whitelist.length > 0;
   const hasBlacklisted = result.groupedByStatus.blacklist.length > 0;
   const hasUnknown = result.groupedByStatus.unknown.length > 0;
@@ -28,14 +31,22 @@ function ResultForStatus({ result }: { result: LicenseAuditResult }) {
       );
 
     case hasBlacklisted && !hasUnknown:
-      return <FailureResult groupedByStatus={result.groupedByStatus} />;
+      return (
+        <FailureResult
+          groupedByStatus={result.groupedByStatus}
+          verbose={verbose}
+        />
+      );
 
     case !(hasWhitelisted || hasBlacklisted || hasUnknown):
       return <NoLicensesFoundResult />;
 
     default:
       return (
-        <IncludingUnknownResult groupedByStatus={result.groupedByStatus} />
+        <IncludingUnknownResult
+          groupedByStatus={result.groupedByStatus}
+          verbose={verbose}
+        />
       );
   }
 }
@@ -61,8 +72,11 @@ export default function AuditResult({
   return (
     <Box flexDirection="column">
       {verbose && <VerboseView result={result} filter={filter} />}
-      <ResultForStatus result={result} />
-      {hasNotFound && <NotFoundResult notFound={result.notFound} />}
+      <ResultForStatus result={result} verbose={verbose} />
+      {hasNotFound && (
+        <NotFoundResult notFound={result.notFound} verbose={verbose} />
+      )}
+
       {warning && <ErrorBox color="yellow">{warning}</ErrorBox>}
       {verbose && (
         <OverrideResult
@@ -73,6 +87,7 @@ export default function AuditResult({
       {hasNeedsUserVerification && (
         <NeedsUserVerificationResult
           needsUserVerification={result.needsUserVerification}
+          verbose={verbose}
         />
       )}
     </Box>

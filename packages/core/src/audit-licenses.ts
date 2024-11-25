@@ -86,9 +86,13 @@ export async function auditLicenses(
     const licensesWithPath = await findLicenses(
       packageJsonResult.packageJson,
       packagePath,
+      config,
     );
 
-    if (!licensesWithPath.licensePath) {
+    if (
+      !licensesWithPath.licensePath ||
+      licensesWithPath.verificationStatus === "licenseNotFound"
+    ) {
       notFound.set(packageName, {
         packagePath,
         errorMessage: `License not found in ${packagePath}`,

@@ -4,11 +4,12 @@ import type {
   LicenseAuditResult,
   LicenseStatus,
 } from "@license-auditor/data";
-import { useApp } from "ink";
+import { Box, useApp } from "ink";
 import { useEffect, useState } from "react";
 import { envSchema } from "../../env.js";
 import { saveResultToJson } from "../../utils/save-result-to-json.js";
 import { SpinnerWithLabel } from "../spinner-with-label.js";
+import AdditionalInfo from "./additional-info.js";
 import AuditResult from "./audit-result.js";
 import ErrorBox from "./error-box.js";
 
@@ -83,12 +84,15 @@ export default function AuditLicenses({
   }
 
   return (
-    <AuditResult
-      result={result}
-      verbose={verbose}
-      filter={filter}
-      warning={warning}
-      overrides={config.overrides}
-    />
+    <Box flexDirection="column">
+      <AuditResult
+        result={result}
+        verbose={verbose}
+        filter={filter}
+        warning={warning}
+        overrides={config.overrides}
+      />
+      <AdditionalInfo verbose={verbose} />
+    </Box>
   );
 }
