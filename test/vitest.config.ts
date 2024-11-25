@@ -6,6 +6,8 @@ export default defineConfig({
   test: {
     include: ["./**/*.{test,spec}.?(c|m)[jt]s?(x)"],
     setupFiles: ["./test-project-setup.ts"],
-    fileParallelism: false,
+    sequence: {
+      concurrent: true,
+    },
   },
 });
