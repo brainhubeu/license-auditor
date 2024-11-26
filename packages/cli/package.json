@@ -20,7 +20,8 @@
     "cli": "node dist/cli.js",
     "cli:init": "node dist/cli.js init",
     "render-mock": "tsx --watch src/mock-render.tsx",
-    "typecheck": "tsc --noEmit true"
+    "typecheck": "tsc --noEmit true",
+    "test:unit": "vitest run"
   },
   "files": ["dist"],
   "dependencies": {

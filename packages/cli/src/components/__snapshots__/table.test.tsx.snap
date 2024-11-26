@@ -1,0 +1,33 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Table Component with mocked terminal dimensions > renders the table with insufficient terminal width 1`] = `
+"┌─────────┬────────────────────────────────┬─────┐
+│ Name    │ Description                    │ Age │
+├─────────┼────────────────────────────────┼─────┤
+│ Alice   │ Develops and maintains         │ 20  │
+│         │ software, writes code, tests   │     │
+│         │ new features, and fixes bugs.  │     │
+│ Bob     │ Creates robust applications by │ 30  │
+│         │ programming, testing, and      │     │
+│         │ deploying software solutions.  │     │
+│ Charlie │ Responsible for designing and  │ 27  │
+│         │ implementing user interfaces,  │     │
+│         │ ensuring a seamless user       │     │
+│         │ experience.                    │     │
+└─────────┴────────────────────────────────┴─────┘
+"
+`;
+
+exports[`Table Component with mocked terminal dimensions > renders the table with sufficient terminal width 1`] = `
+"┌─────────┬──────────────────────────────────────────────────────────────────────────────────────────────────┬─────┐
+│ Name    │ Description                                                                                      │ Age │
+├─────────┼──────────────────────────────────────────────────────────────────────────────────────────────────┼─────┤
+│ Alice   │ Develops and maintains software, writes code, tests new features, and fixes bugs.                │ 20  │
+│ Bob     │ Creates robust applications by programming, testing, and deploying software solutions.           │ 30  │
+│ Charlie │ Responsible for designing and implementing user interfaces, ensuring a seamless user experience. │ 27  │
+└─────────┴──────────────────────────────────────────────────────────────────────────────────────────────────┴─────┘
+
+
+
+"
+`;
