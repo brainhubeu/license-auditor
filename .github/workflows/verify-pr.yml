@@ -1,0 +1,57 @@
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+jobs:
+  format-and-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Biome
+        run: npx biome ci .
+
+      - name: Run typecheck
+        run: npm run typecheck
+
+  test:
+    runs-on: ubuntu-latest
+    needs: format-and-lint
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Run tests and generate coverage
+        run: npm run test:coverage
+
+      - name: Run e2e tests
+        run: npm run test:e2e
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }} # Required for private repos
+          # todo: use lcov-result-merge to combine more results
+          files: ./packages/core/coverage/lcov.info
+          flags: unit
+          fail_ci_if_error: true

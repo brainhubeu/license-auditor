@@ -1,0 +1,41 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "ui": "tui",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": []
+    },
+    "typecheck": {
+      "dependsOn": ["^build"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "cli": {
+      "cache": false,
+      "env": ["ROOT_DIR"],
+      "interactive": true
+    },
+    "cli:init": {
+      "cache": false,
+      "env": ["ROOT_DIR"],
+      "interactive": true
+    },
+    "dev:cli": {
+      "cache": false,
+      "env": ["ROOT_DIR"],
+      "interactive": true
+    },
+    "dev:cli:init": {
+      "cache": false,
+      "env": ["ROOT_DIR"],
+      "interactive": true
+    },
+    "test:unit": {},
+    "test:coverage": {},
+    "test:e2e": {}
+  }
+}
