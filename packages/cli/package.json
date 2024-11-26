@@ -45,6 +45,6 @@
     "typescript": "5.6.2"
   },
   "bin": {
-    "license-auditor-cli": "dist/cli.js"
+    "lac": "dist/cli.js"
   }
 }
