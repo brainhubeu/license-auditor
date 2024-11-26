@@ -8,10 +8,21 @@ import {
 } from "@license-auditor/data";
 import { checkLicenseStatus } from "../check-license-status.js";
 import type { LicensesWithPath } from "./licenses-with-path.js";
+import { detectLicenses } from './detect-from-license-content.js';
 
 export function retrieveLicenseFromLicenseFileContent(content: string): {
   licenses: License[];
 } {
+  const detectedLicenses = detectLicenses(content);
+  const detectedLicense = detectedLicenses[0];
+  if (detectedLicense && (detectedLicense.similarity ?? 0) > 0.75) {
+    const licenseArr = [...licenseMap]
+      .filter(([key]) => key === detectedLicense.licenseId)
+      .map((result) => LicenseSchema.parse(result[1]));
+    return {
+      licenses: licenseArr,
+    }
+  }
   const contentTokens = content.split(/[ ,]+/);
 
   const licenseArr = [...licenseMap]
