@@ -82,7 +82,7 @@ export function Table<T extends Record<string, string>>({
       );
 
       return Array.from({ length: maxLines }, (_, lineIndex) => (
-        // biome-ignore lint/suspicious/noArrayIndexKey: statically rendered component 
+        // biome-ignore lint/suspicious/noArrayIndexKey: statically rendered component
         <Box key={`row-${rowIndex}-line-${lineIndex}`} flexDirection="row">
           <Text>│</Text>
           {columnsWithWidth.map((columnWithWidth, colIndex) => {
