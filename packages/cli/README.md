@@ -13,18 +13,18 @@
 To start using License Auditor, in the root of your project run
 
 ```
-npx @brainhubeu/lca init
+npx @brainhubeu/lac init
 ```
 
 Follow the configuration wizard and select the template which suits your project.
 
-> [!CAUTION]
-> The default configuration should not be in any way interpreted as legal advice.
+> **CAUTION**
+> The default configuration should not be in any way interpreted as legal advice
 
 Next, to conduct license audit run
 
 ```
-npx @brainhubeu/lca
+npx @brainhubeu/lac
 ```
 
 The results will be printed in the console.
@@ -37,7 +37,7 @@ The results will be printed in the console.
 - `--production` - Skip the audit for licenses in development dependencies (default: false)
 - `--default-config` - Run audit with default whitelist/blacklist configuration
 
-> [!IMPORTANT]
+> **IMPORTANT**
 > Verify dev dependencies if they generate code, embed assets, or otherwise impact the final product, as their licenses might impose restrictions. Always prioritize reviewing both when in doubt or if your project may be redistributed or commercialized.
 
 ## Configuration file structure
