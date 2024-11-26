@@ -1,6 +1,5 @@
 import type { Column } from "../components/table.js";
 
-
 const getContentWidth = <T extends Record<string, string>>(
   column: Column<T>,
   data: T[],
@@ -20,7 +19,7 @@ const calculateInitialColumnWidth = <T extends Record<string, string>>(
 ) => Math.max(getContentWidth(column, data), getTitleWidth(column));
 
 const isMaximallyShrunk = <T extends Record<string, string>>(
-  column: Column<T> & { width: number; titleWidth: number }
+  column: Column<T> & { width: number; titleWidth: number },
 ) => column.width === column.titleWidth;
 
 const allColumnsShrinked = <T extends Record<string, string>>(
@@ -28,7 +27,7 @@ const allColumnsShrinked = <T extends Record<string, string>>(
     width: number;
     contentWidth: number;
     titleWidth: number;
-  })[]
+  })[],
 ) => {
   return columns.every(isMaximallyShrunk);
 };
@@ -38,7 +37,7 @@ const findWidestColumnUnshrinked = <T extends Record<string, string>>(
     width: number;
     contentWidth: number;
     titleWidth: number;
-  })[]
+  })[],
 ) => {
   const unshrinkedColumns = columns
     .map((column, index) => ({
@@ -54,7 +53,7 @@ const findWidestColumnUnshrinked = <T extends Record<string, string>>(
   return unshrinkedColumns.reduce(
     (acc, { column, index }) =>
       column.width > (acc.column?.width ?? 0) ? { column, index } : acc,
-    { column: unshrinkedColumns[0].column, index: 0 }
+    { column: unshrinkedColumns[0].column, index: 0 },
   );
 };
 
@@ -68,7 +67,7 @@ const shrinkColumns = <T extends Record<string, string>>(
 ) => {
   const totalColumnWidth = columns.reduce(
     (acc, column) => acc + column.width,
-    0
+    0,
   );
 
   if (totalColumnWidth <= availableSpace || allColumnsShrinked(columns)) {
@@ -90,7 +89,7 @@ const shrinkColumns = <T extends Record<string, string>>(
       return remainingSpace;
     }
     return widestColumn.titleWidth;
-  })()
+  })();
 
   return shrinkColumns(
     [
@@ -101,7 +100,7 @@ const shrinkColumns = <T extends Record<string, string>>(
       },
       ...columns.slice(index + 1),
     ],
-    availableSpace
+    availableSpace,
   );
 };
 
@@ -110,18 +109,15 @@ export const calculateColumnWidths = <T extends Record<string, string>>(
   data: T[],
   availableSpace: number,
 ): (Column<T> & { width: number })[] => {
-
-
   const initialColumnWidths = columns.map((column) => ({
     ...column,
     contentWidth: getContentWidth(column, data),
     titleWidth: getTitleWidth(column),
-    width: calculateInitialColumnWidth(column, data)
+    width: calculateInitialColumnWidth(column, data),
   }));
 
   return shrinkColumns(initialColumnWidths, availableSpace);
 };
-
 
 export function splitIntoLines(text: string, width: number): string[] {
   const lines: string[] = [];
@@ -134,7 +130,7 @@ export function splitIntoLines(text: string, width: number): string[] {
     }
 
     const endIndex = startIndex + width;
-    const lastSpace = text.lastIndexOf(' ', endIndex);
+    const lastSpace = text.lastIndexOf(" ", endIndex);
 
     if (lastSpace > startIndex) {
       lines.push(text.substring(startIndex, lastSpace));
@@ -147,5 +143,3 @@ export function splitIntoLines(text: string, width: number): string[] {
 
   return lines;
 }
-
-

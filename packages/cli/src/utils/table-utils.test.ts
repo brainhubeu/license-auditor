@@ -1,6 +1,6 @@
-import { describe, it, expect } from "vitest";
-import { calculateColumnWidths, splitIntoLines } from "./table-utils.js";
+import { describe, expect, it } from "vitest";
 import type { Column } from "../components/table.js";
+import { calculateColumnWidths, splitIntoLines } from "./table-utils.js";
 
 describe("table-utils", () => {
   describe("calculateColumnWidths", () => {
@@ -20,11 +20,7 @@ describe("table-utils", () => {
         { ...columns[1], width: 3, contentWidth: 2, titleWidth: 3 },
       ];
 
-      const result = calculateColumnWidths(
-        columns,
-        data,
-        availableSpace,
-      );
+      const result = calculateColumnWidths(columns, data, availableSpace);
 
       expect(result).toEqual(expected);
     });
@@ -42,11 +38,7 @@ describe("table-utils", () => {
         { ...columns[1], width: 3, contentWidth: 0, titleWidth: 3 },
       ];
 
-      const result = calculateColumnWidths(
-        columns,
-        data,
-        availableSpace,
-      );
+      const result = calculateColumnWidths(columns, data, availableSpace);
 
       expect(result).toEqual(expected);
     });
@@ -64,11 +56,7 @@ describe("table-utils", () => {
       ];
       const availableSpace = 20;
 
-      const result = calculateColumnWidths(
-        columns,
-        data,
-        availableSpace,
-      );
+      const result = calculateColumnWidths(columns, data, availableSpace);
 
       const totalWidth = result.reduce((acc, column) => acc + column.width, 0);
       expect(totalWidth).toBeLessThanOrEqual(availableSpace);

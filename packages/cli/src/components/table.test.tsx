@@ -1,7 +1,7 @@
-import { render } from "ink-testing-library";
-import { describe, it, vi, expect } from "vitest";
-import { Table, type Column } from "./table.js";
 import { Text } from "ink";
+import { render } from "ink-testing-library";
+import { describe, expect, it, vi } from "vitest";
+import { type Column, Table } from "./table.js";
 
 type RowData = {
   name: string;
@@ -20,7 +20,11 @@ vi.mock("../hooks/use-terminal-dimensions.js", async () => {
 describe("Table Component with mocked terminal dimensions", () => {
   const columns: Column<RowData>[] = [
     { title: "Name", accessor: "name" },
-    { title: "Description", accessor: "description", cell: (content) => <Text color="red">{content}</Text> },
+    {
+      title: "Description",
+      accessor: "description",
+      cell: (content) => <Text color="red">{content}</Text>,
+    },
     { title: "Age", accessor: "age" },
   ];
 
@@ -70,5 +74,4 @@ describe("Table Component with mocked terminal dimensions", () => {
 
     expect(output).toMatchSnapshot();
   });
-
 });

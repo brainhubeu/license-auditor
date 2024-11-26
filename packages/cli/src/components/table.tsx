@@ -1,10 +1,7 @@
 import { Box, Static, Text } from "ink";
 import { type ReactNode, useMemo } from "react";
 import { useTerminalDimensions } from "../hooks/use-terminal-dimensions.js";
-import {
-  calculateColumnWidths,
-  splitIntoLines,
-} from "../utils/table-utils.js";
+import { calculateColumnWidths, splitIntoLines } from "../utils/table-utils.js";
 
 export interface Column<T extends Record<string, string>> {
   title: string;
@@ -27,13 +24,13 @@ export function Table<T extends Record<string, string>>({
 
   const columnsWithWidth = useMemo(
     () => calculateColumnWidths<T>(columns, data, availableSpace),
-    [columns, data, availableSpace]
+    [columns, data, availableSpace],
   );
 
   const createHorizontalLine = (
     leftChar: string,
     midChar: string,
-    rightChar: string
+    rightChar: string,
   ) => {
     let line = leftChar;
     for (let i = 0; i < columnsWithWidth.length; i++) {
@@ -81,10 +78,11 @@ export function Table<T extends Record<string, string>>({
 
       const maxLines = rowLines.reduce(
         (max, lines) => Math.max(max, lines.length),
-        0
+        0,
       );
 
       return Array.from({ length: maxLines }, (_, lineIndex) => (
+        // biome-ignore lint/suspicious/noArrayIndexKey: statically rendered component 
         <Box key={`row-${rowIndex}-line-${lineIndex}`} flexDirection="row">
           <Text>│</Text>
           {columnsWithWidth.map((columnWithWidth, colIndex) => {
@@ -97,7 +95,9 @@ export function Table<T extends Record<string, string>>({
               <Text>{lineText}</Text>
             );
 
-            const padding = " ".repeat(columnWithWidth.width - lineText.length + 1);
+            const padding = " ".repeat(
+              columnWithWidth.width - lineText.length + 1,
+            );
 
             return (
               <Text
