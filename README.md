@@ -13,7 +13,7 @@
 To start using License Auditor, in the root of your project run
 
 ```
-npx @brainhubeu/lca init
+npx @brainhubeu/lac init
 ```
 
 Follow the configuration wizard and select the template which suits your project.
@@ -24,7 +24,7 @@ Follow the configuration wizard and select the template which suits your project
 Next, to conduct license audit run
 
 ```
-npx @brainhubeu/lca
+npx @brainhubeu/lac
 ```
 
 The results will be printed in the console.
