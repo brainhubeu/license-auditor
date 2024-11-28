@@ -34,6 +34,11 @@ describe("packageJsonSchema", () => {
           .success,
       ).toBe(true);
     });
+    test("when licenses is a string", () => {
+      expect(
+        packageJsonSchema.safeParse({ name: "valid", licenses: "MIT" }).success,
+      ).toBe(true);
+    });
 
     test("when licenses are array of object", () => {
       expect(

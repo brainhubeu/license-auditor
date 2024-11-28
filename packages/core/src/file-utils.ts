@@ -18,6 +18,7 @@ const licenseFieldSchema = z.union([z.string(), packageLicenseObjectSchema]);
 const licensesFieldSchema = z.union([
   z.array(z.string()),
   z.array(packageLicenseObjectSchema),
+  z.string(),
 ]);
 
 export const packageJsonSchema = z.union([
