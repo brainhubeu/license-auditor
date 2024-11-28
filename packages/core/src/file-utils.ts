@@ -9,7 +9,7 @@ type PackageJsonResult =
 const packageLicenseObjectSchema = z
   .object({
     type: z.string(),
-    url: z.string(),
+    url: z.string().optional(),
   })
   .transform((license) => license.type);
 
