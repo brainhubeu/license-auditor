@@ -11,6 +11,7 @@ import {
   readPackageJson,
 } from "./file-utils.js";
 import { filterOverrides } from "./filter-overrides.js";
+import { filterWithFilterRegex } from "./filter-with-filter-regex.js";
 import { findPackageManager } from "./find-package-manager.js";
 import { findLicenses } from "./license-finder/find-license.js";
 import { parseVerificationStatusToMessage } from "./parse-verification-status-to-message.js";
@@ -19,6 +20,7 @@ import { resolveLicenseStatus } from "./resolve-license-status.js";
 export async function auditLicenses(
   cwd: string,
   config: ConfigType,
+  filterRegex?: string,
   production?: boolean | undefined,
 ): Promise<LicenseAuditResult> {
   const packageManager = await findPackageManager(cwd);
@@ -54,8 +56,13 @@ export async function auditLicenses(
       packageName: extractPackageNameFromPath(packagePath),
     }));
 
-  const { filteredPackages, notFoundOverrides } = filterOverrides({
+  const filteredByRegex = filterWithFilterRegex({
     foundPackages,
+    filterRegex,
+  });
+
+  const { filteredPackages, notFoundOverrides } = filterOverrides({
+    foundPackages: filteredByRegex,
     overrides: config.overrides,
   });
 
