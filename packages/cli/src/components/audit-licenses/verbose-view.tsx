@@ -3,11 +3,13 @@ import { Text } from "ink";
 import { useMemo } from "react";
 import { type Column, Table } from "../table.js";
 
-function getColorForStatus(status: LicenseStatus) {
+function getColorForStatus(status: LicenseStatus | "not found") {
   switch (status) {
     case "whitelist":
       return "green";
     case "blacklist":
+      return "red";
+    case "not found":
       return "red";
     default:
       return "yellow";
@@ -20,7 +22,7 @@ interface VerboseViewProps {
 }
 
 interface VerboseViewData extends Record<string, string> {
-  status: LicenseStatus;
+  status: LicenseStatus | "not found";
   packageName: string;
   license: string;
   deprecated: string;
@@ -54,15 +56,7 @@ export default function VerboseView({ result, filter }: VerboseViewProps) {
       ...result.groupedByStatus.whitelist,
       ...result.groupedByStatus.blacklist,
       ...result.groupedByStatus.unknown,
-    ];
-
-    if (filter) {
-      combinedResult = combinedResult.filter(
-        (license) => license.status === filter,
-      );
-    }
-
-    return combinedResult.map((detectedLicense) => ({
+    ].map((detectedLicense) => ({
       status: detectedLicense.status,
       packageName: detectedLicense.packageName,
       license: detectedLicense.licenseExpression
@@ -76,6 +70,26 @@ export default function VerboseView({ result, filter }: VerboseViewProps) {
         ? "Yes"
         : "No",
     }));
+
+    const notFoundEntries = Array.from(result.notFound.entries()).map(
+      ([packageName]) => ({
+        status: "not found" as const,
+        packageName,
+        license: "-",
+        deprecated: "-",
+      }),
+    );
+
+    // @ts-ignore
+    combinedResult = [...combinedResult, ...notFoundEntries];
+
+    if (filter) {
+      combinedResult = combinedResult.filter(
+        (license) => license.status === filter,
+      );
+    }
+
+    return combinedResult;
   }, [result, filter]);
 
   return <Table<VerboseViewData> columns={columns} data={data} />;
