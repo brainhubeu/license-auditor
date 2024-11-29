@@ -30,9 +30,10 @@ const columns: Column<VerboseViewData>[] = [
   {
     title: "status",
     accessor: "status",
-    cell: (rowData: VerboseViewData) => (
-      <Text color={getColorForStatus(rowData.status)}>{rowData.status}</Text>
-    ),
+    cell: (rowData: VerboseViewData) => {
+      const displayStatus = rowData.status === "unknown" ? "unknown  " : rowData.status;
+      return <Text color={getColorForStatus(rowData.status)}>{displayStatus}</Text>;
+    },
   },
   {
     title: "package name",

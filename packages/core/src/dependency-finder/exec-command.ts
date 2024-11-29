@@ -10,7 +10,7 @@ export async function execCommand(
     exec(command, { cwd }, (error, stdout, stderr) => {
       if (stderr) {
         reject(
-          new ExecCommandException(`Command "${command}" returned error.`, {
+          new ExecCommandException(`Command "${command}" returned an error.`, {
             originalError: error,
             stdout,
             stderr,
