@@ -7,7 +7,7 @@ export function parseLicenseLogicalExpression(
     try {
       return parse(licenseExpression);
     } catch (error) {
-      if (!(error instanceof Error && error.message.startsWith("Unexpected `"))) {
+      if (!(error instanceof Error && error.message.startsWith("Unexpected"))) {
         console.error(error);
       }
       return undefined;
