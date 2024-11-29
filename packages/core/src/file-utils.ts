@@ -8,7 +8,7 @@ type PackageJsonResult =
 
 const packageLicenseObjectSchema = z.object({
   type: z.string(),
-  url: z.string(),
+  url: z.string().optional(),
 });
 
 const licenseFieldSchema = z.union([z.string(), packageLicenseObjectSchema]);
@@ -16,6 +16,7 @@ const licenseFieldSchema = z.union([z.string(), packageLicenseObjectSchema]);
 const licensesFieldSchema = z.union([
   z.array(z.string()),
   z.array(packageLicenseObjectSchema),
+  z.string(),
 ]);
 
 export const packageJsonSchema = z.union([

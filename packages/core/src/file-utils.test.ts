@@ -20,10 +20,23 @@ describe("packageJsonSchema", () => {
         }).success,
       ).toBe(true);
     });
+    test("when license is object and url is missing", () => {
+      expect(
+        packageJsonSchema.safeParse({
+          name: "valid",
+          license: { type: "MIT" },
+        }).success,
+      ).toBe(true);
+    });
     test("when licenses are array of string", () => {
       expect(
         packageJsonSchema.safeParse({ name: "valid", licenses: ["MIT"] })
           .success,
+      ).toBe(true);
+    });
+    test("when licenses is a string", () => {
+      expect(
+        packageJsonSchema.safeParse({ name: "valid", licenses: "MIT" }).success,
       ).toBe(true);
     });
 
