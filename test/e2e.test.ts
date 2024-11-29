@@ -79,6 +79,7 @@ describe("license-auditor", () => {
             "node_modules/testing-license-file",
             {
               version: "1.0.0",
+              license: "",
             },
             [{ name: "LICENSE-MIT", content: "MIT" }],
           );
@@ -102,6 +103,7 @@ describe("license-auditor", () => {
             "node_modules/testing-license-file",
             {
               version: "1.0.0",
+              license: "",
             },
             [
               { name: "LICENSE-MIT", content: "MIT" },
@@ -131,6 +133,7 @@ describe("license-auditor", () => {
             "node_modules/testing-license-file",
             {
               version: "1.0.0",
+              license: "",
             },
             [{ name: "LICENSE-WRONG", content: "WRONG" }],
           );
@@ -157,6 +160,7 @@ describe("license-auditor", () => {
             "node_modules/testing-license-file",
             {
               version: "1.0.0",
+              license: "",
             },
             [
               { name: "LICENSE-MIT", content: "MIT" },
@@ -183,6 +187,7 @@ describe("license-auditor", () => {
             "node_modules/testing-license-file",
             {
               version: "1.0.0",
+              license: "",
             },
             [
               { name: "LICENSE-MIT", content: "MIT" },
