@@ -6,12 +6,10 @@ type PackageJsonResult =
   | { success: true; packageJson: PackageJsonType }
   | { success: false; errorMessage: string };
 
-const packageLicenseObjectSchema = z
-  .object({
-    type: z.string(),
-    url: z.string().optional(),
-  })
-  .transform((license) => license.type);
+const packageLicenseObjectSchema = z.object({
+  type: z.string(),
+  url: z.string().optional(),
+});
 
 const licenseFieldSchema = z.union([z.string(), packageLicenseObjectSchema]);
 
