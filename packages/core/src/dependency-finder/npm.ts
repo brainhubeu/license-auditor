@@ -1,9 +1,5 @@
-import fs from "node:fs";
 import type { DependenciesResult } from "@license-auditor/data";
-import {
-  ExecCommandException,
-  UnsupportedPackageManagerException,
-} from "../exceptions/index.js";
+import { ExecCommandException } from "../exceptions/index.js";
 import { execCommand } from "./exec-command.js";
 
 export const findNpmDepsCommand = "npm ls --all -p";
@@ -15,12 +11,6 @@ export async function findNpmDependencies(
 ): Promise<DependenciesResult> {
   const { output, warning } = await (async () => {
     try {
-      if (fs.existsSync(`${projectRoot}/.pnp.cjs`)) {
-        throw new UnsupportedPackageManagerException(
-          `Yarn Plung'n'Play is currently not supported.`,
-        );
-      }
-
       return {
         output: await execCommand(
           production ? findNpmProdDepsCommand : findNpmDepsCommand,
