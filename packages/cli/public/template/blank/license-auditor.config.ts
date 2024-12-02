@@ -1,6 +1,4 @@
-import type { ConfigType } from "@brainhubeu/lac";
-
-const config: ConfigType = {
+const config = {
   blacklist: [],
   whitelist: [],
   overrides: {},

@@ -1,3 +1,7 @@
+/**
+ * @type {import('@brainhubeu/lac').ConfigType}
+ */
+
 const config = {
   blacklist: [
     "AAL",
