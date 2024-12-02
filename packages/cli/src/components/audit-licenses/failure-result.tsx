@@ -28,7 +28,7 @@ export default function FailureResult({
           <CompliantMessage count={groupedByStatus.whitelist.length} />
         </Box>
       )}
-      <Box>
+      <Box marginTop={verbose && hasWhitelisted ? 1 : 0}>
         <BlacklistedMessage count={groupedByStatus.blacklist.length} />
       </Box>
       <LicenseList

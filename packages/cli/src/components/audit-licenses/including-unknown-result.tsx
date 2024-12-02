@@ -33,7 +33,7 @@ export default function IncludingUnknownResult({
       )}
       {hasBlacklisted && (
         <>
-          <Box>
+          <Box marginTop={verbose && hasWhitelisted ? 1 : 0}>
             <BlacklistedMessage count={groupedByStatus.blacklist.length} />
           </Box>
           <LicenseList
