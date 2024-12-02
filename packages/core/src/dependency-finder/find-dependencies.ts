@@ -42,6 +42,7 @@ function findExternalDependencies({
 }): Promise<DependenciesResult> {
   switch (packageManager) {
     case "npm":
+    case "yarn":
       return findNpmDependencies(projectRoot, production);
     case "pnpm":
       return findPnpmDependencies(projectRoot, production);
