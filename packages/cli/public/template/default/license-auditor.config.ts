@@ -1,6 +1,6 @@
-import type { ConfigType } from "@brainhubeu/lac";
+import { Config } from "@brainhubeu/lac";
 
-const config: ConfigType = {
+const config = {
   blacklist: [
     "AAL",
     "ADSL",
