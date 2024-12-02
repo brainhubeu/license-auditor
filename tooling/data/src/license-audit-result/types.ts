@@ -1,6 +1,7 @@
 import type {
   License,
   LicenseStatus,
+  LicenseWithSource,
   VerificationStatus,
 } from "../licenses/types.js";
 
@@ -12,11 +13,11 @@ export interface DependenciesResult {
 export interface DetectedLicense {
   packageName: string;
   packagePath: string;
-  licenses: License[];
+  licenses: (LicenseWithSource)[];
   status: LicenseStatus;
   licensePath: string | undefined;
   licenseExpression: string | undefined;
-  verificationStatus: VerificationStatus;
+  // verificationStatus: VerificationStatus;
 }
 
 export interface LicenseAuditResult {
