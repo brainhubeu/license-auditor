@@ -201,6 +201,30 @@ describe("license-auditor", () => {
           expect(output).toContain("Not all licenses are whitelisted");
         },
       );
+
+      defaultTest(
+        "displays not found licenses in verbose table",
+        async ({ testDirectory }) => {
+          await addPackage(
+            testDirectory,
+            "node_modules/testing-no-license",
+            {
+              version: "1.0.0",
+            }
+          );
+
+          const { output, errorCode } = await runCliCommand({
+            command: "npx",
+            args: [getCliPath(), "--verbose"],
+            cwd: testDirectory,
+          });
+
+          expect(errorCode).toBe(0);
+          expect(output).toContain("status");
+          expect(output).toContain("not found");
+          expect(output).toContain("testing-no-license");
+        },
+      );
     });
   });
 });
