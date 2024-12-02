@@ -1,9 +1,10 @@
-import type { License } from "@license-auditor/data";
+import { type License, LICENSE_SOURCE } from '@license-auditor/data';
 import type { PackageJsonType } from "../file-utils.js";
 import { extractLicensesFromExpression } from "./extract-licenses-from-expression.js";
 import { findLicenseById } from "./find-license-by-id.js";
 import type { ResolvedLicenses } from "./licenses-with-path.js";
 import { parseLicenseLogicalExpression } from "./parse-license-logical-expression.js";
+import { addLicenseSource } from './add-license-source.js';
 
 function retrieveLicenseFromTypeField(license: unknown): License[] {
   if (typeof license === "object" && !!license && "type" in license) {
@@ -15,14 +16,14 @@ function retrieveLicenseFromTypeField(license: unknown): License[] {
 function handleOutdatedFormats(packageJsonField: unknown): License[] {
   if (Array.isArray(packageJsonField)) {
     return packageJsonField.flatMap((l) => {
-      const licenses = findLicenseById(l);
+      const licenses = findLicenseById(l)
       if (!licenses.length) {
         licenses.push(...retrieveLicenseFromTypeField(l));
       }
-      return licenses;
+      return addLicenseSource(licenses, LICENSE_SOURCE.PACKAGE_JSON_LEGACY);
     });
   }
-  return retrieveLicenseFromTypeField(packageJsonField);
+  return addLicenseSource(retrieveLicenseFromTypeField(packageJsonField), LICENSE_SOURCE.PACKAGE_JSON_LEGACY);
 }
 
 function retrieveLicenseByField<T extends "license" | "licenses">(
@@ -33,7 +34,12 @@ function retrieveLicenseByField<T extends "license" | "licenses">(
     const licenseById = findLicenseById(packageJson[licenseField]);
     if (licenseById.length > 0) {
       return {
-        licenses: licenseById,
+        licenses: addLicenseSource(
+          licenseById,
+          licenseField === 'license'
+            ? LICENSE_SOURCE.PACKAGE_JSON_LICENSE
+            : LICENSE_SOURCE.PACKAGE_JSON_LICENSES
+        ),
       };
     }
 

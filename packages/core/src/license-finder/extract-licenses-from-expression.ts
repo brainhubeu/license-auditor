@@ -1,17 +1,17 @@
-import type { License } from "@license-auditor/data";
+import { type LicenseWithSource, LICENSE_SOURCE } from '@license-auditor/data';
 import type { Info } from "spdx-expression-parse";
 import { findLicenseById } from "./find-license-by-id.js";
 
 export function extractLicensesFromExpression(
   licenseExpressionParsed: Info,
-): License[] {
-  const licenses = new Set<License>();
+): LicenseWithSource[] {
+  const licenses = new Set<LicenseWithSource>();
 
   function traverse(node: Info): void {
     if ("license" in node) {
       const [license] = findLicenseById(node.license);
       if (license) {
-        licenses.add(license);
+        licenses.add({ ...license, source: LICENSE_SOURCE.PACKAGE_JSON_LICENSE_EXPRESSION });
         return;
       }
       console.error(

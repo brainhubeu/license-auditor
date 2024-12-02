@@ -4,11 +4,12 @@ import {
   type ConfigType,
   type License,
   LicenseSchema,
-  licenseMap,
-} from "@license-auditor/data";
+  licenseMap, LICENSE_SOURCE, type LicenseWithSource,
+} from '@license-auditor/data';
 import { checkLicenseStatus } from "../check-license-status.js";
 import type { LicensesWithPath } from "./licenses-with-path.js";
 import { detectLicenses } from './detect-from-license-content.js';
+import { addLicenseSource } from './add-license-source.js';
 
 export function retrieveLicenseFromLicenseFileContent(content: string): {
   licenses: License[];
@@ -20,7 +21,7 @@ export function retrieveLicenseFromLicenseFileContent(content: string): {
       .filter(([key]) => key === detectedLicense.licenseId)
       .map((result) => LicenseSchema.parse(result[1]));
     return {
-      licenses: licenseArr,
+      licenses: addLicenseSource(licenseArr, LICENSE_SOURCE.LICENSE_FILE_CONTENT),
     }
   }
   const contentTokens = content.split(/[ ,]+/);
@@ -32,7 +33,7 @@ export function retrieveLicenseFromLicenseFileContent(content: string): {
     )
     .map((result) => LicenseSchema.parse(result[1]));
 
-  return { licenses: licenseArr };
+  return { licenses: addLicenseSource(licenseArr, LICENSE_SOURCE.LICENSE_FILE_CONTENT_KEYWORDS) };
 }
 
 export function retrieveLicenseFromLicenseFileName(filePath: string): {
@@ -60,12 +61,12 @@ export function retrieveLicenseFromLicenseFileName(filePath: string): {
   }
 
   return {
-    licenses: [LicenseSchema.parse(foundLicense[1])],
+    licenses: addLicenseSource([LicenseSchema.parse(foundLicense[1])], LICENSE_SOURCE.LICENSE_FILE_NAME),
   };
 }
 
 export async function findLicenseInLicenseFile(filePath: string): Promise<{
-  licenses: License[];
+  licenses: LicenseWithSource[];
 }> {
   try {
     const content = await readFile(filePath, "utf-8");

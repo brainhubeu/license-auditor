@@ -12,23 +12,25 @@ export async function findLicenses(
 ): Promise<LicensesWithPath> {
   const packageJsonPath = path.join(packagePath, "package.json");
 
-  const licenseFromPackageJson = findLicenseInPackageJson(packageJson);
-  if (licenseFromPackageJson.licenses.length > 0) {
-    return {
-      ...licenseFromPackageJson,
-      licensePath: packageJsonPath,
-      verificationStatus: "ok",
-    };
-  }
+  const licensesFromPackageJson = findLicenseInPackageJson(packageJson);
+  // if (licenseFromPackageJson.licenses.length > 0) {
+  //   return {
+  //     ...licenseFromPackageJson,
+  //     licensePath: packageJsonPath,
+  //     verificationStatus: "ok",
+  //   };
+  // }
 
   const licenseFromLicenseFile = await parseLicenseFiles(packagePath, config);
-  if (licenseFromLicenseFile) {
-    return licenseFromLicenseFile;
-  }
+  // if (licenseFromLicenseFile) {
+  //   return licenseFromLicenseFile;
+  // }
+
+
 
   return {
     licenses: [],
     licensePath: undefined,
-    verificationStatus: "licenseNotFound",
+    // verificationStatus: "licenseNotFound",
   };
 }
