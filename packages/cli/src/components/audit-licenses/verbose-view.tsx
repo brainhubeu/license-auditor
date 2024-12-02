@@ -10,7 +10,7 @@ function getColorForStatus(status: LicenseStatus | "not found") {
     case "blacklist":
       return "red";
     case "not found":
-      return "red";
+      return "cyan";
     default:
       return "yellow";
   }
@@ -52,7 +52,7 @@ const columns: Column<VerboseViewData>[] = [
 
 export default function VerboseView({ result, filter }: VerboseViewProps) {
   const data = useMemo(() => {
-    let combinedResult = [
+    let combinedResult: VerboseViewData[] = [
       ...result.groupedByStatus.whitelist,
       ...result.groupedByStatus.blacklist,
       ...result.groupedByStatus.unknown,
@@ -80,7 +80,6 @@ export default function VerboseView({ result, filter }: VerboseViewProps) {
       }),
     );
 
-    // @ts-ignore
     combinedResult = [...combinedResult, ...notFoundEntries];
 
     if (filter) {
