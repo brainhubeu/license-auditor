@@ -8,7 +8,7 @@ export async function execCommand(
 ): Promise<string> {
   return new Promise((resolve, reject) => {
     exec(command, { cwd }, (error, stdout, stderr) => {
-      if (stderr) {
+      if (stderr && !stderr.includes("Debugger attached")) {
         reject(
           new ExecCommandException(`Command "${command}" returned error.`, {
             originalError: error,
