@@ -4,9 +4,9 @@
 
 ### Supported package managers
 
-- npm
-- yarn classic (v1)
-- pnpm
+-   npm
+-   yarn classic (v1)
+-   pnpm
 
 ## Getting started
 
@@ -31,11 +31,12 @@ The results will be printed in the console.
 
 ## Available options
 
-- `--verbose` - Verbose output (default: false)
-- `--filter [filter]` - Filter verbose output by license status - whitelist, blacklist, or unknown
-- `--json [json]` - Save the result to a JSON file. If no path is not provided, a file named license-auditor.results.json will be created in the current directory.
-- `--production` - Skip the audit for licenses in development dependencies (default: false)
-- `--default-config` - Run audit with default whitelist/blacklist configuration
+-   `--verbose` - Verbose output (default: false)
+-   `--filter [filter]` - Filter verbose output by license status - whitelist, blacklist, or unknown
+-   `--json [json]` - Save the result to a JSON file. If no path is not provided, a file named license-auditor.results.json will be created in the current directory.
+-   `--production` - Skip the audit for licenses in development dependencies (default: false)
+-   `--default-config` - Run audit with default whitelist/blacklist configuration
+-   `--filter-regex [regex]` - Run audit with a custom regex filter that will be applied to the package name
 
 > [!IMPORTANT]
 > Verify dev dependencies if they generate code, embed assets, or otherwise impact the final product, as their licenses might impose restrictions. Always prioritize reviewing both when in doubt or if your project may be redistributed or commercialized.
@@ -44,11 +45,11 @@ The results will be printed in the console.
 
 All licenses are sourced from [SPDX license list](https://spdx.org/licenses/)
 
-- `whitelist` - array of SPDX license identifiers of licenses permitted within the project,
-- `blacklist` - array of SPDX license identifiers of licenses prohibited within the project,
-- `overrides` - an object with the specified severity:
-  - `warn` - package should be omitted from audit, but it will produce a warning,
-  - `off`- package should be completely omitted from the audit.
+-   `whitelist` - array of SPDX license identifiers of licenses permitted within the project,
+-   `blacklist` - array of SPDX license identifiers of licenses prohibited within the project,
+-   `overrides` - an object with the specified severity:
+    -   `warn` - package should be omitted from audit, but it will produce a warning,
+    -   `off`- package should be completely omitted from the audit.
 
 ## Known issues
 

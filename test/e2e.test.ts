@@ -207,5 +207,70 @@ describe("license-auditor", () => {
         },
       );
     });
+    describe("filter-regex flag", () => {
+      defaultTest(
+        "one package should be filtered with filter-regex flag",
+        async ({ testDirectory }) => {
+          await addPackage(
+            testDirectory,
+            "node_modules/@testing-lib/lib1",
+            {
+              version: "1.0.0",
+            },
+            [{ name: "LICENSE-MIT", content: "MIT" }],
+          );
+
+          await addPackage(
+            testDirectory,
+            "node_modules/lib-test",
+            {
+              version: "1.0.0",
+            },
+            [{ name: "LICENSE-MIT", content: "MIT" }],
+          );
+
+          const { output, errorCode } = await runCliCommand({
+            command: "npx",
+            args: [getCliPath(), "--filter-regex", "@testing-lib"],
+            cwd: testDirectory,
+          });
+
+          expect(errorCode).toBe(0);
+          expect(output).toContain("247 licenses are compliant");
+        },
+      );
+
+      defaultTest(
+        "two packages with same organization name should be filtered with filter-regex flag",
+        async ({ testDirectory }) => {
+          await addPackage(
+            testDirectory,
+            "node_modules/@testing-lib/lib1",
+            {
+              version: "1.0.0",
+            },
+            [{ name: "LICENSE-MIT", content: "MIT" }],
+          );
+
+          await addPackage(
+            testDirectory,
+            "node_modules/@testing-lib/lib2",
+            {
+              version: "1.0.0",
+            },
+            [{ name: "LICENSE-MIT", content: "MIT" }],
+          );
+
+          const { output, errorCode } = await runCliCommand({
+            command: "npx",
+            args: [getCliPath(), "--filter-regex", "@testing-lib"],
+            cwd: testDirectory,
+          });
+
+          expect(errorCode).toBe(0);
+          expect(output).toContain("246 licenses are compliant");
+        },
+      );
+    });
   });
 });
