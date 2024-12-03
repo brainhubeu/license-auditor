@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { GenerateConfig } from "../components/init/generate-config.js";
-import { InstallPackages } from "../components/init/install-packages.js";
 import SelectExtension from "../components/init/select-extension.js";
 import SelectListType from "../components/init/select-list-type.js";
 import { ValidateEnv } from "../components/init/validate-env.js";
@@ -10,7 +9,6 @@ import type { ConfigListType } from "../utils/generate-config.js";
 
 enum Step {
   ValidateEnv = "validateEnv",
-  InstallPackages = "installPackages",
   SelectExtension = "selectExtension",
   SelectListType = "selectListType",
   GenerateConfig = "generateConfig",
@@ -18,7 +16,6 @@ enum Step {
 
 type WizardState =
   | { step: Step.ValidateEnv }
-  | { step: Step.InstallPackages; env: EnvType }
   | { step: Step.SelectExtension; env: EnvType }
   | { step: Step.SelectListType; env: EnvType; extension: ConfigExtension }
   | {
@@ -39,21 +36,8 @@ export default function Init() {
         <ValidateEnv
           onSuccess={(env) =>
             setWizardState({
-              step: Step.InstallPackages,
-              env,
-            })
-          }
-        />
-      );
-
-    case Step.InstallPackages:
-      return (
-        <InstallPackages
-          dir={wizardState.env.ROOT_DIR}
-          onPackagesInstalled={() =>
-            setWizardState({
               step: Step.SelectExtension,
-              env: wizardState.env,
+              env,
             })
           }
         />
