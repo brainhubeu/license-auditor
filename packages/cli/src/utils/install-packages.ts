@@ -33,6 +33,7 @@ function getInstallCommand(packageManager: SupportedPm): string {
       return "npm install --save-dev";
     case "pnpm":
       return "pnpm add -D";
+    case "yarn":
     case "yarn-classic":
       return "yarn add --dev";
     default:
