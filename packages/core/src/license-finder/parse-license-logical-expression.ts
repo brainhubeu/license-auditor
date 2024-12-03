@@ -1,7 +1,7 @@
 import parse, { type Info } from "spdx-expression-parse";
 
 export function parseLicenseLogicalExpression(
-  licenseExpression: unknown
+  licenseExpression: unknown,
 ): Info | undefined {
   if (typeof licenseExpression === "string") {
     try {
