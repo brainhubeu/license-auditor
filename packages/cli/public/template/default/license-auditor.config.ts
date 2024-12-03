@@ -1,5 +1,3 @@
-import { Config } from "@brainhubeu/lac";
-
 const config = {
   blacklist: [
     "AAL",
