@@ -1,13 +1,15 @@
 import { readFile, readdir } from "node:fs/promises";
 import * as path from "node:path";
 import {
-  type ConfigType,
+  LICENSE_SOURCE,
   type License,
   LicenseSchema,
+  type LicenseWithSource,
   licenseMap,
 } from "@license-auditor/data";
-import { checkLicenseStatus } from "../check-license-status.js";
-import type { LicensesWithPath } from "./licenses-with-path.js";
+// import { checkLicenseStatus } from "../check-license-status.js";
+import { addLicenseSource } from "./add-license-source.js";
+import type { LicensesWithPathAndStatus } from "./licenses-with-path.js";
 
 export function retrieveLicenseFromLicenseFileContent(content: string): {
   licenses: License[];
@@ -21,7 +23,9 @@ export function retrieveLicenseFromLicenseFileContent(content: string): {
     )
     .map((result) => LicenseSchema.parse(result[1]));
 
-  return { licenses: licenseArr };
+  return {
+    licenses: addLicenseSource(licenseArr, LICENSE_SOURCE.licenseFileContent),
+  };
 }
 
 export function retrieveLicenseFromLicenseFileName(filePath: string): {
@@ -49,12 +53,15 @@ export function retrieveLicenseFromLicenseFileName(filePath: string): {
   }
 
   return {
-    licenses: [LicenseSchema.parse(foundLicense[1])],
+    licenses: addLicenseSource(
+      [LicenseSchema.parse(foundLicense[1])],
+      LICENSE_SOURCE.licenseFileName,
+    ),
   };
 }
 
 export async function findLicenseInLicenseFile(filePath: string): Promise<{
-  licenses: License[];
+  licenses: LicenseWithSource[];
 }> {
   try {
     const content = await readFile(filePath, "utf-8");
@@ -65,14 +72,20 @@ export async function findLicenseInLicenseFile(filePath: string): Promise<{
       };
     }
 
-    let foundLicenses: License[] = [];
+    let foundLicenses: LicenseWithSource[] = [];
 
     if (/\/LICENSE(\.md|\.txt)?$/i.test(filePath)) {
       const result = retrieveLicenseFromLicenseFileContent(content);
-      foundLicenses = result.licenses;
+      foundLicenses = result.licenses.map((license) => ({
+        ...license,
+        source: LICENSE_SOURCE.licenseFileContent,
+      }));
     } else if (/\/LICENSE-.+?(\.md|\.txt)?$/i.test(filePath)) {
       const result = retrieveLicenseFromLicenseFileName(filePath);
-      foundLicenses = result.licenses;
+      foundLicenses = result.licenses.map((license) => ({
+        ...license,
+        source: LICENSE_SOURCE.licenseFileName,
+      }));
     }
 
     return {
@@ -87,8 +100,8 @@ export async function findLicenseInLicenseFile(filePath: string): Promise<{
 
 export async function parseLicenseFiles(
   packagePath: string,
-  config: ConfigType,
-): Promise<LicensesWithPath | undefined> {
+  // config: ConfigType,
+): Promise<LicensesWithPathAndStatus> {
   const files = await readdir(packagePath);
   const licenseFiles = files.filter((file) =>
     /^LICENSE(-[\w.-]+)?(\.md|\.txt)?$/i.test(file),
@@ -97,13 +110,14 @@ export async function parseLicenseFiles(
   if (licenseFiles.length === 0) {
     return {
       licenses: [],
-      licensePath: packagePath,
-      verificationStatus: "licenseNotFound",
+      licensePath: [packagePath],
+      verificationStatus: "licenseFileNotFound",
     };
   }
 
   if (licenseFiles.length > 1) {
-    return handleMultipleLicenseFiles(licenseFiles, packagePath, config);
+    // return handleMultipleLicenseFiles(licenseFiles, packagePath, config);
+    return handleMultipleLicenseFiles(licenseFiles, packagePath);
   }
 
   if (licenseFiles[0]) {
@@ -112,29 +126,29 @@ export async function parseLicenseFiles(
 
   return {
     licenses: [],
-    licensePath: packagePath,
-    verificationStatus: "licenseFileExistsButNoLicense",
+    licensePath: [packagePath],
+    verificationStatus: "licenseFileNotFound",
   };
 }
 
 async function handleSingleLicenseFile(
   licenseFile: string,
   packagePath: string,
-): Promise<LicensesWithPath> {
+): Promise<LicensesWithPathAndStatus> {
   const licensePath = path.join(packagePath, licenseFile);
   const licenseFromLicenseFile = await findLicenseInLicenseFile(licensePath);
 
   if (licenseFromLicenseFile.licenses.length === 0) {
     return {
       licenses: [],
-      licensePath: licensePath,
+      licensePath: [licensePath],
       verificationStatus: "licenseFileExistsButNoLicense",
     };
   }
 
   return {
     licenses: licenseFromLicenseFile.licenses,
-    licensePath: licensePath,
+    licensePath: [licensePath],
     verificationStatus: "ok",
   };
 }
@@ -142,9 +156,9 @@ async function handleSingleLicenseFile(
 async function handleMultipleLicenseFiles(
   licenseFiles: string[],
   packagePath: string,
-  config: ConfigType,
-): Promise<LicensesWithPath> {
-  const allLicenses: License[] = [];
+  // config: ConfigType,
+): Promise<LicensesWithPathAndStatus> {
+  const allLicenses: LicenseWithSource[] = [];
 
   for (const licenseFile of licenseFiles) {
     const licensePath = path.join(packagePath, licenseFile);
@@ -154,38 +168,33 @@ async function handleMultipleLicenseFiles(
     }
   }
 
+  // return {
+  // 	licenses: allLicenses,
+  // 	licensePath: licenseFiles.map((file) => path.join(packagePath, file)),
+  // 	verificationStatus: "ok",
+  // };
+
+  const licensePaths = licenseFiles.map((file) => path.join(packagePath, file));
+
   if (allLicenses.length === 0) {
     return {
       licenses: [],
-      licensePath: packagePath,
-      verificationStatus: "licenseNotFound",
+      licensePath: licensePaths,
+      verificationStatus: "licenseNotFoundInFile",
     };
   }
 
   if (allLicenses.length < licenseFiles.length) {
     return {
       licenses: allLicenses,
-      licensePath: packagePath,
-      verificationStatus: "notAllLicensesFound",
-    };
-  }
-
-  const allLicensesWhitelisted = allLicenses.every((license) => {
-    const licenseStatus = checkLicenseStatus(license, config);
-    return licenseStatus === "whitelist";
-  });
-
-  if (!allLicensesWhitelisted) {
-    return {
-      licenses: allLicenses,
-      licensePath: packagePath,
-      verificationStatus: "notAllLicensesWhitelisted",
+      licensePath: licensePaths,
+      verificationStatus: "notAllLicensesFoundInFile",
     };
   }
 
   return {
     licenses: allLicenses,
-    licensePath: packagePath,
+    licensePath: licensePaths,
     verificationStatus: "ok",
   };
 }
