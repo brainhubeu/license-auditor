@@ -25,7 +25,7 @@ type Package = z.infer<typeof PackageSchema>;
 
 type Details = {
   version: string;
-  license: string;
+  license?: string;
   dependencies?: Record<string, string>;
 };
 

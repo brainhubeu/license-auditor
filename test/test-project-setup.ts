@@ -13,6 +13,22 @@ export const TEST_PROJECTS_DIRECTORY = path.resolve(
 );
 export const TEST_TEMP_DIRECTORY = path.resolve(__dirname, "./temp");
 
+const exists = async (path: string) => {
+  try {
+    await fs.access(path);
+    return true;
+  } catch {
+    return false;
+  }
+};
+
+const getInstallCommand = async (projectDirectory: string) => {
+  if (await exists(path.resolve(projectDirectory, "pnpm-lock.yaml"))) {
+    return "pnpm i";
+  }
+  return "npm i";
+};
+
 const prepareTestProject = async (projectDirectory: string) => {
   await fs.copyFile(
     path.resolve(
@@ -22,7 +38,9 @@ const prepareTestProject = async (projectDirectory: string) => {
     path.resolve(projectDirectory, "license-auditor.config.ts"),
   );
 
-  await execAsync("npm i", { cwd: projectDirectory });
+  const installCommand = await getInstallCommand(projectDirectory);
+
+  await execAsync(installCommand, { cwd: projectDirectory });
 };
 const cleanUpTestProjects = async (projectDirectory: string) => {
   await fs.rm(path.resolve(projectDirectory, "node_modules"), {
