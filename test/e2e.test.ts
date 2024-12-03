@@ -205,13 +205,9 @@ describe("license-auditor", () => {
       defaultTest(
         "displays not found licenses in verbose table",
         async ({ testDirectory }) => {
-          await addPackage(
-            testDirectory,
-            "node_modules/testing-no-license",
-            {
-              version: "1.0.0",
-            }
-          );
+          await addPackage(testDirectory, "node_modules/testing-no-license", {
+            version: "1.0.0",
+          });
 
           const { output, errorCode } = await runCliCommand({
             command: "npx",
