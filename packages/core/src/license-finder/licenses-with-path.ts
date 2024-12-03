@@ -1,7 +1,10 @@
-import type { DetectedLicense, License } from "@license-auditor/data";
+import type { DetectedLicense, LicenseWithSource } from "@license-auditor/data";
 import type { Info } from "spdx-expression-parse";
 
-export type LicensesWithPath = Pick<
+export type LicensesWithPath = Pick<DetectedLicense, "licensePath"> &
+  ResolvedLicenses;
+
+export type LicensesWithPathAndStatus = Pick<
   DetectedLicense,
   "licensePath" | "verificationStatus"
 > &
@@ -9,12 +12,14 @@ export type LicensesWithPath = Pick<
 
 export type ResolvedLicenses =
   | {
-      licenses: License[];
+      // licenses: License[];
+      licenses: LicenseWithSource[];
       licenseExpression?: undefined;
       licenseExpressionParsed?: undefined;
     }
   | {
-      licenses: License[];
+      // licenses: License[];
+      licenses: LicenseWithSource[];
       licenseExpression: string;
       licenseExpressionParsed: Info;
     };
