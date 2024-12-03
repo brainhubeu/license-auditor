@@ -47,5 +47,12 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "overrides": {
+    "pastel": {
+      "@inkjs/ui": {
+        "cli-spinners": "2.9.2"
+      }
+    }
   }
 }

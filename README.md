@@ -6,6 +6,8 @@
 
 -   npm
 -   yarn classic (v1)
+-   yarn 2+
+    -   Applicable only for projects using `node_modules` installation. `Plug'n'Play` is not currently supported.
 -   pnpm
 
 ## Getting started

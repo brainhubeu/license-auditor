@@ -7,7 +7,11 @@ export function parseLicenseLogicalExpression(
     try {
       return parse(licenseExpression);
     } catch (error) {
-      console.error(error);
+      // Most common error when spdx-expression-parse fails to parse the license expression.
+      // The error message thrown is not very useful, hence we silence it.
+      if (!(error instanceof Error && error.message.startsWith("Unexpected"))) {
+        console.error(error);
+      }
       return undefined;
     }
   }
