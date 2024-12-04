@@ -10,26 +10,31 @@ import { findPackageManager } from "./find-package-manager.js";
 import { findLicenses } from "./license-finder/find-license.js";
 import type { LicensesWithPathAndStatus } from "./license-finder/licenses-with-path.js";
 
-export interface LicenseAuditResult2 {
+export type PackageLicensesWithPath = Map<
+  string,
+  {
+    packagePath: string;
+    packageName: string;
+    licensesWithPath: LicensesWithPathAndStatus;
+  }
+>;
+
+type ErrorResults = Map<string, { packagePath: string; errorMessage: string }>;
+
+export type GetAllLicensesResult = {
   overrides: {
     notFoundOverrides: string[];
   };
-  licenses: Map<
-    string,
-    {
-      packagePath: string;
-      packageName: string;
-      licensesWithPath: LicensesWithPathAndStatus;
-    }
-  >;
+  licenses: PackageLicensesWithPath;
+  errorResults: ErrorResults;
   warning?: string | undefined;
-}
+};
 
 export async function getAllLicenses(
   cwd: string,
   config: ConfigType,
   production?: boolean | undefined,
-): Promise<LicenseAuditResult2> {
+): Promise<GetAllLicensesResult> {
   const packageManager = await findPackageManager(cwd);
   const { dependencies: packagePaths, warning } = await findDependencies({
     packageManager,
@@ -37,14 +42,9 @@ export async function getAllLicenses(
     production,
   });
 
-  const resultMap = new Map<
-    string,
-    {
-      packagePath: string;
-      packageName: string;
-      licensesWithPath: LicensesWithPathAndStatus;
-    }
-  >();
+  const resultMap: PackageLicensesWithPath = new Map();
+
+  const errorResults: ErrorResults = new Map();
 
   const foundPackages: Pick<DetectedLicense, "packageName" | "packagePath">[] =
     packagePaths.map((packagePath) => ({
@@ -63,8 +63,12 @@ export async function getAllLicenses(
   } of filteredPackages) {
     const packageJsonResult = readPackageJson(packagePath);
 
-    //TODO handle this
     if (!packageJsonResult.success) {
+      //To code reviewer: Should we handle in in this or different way?
+      errorResults.set(packageNameFromPath, {
+        packagePath,
+        errorMessage: packageJsonResult.errorMessage,
+      });
       continue;
     }
 
@@ -95,5 +99,6 @@ export async function getAllLicenses(
     },
     licenses: resultMap,
     warning,
+    errorResults,
   };
 }

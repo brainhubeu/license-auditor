@@ -12,7 +12,6 @@ export interface DependenciesResult {
 export interface DetectedLicense {
   packageName: string;
   packagePath: string;
-  // licenses: License[];
   licenses: LicenseWithSource[];
   status: LicenseStatus;
   licensePath: string[];
@@ -20,19 +19,6 @@ export interface DetectedLicense {
   verificationStatus: VerificationStatus | undefined;
 }
 
-// export interface LicenseAuditResult {
-// 	overrides: {
-// 		notFoundOverrides: string[];
-// 	};
-// 	licenses: Map<
-// 		string,
-// 		{
-// 			packageName: string;
-// 			licensesWithPath: LicenseFinderType;
-// 		}
-// 	>;
-// 	warning?: string | undefined;
-// }
 export interface LicenseAuditResult {
   groupedByStatus: Record<LicenseStatus, DetectedLicense[]>;
   notFound: Map<string, { packagePath: string; errorMessage: string }>;
@@ -44,4 +30,5 @@ export interface LicenseAuditResult {
     string,
     { packagePath: string; verificationMessage: string }
   >;
+  errorResults: Map<string, { packagePath: string; errorMessage: string }>;
 }

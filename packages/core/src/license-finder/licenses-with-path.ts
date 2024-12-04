@@ -12,13 +12,11 @@ export type LicensesWithPathAndStatus = Pick<
 
 export type ResolvedLicenses =
   | {
-      // licenses: License[];
       licenses: LicenseWithSource[];
       licenseExpression?: undefined;
       licenseExpressionParsed?: undefined;
     }
   | {
-      // licenses: License[];
       licenses: LicenseWithSource[];
       licenseExpression: string;
       licenseExpressionParsed: Info;

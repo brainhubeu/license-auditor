@@ -6,7 +6,10 @@ import { describeLicenseCount } from "../../utils/describe-license-count.js";
 export default function NeedsUserVerificationResult({
   needsUserVerification,
   verbose,
-}: Omit<LicenseAuditResult, "notFound" | "groupedByStatus" | "overrides"> & {
+}: Omit<
+  LicenseAuditResult,
+  "notFound" | "groupedByStatus" | "overrides" | "errorResults"
+> & {
   verbose: boolean;
 }) {
   const describePackagesCount = describeLicenseCount(

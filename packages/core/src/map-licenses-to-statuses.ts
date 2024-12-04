@@ -3,7 +3,11 @@ import type {
   DetectedLicense,
   LicenseWithSource,
 } from "@license-auditor/data";
-import type { LicenseStatus } from "./check-license-status.js";
+import {
+  type LicenseStatus,
+  checkLicenseStatus,
+} from "./check-license-status.js";
+import type { PackageLicensesWithPath } from "./get-all-licenses.js";
 import type { LicensesWithPathAndStatus } from "./license-finder/licenses-with-path.js";
 import { parseVerificationStatusToMessage } from "./parse-verification-status-to-message.js";
 import { resolveLicenseStatus } from "./resolve-license-status.js";
@@ -16,14 +20,7 @@ type NeedsUserVerificationMap = Map<
 type GroupedByStatus = Record<LicenseStatus, DetectedLicense[]>;
 
 export async function mapLicensesToStatus(
-  licenses: Map<
-    string,
-    {
-      packagePath: string;
-      packageName: string;
-      licensesWithPath: LicensesWithPathAndStatus;
-    }
-  >,
+  packageLicensesWithPath: PackageLicensesWithPath,
   config: ConfigType,
 ): Promise<{
   groupedByStatus: GroupedByStatus;
@@ -44,10 +41,13 @@ export async function mapLicensesToStatus(
     licensesWithPath,
     packageName,
     packagePath,
-  } of licenses.values()) {
-    const isPackageLicense = hasLicenses(licensesWithPath);
+  } of packageLicensesWithPath.values()) {
+    const { licenses, licensePath, licenseExpression, verificationStatus } =
+      licensesWithPath;
 
-    if (!isPackageLicense) {
+    const hasPackageLicense = licenses.length > 0;
+
+    if (!hasPackageLicense) {
       notFound.set(packageName, {
         packagePath,
         errorMessage: `License not found in package.json and in license file in ${packagePath}`,
@@ -56,13 +56,13 @@ export async function mapLicensesToStatus(
     }
 
     if (
-      licensesWithPath.verificationStatus !== "ok" &&
-      licensesWithPath.verificationStatus !== undefined
+      verificationStatus === "notAllLicensesFoundInFile" ||
+      verificationStatus === "licenseFileExistsButUnknownLicense"
     ) {
       needsUserVerification.set(packageName, {
         packagePath,
         verificationMessage: parseVerificationStatusToMessage(
-          licensesWithPath.verificationStatus,
+          verificationStatus,
           packageName,
           packagePath,
         ),
@@ -75,24 +75,41 @@ export async function mapLicensesToStatus(
     if (missmatchedLicenses) {
       needsUserVerification.set(packageName, {
         packagePath,
-        verificationMessage: `licenses in package.json and in license file are not matching ${packageName}`,
+        verificationMessage: parseVerificationStatusToMessage(
+          "missmatchInLicenseSources",
+          packageName,
+          packagePath,
+        ),
       });
       continue;
     }
 
-    const status = resolveLicenseStatus(licensesWithPath, config);
+    const isAllLicensesWhitelisted = allLicensesWhitelisted(licenses, config);
+
+    if (!isAllLicensesWhitelisted) {
+      needsUserVerification.set(packageName, {
+        packagePath,
+        verificationMessage: parseVerificationStatusToMessage(
+          "notAllLicensesWhitelisted",
+          packageName,
+          packagePath,
+        ),
+      });
+    }
+
+    const statusOfAllLicenses = resolveLicenseStatus(licensesWithPath, config);
 
     const detectedLicense: DetectedLicense = {
       packageName,
       packagePath,
-      status,
-      licenses: licensesWithPath.licenses,
-      licenseExpression: licensesWithPath.licenseExpression,
-      licensePath: licensesWithPath.licensePath,
-      verificationStatus: licensesWithPath.verificationStatus,
+      status: statusOfAllLicenses,
+      licenses: licenses,
+      licenseExpression: licenseExpression,
+      licensePath: licensePath,
+      verificationStatus: verificationStatus,
     };
 
-    groupedByStatus[status].push(detectedLicense);
+    groupedByStatus[statusOfAllLicenses].push(detectedLicense);
   }
 
   return {
@@ -102,49 +119,81 @@ export async function mapLicensesToStatus(
   };
 }
 
-function hasLicenses(licensesWithPath: LicensesWithPathAndStatus): boolean {
-  const hasLicenses = licensesWithPath.licenses.length > 0;
+const allLicensesWhitelisted = (
+  licenses: LicenseWithSource[],
+  config: ConfigType,
+): boolean => {
+  const allLicensesWhitelisted = licenses.every((license) => {
+    const licenseStatus = checkLicenseStatus(license, config);
+    return licenseStatus === "whitelist";
+  });
 
-  return hasLicenses;
+  if (!allLicensesWhitelisted) {
+    return false;
+  }
+
+  return true;
+};
+
+function groupLicensesBySource(
+  licensesWithPath: LicensesWithPathAndStatus,
+): Map<string, Set<string>> {
+  const licensesBySource: Map<string, Set<string>> = new Map();
+
+  for (const license of licensesWithPath.licenses) {
+    if (!licensesBySource.has(license.source)) {
+      licensesBySource.set(license.source, new Set());
+    }
+    licensesBySource.get(license.source)?.add(license.licenseId);
+  }
+
+  return licensesBySource;
+}
+
+function findSmallestSource(
+  licensesBySource: Map<string, Set<string>>,
+): [string | null, Set<string> | null] {
+  let smallestSource: string | null = null;
+  let smallestSet: Set<string> | null = null;
+
+  for (const [source, licenseSet] of licensesBySource.entries()) {
+    if (smallestSet === null || licenseSet.size < smallestSet.size) {
+      smallestSource = source;
+      smallestSet = licenseSet;
+    }
+  }
+
+  return [smallestSource, smallestSet];
+}
+
+function hasMismatch(
+  smallestSet: Set<string> | null,
+  licensesBySource: Map<string, Set<string>>,
+  smallestSource: string | null,
+): boolean {
+  if (smallestSet === null) {
+    return false; // No licenses to compare
+  }
+
+  for (const [source, licenseSet] of licensesBySource.entries()) {
+    if (source === smallestSource) {
+      continue;
+    }
+
+    for (const licenseId of smallestSet) {
+      if (!licenseSet.has(licenseId)) {
+        return true; // Mismatch found
+      }
+    }
+  }
+
+  return false; // No mismatch found
 }
 
 function checkLicenseMismatch(
   licensesWithPath: LicensesWithPathAndStatus,
 ): boolean {
-  const licenses = licensesWithPath.licenses;
-
-  // Group licenses by their source
-  const licensesBySource = licenses.reduce(
-    (acc, license) => {
-      if (license.source) {
-        if (!acc[license.source]) {
-          acc[license.source] = [];
-        }
-        acc[license.source]?.push(license);
-      }
-      return acc;
-    },
-    {} as Record<string, LicenseWithSource[]>,
-  );
-
-  // Check if there are licenses from different sources
-  const sources = Object.keys(licensesBySource);
-
-  if (sources.length < 2) {
-    return false; // No mismatch if there is only one source
-  }
-
-  // Check if all licenses are present in both sources
-  const allLicenseIds = new Set(licenses.map((license) => license.licenseId));
-
-  for (const source of sources) {
-    const sourceLicenseIds = new Set(
-      licensesBySource[source]?.map((license) => license.licenseId),
-    );
-    if (allLicenseIds.size !== sourceLicenseIds.size) {
-      return true; // Mismatch if not all licenses are present in this source
-    }
-  }
-
-  return false; // No mismatch if all licenses are present in both sources
+  const licensesBySource = groupLicensesBySource(licensesWithPath);
+  const [smallestSource, smallestSet] = findSmallestSource(licensesBySource);
+  return hasMismatch(smallestSet, licensesBySource, smallestSource);
 }

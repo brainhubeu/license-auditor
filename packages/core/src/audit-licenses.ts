@@ -31,6 +31,7 @@ export async function auditLicenses(
     overrides: allLicenses.overrides,
     warning: allLicenses.warning,
     needsUserVerification: mappedLiceses.needsUserVerification,
+    errorResults: allLicenses.errorResults,
   };
 
   // const packageManager = await findPackageManager(cwd);

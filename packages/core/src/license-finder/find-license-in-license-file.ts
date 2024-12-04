@@ -7,13 +7,24 @@ import {
   type LicenseWithSource,
   licenseMap,
 } from "@license-auditor/data";
-// import { checkLicenseStatus } from "../check-license-status.js";
 import { addLicenseSource } from "./add-license-source.js";
+import { detectLicenses } from "./detect-from-license-content.js";
 import type { LicensesWithPathAndStatus } from "./licenses-with-path.js";
 
 export function retrieveLicenseFromLicenseFileContent(content: string): {
   licenses: License[];
 } {
+  const detectedLicenses = detectLicenses(content);
+  const detectedLicense = detectedLicenses[0];
+  if (detectedLicense && (detectedLicense.similarity ?? 0) > 0.75) {
+    const licenseArr = [...licenseMap]
+      .filter(([key]) => key === detectedLicense.licenseId)
+      .map((result) => LicenseSchema.parse(result[1]));
+    return {
+      licenses: licenseArr,
+    };
+  }
+
   const contentTokens = content.split(/[ ,]+/);
 
   const licenseArr = [...licenseMap]
@@ -25,38 +36,6 @@ export function retrieveLicenseFromLicenseFileContent(content: string): {
 
   return {
     licenses: addLicenseSource(licenseArr, LICENSE_SOURCE.licenseFileContent),
-  };
-}
-
-export function retrieveLicenseFromLicenseFileName(filePath: string): {
-  licenses: License[];
-} {
-  const licenseNameMatch = filePath.match(/LICENSE-([^\/]+?)(\.md|\.txt)?$/i);
-  if (!licenseNameMatch) {
-    return { licenses: [] };
-  }
-
-  const licenseName = licenseNameMatch[1];
-
-  if (!licenseName) {
-    return { licenses: [] };
-  }
-
-  const foundLicense = [...licenseMap].find(
-    ([key, value]) =>
-      key.toLowerCase() === licenseName.toLowerCase() ||
-      value.name.toLowerCase() === licenseName.toLowerCase(),
-  );
-
-  if (!foundLicense) {
-    return { licenses: [] };
-  }
-
-  return {
-    licenses: addLicenseSource(
-      [LicenseSchema.parse(foundLicense[1])],
-      LICENSE_SOURCE.licenseFileName,
-    ),
   };
 }
 
@@ -74,19 +53,11 @@ export async function findLicenseInLicenseFile(filePath: string): Promise<{
 
     let foundLicenses: LicenseWithSource[] = [];
 
-    if (/\/LICENSE(\.md|\.txt)?$/i.test(filePath)) {
-      const result = retrieveLicenseFromLicenseFileContent(content);
-      foundLicenses = result.licenses.map((license) => ({
-        ...license,
-        source: LICENSE_SOURCE.licenseFileContent,
-      }));
-    } else if (/\/LICENSE-.+?(\.md|\.txt)?$/i.test(filePath)) {
-      const result = retrieveLicenseFromLicenseFileName(filePath);
-      foundLicenses = result.licenses.map((license) => ({
-        ...license,
-        source: LICENSE_SOURCE.licenseFileName,
-      }));
-    }
+    const result = retrieveLicenseFromLicenseFileContent(content);
+    foundLicenses = result.licenses.map((license) => ({
+      ...license,
+      source: LICENSE_SOURCE.licenseFileContent,
+    }));
 
     return {
       licenses: foundLicenses,
@@ -100,7 +71,6 @@ export async function findLicenseInLicenseFile(filePath: string): Promise<{
 
 export async function parseLicenseFiles(
   packagePath: string,
-  // config: ConfigType,
 ): Promise<LicensesWithPathAndStatus> {
   const files = await readdir(packagePath);
   const licenseFiles = files.filter((file) =>
@@ -116,7 +86,6 @@ export async function parseLicenseFiles(
   }
 
   if (licenseFiles.length > 1) {
-    // return handleMultipleLicenseFiles(licenseFiles, packagePath, config);
     return handleMultipleLicenseFiles(licenseFiles, packagePath);
   }
 
@@ -142,7 +111,7 @@ async function handleSingleLicenseFile(
     return {
       licenses: [],
       licensePath: [licensePath],
-      verificationStatus: "licenseFileExistsButNoLicense",
+      verificationStatus: "licenseFileExistsButUnknownLicense",
     };
   }
 
@@ -156,7 +125,6 @@ async function handleSingleLicenseFile(
 async function handleMultipleLicenseFiles(
   licenseFiles: string[],
   packagePath: string,
-  // config: ConfigType,
 ): Promise<LicensesWithPathAndStatus> {
   const allLicenses: LicenseWithSource[] = [];
 
@@ -168,19 +136,13 @@ async function handleMultipleLicenseFiles(
     }
   }
 
-  // return {
-  // 	licenses: allLicenses,
-  // 	licensePath: licenseFiles.map((file) => path.join(packagePath, file)),
-  // 	verificationStatus: "ok",
-  // };
-
   const licensePaths = licenseFiles.map((file) => path.join(packagePath, file));
 
   if (allLicenses.length === 0) {
     return {
       licenses: [],
       licensePath: licensePaths,
-      verificationStatus: "licenseNotFoundInFile",
+      verificationStatus: "licenseFileExistsButUnknownLicense",
     };
   }
 
