@@ -7,7 +7,6 @@ import {
   conflictingPeerDepsTest,
   defaultTest,
   legacyPeerDepsTest,
-  pnpmFixture,
 } from "../fixtures";
 
 describe("license-auditor", () => {

@@ -29,10 +29,10 @@ const getInstallCommand = async (projectDirectory: string) => {
       "..",
       "node_modules",
       ".bin",
-      "pnpm"
+      "pnpm",
     );
 
-    console.log('pnpmLocalPath', pnpmLocalPath)
+    console.log("pnpmLocalPath", pnpmLocalPath);
 
     return `${pnpmLocalPath} i`;
   }
@@ -62,7 +62,7 @@ const cleanUpTestProjects = async (projectDirectory: string) => {
   });
 };
 
-export const setup =async () => {
+export const setup = async () => {
   const results = await fs.readdir(TEST_PROJECTS_DIRECTORY, {
     withFileTypes: true,
   });
