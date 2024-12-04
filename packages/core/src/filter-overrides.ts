@@ -1,15 +1,5 @@
 import type { DetectedLicense, OverridesType } from "@license-auditor/data";
-
-// splits out version, takes scoped packages into account
-function getPackageName(packageName: string): string {
-  const atIndex = packageName.lastIndexOf("@");
-
-  if (atIndex > 0) {
-    return packageName.slice(0, atIndex);
-  }
-
-  return packageName;
-}
+import { getPackageName } from "./get-package-name.js";
 
 export function filterOverrides({
   foundPackages,

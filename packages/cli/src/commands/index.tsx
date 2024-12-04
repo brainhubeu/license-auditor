@@ -25,6 +25,12 @@ export const options = z.object({
   defaultConfig: z // pacsalCase options are converted to kebab-case, so the flag is actually --default-config
     .boolean()
     .describe("Run audit with default whitelist/blacklist configuration"),
+  filterRegex: z
+    .string()
+    .optional()
+    .describe(
+      "Filter packages by a regex pattern for example: --filter-regex babel",
+    ),
 });
 
 export type Options = {
@@ -51,6 +57,7 @@ export default function Index({ options }: Options) {
           filter={options.filter}
           json={validateJsonResult.path}
           production={options.production}
+          filterRegex={options.filterRegex}
         />
       </Box>
     );
