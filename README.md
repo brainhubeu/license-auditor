@@ -43,7 +43,7 @@ The results will be printed in the console.
 > [!IMPORTANT]
 > Verify dev dependencies if they generate code, embed assets, or otherwise impact the final product, as their licenses might impose restrictions. Always prioritize reviewing both when in doubt or if your project may be redistributed or commercialized.
 
-## Configuration file structure
+## Configuration file
 
 All licenses are sourced from [SPDX license list](https://spdx.org/licenses/)
 
@@ -52,6 +52,30 @@ All licenses are sourced from [SPDX license list](https://spdx.org/licenses/)
 -   `overrides` - an object with the specified severity:
     -   `warn` - package should be omitted from audit, but it will produce a warning,
     -   `off`- package should be completely omitted from the audit.
+
+To use `ConfigType` and enable IntelliSense license suggestions in the configuration file, run:
+
+```
+npm i --save-dev @brainhubeu/lac
+```
+
+Then, in JS/MJS configuration at the top of the file add:
+
+```js
+/**
+ * @type {import('@brainhubeu/lac').ConfigType}
+ */
+```
+
+In TS configuration:
+
+```js
+import type { ConfigType } from "@brainhubeu/lac";
+
+const config: ConfigType = {
+  ...
+};
+```
 
 ## Known issues
 
