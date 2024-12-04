@@ -19,8 +19,8 @@ const PnpmListDependenciesOutputSchema = z
 
 type PnpmDependency = z.infer<typeof PnpmDependencySchema>;
 
-export const findPnpmDepsCommand = "pnpm ls --json";
-export const findPnpmProdDepsCommand = "pnpm ls --json --prod";
+export const findPnpmDepsCommand = "pnpm ls -r --json";
+export const findPnpmProdDepsCommand = "pnpm ls -r -P --json";
 
 export async function findPnpmDependencies(
   projectRoot: string,
