@@ -13,7 +13,7 @@ export async function execCommand(
         reject(
           new ExecCommandException(
             error?.stack && verbose
-              ? error.stack
+              ? `\n${error.stack}\n\n${stdout}`
               : `Command "${command}" returned an error.`,
             {
               originalError: error,
