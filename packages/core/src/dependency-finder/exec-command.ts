@@ -10,15 +10,17 @@ export async function execCommand(
   return new Promise((resolve, reject) => {
     exec(command, { cwd }, (error, stdout, stderr) => {
       if (error || (stderr && !stderr.includes("Debugger attached"))) {
-        if (verbose) {
-          console.error(error);
-        }
         reject(
-          new ExecCommandException(`Command "${command}" returned an error.`, {
-            originalError: error,
-            stdout,
-            stderr,
-          }),
+          new ExecCommandException(
+            error?.stack && verbose
+              ? error.stack
+              : `Command "${command}" returned an error.`,
+            {
+              originalError: error,
+              stdout,
+              stderr,
+            },
+          ),
         );
       }
 
