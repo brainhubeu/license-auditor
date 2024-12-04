@@ -32,8 +32,6 @@ const getInstallCommand = async (projectDirectory: string) => {
       "pnpm",
     );
 
-    console.log("pnpmLocalPath", pnpmLocalPath);
-
     return `${pnpmLocalPath} i`;
   }
   return "npm i";
