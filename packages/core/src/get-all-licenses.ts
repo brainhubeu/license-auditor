@@ -5,6 +5,7 @@ import {
   extractPackageNameWithVersion,
   readPackageJson,
 } from "./file-utils.js";
+import { filterWithFilterRegex } from "./filter-with-filter-regex.js";
 import { filterOverrides } from "./filter-overrides.js";
 import { findPackageManager } from "./find-package-manager.js";
 import { findLicenses } from "./license-finder/find-license.js";
@@ -33,6 +34,7 @@ export type GetAllLicensesResult = {
 export async function getAllLicenses(
   cwd: string,
   config: ConfigType,
+  filterRegex?: string,
   production?: boolean | undefined,
 ): Promise<GetAllLicensesResult> {
   const packageManager = await findPackageManager(cwd);
@@ -52,8 +54,13 @@ export async function getAllLicenses(
       packageName: extractPackageNameFromPath(packagePath),
     }));
 
-  const { filteredPackages, notFoundOverrides } = filterOverrides({
+  const filteredByRegex = filterWithFilterRegex({
     foundPackages,
+    filterRegex,
+  });
+
+  const { filteredPackages, notFoundOverrides } = filterOverrides({
+    foundPackages: filteredByRegex,
     overrides: config.overrides,
   });
 

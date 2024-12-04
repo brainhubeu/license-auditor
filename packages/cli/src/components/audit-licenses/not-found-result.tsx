@@ -30,7 +30,7 @@ export default function NotFoundResult({
               {verbose ? (
                 <Text>
                   {" "}
-                  {packageName}: {packagePath} Error: {errorMessage}
+                  {packageName}: {errorMessage}
                 </Text>
               ) : (
                 <Text> {packageName} </Text>

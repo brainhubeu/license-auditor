@@ -1,0 +1,16 @@
+{
+  "name": "conflicting-legacy-peer-deps",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tanstack/react-query": "^5.55.4",
+    "@tanstack/react-query-devtools": "^5.56.2",
+    "react": "^18.3.1"
+  }
+}

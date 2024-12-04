@@ -3,7 +3,11 @@ import { addPackage } from "./utils/add-package";
 import { getCliPath } from "./utils/get-cli-path";
 import { runCliCommand } from "./utils/run-cli-command";
 
-import { defaultTest, legacyPeerDepsTest } from "./fixtures";
+import {
+  conflictingPeerDepsTest,
+  defaultTest,
+  legacyPeerDepsTest,
+} from "./fixtures";
 
 describe("license-auditor", () => {
   describe("cli", () => {
@@ -206,6 +210,111 @@ describe("license-auditor", () => {
           expect(output).toContain("Not all licenses are whitelisted");
         },
       );
+
+      defaultTest(
+        "displays not found licenses in verbose table",
+        async ({ testDirectory }) => {
+          await addPackage(testDirectory, "node_modules/testing-no-license", {
+            version: "1.0.0",
+            license: "",
+          });
+
+          const { output, errorCode } = await runCliCommand({
+            command: "npx",
+            args: [getCliPath(), "--verbose"],
+            cwd: testDirectory,
+          });
+
+          expect(errorCode).toBe(0);
+          expect(output).toContain("status");
+          expect(output).toContain("not found");
+          expect(output).toContain("testing-no-license");
+        },
+      );
     });
+    describe("filter-regex flag", () => {
+      defaultTest(
+        "one package should be filtered with filter-regex flag",
+        async ({ testDirectory }) => {
+          await addPackage(
+            testDirectory,
+            "node_modules/@testing-lib/lib1",
+            {
+              version: "1.0.0",
+              license: "",
+            },
+            [{ name: "LICENSE-MIT", content: "MIT" }],
+          );
+
+          await addPackage(
+            testDirectory,
+            "node_modules/lib-test",
+            {
+              version: "1.0.0",
+              license: "",
+            },
+            [{ name: "LICENSE-MIT", content: "MIT" }],
+          );
+
+          const { output, errorCode } = await runCliCommand({
+            command: "npx",
+            args: [getCliPath(), "--filter-regex", "@testing-lib"],
+            cwd: testDirectory,
+          });
+
+          expect(errorCode).toBe(0);
+          expect(output).toContain("247 licenses are compliant");
+        },
+      );
+
+      defaultTest(
+        "two packages with same organization name should be filtered with filter-regex flag",
+        async ({ testDirectory }) => {
+          await addPackage(
+            testDirectory,
+            "node_modules/@testing-lib/lib1",
+            {
+              version: "1.0.0",
+              license: "",
+            },
+            [{ name: "LICENSE-MIT", content: "MIT" }],
+          );
+
+          await addPackage(
+            testDirectory,
+            "node_modules/@testing-lib/lib2",
+            {
+              version: "1.0.0",
+              license: "",
+            },
+            [{ name: "LICENSE-MIT", content: "MIT" }],
+          );
+
+          const { output, errorCode } = await runCliCommand({
+            command: "npx",
+            args: [getCliPath(), "--filter-regex", "@testing-lib"],
+            cwd: testDirectory,
+          });
+
+          expect(errorCode).toBe(0);
+          expect(output).toContain("246 licenses are compliant");
+        },
+      );
+    });
+
+    conflictingPeerDepsTest(
+      "conflicting peer deps",
+      async ({ testDirectory }) => {
+        console.log("testDirectory", testDirectory);
+        const { output, errorCode } = await runCliCommand({
+          command: "npx",
+          args: [getCliPath()],
+          cwd: testDirectory,
+        });
+
+        expect(errorCode).toBe(0);
+        expect(output).toContain("Unable to resolve project dependencies.");
+      },
+    );
   });
 });
