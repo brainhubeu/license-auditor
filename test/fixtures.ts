@@ -5,7 +5,7 @@ import {
   TEST_PROJECTS_DIRECTORY,
   TEST_TEMP_DIRECTORY,
   type TestContext,
-} from "./test-project-setup";
+} from "./global-setup";
 
 export const defaultTest = test.extend<TestContext>({
   // biome-ignore lint/correctness/noEmptyPattern: destructuring pattern is required in fixture

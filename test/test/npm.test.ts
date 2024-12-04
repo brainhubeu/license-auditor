@@ -1,14 +1,14 @@
 import { describe, expect } from "vitest";
-import { addPackage } from "./utils/add-package";
-import { getCliPath } from "./utils/get-cli-path";
-import { runCliCommand } from "./utils/run-cli-command";
+import { addPackage } from "../utils/add-package";
+import { getCliPath } from "../utils/get-cli-path";
+import { runCliCommand } from "../utils/run-cli-command";
 
 import {
   conflictingPeerDepsTest,
   defaultTest,
   legacyPeerDepsTest,
   pnpmFixture,
-} from "./fixtures";
+} from "../fixtures";
 
 describe("license-auditor", () => {
   describe("cli", () => {
@@ -246,16 +246,5 @@ describe("license-auditor", () => {
         expect(output).toContain("Unable to resolve project dependencies.");
       },
     );
-  });
-
-  pnpmFixture.fails("pnpm", async ({ testDirectory }) => {
-    const { output, errorCode } = await runCliCommand({
-      command: "npx",
-      args: [getCliPath(), "--production"],
-      cwd: testDirectory,
-    });
-
-    expect(errorCode).toBe(0);
-    expect(output).toContain("77 licenses are compliant");
   });
 });

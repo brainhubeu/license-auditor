@@ -24,7 +24,17 @@ const exists = async (path: string) => {
 
 const getInstallCommand = async (projectDirectory: string) => {
   if (await exists(path.resolve(projectDirectory, "pnpm-lock.yaml"))) {
-    return "pnpm i";
+    const pnpmLocalPath = path.resolve(
+      __dirname,
+      "..",
+      "node_modules",
+      ".bin",
+      "pnpm"
+    );
+
+    console.log('pnpmLocalPath', pnpmLocalPath)
+
+    return `${pnpmLocalPath} i`;
   }
   return "npm i";
 };
@@ -52,7 +62,7 @@ const cleanUpTestProjects = async (projectDirectory: string) => {
   });
 };
 
-beforeAll(async () => {
+export const setup =async () => {
   const results = await fs.readdir(TEST_PROJECTS_DIRECTORY, {
     withFileTypes: true,
   });
@@ -65,9 +75,9 @@ beforeAll(async () => {
   }
 
   await fs.mkdir(path.resolve(__dirname, "temp"), { recursive: true });
-});
+};
 
-afterAll(async () => {
+export const teardown = async () => {
   const results = await fs.readdir(TEST_PROJECTS_DIRECTORY, {
     withFileTypes: true,
   });
@@ -82,4 +92,4 @@ afterAll(async () => {
     recursive: true,
     force: true,
   });
-});
+};
