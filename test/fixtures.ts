@@ -111,10 +111,13 @@ export const monorepoFixture = test.extend<TestContext>({
       TEST_TEMP_DIRECTORY,
       `testProject-${Math.random().toString(36).substring(2)}`,
     );
-    await fs.cp(path.resolve(TEST_PROJECTS_DIRECTORY, "monorepo"), testDirectory, {
-      recursive: true,
-      verbatimSymlinks: true,
-    });
+    await fs.cp(
+      path.resolve(TEST_PROJECTS_DIRECTORY, "monorepo"),
+      testDirectory, {
+        recursive: true,
+        verbatimSymlinks: true,
+      },
+    );
 
     await use(testDirectory);
 
