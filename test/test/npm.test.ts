@@ -45,7 +45,7 @@ describe("license-auditor", () => {
 
         expect(errorCode).toBe(0);
         expect(output).toContain("246 licenses are compliant");
-        expect(output).toContain("2 licenses are blacklisted");
+        expect(output).toContain("2 licenses are unknown");
       },
     );
 
