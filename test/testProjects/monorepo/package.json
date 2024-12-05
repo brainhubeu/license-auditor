@@ -9,10 +9,7 @@
   "author": "",
   "license": "ISC",
   "description": "",
-  "workspaces": [
-    "client",
-    "server"
-  ],
+  "workspaces": ["client", "server"],
   "dependencies": {
     "express": "^4.21.1"
   }
