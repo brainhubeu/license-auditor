@@ -113,7 +113,8 @@ export const monorepoFixture = test.extend<TestContext>({
     );
     await fs.cp(
       path.resolve(TEST_PROJECTS_DIRECTORY, "monorepo"),
-      testDirectory, {
+      testDirectory,
+      {
         recursive: true,
         verbatimSymlinks: true,
       },
