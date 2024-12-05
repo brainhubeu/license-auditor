@@ -1,13 +1,13 @@
 import { describe, expect } from "vitest";
-import { addPackage } from "./utils/add-package";
-import { getCliPath } from "./utils/get-cli-path";
-import { runCliCommand } from "./utils/run-cli-command";
+import { addPackage } from "../utils/add-package";
+import { getCliPath } from "../utils/get-cli-path";
+import { runCliCommand } from "../utils/run-cli-command";
 
 import {
   conflictingPeerDepsTest,
   defaultTest,
   legacyPeerDepsTest,
-} from "./fixtures";
+} from "../fixtures";
 
 describe("license-auditor", () => {
   describe("cli", () => {
@@ -305,7 +305,6 @@ describe("license-auditor", () => {
     conflictingPeerDepsTest(
       "conflicting peer deps",
       async ({ testDirectory }) => {
-        console.log("testDirectory", testDirectory);
         const { output, errorCode } = await runCliCommand({
           command: "npx",
           args: [getCliPath()],
