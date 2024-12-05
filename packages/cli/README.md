@@ -1,4 +1,4 @@
-# license-auditor
+# License Auditor CLI
 
 ## Prerequisites
 
@@ -15,18 +15,17 @@
 To start using License Auditor, in the root of your project run
 
 ```
-npx @brainhubeu/lca init
+npx @brainhubeu/lac init
 ```
 
 Follow the configuration wizard and select the template which suits your project.
 
-> [!CAUTION]
-> The default configuration should not be in any way interpreted as legal advice.
+> **CAUTION: The default configuration should not be in any way interpreted as legal advice.**
 
 Next, to conduct license audit run
 
 ```
-npx @brainhubeu/lca
+npx @brainhubeu/lac
 ```
 
 The results will be printed in the console.
@@ -39,10 +38,11 @@ The results will be printed in the console.
 - `--production` - Skip the audit for licenses in development dependencies (default: false)
 - `--default-config` - Run audit with default whitelist/blacklist configuration
 
-> [!IMPORTANT]
-> Verify dev dependencies if they generate code, embed assets, or otherwise impact the final product, as their licenses might impose restrictions. Always prioritize reviewing both when in doubt or if your project may be redistributed or commercialized.
+**Verify dev dependencies if they generate code, embed assets, or otherwise impact the final product, as their licenses might impose restrictions. Always prioritize reviewing both when in doubt or if your project may be redistributed or commercialized.**
 
 ## Configuration file
+
+### File structure
 
 All licenses are sourced from [SPDX license list](https://spdx.org/licenses/)
 
@@ -75,6 +75,18 @@ const config: ConfigType = {
   ...
 };
 ```
+
+### Default configuration
+
+LAC offers a default configuration for whitelist and blacklist, available by running the configuration wizard or using the `--default-config` flag. The rationale for selecting licenses for each list is available in [this Brainhub article about open source licenses](https://brainhub.eu/library/open-source-licenses-to-avoid). It describes licenses to be wary of as:
+
+> You need to be careful about a few restrictive licenses, like GPL 3.0 or AGPL. In the worst-case scenario, you may be required to release your software under the same license, royalty-free.
+
+> However, we shouldn't say these licenses are bad. They cause a legal risk or can make you rewrite the whole product, but only if you don't follow the rules associated with them.
+
+> The key in managing licenses is to understand how they work, follow their rules, and ideally use software that helps to track the licenses in your product, so as not to break the law or cause problems to your product through inattention.
+
+> **CAUTION: The default configuration should not be in any way interpreted as legal advice.**
 
 ## Known issues
 
