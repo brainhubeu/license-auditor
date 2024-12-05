@@ -1,16 +1,16 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import type { DependenciesResult } from "@license-auditor/data";
+import flattenDeep from "lodash.flattendeep";
 import { z } from "zod";
 import { FindDependenciesException } from "../exceptions/find-dependecies.exception.js";
 import { execCommand } from "./exec-command.js";
 
 const YarnDependencySchema = z.object({
   name: z.string(),
-  children: z.array(z.any()).length(0),
+  children: z.array(z.any()),
   hint: z.string().nullable(),
   color: z.string().nullable(),
-  depth: z.literal(0),
 });
 
 const YarnListOutputSchema = z.object({
@@ -23,9 +23,8 @@ const YarnListOutputSchema = z.object({
 
 type YarnDependency = z.infer<typeof YarnDependencySchema>;
 
-export const findYarnClassicDepsCommand = "yarn list --depth=0 --json -R";
-export const findYarnClassicProdDepsCommand =
-  "yarn list --depth=0 --json -R --prod";
+export const findYarnClassicDepsCommand = "yarn list --json -R";
+export const findYarnClassicProdDepsCommand = "yarn list --json -R --prod";
 
 export async function findYarnClassicDependencies(
   projectRoot: string,
@@ -40,17 +39,17 @@ export async function findYarnClassicDependencies(
   const dependenciesList = JSON.parse(output);
 
   const validationResult = YarnListOutputSchema.safeParse(dependenciesList);
+
   if (!validationResult.success) {
-    throw new FindDependenciesException(
-      "Invalid yarn list --depth=0 --json -R output",
-      {
-        originalError: validationResult.error,
-      },
-    );
+    throw new FindDependenciesException("Invalid yarn list -R output", {
+      originalError: validationResult.error,
+    });
   }
 
+  const dependencies = flattenDeep(validationResult.data.data.trees);
+
   const dependencyPaths = await extractDependencyPaths(
-    validationResult.data.data.trees,
+    dependencies,
     projectRoot,
   );
 

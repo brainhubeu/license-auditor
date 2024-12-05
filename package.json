@@ -41,7 +41,7 @@
   "packageManager": "npm@10.8.2",
   "workspaces": ["packages/*", "tooling/*", "test"],
   "bin": {
-    "@brainhubeu/license-auditor": "packages/cli/dist/cli.js"
+    "license-auditor": "packages/cli/dist/cli.js"
   },
   "config": {
     "commitizen": {
