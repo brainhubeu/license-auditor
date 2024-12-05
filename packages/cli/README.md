@@ -76,6 +76,8 @@ const config: ConfigType = {
 };
 ```
 
+> **CAUTION: The default/strict configuration should not be in any way interpreted as legal advice.**
+
 ### Default configuration
 
 LAC offers a default configuration for whitelist and blacklist, available by running the configuration wizard or using the `--default-config` flag. The rationale for selecting licenses for each list is available in [this Brainhub article about open source licenses](https://brainhub.eu/library/open-source-licenses-to-avoid). It describes licenses to be wary of as:
@@ -86,7 +88,9 @@ LAC offers a default configuration for whitelist and blacklist, available by run
 
 > The key in managing licenses is to understand how they work, follow their rules, and ideally use software that helps to track the licenses in your product, so as not to break the law or cause problems to your product through inattention.
 
-> **CAUTION: The default configuration should not be in any way interpreted as legal advice.**
+### Strict configuration
+
+Strict configuration offers a more restrictive whitelist/blacklist preset. The aim was to cover as many licenses as viable, keeping to the guidelines described in the article above.
 
 ## Known issues
 
