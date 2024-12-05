@@ -3,7 +3,7 @@ import { yarnFixture } from "../fixtures";
 import { getCliPath } from "../utils/get-cli-path";
 import { runCliCommand } from "../utils/run-cli-command";
 
-yarnFixture.only("yarn", async ({ testDirectory }) => {
+yarnFixture("yarn", async ({ testDirectory }) => {
   const { output, errorCode } = await runCliCommand({
     command: "npx",
     args: [getCliPath(), "--production"],
