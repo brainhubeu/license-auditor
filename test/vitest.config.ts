@@ -6,7 +6,7 @@ export default defineConfig({
   test: {
     testTimeout: 30000,
     include: ["./**/*.{test,spec}.?(c|m)[jt]s?(x)"],
-    setupFiles: ["./test-project-setup.ts"],
+    globalSetup: ["./global-setup.ts"],
     sequence: {
       concurrent: true,
     },
