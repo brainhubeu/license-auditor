@@ -86,3 +86,21 @@ export const pnpmFixture = test.extend<TestContext>({
     await fs.rm(testDirectory, { recursive: true });
   },
 });
+
+export const monorepoFixture = test.extend<TestContext>({
+  // biome-ignore lint/correctness/noEmptyPattern: destructuring pattern is required in fixture
+  testDirectory: async ({}, use) => {
+    const testDirectory = path.resolve(
+      TEST_TEMP_DIRECTORY,
+      `testProject-${Math.random().toString(36).substring(2)}`,
+    );
+    await fs.cp(path.resolve(TEST_PROJECTS_DIRECTORY, "monorepo"), testDirectory, {
+      recursive: true,
+      verbatimSymlinks: true,
+    });
+
+    await use(testDirectory);
+
+    await fs.rm(testDirectory, { recursive: true });
+  },
+});
