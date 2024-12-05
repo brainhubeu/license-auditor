@@ -34,6 +34,18 @@ const getInstallCommand = async (projectDirectory: string) => {
 
     return `${pnpmLocalPath} i`;
   }
+
+  if (await exists(path.resolve(projectDirectory, "yarn.lock"))) {
+    const yarnLocalPath = path.resolve(
+      __dirname,
+      "..",
+      "node_modules",
+      ".bin",
+      "yarn",
+    );
+
+    return `${yarnLocalPath} install`;
+  }
   return "npm i";
 };
 
