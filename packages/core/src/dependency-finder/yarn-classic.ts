@@ -30,10 +30,12 @@ export const findYarnClassicProdDepsCommand =
 export async function findYarnClassicDependencies(
   projectRoot: string,
   production?: boolean | undefined,
+  verbose?: boolean | undefined,
 ): Promise<DependenciesResult> {
   const output = await execCommand(
     production ? findYarnClassicProdDepsCommand : findYarnClassicDepsCommand,
     projectRoot,
+    verbose,
   );
   const dependenciesList = JSON.parse(output);
 

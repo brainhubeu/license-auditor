@@ -10,14 +10,21 @@ export async function findDependencies({
   packageManager,
   projectRoot,
   production,
+  verbose,
 }: {
   packageManager: SupportedPm;
   projectRoot: string;
   production?: boolean | undefined;
+  verbose?: boolean | undefined;
 }): Promise<DependenciesResult> {
   const [{ dependencies: dependencyPaths, warning }, internalPackages] =
     await Promise.all([
-      findExternalDependencies({ packageManager, projectRoot, production }),
+      findExternalDependencies({
+        packageManager,
+        projectRoot,
+        production,
+        verbose,
+      }),
       findInternalPackages(projectRoot),
     ]);
 
@@ -35,19 +42,21 @@ function findExternalDependencies({
   packageManager,
   projectRoot,
   production,
+  verbose,
 }: {
   packageManager: SupportedPm;
   projectRoot: string;
   production?: boolean | undefined;
+  verbose?: boolean | undefined;
 }): Promise<DependenciesResult> {
   switch (packageManager) {
     case "npm":
     case "yarn":
-      return findNpmDependencies(projectRoot, production);
+      return findNpmDependencies(projectRoot, production, verbose);
     case "pnpm":
-      return findPnpmDependencies(projectRoot, production);
+      return findPnpmDependencies(projectRoot, production, verbose);
     case "yarn-classic":
-      return findYarnClassicDependencies(projectRoot, production);
+      return findYarnClassicDependencies(projectRoot, production, verbose);
     default:
       throw new UnsupportedPackageManagerException(
         "Unsupported package manager",
