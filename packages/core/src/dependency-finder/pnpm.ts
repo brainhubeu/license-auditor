@@ -8,10 +8,12 @@ export const findPnpmProdDepsCommand =
 export async function findPnpmDependencies(
   projectRoot: string,
   production?: boolean | undefined,
+  verbose?: boolean | undefined,
 ): Promise<DependenciesResult> {
   const output = await execCommand(
     production ? findPnpmProdDepsCommand : findPnpmDepsCommand,
     projectRoot,
+    verbose,
   );
 
   const [_, ...dependencies] = output.split("\n");

@@ -8,6 +8,7 @@ export const findNpmProdDepsCommand = "npm ls --all -p --omit=dev";
 export async function findNpmDependencies(
   projectRoot: string,
   production?: boolean | undefined,
+  verbose?: boolean | undefined,
 ): Promise<DependenciesResult> {
   const { output, warning } = await (async () => {
     try {
@@ -15,6 +16,7 @@ export async function findNpmDependencies(
         output: await execCommand(
           production ? findNpmProdDepsCommand : findNpmDepsCommand,
           projectRoot,
+          verbose,
         ),
       };
     } catch (error) {
