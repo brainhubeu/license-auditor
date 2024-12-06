@@ -119,6 +119,8 @@ You can add License Auditor to your CI pipeline to ensure that the project's dep
       - name: Build
         run: npm run build
 
+      ### This part below should be added to your CI configuration file. ###
+
       - name: Install lac
         run:  npm i -g @brainhubeu/lac
 

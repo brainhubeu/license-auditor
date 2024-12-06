@@ -35,7 +35,7 @@ export const options = z.object({
     .number()
     .optional()
     .describe(
-      "Flag is used to control the exit behavior of the CI process based on the number of blacklisted licenses. by default it is set to Infinity",
+      "Flag is used to control the exit behavior of the CI process based on the number of blacklisted licenses. By default it is set to Infinity",
     ),
 });
 
