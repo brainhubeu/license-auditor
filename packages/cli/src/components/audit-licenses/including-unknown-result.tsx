@@ -14,7 +14,7 @@ export default function IncludingUnknownResult({
   verbose,
 }: Omit<
   LicenseAuditResult,
-  "notFound" | "needsUserVerification" | "overrides"
+  "notFound" | "needsUserVerification" | "overrides" | "errorResults"
 > & {
   verbose: boolean;
 }) {

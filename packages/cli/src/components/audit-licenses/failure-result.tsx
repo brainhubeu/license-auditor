@@ -12,7 +12,7 @@ export default function FailureResult({
   verbose,
 }: Omit<
   LicenseAuditResult,
-  "notFound" | "needsUserVerification" | "overrides"
+  "notFound" | "needsUserVerification" | "overrides" | "errorResults"
 > & {
   verbose: boolean;
 }) {

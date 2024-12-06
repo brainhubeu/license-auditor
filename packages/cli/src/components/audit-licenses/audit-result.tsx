@@ -66,6 +66,7 @@ export default function AuditResult({
   warning,
   overrides,
 }: AuditResultProps) {
+  //TODO handle errorResults here
   const hasNotFound = result.notFound.size > 0;
   const hasNeedsUserVerification = result.needsUserVerification.size > 0;
 

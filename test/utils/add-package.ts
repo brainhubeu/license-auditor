@@ -48,7 +48,7 @@ const addPackageDirectoryToNodeModules = async (
     dependencies: packageDetails.dependencies || {},
     license: packageDetails.license,
   };
-  const packageDirectory = path.resolve(testDirectory, depName);
+  const packageDirectory = path.resolve(testDirectory, 'node_modules', depName);
   await fs.mkdir(packageDirectory, { recursive: true });
 
   const packageJsonPath = path.resolve(packageDirectory, "package.json");

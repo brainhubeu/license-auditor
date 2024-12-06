@@ -32,8 +32,8 @@ export const LicenseStatusSchema = z.union([
 
 export const VerificationStatusSchema = z.union([
   z.literal("ok"),
-  z.literal("licenseFileExistsButNoLicense"),
-  z.literal("notAllLicensesWhitelisted"),
-  z.literal("notAllLicensesFound"),
-  z.literal("licenseNotFound"),
+  z.literal("someButNotAllLicensesWhitelisted"),
+  z.literal("licenseFilesExistButSomeAreUncertain"),
+  z.literal("licenseFileExistsButUnknownLicense"),
+  z.literal("licenseFileNotFound"),
 ]);

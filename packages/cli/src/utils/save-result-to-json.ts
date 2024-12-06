@@ -1,13 +1,19 @@
 import fs from "node:fs/promises";
-import type { LicenseAuditResult } from "@license-auditor/data";
+import type { JsonResults, LicenseAuditResult } from '@license-auditor/data';
 
 export async function saveResultToJson(
   result: LicenseAuditResult,
   jsonPath: string,
 ) {
-  const parsedResult = {
+  const parsedResult: JsonResults = {
     ...result.groupedByStatus,
     notFound: Array.from(result.notFound.entries()).map(
+      ([packageName, value]) => ({
+        packageName,
+        ...value,
+      }),
+    ),
+    needsUserVerification: Array.from(result.needsUserVerification.entries()).map(
       ([packageName, value]) => ({
         packageName,
         ...value,

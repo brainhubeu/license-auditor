@@ -7,7 +7,7 @@ export default function NotFoundResult({
   verbose,
 }: Omit<
   LicenseAuditResult,
-  "needsUserVerification" | "groupedByStatus" | "overrides"
+  "needsUserVerification" | "groupedByStatus" | "overrides" | "errorResults"
 > & {
   verbose: boolean;
 }) {
