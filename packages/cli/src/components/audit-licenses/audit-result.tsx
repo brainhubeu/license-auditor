@@ -1,7 +1,7 @@
 import type {
-	ConfigType,
-	LicenseAuditResult,
-	LicenseStatus,
+  ConfigType,
+  LicenseAuditResult,
+  LicenseStatus,
 } from "@license-auditor/data";
 import { Box } from "ink";
 import { OverrideResult } from "../override-result.js";
@@ -15,87 +15,87 @@ import SuccessResult from "./success-result.js";
 import VerboseView from "./verbose-view.js";
 
 function ResultForStatus({
-	result,
-	verbose,
+  result,
+  verbose,
 }: { result: LicenseAuditResult; verbose: boolean }) {
-	const hasWhitelisted = result.groupedByStatus.whitelist.length > 0;
-	const hasBlacklisted = result.groupedByStatus.blacklist.length > 0;
-	const hasUnknown = result.groupedByStatus.unknown.length > 0;
+  const hasWhitelisted = result.groupedByStatus.whitelist.length > 0;
+  const hasBlacklisted = result.groupedByStatus.blacklist.length > 0;
+  const hasUnknown = result.groupedByStatus.unknown.length > 0;
 
-	switch (true) {
-		case hasWhitelisted && !hasBlacklisted && !hasUnknown:
-			return (
-				<SuccessResult
-					whitelistedCount={result.groupedByStatus.whitelist.length}
-				/>
-			);
+  switch (true) {
+    case hasWhitelisted && !hasBlacklisted && !hasUnknown:
+      return (
+        <SuccessResult
+          whitelistedCount={result.groupedByStatus.whitelist.length}
+        />
+      );
 
-		case hasBlacklisted && !hasUnknown:
-			return (
-				<FailureResult
-					groupedByStatus={result.groupedByStatus}
-					verbose={verbose}
-				/>
-			);
+    case hasBlacklisted && !hasUnknown:
+      return (
+        <FailureResult
+          groupedByStatus={result.groupedByStatus}
+          verbose={verbose}
+        />
+      );
 
-		case !(hasWhitelisted || hasBlacklisted || hasUnknown):
-			return <NoLicensesFoundResult />;
+    case !(hasWhitelisted || hasBlacklisted || hasUnknown):
+      return <NoLicensesFoundResult />;
 
-		default:
-			return (
-				<IncludingUnknownResult
-					groupedByStatus={result.groupedByStatus}
-					verbose={verbose}
-				/>
-			);
-	}
+    default:
+      return (
+        <IncludingUnknownResult
+          groupedByStatus={result.groupedByStatus}
+          verbose={verbose}
+        />
+      );
+  }
 }
 
 interface AuditResultProps {
-	result: LicenseAuditResult;
-	overrides: Pick<ConfigType, "overrides">["overrides"];
-	warning?: string | null;
-	flags: {
-		verbose: boolean;
-		filter: LicenseStatus | undefined;
-		bail: number | undefined;
-	};
+  result: LicenseAuditResult;
+  overrides: Pick<ConfigType, "overrides">["overrides"];
+  warning?: string | null;
+  flags: {
+    verbose: boolean;
+    filter: LicenseStatus | undefined;
+    bail: number | undefined;
+  };
 }
 
 export default function AuditResult({
-	result,
-	overrides,
-	warning,
-	flags: { verbose, filter, bail },
+  result,
+  overrides,
+  warning,
+  flags: { verbose, filter, bail },
 }: AuditResultProps) {
-	const hasNotFound = result.notFound.size > 0;
-	const hasNeedsUserVerification = result.needsUserVerification.size > 0;
-	const blacklist = result.groupedByStatus.blacklist;
+  const hasNotFound = result.notFound.size > 0;
+  const hasNeedsUserVerification = result.needsUserVerification.size > 0;
+  const blacklist = result.groupedByStatus.blacklist;
 
-	const bailValue = bail ?? Number.POSITIVE_INFINITY;
-	process.exitCode = blacklist.length > bailValue ? 1 : 0;
+  const bailValue = bail ?? Number.POSITIVE_INFINITY;
+  process.exitCode = blacklist.length > bailValue ? 1 : 0;
 
-	return (
-		<Box flexDirection="column">
-			{verbose && <VerboseView result={result} filter={filter} />}
-			<ResultForStatus result={result} verbose={verbose} />
-			{hasNotFound && (
-				<NotFoundResult notFound={result.notFound} verbose={verbose} />
-			)}
+  return (
+    <Box flexDirection="column">
+      {verbose && <VerboseView result={result} filter={filter} />}
+      <ResultForStatus result={result} verbose={verbose} />
+      {hasNotFound && (
+        <NotFoundResult notFound={result.notFound} verbose={verbose} />
+      )}
 
-			{warning && <ErrorBox color="yellow">{warning}</ErrorBox>}
-			{verbose && (
-				<OverrideResult
-					configOverrides={overrides}
-					resultOverrides={result.overrides}
-				/>
-			)}
-			{hasNeedsUserVerification && (
-				<NeedsUserVerificationResult
-					needsUserVerification={result.needsUserVerification}
-					verbose={verbose}
-				/>
-			)}
-		</Box>
-	);
+      {warning && <ErrorBox color="yellow">{warning}</ErrorBox>}
+      {verbose && (
+        <OverrideResult
+          configOverrides={overrides}
+          resultOverrides={result.overrides}
+        />
+      )}
+      {hasNeedsUserVerification && (
+        <NeedsUserVerificationResult
+          needsUserVerification={result.needsUserVerification}
+          verbose={verbose}
+        />
+      )}
+    </Box>
+  );
 }
