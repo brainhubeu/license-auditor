@@ -11,7 +11,7 @@ const verificationMessages: Readonly<
   licenseFilesExistButSomeAreUncertain: (packagePath, packageName): string =>
     `We've found few license files, but we could not match a license for some of them for package ${packageName} in path ${packagePath}. Please review the package and assign a matching license or skip the check by listing it in the overrides field of the config file.`,
   someButNotAllLicensesWhitelisted: (packagePath, packageName): string =>
-    `Some but not all licenses are whitelisted for package ${packageName} in path ${packagePath}. Please review the package`,
+    `Some but not all licenses are whitelisted for package ${packageName} in path ${packagePath}. Please review the package.`,
   licenseFileNotFound: (packagePath, packageName): string =>
     `We couldn’t find a license file for package ${packageName} in path ${packagePath}. Please review the package and assign a matching license or skip the check by listing it in the overrides field of the config file.`,
   ok: (packagePath, packageName): string =>

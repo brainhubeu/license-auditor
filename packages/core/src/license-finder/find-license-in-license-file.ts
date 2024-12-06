@@ -15,7 +15,7 @@ export function retrieveLicenseFromLicenseFileContent(content: string): {
 } {
   const detectedLicenses = detectLicenses(content);
   const detectedLicense = detectedLicenses[0];
-  if (detectedLicense && (detectedLicense.similarity ?? 0) > 0.75) {
+  if (detectedLicense && (detectedLicense.similarity ?? 0) > 0.75) { // threshold selected empirically based on our tests
     const licenseArr = [...licenseMap]
       .filter(([key]) => key === detectedLicense.licenseId)
       .map((result) => LicenseSchema.parse(result[1]));

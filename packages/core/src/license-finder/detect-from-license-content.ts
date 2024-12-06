@@ -522,5 +522,4 @@ const calculateSimilarity = getCalculateSimilarity(licensesLibrary);
 export function detectLicenses(licenseContent: string) {
   const similarities = calculateSimilarity(licenseContent);
   return similarities.sort((a, b) => b.similarity - a.similarity);
-  // return similarities[0].licenseId;
 }

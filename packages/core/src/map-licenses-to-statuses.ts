@@ -80,6 +80,8 @@ export async function mapLicensesToStatus(
           packagePath,
         ),
       });
+
+      // we don't continue here because we want this package to appear in the blacklisted results
     }
 
     const statusOfAllLicenses = resolveLicenseStatus(licensesWithPath, config);
