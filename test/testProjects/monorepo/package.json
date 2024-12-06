@@ -1,5 +1,5 @@
 {
-  "name": "testla",
+  "name": "testproject",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -9,10 +9,7 @@
   "author": "",
   "license": "ISC",
   "description": "",
-  "workspaces": [
-    "client",
-    "server"
-  ],
+  "workspaces": ["client", "server"],
   "dependencies": {
     "express": "^4.21.1"
   }

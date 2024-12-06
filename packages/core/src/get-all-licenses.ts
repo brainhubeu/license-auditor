@@ -31,17 +31,27 @@ export type GetAllLicensesResult = {
   warning?: string | undefined;
 };
 
-export async function getAllLicenses(
-  cwd: string,
-  config: ConfigType,
-  production?: boolean | undefined,
-  filterRegex?: string,
-): Promise<GetAllLicensesResult> {
+type GetAllLicensesProps = {
+  cwd: string;
+  config: ConfigType;
+  production?: boolean | undefined;
+  filterRegex?: string | undefined;
+  verbose?: boolean | undefined;
+};
+
+export async function getAllLicenses({
+  cwd,
+  config,
+  production,
+  filterRegex,
+  verbose,
+}: GetAllLicensesProps): Promise<GetAllLicensesResult> {
   const packageManager = await findPackageManager(cwd);
   const { dependencies: packagePaths, warning } = await findDependencies({
     packageManager,
     projectRoot: cwd,
     production,
+    verbose,
   });
 
   const resultMap: PackageLicensesWithPath = new Map();

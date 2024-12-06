@@ -7,6 +7,7 @@ import { ConfigExtension } from "../constants/config-constants.js";
 export enum ConfigListType {
   Default = "default",
   Blank = "blank",
+  Strict = "strict",
 }
 
 async function copyConfigFile(

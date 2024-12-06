@@ -1,22 +1,22 @@
 import { describe, expect } from "vitest";
-import { addPackage } from "./utils/add-package";
-import { getCliPath } from "./utils/get-cli-path";
-import { runCliCommand } from "./utils/run-cli-command";
+import { addPackage } from "../utils/add-package";
+import { getCliPath } from "../utils/get-cli-path";
+import { runCliCommand } from "../utils/run-cli-command";
 
 import {
   conflictingPeerDepsTest,
   defaultTest,
   legacyPeerDepsTest,
-} from "./fixtures";
-import { readJsonFile } from './utils/readJsonFile';
+} from "../fixtures";
+import { readJsonFile } from '../utils/readJsonFile';
 import * as path from 'node:path';
 import {
   getBlacklistedLicenses,
   getNeedsUserVerificationLicenses, getNotFoundLicenses,
   getUnknownLicenses,
   getWhitelistedLicenses
-} from './utils/json-output-utils';
-import { getLicenseContent } from './utils/getLicenseContent';
+} from '../utils/json-output-utils';
+import { getLicenseContent } from '../utils/getLicenseContent';
 
 describe("license-auditor", () => {
   describe("cli", () => {
@@ -40,7 +40,7 @@ describe("license-auditor", () => {
       async ({ testDirectory }) => {
         await addPackage(
           testDirectory,
-          "node_modules/testing-blueoak-package",
+          "testing-blueoak-package",
           {
             version: "1.0.0",
             license: "BlueOak-1.0.0",
@@ -55,7 +55,7 @@ describe("license-auditor", () => {
 
         expect(errorCode).toBe(0);
         expect(output).toContain("245 licenses are compliant");
-        expect(output).toContain("1 licenses are blacklisted");
+        expect(output).toContain("1 license is unknown");
         expect(output).toContain("2 packages are requiring manual checking");
       },
     );
