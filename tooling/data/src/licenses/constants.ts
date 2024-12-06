@@ -4,6 +4,5 @@ export const LICENSE_SOURCE = {
   packageJsonLicensesExpression: "package.json-license-expression",
   packageJsonLegacy: "package.json-legacy",
   licenseFileContent: "license-file-content",
-  licenseFileName: "license-file-name",
   licenseFileContextKeywords: "license-file-content-keywords",
 } as const;

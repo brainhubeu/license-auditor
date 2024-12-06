@@ -8,7 +8,6 @@ import {
   checkLicenseStatus,
 } from "./check-license-status.js";
 import type { PackageLicensesWithPath } from "./get-all-licenses.js";
-import type { LicensesWithPathAndStatus } from "./license-finder/licenses-with-path.js";
 import { parseVerificationStatusToMessage } from "./parse-verification-status-to-message.js";
 import { resolveLicenseStatus } from "./resolve-license-status.js";
 
@@ -56,7 +55,7 @@ export async function mapLicensesToStatus(
     }
 
     if (
-      verificationStatus === "notAllLicensesFoundInFile" ||
+      verificationStatus === "licenseFilesExistButSomeAreUncertain" ||
       verificationStatus === "licenseFileExistsButUnknownLicense"
     ) {
       needsUserVerification.set(packageName, {
@@ -70,27 +69,13 @@ export async function mapLicensesToStatus(
       continue;
     }
 
-    const missmatchedLicenses = checkLicenseMismatch(licensesWithPath);
+    const areSomeButNotAllLicensesWhitelisted = someButNotAllLicensesWhitelisted(licenses, config);
 
-    if (missmatchedLicenses) {
+    if (areSomeButNotAllLicensesWhitelisted) {
       needsUserVerification.set(packageName, {
         packagePath,
         verificationMessage: parseVerificationStatusToMessage(
-          "missmatchInLicenseSources",
-          packageName,
-          packagePath,
-        ),
-      });
-      continue;
-    }
-
-    const isAllLicensesWhitelisted = allLicensesWhitelisted(licenses, config);
-
-    if (!isAllLicensesWhitelisted) {
-      needsUserVerification.set(packageName, {
-        packagePath,
-        verificationMessage: parseVerificationStatusToMessage(
-          "notAllLicensesWhitelisted",
+          "someButNotAllLicensesWhitelisted",
           packageName,
           packagePath,
         ),
@@ -119,81 +104,14 @@ export async function mapLicensesToStatus(
   };
 }
 
-const allLicensesWhitelisted = (
+const someButNotAllLicensesWhitelisted = (
   licenses: LicenseWithSource[],
   config: ConfigType,
 ): boolean => {
-  const allLicensesWhitelisted = licenses.every((license) => {
+  const whitelistedLicenses = licenses.filter((license) => {
     const licenseStatus = checkLicenseStatus(license, config);
     return licenseStatus === "whitelist";
   });
 
-  if (!allLicensesWhitelisted) {
-    return false;
-  }
-
-  return true;
+  return !!whitelistedLicenses.length && whitelistedLicenses.length < licenses.length;
 };
-
-function groupLicensesBySource(
-  licensesWithPath: LicensesWithPathAndStatus,
-): Map<string, Set<string>> {
-  const licensesBySource: Map<string, Set<string>> = new Map();
-
-  for (const license of licensesWithPath.licenses) {
-    if (!licensesBySource.has(license.source)) {
-      licensesBySource.set(license.source, new Set());
-    }
-    licensesBySource.get(license.source)?.add(license.licenseId);
-  }
-
-  return licensesBySource;
-}
-
-function findSmallestSource(
-  licensesBySource: Map<string, Set<string>>,
-): [string | null, Set<string> | null] {
-  let smallestSource: string | null = null;
-  let smallestSet: Set<string> | null = null;
-
-  for (const [source, licenseSet] of licensesBySource.entries()) {
-    if (smallestSet === null || licenseSet.size < smallestSet.size) {
-      smallestSource = source;
-      smallestSet = licenseSet;
-    }
-  }
-
-  return [smallestSource, smallestSet];
-}
-
-function hasMismatch(
-  smallestSet: Set<string> | null,
-  licensesBySource: Map<string, Set<string>>,
-  smallestSource: string | null,
-): boolean {
-  if (smallestSet === null) {
-    return false; // No licenses to compare
-  }
-
-  for (const [source, licenseSet] of licensesBySource.entries()) {
-    if (source === smallestSource) {
-      continue;
-    }
-
-    for (const licenseId of smallestSet) {
-      if (!licenseSet.has(licenseId)) {
-        return true; // Mismatch found
-      }
-    }
-  }
-
-  return false; // No mismatch found
-}
-
-function checkLicenseMismatch(
-  licensesWithPath: LicensesWithPathAndStatus,
-): boolean {
-  const licensesBySource = groupLicensesBySource(licensesWithPath);
-  const [smallestSource, smallestSet] = findSmallestSource(licensesBySource);
-  return hasMismatch(smallestSet, licensesBySource, smallestSource);
-}

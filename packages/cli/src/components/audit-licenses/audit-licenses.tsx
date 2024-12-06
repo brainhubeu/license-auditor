@@ -49,8 +49,8 @@ export default function AuditLicenses({
         const { warning, ...result } = await auditLicenses(
           parsedEnv.data.ROOT_DIR,
           config,
-          filterRegex,
           production,
+          filterRegex,
         );
         setResult(result);
         if (warning) {

@@ -2,7 +2,6 @@ import { readFile, readdir } from "node:fs/promises";
 import * as path from "node:path";
 import {
   LICENSE_SOURCE,
-  type License,
   LicenseSchema,
   type LicenseWithSource,
   licenseMap,
@@ -12,7 +11,7 @@ import { detectLicenses } from "./detect-from-license-content.js";
 import type { LicensesWithPathAndStatus } from "./licenses-with-path.js";
 
 export function retrieveLicenseFromLicenseFileContent(content: string): {
-  licenses: License[];
+  licenses: LicenseWithSource[];
 } {
   const detectedLicenses = detectLicenses(content);
   const detectedLicense = detectedLicenses[0];
@@ -21,7 +20,7 @@ export function retrieveLicenseFromLicenseFileContent(content: string): {
       .filter(([key]) => key === detectedLicense.licenseId)
       .map((result) => LicenseSchema.parse(result[1]));
     return {
-      licenses: licenseArr,
+      licenses: addLicenseSource(licenseArr, LICENSE_SOURCE.licenseFileContent),
     };
   }
 
@@ -35,7 +34,7 @@ export function retrieveLicenseFromLicenseFileContent(content: string): {
     .map((result) => LicenseSchema.parse(result[1]));
 
   return {
-    licenses: addLicenseSource(licenseArr, LICENSE_SOURCE.licenseFileContent),
+    licenses: addLicenseSource(licenseArr, LICENSE_SOURCE.licenseFileContextKeywords),
   };
 }
 
@@ -51,16 +50,10 @@ export async function findLicenseInLicenseFile(filePath: string): Promise<{
       };
     }
 
-    let foundLicenses: LicenseWithSource[] = [];
-
     const result = retrieveLicenseFromLicenseFileContent(content);
-    foundLicenses = result.licenses.map((license) => ({
-      ...license,
-      source: LICENSE_SOURCE.licenseFileContent,
-    }));
 
     return {
-      licenses: foundLicenses,
+      licenses: result.licenses,
     };
   } catch {
     return {
@@ -77,7 +70,7 @@ export async function parseLicenseFiles(
     /^LICENSE(-[\w.-]+)?(\.md|\.txt)?$/i.test(file),
   );
 
-  if (licenseFiles.length === 0) {
+  if (licenseFiles.length === 0 || !licenseFiles[0]) {
     return {
       licenses: [],
       licensePath: [packagePath],
@@ -89,15 +82,7 @@ export async function parseLicenseFiles(
     return handleMultipleLicenseFiles(licenseFiles, packagePath);
   }
 
-  if (licenseFiles[0]) {
-    return handleSingleLicenseFile(licenseFiles[0], packagePath);
-  }
-
-  return {
-    licenses: [],
-    licensePath: [packagePath],
-    verificationStatus: "licenseFileNotFound",
-  };
+  return handleSingleLicenseFile(licenseFiles[0], packagePath);
 }
 
 async function handleSingleLicenseFile(
@@ -127,10 +112,14 @@ async function handleMultipleLicenseFiles(
   packagePath: string,
 ): Promise<LicensesWithPathAndStatus> {
   const allLicenses: LicenseWithSource[] = [];
+  let unknownOrUncertainLicensesFiles = 0; // number of license files that were not matched by the content, but only by the keywords or not at all, which is risky and potentially require manual verification
 
   for (const licenseFile of licenseFiles) {
     const licensePath = path.join(packagePath, licenseFile);
     const licenseFromLicenseFile = await findLicenseInLicenseFile(licensePath);
+    if (licenseFromLicenseFile.licenses.some(license => license.source === LICENSE_SOURCE.licenseFileContextKeywords) || !licenseFromLicenseFile.licenses.length) {
+      unknownOrUncertainLicensesFiles++;
+    }
     if (licenseFromLicenseFile.licenses.length > 0) {
       allLicenses.push(...licenseFromLicenseFile.licenses);
     }
@@ -146,17 +135,9 @@ async function handleMultipleLicenseFiles(
     };
   }
 
-  if (allLicenses.length < licenseFiles.length) {
-    return {
-      licenses: allLicenses,
-      licensePath: licensePaths,
-      verificationStatus: "notAllLicensesFoundInFile",
-    };
-  }
-
   return {
     licenses: allLicenses,
     licensePath: licensePaths,
-    verificationStatus: "ok",
+    verificationStatus: unknownOrUncertainLicensesFiles ? "licenseFilesExistButSomeAreUncertain" : "ok",
   };
 }

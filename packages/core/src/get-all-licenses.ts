@@ -34,8 +34,8 @@ export type GetAllLicensesResult = {
 export async function getAllLicenses(
   cwd: string,
   config: ConfigType,
-  filterRegex?: string,
   production?: boolean | undefined,
+  filterRegex?: string,
 ): Promise<GetAllLicensesResult> {
   const packageManager = await findPackageManager(cwd);
   const { dependencies: packagePaths, warning } = await findDependencies({
