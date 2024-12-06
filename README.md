@@ -53,8 +53,8 @@ All licenses are sourced from [SPDX license list](https://spdx.org/licenses/)
 -   `whitelist` - array of SPDX license identifiers of licenses permitted within the project,
 -   `blacklist` - array of SPDX license identifiers of licenses prohibited within the project,
 -   `overrides` - an object with the specified severity:
-    -   `warn` - package should be omitted from audit, but it will produce a warning,
-    -   `off`- package should be completely omitted from the audit.
+-   `warn` - package should be omitted from audit, but it will produce a warning,
+-   `off`- package should be completely omitted from the audit.
 
 To use `ConfigType` and enable IntelliSense license suggestions in the configuration file, run:
 
