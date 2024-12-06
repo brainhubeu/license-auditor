@@ -1,6 +1,6 @@
 {
   "name": "@brainhubeu/lac",
-  "version": "0.0.1-beta",
+  "version": "0.0.1-beta.1",
   "license": "MIT",
   "type": "module",
   "main": "./dist/cli.js",
