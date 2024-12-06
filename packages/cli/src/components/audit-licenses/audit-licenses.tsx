@@ -14,21 +14,21 @@ import AuditResult from "./audit-result.js";
 import ErrorBox from "./error-box.js";
 
 export type AuditLicensesProps = {
-  verbose: boolean;
+  flags: {
+    verbose: boolean;
+    filter?: LicenseStatus | undefined;
+    filterRegex?: string | undefined;
+    bail?: number | undefined;
+    production: boolean | undefined;
+  };
   config: ConfigType;
-  filter: LicenseStatus | undefined;
   json: string | undefined;
-  filterRegex?: string | undefined;
-  production?: boolean | undefined;
 };
 
 export default function AuditLicenses({
-  verbose,
   config,
-  filter,
   json,
-  filterRegex,
-  production,
+  flags: { verbose, filter, production, filterRegex, bail },
 }: AuditLicensesProps) {
   const [working, setWorking] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -97,10 +97,9 @@ export default function AuditLicenses({
     <Box flexDirection="column">
       <AuditResult
         result={result}
-        verbose={verbose}
-        filter={filter}
         warning={warning}
         overrides={config.overrides}
+        flags={{ verbose, filter, bail }}
       />
       <AdditionalInfo verbose={verbose} />
     </Box>
