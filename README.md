@@ -4,11 +4,11 @@
 
 ### Supported package managers
 
-- npm
-- yarn classic (v1)
-- yarn 2+
-  - Applicable only for projects using `node_modules` installation. `Plug'n'Play` is not currently supported.
-- pnpm
+-   npm
+-   yarn classic (v1)
+-   yarn 2+
+    -   Applicable only for projects using `node_modules` installation. `Plug'n'Play` is not currently supported.
+-   pnpm
 
 ## Getting started
 
@@ -33,12 +33,13 @@ The results will be printed in the console.
 
 ## Available options
 
-- `--verbose` - Verbose output (default: false)
-- `--filter [filter]` - Filter verbose output by license status - whitelist, blacklist, or unknown
-- `--json [json]` - Save the result to a JSON file. If no path is not provided, a file named license-auditor.results.json will be created in the current directory.
-- `--production` - Skip the audit for licenses in development dependencies (default: false)
-- `--default-config` - Run audit with default whitelist/blacklist configuration
-- `--filter-regex [regex]` - Run audit with a custom regex filter that will be applied to the package name
+-   `--verbose` - Verbose output (default: false)
+-   `--filter [filter]` - Filter verbose output by license status - whitelist, blacklist, or unknown
+-   `--json [json]` - Save the result to a JSON file. If no path is not provided, a file named license-auditor.results.json will be created in the current directory.
+-   `--production` - Skip the audit for licenses in development dependencies (default: false)
+-   `--default-config` - Run audit with default whitelist/blacklist configuration
+-   `--filter-regex [regex]` - Run audit with a custom regex filter that will be applied to the package name
+-   `--bail [number]` - Flag controls program process's exit status, causing it to exit with status 1 if the number of blacklisted licenses exceeds the specified value; by default, it is set to Infinity, meaning the process exits with status 0 regardless of blacklisted licenses unless the flag is explicitly set.
 
 > [!IMPORTANT]
 > Verify dev dependencies if they generate code, embed assets, or otherwise impact the final product, as their licenses might impose restrictions. Always prioritize reviewing both when in doubt or if your project may be redistributed or commercialized.
@@ -49,11 +50,11 @@ The results will be printed in the console.
 
 All licenses are sourced from [SPDX license list](https://spdx.org/licenses/)
 
-- `whitelist` - array of SPDX license identifiers of licenses permitted within the project,
-- `blacklist` - array of SPDX license identifiers of licenses prohibited within the project,
-- `overrides` - an object with the specified severity:
-  - `warn` - package should be omitted from audit, but it will produce a warning,
-  - `off`- package should be completely omitted from the audit.
+-   `whitelist` - array of SPDX license identifiers of licenses permitted within the project,
+-   `blacklist` - array of SPDX license identifiers of licenses prohibited within the project,
+-   `overrides` - an object with the specified severity:
+    -   `warn` - package should be omitted from audit, but it will produce a warning,
+    -   `off`- package should be completely omitted from the audit.
 
 To use `ConfigType` and enable IntelliSense license suggestions in the configuration file, run:
 
@@ -95,6 +96,35 @@ LAC offers a default configuration for whitelist and blacklist, available by run
 ### Strict configuration
 
 Strict configuration offers a more restrictive whitelist/blacklist preset. The aim was to cover as many licenses as viable, keeping to the guidelines described in the article above.
+
+## CI integration
+
+You can add License Auditor to your CI pipeline to ensure that the project's dependencies comply with the license policy. To do so, add the following command to your CI configuration:
+
+```
+  license-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Install lac
+        run:  npm i -g @brainhubeu/lac
+
+      - name: Run audit
+        run: lac --default-config --bail 1
+```
 
 ## Known issues
 

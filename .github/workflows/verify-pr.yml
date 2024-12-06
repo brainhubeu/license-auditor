@@ -34,8 +34,19 @@ jobs:
         with:
           node-version: 20
 
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Install lac
+        run:  npm i -g @brainhubeu/lac
+
       - name: Run audit
-        run: npx @brainhubeu/lac --default-config
+      #Add `--bail 1` flag when it will be available on npm
+        run: lac --default-config
+
 
 
 
