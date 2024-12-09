@@ -3,20 +3,21 @@ import { addPackage } from "../utils/add-package";
 import { getCliPath } from "../utils/get-cli-path";
 import { runCliCommand } from "../utils/run-cli-command";
 
+import * as path from "node:path";
 import {
   conflictingPeerDepsTest,
   defaultTest,
   legacyPeerDepsTest,
 } from "../fixtures";
-import { readJsonFile } from '../utils/readJsonFile';
-import * as path from 'node:path';
+import { getLicenseContent } from "../utils/get-license-content";
 import {
   getBlacklistedLicenses,
-  getNeedsUserVerificationLicenses, getNotFoundLicenses,
+  getNeedsUserVerificationLicenses,
+  getNotFoundLicenses,
   getUnknownLicenses,
-  getWhitelistedLicenses
-} from '../utils/json-output-utils';
-import { getLicenseContent } from '../utils/getLicenseContent';
+  getWhitelistedLicenses,
+} from "../utils/json-output-utils";
+import { readJsonFile } from "../utils/read-json-file";
 
 describe("license-auditor", () => {
   describe("cli", () => {
@@ -38,14 +39,10 @@ describe("license-auditor", () => {
     defaultTest(
       "detects non-compliant packages correctly",
       async ({ testDirectory }) => {
-        await addPackage(
-          testDirectory,
-          "testing-blueoak-package",
-          {
-            version: "1.0.0",
-            license: "BlueOak-1.0.0",
-          },
-        );
+        await addPackage(testDirectory, "testing-blueoak-package", {
+          version: "1.0.0",
+          license: "BlueOak-1.0.0",
+        });
 
         const { output, errorCode } = await runCliCommand({
           command: "npx",
@@ -105,14 +102,30 @@ describe("license-auditor", () => {
             cwd: testDirectory,
           });
 
-          const jsonOutput = await readJsonFile(path.join(testDirectory, "license-auditor.results.json"))
+          const jsonOutput = await readJsonFile(
+            path.join(testDirectory, "license-auditor.results.json"),
+          );
 
           expect(errorCode).toBe(0);
           expect(output).toContain("246 licenses are compliant");
 
-          expect(getWhitelistedLicenses(jsonOutput, ['testing-license-file'], ['MIT']).length).toBe(1);
-          expect(getBlacklistedLicenses(jsonOutput, ['testing-license-file'], ['MIT']).length).toBe(0);
-          expect(getUnknownLicenses(jsonOutput, ['testing-license-file']).length).toBe(0);
+          expect(
+            getWhitelistedLicenses(
+              jsonOutput,
+              ["testing-license-file"],
+              ["MIT"],
+            ).length,
+          ).toBe(1);
+          expect(
+            getBlacklistedLicenses(
+              jsonOutput,
+              ["testing-license-file"],
+              ["MIT"],
+            ).length,
+          ).toBe(0);
+          expect(
+            getUnknownLicenses(jsonOutput, ["testing-license-file"]).length,
+          ).toBe(0);
         },
       );
 
@@ -138,15 +151,23 @@ describe("license-auditor", () => {
             cwd: testDirectory,
           });
 
-          const jsonOutput = await readJsonFile(path.join(testDirectory, "license-auditor.results.json"))
+          const jsonOutput = await readJsonFile(
+            path.join(testDirectory, "license-auditor.results.json"),
+          );
 
           expect(errorCode).toBe(0);
           expect(output).toContain("3 packages are requiring manual checking");
 
-          expect(getNeedsUserVerificationLicenses(jsonOutput, ['testing-license-file'])).toContainEqual(
+          expect(
+            getNeedsUserVerificationLicenses(jsonOutput, [
+              "testing-license-file",
+            ]),
+          ).toContainEqual(
             expect.objectContaining({
-              packageName: 'testing-license-file@1.0.0',
-              verificationMessage: expect.stringMatching(/We've found few license files, but we could not match a license for some of them for package/),
+              packageName: "testing-license-file@1.0.0",
+              verificationMessage: expect.stringMatching(
+                /We've found few license files, but we could not match a license for some of them for package/,
+              ),
             }),
           );
         },
@@ -171,7 +192,9 @@ describe("license-auditor", () => {
             cwd: testDirectory,
           });
 
-          const jsonOutput = await readJsonFile(path.join(testDirectory, "license-auditor.results.json"))
+          const jsonOutput = await readJsonFile(
+            path.join(testDirectory, "license-auditor.results.json"),
+          );
 
           expect(errorCode).toBe(0);
           expect(output).toContain("1 package is missing license information");
@@ -180,10 +203,14 @@ describe("license-auditor", () => {
             "We’ve found a license file, but no matching licenses in",
           );
 
-          expect(getNotFoundLicenses(jsonOutput, ['testing-license-file'])).toContainEqual(
+          expect(
+            getNotFoundLicenses(jsonOutput, ["testing-license-file"]),
+          ).toContainEqual(
             expect.objectContaining({
-              packageName: 'testing-license-file@1.0.0',
-              errorMessage: expect.stringMatching(/License not found in package.json and in license file in/),
+              packageName: "testing-license-file@1.0.0",
+              errorMessage: expect.stringMatching(
+                /License not found in package.json and in license file in/,
+              ),
             }),
           );
         },
@@ -200,8 +227,8 @@ describe("license-auditor", () => {
               license: "",
             },
             [
-              { name: "LICENSE-MIT", content: await getLicenseContent('MIT') },
-              { name: "LICENSE-ISC", content: await getLicenseContent('ISC') },
+              { name: "LICENSE-MIT", content: await getLicenseContent("MIT") },
+              { name: "LICENSE-ISC", content: await getLicenseContent("ISC") },
             ],
           );
 
@@ -211,23 +238,27 @@ describe("license-auditor", () => {
             cwd: testDirectory,
           });
 
-          const jsonOutput = await readJsonFile(path.join(testDirectory, "license-auditor.results.json"))
+          const jsonOutput = await readJsonFile(
+            path.join(testDirectory, "license-auditor.results.json"),
+          );
 
           expect(errorCode).toBe(0);
           expect(output).toContain("246 licenses are compliant");
           expect(output).toContain("2 packages are requiring manual checking");
 
-          expect(getWhitelistedLicenses(jsonOutput, ['testing-license-file'])).toContainEqual(
+          expect(
+            getWhitelistedLicenses(jsonOutput, ["testing-license-file"]),
+          ).toContainEqual(
             expect.objectContaining({
-              packageName: 'testing-license-file@1.0.0',
+              packageName: "testing-license-file@1.0.0",
               licenses: expect.arrayContaining([
                 expect.objectContaining({
-                  licenseId: 'MIT'
+                  licenseId: "MIT",
                 }),
                 expect.objectContaining({
-                  licenseId: 'ISC'
-                })
-              ])
+                  licenseId: "ISC",
+                }),
+              ]),
             }),
           );
         },
@@ -244,8 +275,11 @@ describe("license-auditor", () => {
               license: "",
             },
             [
-              { name: "LICENSE-MIT", content: await getLicenseContent('MIT') },
-              { name: "LICENSE-AAL", content: await getLicenseContent('AAL') },
+              { name: "LICENSE-MIT", content: await getLicenseContent("MIT") },
+              {
+                name: "LICENSE-GPL",
+                content: await getLicenseContent("GPL-3.0-or-later"),
+              },
             ],
           );
 
@@ -255,33 +289,44 @@ describe("license-auditor", () => {
             cwd: testDirectory,
           });
 
-          const jsonOutput = await readJsonFile(path.join(testDirectory, "license-auditor.results.json"));
+          const jsonOutput = await readJsonFile(
+            path.join(testDirectory, "license-auditor.results.json"),
+          );
 
           expect(errorCode).toBe(0);
           expect(output).toContain("3 packages are requiring manual checking");
-          expect(output).toContain("Some but not all licenses are whitelisted for package");
+          expect(output).toContain(
+            "Some but not all licenses are whitelisted for package",
+          );
 
-          expect(getNeedsUserVerificationLicenses(jsonOutput, ['testing-license-file'])).toContainEqual(
+          expect(
+            getNeedsUserVerificationLicenses(jsonOutput, [
+              "testing-license-file",
+            ]),
+          ).toContainEqual(
             expect.objectContaining({
-              packageName: 'testing-license-file@1.0.0',
-              verificationMessage: expect.stringMatching(/Some but not all licenses are whitelisted for package/),
+              packageName: "testing-license-file@1.0.0",
+              verificationMessage: expect.stringMatching(
+                /Some but not all licenses are whitelisted for package/,
+              ),
             }),
           );
-          expect(getBlacklistedLicenses(jsonOutput, ['testing-license-file'])).toContainEqual(
+          expect(
+            getBlacklistedLicenses(jsonOutput, ["testing-license-file"]),
+          ).toContainEqual(
             expect.objectContaining({
-              packageName: 'testing-license-file@1.0.0',
+              packageName: "testing-license-file@1.0.0",
               licenses: expect.arrayContaining([
                 expect.objectContaining({
-                  licenseId: 'MIT'
+                  licenseId: "MIT",
                 }),
                 expect.objectContaining({
-                  licenseId: 'AAL'
-                })
-              ])
+                  licenseId: "GPL-3.0-or-later",
+                }),
+              ]),
             }),
           );
-
-        }
+        },
       );
 
       defaultTest(
@@ -298,15 +343,21 @@ describe("license-auditor", () => {
             cwd: testDirectory,
           });
 
-          const jsonOutput = await readJsonFile(path.join(testDirectory, "license-auditor.results.json"));
+          const jsonOutput = await readJsonFile(
+            path.join(testDirectory, "license-auditor.results.json"),
+          );
 
           expect(errorCode).toBe(0);
           expect(output).toContain("1 package is missing license information");
 
-          expect(getNotFoundLicenses(jsonOutput, ['testing-no-license'])).toContainEqual(
+          expect(
+            getNotFoundLicenses(jsonOutput, ["testing-no-license"]),
+          ).toContainEqual(
             expect.objectContaining({
-              packageName: 'testing-no-license@1.0.0',
-              errorMessage: expect.stringMatching(/License not found in package.json and in license file/),
+              packageName: "testing-no-license@1.0.0",
+              errorMessage: expect.stringMatching(
+                /License not found in package.json and in license file/,
+              ),
             }),
           );
         },
