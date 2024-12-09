@@ -17,9 +17,16 @@ export async function auditLicenses({
   production,
   verbose,
 }: AuditLicensesProps): Promise<LicenseAuditResult> {
-  const { licenses, overrides, warning, errorResults } = await getAllLicenses({ cwd, config, production, filterRegex, verbose });
+  const { licenses, overrides, warning, errorResults } = await getAllLicenses({
+    cwd,
+    config,
+    production,
+    filterRegex,
+    verbose,
+  });
 
-  const { groupedByStatus, notFound, needsUserVerification } = await mapLicensesToStatus(licenses, config);
+  const { groupedByStatus, notFound, needsUserVerification } =
+    await mapLicensesToStatus(licenses, config);
 
   return {
     groupedByStatus: groupedByStatus,

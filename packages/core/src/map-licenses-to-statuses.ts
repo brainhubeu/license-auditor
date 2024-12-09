@@ -69,7 +69,8 @@ export async function mapLicensesToStatus(
       continue;
     }
 
-    const areSomeButNotAllLicensesWhitelisted = someButNotAllLicensesWhitelisted(licenses, config);
+    const areSomeButNotAllLicensesWhitelisted =
+      someButNotAllLicensesWhitelisted(licenses, config);
 
     if (areSomeButNotAllLicensesWhitelisted) {
       needsUserVerification.set(packageName, {
@@ -115,5 +116,7 @@ const someButNotAllLicensesWhitelisted = (
     return licenseStatus === "whitelist";
   });
 
-  return !!whitelistedLicenses.length && whitelistedLicenses.length < licenses.length;
+  return (
+    !!whitelistedLicenses.length && whitelistedLicenses.length < licenses.length
+  );
 };

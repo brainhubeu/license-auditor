@@ -33,7 +33,15 @@ export interface LicenseAuditResult {
   errorResults: Map<string, { packagePath: string; errorMessage: string }>;
 }
 
-export type JsonResults = LicenseAuditResult['groupedByStatus'] & {
-  notFound: { packagePath: string; errorMessage: string, packageName: string }[];
-  needsUserVerification: { packageName: string; packagePath: string, verificationMessage: string }[];
-}
+export type JsonResults = LicenseAuditResult["groupedByStatus"] & {
+  notFound: {
+    packagePath: string;
+    errorMessage: string;
+    packageName: string;
+  }[];
+  needsUserVerification: {
+    packageName: string;
+    packagePath: string;
+    verificationMessage: string;
+  }[];
+};

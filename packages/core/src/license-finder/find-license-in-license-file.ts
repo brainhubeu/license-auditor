@@ -15,7 +15,8 @@ export function retrieveLicenseFromLicenseFileContent(content: string): {
 } {
   const detectedLicenses = detectLicenses(content);
   const detectedLicense = detectedLicenses[0];
-  if (detectedLicense && (detectedLicense.similarity ?? 0) > 0.75) { // threshold selected empirically based on our tests
+  if (detectedLicense && (detectedLicense.similarity ?? 0) > 0.75) {
+    // threshold selected empirically based on our tests
     const licenseArr = [...licenseMap]
       .filter(([key]) => key === detectedLicense.licenseId)
       .map((result) => LicenseSchema.parse(result[1]));
@@ -34,7 +35,10 @@ export function retrieveLicenseFromLicenseFileContent(content: string): {
     .map((result) => LicenseSchema.parse(result[1]));
 
   return {
-    licenses: addLicenseSource(licenseArr, LICENSE_SOURCE.licenseFileContextKeywords),
+    licenses: addLicenseSource(
+      licenseArr,
+      LICENSE_SOURCE.licenseFileContextKeywords,
+    ),
   };
 }
 
@@ -117,7 +121,13 @@ async function handleMultipleLicenseFiles(
   for (const licenseFile of licenseFiles) {
     const licensePath = path.join(packagePath, licenseFile);
     const licenseFromLicenseFile = await findLicenseInLicenseFile(licensePath);
-    if (licenseFromLicenseFile.licenses.some(license => license.source === LICENSE_SOURCE.licenseFileContextKeywords) || !licenseFromLicenseFile.licenses.length) {
+    if (
+      licenseFromLicenseFile.licenses.some(
+        (license) =>
+          license.source === LICENSE_SOURCE.licenseFileContextKeywords,
+      ) ||
+      !licenseFromLicenseFile.licenses.length
+    ) {
       unknownOrUncertainLicensesFiles++;
     }
     if (licenseFromLicenseFile.licenses.length > 0) {
@@ -138,6 +148,8 @@ async function handleMultipleLicenseFiles(
   return {
     licenses: allLicenses,
     licensePath: licensePaths,
-    verificationStatus: unknownOrUncertainLicensesFiles ? "licenseFilesExistButSomeAreUncertain" : "ok",
+    verificationStatus: unknownOrUncertainLicensesFiles
+      ? "licenseFilesExistButSomeAreUncertain"
+      : "ok",
   };
 }

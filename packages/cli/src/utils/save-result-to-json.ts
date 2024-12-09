@@ -1,5 +1,5 @@
 import fs from "node:fs/promises";
-import type { JsonResults, LicenseAuditResult } from '@license-auditor/data';
+import type { JsonResults, LicenseAuditResult } from "@license-auditor/data";
 
 export async function saveResultToJson(
   result: LicenseAuditResult,
@@ -13,12 +13,12 @@ export async function saveResultToJson(
         ...value,
       }),
     ),
-    needsUserVerification: Array.from(result.needsUserVerification.entries()).map(
-      ([packageName, value]) => ({
-        packageName,
-        ...value,
-      }),
-    ),
+    needsUserVerification: Array.from(
+      result.needsUserVerification.entries(),
+    ).map(([packageName, value]) => ({
+      packageName,
+      ...value,
+    })),
   };
   await fs.writeFile(jsonPath, JSON.stringify(parsedResult, null, 2));
 }
