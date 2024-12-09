@@ -18,7 +18,7 @@
     "build": "tsup-node",
     "dev": "tsc --watch",
     "start": "tsx src/audit-licenses.ts",
-    "typecheck": "tsc --noEmit true",
+    "typecheck": "tsc --noEmit true --verbatimModuleSyntax false",
     "test:unit": "vitest run",
     "test:coverage": "vitest run --coverage"
   },
