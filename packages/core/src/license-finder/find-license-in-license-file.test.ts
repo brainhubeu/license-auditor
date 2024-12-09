@@ -13,21 +13,31 @@ describe("retrieveLicenseFromLicenseFileContent", () => {
     const content = "MIT";
     const expectedLicense = LicenseSchema.parse(licenseMap.get("MIT"));
     const result = retrieveLicenseFromLicenseFileContent(content);
-    expect(result.licenses).toEqual([expectedLicense]);
+    expect(result.licenses).toEqual([
+      { ...expectedLicense, source: "license-file-content-keywords" },
+    ]);
   });
 
   it("should return the correct license when content matches a license name", () => {
     const content = "MIT License";
     const expectedLicense = LicenseSchema.parse(licenseMap.get("MIT"));
     const result = retrieveLicenseFromLicenseFileContent(content);
-    expect(result.licenses).toEqual([expectedLicense]);
+    expect(result.licenses).toEqual([
+      { ...expectedLicense, source: "license-file-content-keywords" },
+    ]);
   });
 
   it("should return multiple licenses when content matches multiple license keys or names", () => {
     const content = "MIT, Apache-2.0";
     const expectedLicenses = [
-      LicenseSchema.parse(licenseMap.get("MIT")),
-      LicenseSchema.parse(licenseMap.get("Apache-2.0")),
+      {
+        ...LicenseSchema.parse(licenseMap.get("MIT")),
+        source: "license-file-content-keywords",
+      },
+      {
+        ...LicenseSchema.parse(licenseMap.get("Apache-2.0")),
+        source: "license-file-content-keywords",
+      },
     ].sort((a, b) => a.name.localeCompare(b.name));
     const result = retrieveLicenseFromLicenseFileContent(content);
     const sortedLicenses = result.licenses.sort((a, b) =>
