@@ -1,5 +1,5 @@
 import { expect } from "vitest";
-import { defaultTest, monorepoFixture, pnpmFixture } from "../fixtures";
+import { monorepoFixture } from "../fixtures";
 import { getCliPath } from "../utils/get-cli-path";
 import { runCliCommand } from "../utils/run-cli-command";
 

@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test:e2e": "vitest run --config ./vitest.config.ts"
+    "test:e2e": "vitest run --config ./vitest.config.ts",
+    "test:snapshot": "vitest run --config ./vitest.config.ts ./test/snapshot.test.ts",
+    "test:snapshot:update": "vitest run --config ./vitest.config.ts ./test/snapshot.test.ts -u"
   },
   "private": true,
   "devDependencies": {
