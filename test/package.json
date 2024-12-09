@@ -6,10 +6,11 @@
     "test:e2e": "vitest run --config ./vitest.config.ts"
   },
   "private": true,
-  "dependencies": {},
   "devDependencies": {
+    "pnpm": "9.14.4",
+    "typescript": "5.6.2",
     "vitest": "2.1.5",
-    "zod": "3.23.8",
-    "typescript": "5.6.2"
+    "yarn": "1.22.22",
+    "zod": "3.23.8"
   }
 }

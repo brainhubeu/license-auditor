@@ -8,6 +8,7 @@ export const findNpmProdDepsCommand = "npm ls --all -p --omit=dev";
 export async function findNpmDependencies(
   projectRoot: string,
   production?: boolean | undefined,
+  verbose?: boolean | undefined,
 ): Promise<DependenciesResult> {
   const { output, warning } = await (async () => {
     try {
@@ -15,6 +16,7 @@ export async function findNpmDependencies(
         output: await execCommand(
           production ? findNpmProdDepsCommand : findNpmDepsCommand,
           projectRoot,
+          verbose,
         ),
       };
     } catch (error) {
@@ -24,6 +26,33 @@ export async function findNpmDependencies(
             output: error.stdout,
             warning: `Results incomplete because of an error. This is most likely caused by peer dependencies. Try turning legacy-peer-deps off and resolve peer dependency conflicts. Original error:\n${error.stderr}`,
           };
+        }
+        if (/ELSPROBLEMS/.test(error.stderr)) {
+          throw new ExecCommandException(
+            [
+              "",
+              "Unable to resolve project dependencies.",
+              error.message,
+              "",
+              "Potential causes:",
+              "  - Incompatible or inconsistent version specifications in package.json.",
+              "  - Conflicts in peer dependencies.",
+              "  - Cached or outdated data in node_modules or npm cache.",
+              "",
+              "Suggested actions:",
+              "  1. Inspect and resolve version conflicts in package.json.",
+              "  2. Check and address peer dependency conflicts.",
+              "  3. Clear the node_modules folder and reinstall dependencies with a clean state:",
+              "       remove node_modules and run npm install",
+              "  4. Clear the npm cache to ensure no outdated or corrupted data is used:",
+              "       npm cache clean --force",
+            ].join("\n"),
+            {
+              stdout: error.stdout,
+              stderr: error.stderr,
+              originalError: error.originalError,
+            },
+          );
         }
       }
       throw error;

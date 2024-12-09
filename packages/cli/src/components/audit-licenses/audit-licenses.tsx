@@ -4,7 +4,7 @@ import type {
   LicenseAuditResult,
   LicenseStatus,
 } from "@license-auditor/data";
-import { Box, useApp } from "ink";
+import { Box, Text, useApp } from "ink";
 import { useEffect, useState } from "react";
 import { envSchema } from "../../env.js";
 import { saveResultToJson } from "../../utils/save-result-to-json.js";
@@ -18,6 +18,7 @@ export type AuditLicensesProps = {
   config: ConfigType;
   filter: LicenseStatus | undefined;
   json: string | undefined;
+  filterRegex?: string | undefined;
   production?: boolean | undefined;
 };
 
@@ -26,6 +27,7 @@ export default function AuditLicenses({
   config,
   filter,
   json,
+  filterRegex,
   production,
 }: AuditLicensesProps) {
   const [working, setWorking] = useState(true);
@@ -44,11 +46,13 @@ export default function AuditLicenses({
           setError(parsedEnv.error.message);
           return;
         }
-        const { warning, ...result } = await auditLicenses(
-          parsedEnv.data.ROOT_DIR,
+        const { warning, ...result } = await auditLicenses({
+          cwd: parsedEnv.data.ROOT_DIR,
           config,
+          filterRegex,
           production,
-        );
+          verbose,
+        });
         setResult(result);
         if (warning) {
           setWarning(warning);
@@ -64,7 +68,7 @@ export default function AuditLicenses({
       }
     };
     void getResults();
-  }, [exit, config, production]);
+  }, [exit, config, production, filterRegex, verbose]);
 
   useEffect(() => {
     if (result && json) {
@@ -74,7 +78,14 @@ export default function AuditLicenses({
 
   if (error) {
     return (
-      <ErrorBox>An error occurred while auditing licenses: {error}</ErrorBox>
+      <>
+        <ErrorBox>An error occurred while auditing licenses: {error}</ErrorBox>
+        {!verbose && (
+          <Text color="red">
+            Run the command with --verbose flag to get full error output
+          </Text>
+        )}
+      </>
     );
   }
 

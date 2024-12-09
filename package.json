@@ -1,6 +1,6 @@
 {
   "name": "@brainhubeu/license-auditor",
-  "version": "2.0.0-beta",
+  "version": "2.0.0-beta.1",
   "description": "License Auditor helps you track and validate licenses inside your project. Prevents unwanted law complications. License Auditor includes a step in your pipeline and creates notifications about potential problems with used licenses. At the moment, a notification means a comment.",
   "repository": {
     "type": "git",
@@ -41,11 +41,18 @@
   "packageManager": "npm@10.8.2",
   "workspaces": ["packages/*", "tooling/*", "test"],
   "bin": {
-    "@brainhubeu/license-auditor": "packages/cli/dist/cli.js"
+    "license-auditor": "packages/cli/dist/cli.js"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "overrides": {
+    "pastel": {
+      "@inkjs/ui": {
+        "cli-spinners": "2.9.2"
+      }
     }
   }
 }

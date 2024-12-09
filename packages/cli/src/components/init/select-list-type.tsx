@@ -12,6 +12,10 @@ const configTypeItems: SelectItem<ConfigListType>[] = [
     label: "Use blank lists",
     value: ConfigListType.Blank,
   },
+  {
+    label: "Use strict configuration lists",
+    value: ConfigListType.Strict,
+  },
 ] as const;
 
 interface SelectListTypeProps {

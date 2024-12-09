@@ -11,21 +11,33 @@ import {
   readPackageJson,
 } from "./file-utils.js";
 import { filterOverrides } from "./filter-overrides.js";
+import { filterWithFilterRegex } from "./filter-with-filter-regex.js";
 import { findPackageManager } from "./find-package-manager.js";
 import { findLicenses } from "./license-finder/find-license.js";
 import { parseVerificationStatusToMessage } from "./parse-verification-status-to-message.js";
 import { resolveLicenseStatus } from "./resolve-license-status.js";
 
-export async function auditLicenses(
-  cwd: string,
-  config: ConfigType,
-  production?: boolean | undefined,
-): Promise<LicenseAuditResult> {
+interface AuditLicensesProps {
+  cwd: string;
+  config: ConfigType;
+  filterRegex?: string | undefined;
+  production?: boolean | undefined;
+  verbose?: boolean | undefined;
+}
+
+export async function auditLicenses({
+  cwd,
+  config,
+  filterRegex,
+  production,
+  verbose,
+}: AuditLicensesProps): Promise<LicenseAuditResult> {
   const packageManager = await findPackageManager(cwd);
   const { dependencies: packagePaths, warning } = await findDependencies({
     packageManager,
     projectRoot: cwd,
     production,
+    verbose,
   });
 
   const resultMap = new Map<string, DetectedLicense>();
@@ -54,8 +66,13 @@ export async function auditLicenses(
       packageName: extractPackageNameFromPath(packagePath),
     }));
 
-  const { filteredPackages, notFoundOverrides } = filterOverrides({
+  const filteredByRegex = filterWithFilterRegex({
     foundPackages,
+    filterRegex,
+  });
+
+  const { filteredPackages, notFoundOverrides } = filterOverrides({
+    foundPackages: filteredByRegex,
     overrides: config.overrides,
   });
 
