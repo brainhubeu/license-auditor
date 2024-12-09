@@ -1,12 +1,19 @@
-import { resolveLicenseStatus } from "./resolve-license-status.js";
-import type { LicensesWithPath } from "./license-finder/licenses-with-path.js";
 import type { ConfigType, LicenseWithSource } from "@license-auditor/data";
 import { describe, expect, it } from "vitest";
+import type { LicensesWithPath } from "./license-finder/licenses-with-path.js";
+import { resolveLicenseStatus } from "./resolve-license-status.js";
 
 describe("resolveLicenseStatus", () => {
   const baseLicense: Pick<
     LicenseWithSource,
-    "isDeprecatedLicenseId" | "isOsiApproved" | "seeAlso" | "referenceNumber" | "detailsUrl" | "reference" | "source" | "name"
+    | "isDeprecatedLicenseId"
+    | "isOsiApproved"
+    | "seeAlso"
+    | "referenceNumber"
+    | "detailsUrl"
+    | "reference"
+    | "source"
+    | "name"
   > = {
     isDeprecatedLicenseId: false,
     isOsiApproved: true,

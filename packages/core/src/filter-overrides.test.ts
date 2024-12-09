@@ -1,6 +1,5 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import { filterOverrides } from "./filter-overrides.js";
-
 
 // is filterOverrides working as expected? seems like record value does not matter
 describe("filterOverrides", () => {
@@ -58,8 +57,14 @@ describe("filterOverrides", () => {
 
   it("should correctly handle scoped packages and versioned names", () => {
     const foundPackages = [
-      { packageName: "@scope/package1@2.3.4", packagePath: "/path/to/package1" },
-      { packageName: "@scope/package2@1.0.0", packagePath: "/path/to/package2" },
+      {
+        packageName: "@scope/package1@2.3.4",
+        packagePath: "/path/to/package1",
+      },
+      {
+        packageName: "@scope/package2@1.0.0",
+        packagePath: "/path/to/package2",
+      },
     ];
     const overrides: Record<string, "warn" | "off"> = {
       "@scope/package2": "off",
@@ -70,7 +75,10 @@ describe("filterOverrides", () => {
 
     expect(result).toEqual({
       filteredPackages: [
-        { packageName: "@scope/package1@2.3.4", packagePath: "/path/to/package1" },
+        {
+          packageName: "@scope/package1@2.3.4",
+          packagePath: "/path/to/package1",
+        },
       ],
       notFoundOverrides: ["@scope/package3"],
     });
@@ -89,7 +97,9 @@ describe("filterOverrides", () => {
     const result = filterOverrides({ foundPackages, overrides });
 
     expect(result).toEqual({
-      filteredPackages: [{ packageName: "package1", packagePath: "/path/to/package1" }],
+      filteredPackages: [
+        { packageName: "package1", packagePath: "/path/to/package1" },
+      ],
       notFoundOverrides: ["package3"],
     });
   });

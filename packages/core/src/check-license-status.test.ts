@@ -1,6 +1,6 @@
+import type { ConfigType, License } from "@license-auditor/data";
 import { describe, expect, it } from "vitest";
 import { checkLicenseStatus } from "./check-license-status.js";
-import type { ConfigType, License } from "@license-auditor/data";
 
 describe("checkLicenseStatus", () => {
   const mockConfig: ConfigType = {
@@ -9,7 +9,12 @@ describe("checkLicenseStatus", () => {
   };
   const baseLicense: Pick<
     License,
-    "isOsiApproved" | "isDeprecatedLicenseId" | "detailsUrl" | "reference" | "referenceNumber" | "seeAlso"
+    | "isOsiApproved"
+    | "isDeprecatedLicenseId"
+    | "detailsUrl"
+    | "reference"
+    | "referenceNumber"
+    | "seeAlso"
   > = {
     isOsiApproved: false,
     isDeprecatedLicenseId: false,
@@ -20,7 +25,11 @@ describe("checkLicenseStatus", () => {
   };
 
   it("should return 'whitelist' if the license is in the whitelist", () => {
-    const license: License = { ...baseLicense, licenseId: "MIT", name: "MIT License" };
+    const license: License = {
+      ...baseLicense,
+      licenseId: "MIT",
+      name: "MIT License",
+    };
     const result = checkLicenseStatus(license, mockConfig);
     expect(result).toBe("whitelist");
   });

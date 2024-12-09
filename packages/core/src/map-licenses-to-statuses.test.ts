@@ -1,6 +1,3 @@
-import { describe, it, expect } from "vitest";
-import { mapLicensesToStatus } from "./map-licenses-to-statuses.js";
-import type { PackageLicensesWithPath } from "./get-all-licenses.js";
 import type {
   ConfigType,
   LicenseId,
@@ -8,7 +5,10 @@ import type {
   LicenseWithSource,
   VerificationStatus,
 } from "@license-auditor/data";
+import { describe, expect, it } from "vitest";
+import type { PackageLicensesWithPath } from "./get-all-licenses.js";
 import type { LicensesWithPathAndStatus } from "./license-finder/licenses-with-path.js";
+import { mapLicensesToStatus } from "./map-licenses-to-statuses.js";
 
 const config: ConfigType = {
   whitelist: ["MIT", "ISC"],
@@ -56,7 +56,7 @@ const generateTestPackage = ({
     packagePath: string;
     packageName: string;
     licensesWithPath: LicensesWithPathAndStatus;
-  }
+  },
 ] => [
   packageName,
   {
