@@ -1,0 +1,46 @@
+{
+  "editor.formatOnSave": true,
+  "workbench.iconTheme": "file-icons",
+  "workbench.colorTheme": "Cobalt2",
+  "security.workspace.trust.untrustedFiles": "open",
+  "editor.tabSize": 2,
+  "security.workspace.trust.banner": "always",
+  "editor.renderControlCharacters": false,
+  "editor.fontFamily": "'Source Code Pro', 'InputMono-Light', 'Input Mono', 'Courier New', monospace",
+  "editor.fontSize": 16,
+  "editor.mouseWheelScrollSensitivity": 0.6,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  },
+  "editor.inlineSuggest.enabled": true,
+  "cursor.cpp.disabledLanguages": [
+    "plaintext",
+    "scminput"
+  ],
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "biomejs.biome"
+  },
+  "editor.minimap.enabled": true,
+  "editor.defaultFormatter": "biomejs.biome",
+  "editor.codeActionsOnSave": {
+    "source.organizeImports.biome": "explicit"
+  },
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "editor.quickSuggestions": {
+    "strings": "on"
+  }
+}
