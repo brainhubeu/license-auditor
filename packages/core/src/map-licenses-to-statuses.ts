@@ -20,7 +20,7 @@ type GroupedByStatus = Record<LicenseStatus, DetectedLicense[]>;
 
 export async function mapLicensesToStatus(
   packageLicensesWithPath: PackageLicensesWithPath,
-  config: ConfigType,
+  config: ConfigType
 ): Promise<{
   groupedByStatus: GroupedByStatus;
   notFound: NotFoundMap;
@@ -62,8 +62,8 @@ export async function mapLicensesToStatus(
         packagePath,
         verificationMessage: parseVerificationStatusToMessage(
           verificationStatus,
-          packageName,
           packagePath,
+          packageName,
         ),
       });
       continue;
@@ -77,8 +77,8 @@ export async function mapLicensesToStatus(
         packagePath,
         verificationMessage: parseVerificationStatusToMessage(
           "someButNotAllLicensesWhitelisted",
-          packageName,
           packagePath,
+          packageName,
         ),
       });
 
@@ -109,7 +109,7 @@ export async function mapLicensesToStatus(
 
 const someButNotAllLicensesWhitelisted = (
   licenses: LicenseWithSource[],
-  config: ConfigType,
+  config: ConfigType
 ): boolean => {
   const whitelistedLicenses = licenses.filter((license) => {
     const licenseStatus = checkLicenseStatus(license, config);
