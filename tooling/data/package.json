@@ -10,7 +10,7 @@
   "scripts": {
     "build": "tsup-node",
     "dev": "tsc --watch -p tsconfig.json",
-    "update-licenses": "tsx update-licenses.ts"
+    "update-licenses": "tsx src/licenses/update-licenses.ts"
   },
   "dependencies": {
     "zod": "3.23.8"
