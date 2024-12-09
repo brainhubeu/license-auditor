@@ -31,6 +31,12 @@ export const options = z.object({
     .describe(
       "Filter packages by a regex pattern for example: --filter-regex babel",
     ),
+  bail: z
+    .number()
+    .optional()
+    .describe(
+      "Flag is used to control the exit behavior of the CI process based on the number of blacklisted licenses. By default it is set to Infinity",
+    ),
 });
 
 export type Options = {
@@ -52,12 +58,9 @@ export default function Index({ options }: Options) {
       <Box flexDirection="column">
         <Text>Loaded configuration file: {configFile.filepath}</Text>
         <AuditLicenses
-          verbose={options.verbose}
           config={configFile.config}
-          filter={options.filter}
           json={validateJsonResult.path}
-          production={options.production}
-          filterRegex={options.filterRegex}
+          flags={options}
         />
       </Box>
     );

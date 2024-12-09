@@ -24,6 +24,7 @@ export const booleanSelectItems: SelectItem<boolean>[] = [
 ] as const;
 
 export function ConfigErrorHandler({ error }: ReadConfigurationErrorProps) {
+  process.exitCode = 1;
   switch (error.type) {
     case ReadConfigErrorType.NotFound:
       return <ConfigFileNotFoundHandler message={error.message} />;

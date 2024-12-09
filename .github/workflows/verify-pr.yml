@@ -23,6 +23,33 @@ jobs:
       - name: Run typecheck
         run: npm run typecheck
 
+  license-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Install lac
+        run:  npm i -g @brainhubeu/lac
+
+      - name: Run audit
+      #Add `--bail 1` flag when it will be available on npm
+        run: lac --default-config
+
+
+
+
   test:
     runs-on: ubuntu-latest
     needs: format-and-lint
