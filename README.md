@@ -96,6 +96,48 @@ LAC offers a default configuration for whitelist and blacklist, available by run
 
 Strict configuration offers a more restrictive whitelist/blacklist preset. The aim was to cover as many licenses as viable, keeping to the guidelines described in the article above.
 
+## Verbose warnings
+
+### "We’ve found a license file, but no matching licenses in it in path" or "We've found few license files, but we could not match a license for some of them for package"
+When the license file is found, but we are not sure what license it contains, we show this warning. Some packages contain more licenses in a single license file, e.g. when the author decided to include bundled dependencies licenses. It is important to review the file manually. 
+
+## JSON output
+
+The JSON output is a JSON object with the following structure:
+```ts
+type Output = {
+  "whitelist": Package[],
+  "blacklist": Package[],
+  "unknown": Package[], 
+  "notFound": Package[]
+}
+
+type Package = {
+  packageName: string,
+  packagePath: string,
+  status: 'whitelist' | 'blacklist' | 'unknown',
+  licensePath: string[], // paths to all license sources: license files and package.json files
+  verificationStatus: 
+    'ok'
+    | 'someButNotAllLicensesWhitelisted' // found multiple licenses, but some (not all) are not whitelisted
+    | 'licenseFilesExistButSomeAreUncertain' // found multiple license files but we couldn't detect license in some of them
+    | 'licenseFileExistsButUnknownLicense' // found a license file but we couldn't detect license
+    | 'licenseFileNotFound' // we couldn't find a license file
+  licenses: License[],
+};
+
+type License = {
+  // ... license details as fetched from SPDX database like license name and SPDX ID
+  source: 
+    'package.json-license' // single license found in package.json in "license" field
+    | 'package.json-licenses' // license found in package.json in "licenses" field
+    | 'package.json-license-expression' // license found in package.json in "license" field but expression detected (e.g. "MIT OR Apache-2.0")
+    | 'package.json-legacy' // license found in package.json in "license" field but in outdated format (e.g. object)
+    | 'license-file-content' // license detected in license file content
+    | 'license-file-content-keywords' // license detected in license file content using keywords (e.g. "MIT" or "Apache-2.0")
+};
+```
+
 ## Known issues
 
 ### "missing: some-package@>=3.0.0, required by some-other-package@5.0.1"

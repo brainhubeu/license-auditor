@@ -3,11 +3,21 @@ import { addPackage } from "../utils/add-package";
 import { getCliPath } from "../utils/get-cli-path";
 import { runCliCommand } from "../utils/run-cli-command";
 
+import * as path from "node:path";
 import {
   conflictingPeerDepsTest,
   defaultTest,
   legacyPeerDepsTest,
 } from "../fixtures";
+import { getLicenseContent } from "../utils/get-license-content";
+import {
+  getBlacklistedLicenses,
+  getNeedsUserVerificationLicenses,
+  getNotFoundLicenses,
+  getUnknownLicenses,
+  getWhitelistedLicenses,
+} from "../utils/json-output-utils";
+import { readJsonFile } from "../utils/read-json-file";
 
 describe("license-auditor", () => {
   describe("cli", () => {
@@ -21,21 +31,18 @@ describe("license-auditor", () => {
         });
 
         expect(errorCode).toBe(0);
-        expect(output).toContain("246 licenses are compliant");
+        expect(output).toContain("245 licenses are compliant");
+        expect(output).toContain("2 packages are requiring manual checking");
       },
     );
 
     defaultTest(
       "detects non-compliant packages correctly",
       async ({ testDirectory }) => {
-        await addPackage(
-          testDirectory,
-          "node_modules/testing-blueoak-package",
-          {
-            version: "1.0.0",
-            license: "BlueOak-1.0.0",
-          },
-        );
+        await addPackage(testDirectory, "testing-blueoak-package", {
+          version: "1.0.0",
+          license: "BlueOak-1.0.0",
+        });
 
         const { output, errorCode } = await runCliCommand({
           command: "npx",
@@ -44,8 +51,9 @@ describe("license-auditor", () => {
         });
 
         expect(errorCode).toBe(0);
-        expect(output).toContain("246 licenses are compliant");
-        expect(output).toContain("2 licenses are unknown");
+        expect(output).toContain("245 licenses are compliant");
+        expect(output).toContain("1 license is unknown");
+        expect(output).toContain("2 packages are requiring manual checking");
       },
     );
 
@@ -80,7 +88,7 @@ describe("license-auditor", () => {
         async ({ testDirectory }) => {
           await addPackage(
             testDirectory,
-            "node_modules/testing-license-file",
+            "testing-license-file",
             {
               version: "1.0.0",
               license: "",
@@ -90,12 +98,34 @@ describe("license-auditor", () => {
 
           const { output, errorCode } = await runCliCommand({
             command: "npx",
-            args: [getCliPath()],
+            args: [getCliPath(), "--json"],
             cwd: testDirectory,
           });
 
+          const jsonOutput = await readJsonFile(
+            path.join(testDirectory, "license-auditor.results.json"),
+          );
+
           expect(errorCode).toBe(0);
-          expect(output).toContain("247 licenses are compliant");
+          expect(output).toContain("246 licenses are compliant");
+
+          expect(
+            getWhitelistedLicenses(
+              jsonOutput,
+              ["testing-license-file"],
+              ["MIT"],
+            ).length,
+          ).toBe(1);
+          expect(
+            getBlacklistedLicenses(
+              jsonOutput,
+              ["testing-license-file"],
+              ["MIT"],
+            ).length,
+          ).toBe(0);
+          expect(
+            getUnknownLicenses(jsonOutput, ["testing-license-file"]).length,
+          ).toBe(0);
         },
       );
 
@@ -104,7 +134,7 @@ describe("license-auditor", () => {
         async ({ testDirectory }) => {
           await addPackage(
             testDirectory,
-            "node_modules/testing-license-file",
+            "testing-license-file",
             {
               version: "1.0.0",
               license: "",
@@ -117,14 +147,28 @@ describe("license-auditor", () => {
 
           const { output, errorCode } = await runCliCommand({
             command: "npx",
-            args: [getCliPath(), "--verbose"],
+            args: [getCliPath(), "--verbose", "--json"],
             cwd: testDirectory,
           });
 
+          const jsonOutput = await readJsonFile(
+            path.join(testDirectory, "license-auditor.results.json"),
+          );
+
           expect(errorCode).toBe(0);
-          expect(output).toContain("1 package is requiring manual checking");
-          expect(output).toContain(
-            "We found some, but not all licenses for package",
+          expect(output).toContain("3 packages are requiring manual checking");
+
+          expect(
+            getNeedsUserVerificationLicenses(jsonOutput, [
+              "testing-license-file",
+            ]),
+          ).toContainEqual(
+            expect.objectContaining({
+              packageName: "testing-license-file@1.0.0",
+              verificationMessage: expect.stringMatching(
+                /We've found few license files, but we could not match a license for some of them for package/,
+              ),
+            }),
           );
         },
       );
@@ -134,7 +178,7 @@ describe("license-auditor", () => {
         async ({ testDirectory }) => {
           await addPackage(
             testDirectory,
-            "node_modules/testing-license-file",
+            "testing-license-file",
             {
               version: "1.0.0",
               license: "",
@@ -144,14 +188,30 @@ describe("license-auditor", () => {
 
           const { output, errorCode } = await runCliCommand({
             command: "npx",
-            args: [getCliPath(), "--verbose"],
+            args: [getCliPath(), "--verbose", "--json"],
             cwd: testDirectory,
           });
 
+          const jsonOutput = await readJsonFile(
+            path.join(testDirectory, "license-auditor.results.json"),
+          );
+
           expect(errorCode).toBe(0);
-          expect(output).toContain("1 package is requiring manual checking");
+          expect(output).toContain("1 package is missing license information");
+          expect(output).toContain("2 packages are requiring manual checking");
           expect(output).toContain(
             "We’ve found a license file, but no matching licenses in",
+          );
+
+          expect(
+            getNotFoundLicenses(jsonOutput, ["testing-license-file"]),
+          ).toContainEqual(
+            expect.objectContaining({
+              packageName: "testing-license-file@1.0.0",
+              errorMessage: expect.stringMatching(
+                /License not found in package.json and in license file in/,
+              ),
+            }),
           );
         },
       );
@@ -161,25 +221,46 @@ describe("license-auditor", () => {
         async ({ testDirectory }) => {
           await addPackage(
             testDirectory,
-            "node_modules/testing-license-file",
+            "testing-license-file",
             {
               version: "1.0.0",
               license: "",
             },
             [
-              { name: "LICENSE-MIT", content: "MIT" },
-              { name: "LICENSE-ISC", content: "ISC" },
+              { name: "LICENSE-MIT", content: await getLicenseContent("MIT") },
+              { name: "LICENSE-ISC", content: await getLicenseContent("ISC") },
             ],
           );
 
           const { output, errorCode } = await runCliCommand({
             command: "npx",
-            args: [getCliPath()],
+            args: [getCliPath(), "--verbose", "--json"],
             cwd: testDirectory,
           });
 
+          const jsonOutput = await readJsonFile(
+            path.join(testDirectory, "license-auditor.results.json"),
+          );
+
           expect(errorCode).toBe(0);
-          expect(output).toContain("247 licenses are compliant");
+          expect(output).toContain("246 licenses are compliant");
+          expect(output).toContain("2 packages are requiring manual checking");
+
+          expect(
+            getWhitelistedLicenses(jsonOutput, ["testing-license-file"]),
+          ).toContainEqual(
+            expect.objectContaining({
+              packageName: "testing-license-file@1.0.0",
+              licenses: expect.arrayContaining([
+                expect.objectContaining({
+                  licenseId: "MIT",
+                }),
+                expect.objectContaining({
+                  licenseId: "ISC",
+                }),
+              ]),
+            }),
+          );
         },
       );
 
@@ -188,47 +269,97 @@ describe("license-auditor", () => {
         async ({ testDirectory }) => {
           await addPackage(
             testDirectory,
-            "node_modules/testing-license-file",
+            "testing-license-file",
             {
               version: "1.0.0",
               license: "",
             },
             [
-              { name: "LICENSE-MIT", content: "MIT" },
-              { name: "LICENSE-AAL", content: "AAL" },
+              { name: "LICENSE-MIT", content: await getLicenseContent("MIT") },
+              {
+                name: "LICENSE-GPL",
+                content: await getLicenseContent("GPL-3.0-or-later"),
+              },
             ],
           );
 
           const { output, errorCode } = await runCliCommand({
             command: "npx",
-            args: [getCliPath(), "--verbose"],
+            args: [getCliPath(), "--verbose", "--json"],
             cwd: testDirectory,
           });
 
+          const jsonOutput = await readJsonFile(
+            path.join(testDirectory, "license-auditor.results.json"),
+          );
+
           expect(errorCode).toBe(0);
-          expect(output).toContain("1 package is requiring manual checking");
-          expect(output).toContain("Not all licenses are whitelisted");
+          expect(output).toContain("3 packages are requiring manual checking");
+          expect(output).toContain(
+            "Some but not all licenses are whitelisted for package",
+          );
+
+          expect(
+            getNeedsUserVerificationLicenses(jsonOutput, [
+              "testing-license-file",
+            ]),
+          ).toContainEqual(
+            expect.objectContaining({
+              packageName: "testing-license-file@1.0.0",
+              verificationMessage: expect.stringMatching(
+                /Some but not all licenses are whitelisted for package/,
+              ),
+            }),
+          );
+          expect(
+            getBlacklistedLicenses(jsonOutput, ["testing-license-file"]),
+          ).toContainEqual(
+            expect.objectContaining({
+              packageName: "testing-license-file@1.0.0",
+              licenses: expect.arrayContaining([
+                expect.objectContaining({
+                  licenseId: "MIT",
+                }),
+                expect.objectContaining({
+                  licenseId: "GPL-3.0-or-later",
+                }),
+              ]),
+            }),
+          );
         },
       );
 
       defaultTest(
         "displays not found licenses in verbose table",
         async ({ testDirectory }) => {
-          await addPackage(testDirectory, "node_modules/testing-no-license", {
+          await addPackage(testDirectory, "testing-no-license", {
             version: "1.0.0",
             license: "",
           });
 
           const { output, errorCode } = await runCliCommand({
             command: "npx",
-            args: [getCliPath(), "--verbose"],
+            args: [getCliPath(), "--verbose", "--json"],
             cwd: testDirectory,
           });
 
+          const jsonOutput = await readJsonFile(
+            path.join(testDirectory, "license-auditor.results.json"),
+          );
+
           expect(errorCode).toBe(0);
-          expect(output).toContain("status");
-          expect(output).toContain("not found");
-          expect(output).toContain("testing-no-license");
+          expect(output).toContain("1 package is missing license information");
+
+          expect(
+            getNotFoundLicenses(jsonOutput, ["testing-no-license"]),
+          ).toContainEqual(
+            expect.objectContaining({
+              packageName: "testing-no-license@1.0.0",
+              errorMessage: expect.stringMatching(
+                /License not found in package.json and in license file/,
+              ),
+            }),
+          );
         },
       );
     });
@@ -238,7 +369,7 @@ describe("license-auditor", () => {
         async ({ testDirectory }) => {
           await addPackage(
             testDirectory,
-            "node_modules/@testing-lib/lib1",
+            "mismatch@testing-lib/lib1",
             {
               version: "1.0.0",
               license: "",
@@ -248,41 +379,7 @@ describe("license-auditor", () => {
 
           await addPackage(
             testDirectory,
-            "node_modules/lib-test",
-            {
-              version: "1.0.0",
-              license: "",
-            },
-            [{ name: "LICENSE-MIT", content: "MIT" }],
-          );
-
-          const { output, errorCode } = await runCliCommand({
-            command: "npx",
-            args: [getCliPath(), "--filter-regex", "@testing-lib"],
-            cwd: testDirectory,
-          });
-
-          expect(errorCode).toBe(0);
-          expect(output).toContain("247 licenses are compliant");
-        },
-      );
-
-      defaultTest(
-        "two packages with same organization name should be filtered with filter-regex flag",
-        async ({ testDirectory }) => {
-          await addPackage(
-            testDirectory,
-            "node_modules/@testing-lib/lib1",
-            {
-              version: "1.0.0",
-              license: "",
-            },
-            [{ name: "LICENSE-MIT", content: "MIT" }],
-          );
-
-          await addPackage(
-            testDirectory,
-            "node_modules/@testing-lib/lib2",
+            "mismatchlib-test",
             {
               version: "1.0.0",
               license: "",
@@ -298,6 +395,40 @@ describe("license-auditor", () => {
 
           expect(errorCode).toBe(0);
           expect(output).toContain("246 licenses are compliant");
+        },
+      );
+
+      defaultTest(
+        "two packages with same organization name should be filtered with filter-regex flag",
+        async ({ testDirectory }) => {
+          await addPackage(
+            testDirectory,
+            "mismatch@testing-lib/lib1",
+            {
+              version: "1.0.0",
+              license: "",
+            },
+            [{ name: "LICENSE-MIT", content: "MIT" }],
+          );
+
+          await addPackage(
+            testDirectory,
+            "mismatch@testing-lib/lib2",
+            {
+              version: "1.0.0",
+              license: "",
+            },
+            [{ name: "LICENSE-MIT", content: "MIT" }],
+          );
+
+          const { output, errorCode } = await runCliCommand({
+            command: "npx",
+            args: [getCliPath(), "--filter-regex", "@testing-lib"],
+            cwd: testDirectory,
+          });
+
+          expect(errorCode).toBe(0);
+          expect(output).toContain("245 licenses are compliant");
         },
       );
     });
