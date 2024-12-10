@@ -4,6 +4,7 @@ import { getCliPath } from "../utils/get-cli-path";
 import { runCliCommand } from "../utils/run-cli-command";
 
 import * as path from "node:path";
+import type { JsonResults } from "@license-auditor/data";
 import {
   conflictingPeerDepsTest,
   defaultTest,
@@ -444,6 +445,178 @@ describe("license-auditor", () => {
 
         expect(errorCode).toBe(0);
         expect(output).toContain("Unable to resolve project dependencies.");
+      },
+    );
+  });
+
+  describe("verificationStatus", () => {
+    defaultTest(
+      "'ok' status is evaluated correctly",
+      async ({ testDirectory }) => {
+        await addPackage(
+          testDirectory,
+          "testing-license-file",
+          {
+            version: "1.0.0",
+            license: "MIT",
+          },
+          [{ name: "LICENSE-MIT", content: "MIT" }],
+        );
+
+        const { output, errorCode } = await runCliCommand({
+          command: "npx",
+          args: [getCliPath(), "--json"],
+          cwd: testDirectory,
+        });
+
+        const jsonOutput: JsonResults = await readJsonFile(
+          path.join(testDirectory, "license-auditor.results.json"),
+        );
+
+        expect(errorCode).toBe(0);
+        expect(output).toContain("246 licenses are compliant");
+
+        const okStatus = jsonOutput.whitelist.filter(
+          (result) => result.verificationStatus === "ok",
+        );
+
+        expect(okStatus.length).toBe(240);
+      },
+    );
+
+    defaultTest(
+      "'someButNotAllLicensesWhitelisted' status is evaluated correctly",
+      async ({ testDirectory }) => {
+        await addPackage(testDirectory, "testing-license-file", {
+          version: "1.0.0",
+          license: "(MIT or BlueOak-1.0.0)",
+        });
+
+        const { output, errorCode } = await runCliCommand({
+          command: "npx",
+          args: [getCliPath(), "--json"],
+          cwd: testDirectory,
+        });
+
+        const jsonOutput: JsonResults = await readJsonFile(
+          path.join(testDirectory, "license-auditor.results.json"),
+        );
+
+        expect(errorCode).toBe(0);
+        expect(output).toContain("246 licenses are compliant");
+
+        const someButNotAllLicensesWhitelisted =
+          jsonOutput.needsUserVerification.filter((result) =>
+            result.verificationMessage.startsWith(
+              "Some but not all licenses are whitelisted for package",
+            ),
+          );
+
+        expect(someButNotAllLicensesWhitelisted.length).toBe(1);
+      },
+    );
+
+    defaultTest(
+      "'licenseFilesExistButSomeAreUncertain' status is evaluated correctly",
+      async ({ testDirectory }) => {
+        await addPackage(
+          testDirectory,
+          "testing-license-file",
+          {
+            version: "1.0.0",
+            license: "MIT",
+          },
+          [
+            { name: "LICENSE-MIT", content: "MIT" },
+            { name: "LICENSE", content: "nonsense" },
+          ],
+        );
+
+        const { output, errorCode } = await runCliCommand({
+          command: "npx",
+          args: [getCliPath(), "--json"],
+          cwd: testDirectory,
+        });
+
+        const jsonOutput: JsonResults = await readJsonFile(
+          path.join(testDirectory, "license-auditor.results.json"),
+        );
+
+        expect(errorCode).toBe(0);
+        expect(output).toContain("245 licenses are compliant");
+
+        const someButNotAllLicensesWhitelisted =
+          jsonOutput.needsUserVerification.filter((result) =>
+            result.verificationMessage.startsWith(
+              "We've found few license files",
+            ),
+          );
+
+        expect(someButNotAllLicensesWhitelisted.length).toBe(1);
+      },
+    );
+
+    defaultTest(
+      "'licenseFileExistsButUnknownLicense' status is evaluated correctly",
+      async ({ testDirectory }) => {
+        await addPackage(
+          testDirectory,
+          "testing-license-file",
+          {
+            version: "1.0.0",
+            license: "MIT",
+          },
+          [{ name: "LICENSE", content: "nonsense" }],
+        );
+
+        const { output, errorCode } = await runCliCommand({
+          command: "npx",
+          args: [getCliPath(), "--json"],
+          cwd: testDirectory,
+        });
+
+        const jsonOutput: JsonResults = await readJsonFile(
+          path.join(testDirectory, "license-auditor.results.json"),
+        );
+
+        expect(errorCode).toBe(0);
+        expect(output).toContain("245 licenses are compliant");
+
+        const licenseFileExistsButUnknownLicense =
+          jsonOutput.needsUserVerification.filter((result) =>
+            result.verificationMessage.startsWith(
+              "We’ve found a license file, but no matching licenses",
+            ),
+          );
+
+        expect(licenseFileExistsButUnknownLicense.length).toBe(3);
+      },
+    );
+
+    defaultTest(
+      "'licenseFileNotFound' status is evaluated correctly",
+      async ({ testDirectory }) => {
+        await addPackage(testDirectory, "testing-license-file", {
+          version: "1.0.0",
+          license: "",
+        });
+
+        const { output, errorCode } = await runCliCommand({
+          command: "npx",
+          args: [getCliPath(), "--json"],
+          cwd: testDirectory,
+        });
+
+        const jsonOutput: JsonResults = await readJsonFile(
+          path.join(testDirectory, "license-auditor.results.json"),
+        );
+
+        expect(errorCode).toBe(0);
+        expect(output).toContain("245 licenses are compliant");
+
+        const licenseFileNotFound = jsonOutput.notFound.length;
+
+        expect(licenseFileNotFound).toBe(1);
       },
     );
   });
