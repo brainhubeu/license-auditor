@@ -81,7 +81,6 @@ export async function getAllLicenses({
     const packageJsonResult = readPackageJson(packagePath);
 
     if (!packageJsonResult.success) {
-      //To code reviewer: Should we handle in in this or different way?
       errorResults.set(packageNameFromPath, {
         packagePath,
         errorMessage: packageJsonResult.errorMessage,

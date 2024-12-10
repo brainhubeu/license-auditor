@@ -62,6 +62,11 @@ export default function VerboseView({ result, filter }: VerboseViewProps) {
       license: detectedLicense.licenseExpression
         ? detectedLicense.licenseExpression
         : detectedLicense.licenses
+            .filter(
+              (license, index, self) =>
+                self.findIndex((l) => l.licenseId === license.licenseId) ===
+                index,
+            )
             .map((license) => license.licenseId)
             .join(", "),
       deprecated: detectedLicense.licenses.some(
