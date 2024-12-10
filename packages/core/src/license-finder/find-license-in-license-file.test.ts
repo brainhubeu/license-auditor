@@ -47,31 +47,3 @@ describe("retrieveLicenseFromLicenseFileContent", () => {
     expect(sortedLicenses).toEqual(expectedLicenses);
   });
 });
-
-// describe("retrieveLicenseFromLicenseFileName", () => {
-//   it("should return an empty array when file name does not match any licenses", () => {
-//     const filePath = "README.md";
-//     const result = retrieveLicenseFromLicenseFileName(filePath);
-//     expect(result.licenses).toEqual([]);
-//   });
-
-//   it("should return the correct license when file name matches a license key", () => {
-//     const filePath = "LICENSE-MIT.txt";
-//     const expectedLicense = LicenseSchema.parse(licenseMap.get("MIT"));
-//     const result = retrieveLicenseFromLicenseFileName(filePath);
-//     expect(result.licenses).toEqual([expectedLicense]);
-//   });
-
-//   it("should return the correct license when file name matches a license name", () => {
-//     const filePath = "LICENSE-Apache-2.0";
-//     const expectedLicense = LicenseSchema.parse(licenseMap.get("Apache-2.0"));
-//     const result = retrieveLicenseFromLicenseFileName(filePath);
-//     expect(result.licenses).toEqual([expectedLicense]);
-//   });
-
-//   it("should return an empty array when file name does not match any known license pattern", () => {
-//     const filePath = "LICENSE-UNKNOWN";
-//     const result = retrieveLicenseFromLicenseFileName(filePath);
-//     expect(result.licenses).toEqual([]);
-//   });
-// });

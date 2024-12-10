@@ -22,7 +22,15 @@ export default function LicenseList({
               <Text color="cyan">{licenseExpression}</Text>
             ) : (
               <Text color="cyan">
-                {licenses.map(({ licenseId }) => licenseId).join(", ")}
+                {licenses
+                  .filter(
+                    (license, index, self) =>
+                      self.findIndex(
+                        (l) => l.licenseId === license.licenseId,
+                      ) === index,
+                  )
+                  .map(({ licenseId }) => licenseId)
+                  .join(", ")}
               </Text>
             )}
             {verbose && <Text>: {licensePath}</Text>}

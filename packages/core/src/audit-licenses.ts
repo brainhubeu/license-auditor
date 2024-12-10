@@ -29,11 +29,11 @@ export async function auditLicenses({
     await mapLicensesToStatus(licenses, config);
 
   return {
-    groupedByStatus: groupedByStatus,
-    notFound: notFound,
-    overrides: overrides,
-    warning: warning,
-    needsUserVerification: needsUserVerification,
-    errorResults: errorResults,
+    groupedByStatus,
+    notFound,
+    overrides,
+    warning,
+    needsUserVerification,
+    errorResults,
   };
 }
