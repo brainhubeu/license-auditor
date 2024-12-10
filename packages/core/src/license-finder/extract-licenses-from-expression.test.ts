@@ -19,7 +19,10 @@ describe("extractLicensesFromExpression", () => {
 
     const result = extractLicensesFromExpression(parsedLicense);
 
-    expect(result).toEqual([mitLicense, apacheLicense]);
+    expect(result).toEqual([
+      { ...mitLicense, source: "package.json-license-expression" },
+      { ...apacheLicense, source: "package.json-license-expression" },
+    ]);
   });
 
   it("should extract a single license from a simple expression", () => {
@@ -35,7 +38,9 @@ describe("extractLicensesFromExpression", () => {
 
     const result = extractLicensesFromExpression(parsedLicense);
 
-    expect(result).toEqual([mitLicense]);
+    expect(result).toEqual([
+      { ...mitLicense, source: "package.json-license-expression" },
+    ]);
   });
 
   it("should extract multiple licenses from a conjunction expression", () => {
@@ -52,7 +57,10 @@ describe("extractLicensesFromExpression", () => {
 
     const result = extractLicensesFromExpression(parsedLicense);
 
-    expect(result).toEqual([mitLicense, iscLicense]);
+    expect(result).toEqual([
+      { ...mitLicense, source: "package.json-license-expression" },
+      { ...iscLicense, source: "package.json-license-expression" },
+    ]);
   });
 
   it("should handle nested conjunction and alternative expressions", () => {
@@ -70,7 +78,12 @@ describe("extractLicensesFromExpression", () => {
 
     const result = extractLicensesFromExpression(parsedLicense);
 
-    expect(result).toEqual([mitLicense, iscLicense, apacheLicense]);
+    // @ts-ignore
+    expect(result).toEqual([
+      { ...mitLicense, source: "package.json-license-expression" },
+      { ...iscLicense, source: "package.json-license-expression" },
+      { ...apacheLicense, source: "package.json-license-expression" },
+    ]);
   });
 
   it("should log an error if a license is not found", () => {
