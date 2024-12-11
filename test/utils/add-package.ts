@@ -18,6 +18,7 @@ const PackageSchema = z
     private: z.boolean(),
     dependencies: z.record(z.string(), z.string()),
     license: z.string().optional(),
+    licenses: z.union([z.string(), z.array(z.string())]).optional(),
   })
   .strict();
 
@@ -26,6 +27,7 @@ type Package = z.infer<typeof PackageSchema>;
 type Details = {
   version: string;
   license?: string;
+  licenses?: string | string[];
   dependencies?: Record<string, string>;
 };
 
@@ -47,6 +49,7 @@ const addPackageDirectoryToNodeModules = async (
     version: packageDetails.version,
     dependencies: packageDetails.dependencies || {},
     license: packageDetails.license,
+    licenses: packageDetails.licenses,
   };
   const packageDirectory = path.resolve(testDirectory, "node_modules", depName);
   await fs.mkdir(packageDirectory, { recursive: true });
