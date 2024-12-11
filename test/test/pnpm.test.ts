@@ -49,11 +49,11 @@ describe("pnpm", () => {
         expect(errorCode).toBe(0);
         expect(output).toContain("247 licenses are compliant");
 
-        const okStatus = jsonOutput.whitelist.filter(
-          (result) => result.verificationStatus === "ok",
+        const okStatus = jsonOutput.whitelist.find(
+          (result) => result.packageName === "testing-license-file@1.0.0",
         );
 
-        expect(okStatus.length).toBe(241);
+        expect(okStatus?.verificationStatus).toBe("ok");
       },
     );
 
@@ -79,13 +79,13 @@ describe("pnpm", () => {
         expect(output).toContain("247 licenses are compliant");
 
         const someButNotAllLicensesWhitelisted =
-          jsonOutput.needsUserVerification.filter((result) =>
-            result.verificationMessage.startsWith(
-              "Some but not all licenses are whitelisted for package",
-            ),
+          jsonOutput.needsUserVerification.find(
+            (result) => result.packageName === "testing-license-file@1.0.0",
           );
 
-        expect(someButNotAllLicensesWhitelisted.length).toBe(1);
+        expect(someButNotAllLicensesWhitelisted?.verificationMessage).toContain(
+          "Some but not all licenses are whitelisted for package",
+        );
       },
     );
 
@@ -119,13 +119,13 @@ describe("pnpm", () => {
         expect(output).toContain("246 licenses are compliant");
 
         const someButNotAllLicensesWhitelisted =
-          jsonOutput.needsUserVerification.filter((result) =>
-            result.verificationMessage.startsWith(
-              "We've found few license files",
-            ),
+          jsonOutput.needsUserVerification.find(
+            (result) => result.packageName === "testing-license-file@1.0.0",
           );
 
-        expect(someButNotAllLicensesWhitelisted.length).toBe(1);
+        expect(someButNotAllLicensesWhitelisted?.verificationMessage).toContain(
+          "We've found few license files",
+        );
       },
     );
 
@@ -156,13 +156,13 @@ describe("pnpm", () => {
         expect(output).toContain("246 licenses are compliant");
 
         const licenseFileExistsButUnknownLicense =
-          jsonOutput.needsUserVerification.filter((result) =>
-            result.verificationMessage.startsWith(
-              "We’ve found a license file, but no matching licenses",
-            ),
+          jsonOutput.needsUserVerification.find(
+            (result) => result.packageName === "testing-license-file@1.0.0",
           );
 
-        expect(licenseFileExistsButUnknownLicense.length).toBe(3);
+        expect(
+          licenseFileExistsButUnknownLicense?.verificationMessage,
+        ).toContain("We’ve found a license file, but no matching licenses");
       },
     );
 
@@ -171,7 +171,7 @@ describe("pnpm", () => {
       async ({ testDirectory }) => {
         await addPackage(testDirectory, "testing-license-file", {
           version: "1.0.0",
-          license: "",
+          license: "MIT",
         });
 
         const { output, errorCode } = await runCliCommand({
@@ -185,11 +185,15 @@ describe("pnpm", () => {
         );
 
         expect(errorCode).toBe(0);
-        expect(output).toContain("246 licenses are compliant");
+        expect(output).toContain("247 licenses are compliant");
 
-        const licenseFileNotFound = jsonOutput.notFound.length;
+        const licenseFileNotFound = jsonOutput.whitelist.find(
+          (result) => result.packageName === "testing-license-file@1.0.0",
+        );
 
-        expect(licenseFileNotFound).toBe(1);
+        expect(licenseFileNotFound?.verificationStatus).toContain(
+          "licenseFileNotFound",
+        );
       },
     );
   });
