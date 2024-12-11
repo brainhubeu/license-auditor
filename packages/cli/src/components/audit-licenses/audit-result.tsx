@@ -54,22 +54,28 @@ function ResultForStatus({
 
 interface AuditResultProps {
   result: LicenseAuditResult;
-  verbose: boolean;
-  filter: LicenseStatus | undefined;
-  warning?: string | null;
   overrides: Pick<ConfigType, "overrides">["overrides"];
+  warning?: string | null;
+  flags: {
+    verbose: boolean;
+    filter: LicenseStatus | undefined;
+    bail: number | undefined;
+  };
 }
 
 export default function AuditResult({
   result,
-  verbose,
-  filter,
-  warning,
   overrides,
+  warning,
+  flags: { verbose, filter, bail },
 }: AuditResultProps) {
   const hasNotFound = result.notFound.size > 0;
   const hasNeedsUserVerification = result.needsUserVerification.size > 0;
   const hasErrorResults = result.errorResults.size > 0;
+  const blacklist = result.groupedByStatus.blacklist;
+
+  const bailValue = bail ?? Number.POSITIVE_INFINITY;
+  process.exitCode = blacklist.length > bailValue ? 1 : 0;
 
   return (
     <Box flexDirection="column">
