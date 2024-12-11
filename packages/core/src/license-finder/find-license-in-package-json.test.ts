@@ -15,7 +15,9 @@ describe("findLicenseInPackageJson", () => {
 
     const expectedLicense = licenseMap.get("MIT");
 
-    expect(result.licenses).toEqual([expectedLicense]);
+    expect(result.licenses).toEqual([
+      { ...expectedLicense, source: "package.json-license" },
+    ]);
   });
 
   it("should return licenses from the 'licenses' field as an array of objects", () => {
@@ -39,7 +41,10 @@ describe("findLicenseInPackageJson", () => {
     const mitLicense = licenseMap.get("MIT");
     const iscLicense = licenseMap.get("ISC");
 
-    expect(result.licenses).toEqual([mitLicense, iscLicense]);
+    expect(result.licenses).toEqual([
+      { ...mitLicense, source: "package.json-legacy" },
+      { ...iscLicense, source: "package.json-legacy" },
+    ]);
   });
 
   it("should return licenses from the 'licenses' field as an array of strings", () => {
@@ -54,7 +59,10 @@ describe("findLicenseInPackageJson", () => {
     const mitLicense = licenseMap.get("MIT");
     const iscLicense = licenseMap.get("ISC");
 
-    expect(result.licenses).toEqual([mitLicense, iscLicense]);
+    expect(result.licenses).toEqual([
+      { ...mitLicense, source: "package.json-legacy" },
+      { ...iscLicense, source: "package.json-legacy" },
+    ]);
   });
 
   it("should return an empty array when neither 'license' nor 'licenses' fields are present", () => {

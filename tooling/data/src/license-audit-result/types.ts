@@ -1,6 +1,6 @@
 import type {
-  License,
   LicenseStatus,
+  LicenseWithSource,
   VerificationStatus,
 } from "../licenses/types.js";
 
@@ -12,11 +12,11 @@ export interface DependenciesResult {
 export interface DetectedLicense {
   packageName: string;
   packagePath: string;
-  licenses: License[];
+  licenses: LicenseWithSource[];
   status: LicenseStatus;
-  licensePath: string | undefined;
+  licensePath: string[];
   licenseExpression: string | undefined;
-  verificationStatus: VerificationStatus;
+  verificationStatus: VerificationStatus | undefined;
 }
 
 export interface LicenseAuditResult {
@@ -30,4 +30,18 @@ export interface LicenseAuditResult {
     string,
     { packagePath: string; verificationMessage: string }
   >;
+  errorResults: Map<string, { packagePath: string; errorMessage: string }>;
 }
+
+export type JsonResults = LicenseAuditResult["groupedByStatus"] & {
+  notFound: {
+    packagePath: string;
+    errorMessage: string;
+    packageName: string;
+  }[];
+  needsUserVerification: {
+    packageName: string;
+    packagePath: string;
+    verificationMessage: string;
+  }[];
+};

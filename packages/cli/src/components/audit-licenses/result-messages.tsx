@@ -1,6 +1,6 @@
 import figures from "figures";
 import { Text } from "ink";
-import { describeLicenseCount } from "../../utils/describe-license-count.js";
+import { pluralize } from "../../utils/pluralize.js";
 
 interface MessageProps {
   count: number;
@@ -10,9 +10,7 @@ export function CompliantMessage({ count }: MessageProps) {
   return (
     <>
       <Text color="green">{figures.tick}</Text>
-      <Text>
-        {describeLicenseCount(count, "license is", "licenses are")} compliant
-      </Text>
+      <Text>{pluralize(count, "license is", "licenses are")} compliant</Text>
     </>
   );
 }
@@ -22,7 +20,7 @@ export function BlacklistedMessage({ count }: MessageProps) {
     <>
       <Text color="red">{figures.cross}</Text>
       <Text>
-        {describeLicenseCount(count, "license is", "licenses are")} blacklisted:
+        {` ${pluralize(count, "license is", "licenses are")} blacklisted:`}
       </Text>
     </>
   );
@@ -32,9 +30,7 @@ export function UnknownMessage({ count }: MessageProps) {
   return (
     <>
       <Text color="yellow">{figures.warning}</Text>
-      <Text>
-        {describeLicenseCount(count, "license is", "licenses are")} unknown:
-      </Text>
+      <Text>{pluralize(count, "license is", "licenses are")} unknown:</Text>
     </>
   );
 }
