@@ -5,28 +5,28 @@ import { getInstallCommand } from "../global-setup";
 import { type Details, type LicenseFile, addPackage } from "./add-package";
 import { execAsync } from "./exec-async";
 
-export const addYarnPackage = async (
+export const addToPackageJson = async (
   testDirectory: string,
   depName: string,
   packageDetails: Details,
   licenseFiles?: LicenseFile[],
+  devDependency?: boolean,
 ) => {
   const packageJsonPath = path.join(testDirectory, "package.json");
 
   const packageJsonContent = await fs.readFile(packageJsonPath, "utf-8");
-  const parsedPackageJson = JSON.parse(packageJsonContent);
+  const packageJson = JSON.parse(packageJsonContent);
+  const targetField = devDependency ? "devDependencies" : "dependencies";
 
-  const addedPackage = {
-    ...parsedPackageJson,
-    dependencies: {
-      ...parsedPackageJson.dependencies,
-      [depName]: packageDetails.version,
-    },
-  };
+  if (!packageJson[targetField]) {
+    packageJson[targetField] = {};
+  }
+
+  packageJson[targetField][depName] = packageDetails.version;
 
   await fs.writeFile(
     path.join(testDirectory, "package.json"),
-    JSON.stringify(addedPackage, null, 2),
+    JSON.stringify(packageJson, null, 2),
   );
 
   const installCommand = await getInstallCommand(testDirectory);
