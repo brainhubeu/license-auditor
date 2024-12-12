@@ -1,12 +1,23 @@
 import { type LicenseId, licenses } from "@license-auditor/data";
-import natural from "natural";
 
-const tokenizer = new natural.WordTokenizer();
-
-const createSet = (text: string): Set<string> => {
-  return new Set(tokenizer.tokenize(text));
+/**
+ * Tokenizes text into words, removes punctuation and whitespaces
+ */
+const TOKENIZER_PATTERN = /[^A-Za-zА-Яа-я0-9_]+/;
+export const tokenize = (text: string): string[] => {
+  return text
+    .split(TOKENIZER_PATTERN)
+    .filter((token) => token || token !== " ");
 };
 
+const createSet = (text: string): Set<string> => {
+  return new Set(tokenize(text));
+};
+
+/**
+ * Calculates text similarity using Jaccard similarity coefficient
+ * Requires texts to be tokenized and punctuation and whitespaces removed
+ */
 const compare = (set1: Set<string>, set2: Set<string>): number => {
   const intersection = new Set([...set1].filter((x) => set2.has(x)));
   const union = new Set([...set1, ...set2]);
