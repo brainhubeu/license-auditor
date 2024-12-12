@@ -19,6 +19,7 @@ export const defaultTest = test.extend<TestContext>({
       testDirectory,
       {
         recursive: true,
+        verbatimSymlinks: true,
       },
     );
 

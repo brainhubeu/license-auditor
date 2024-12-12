@@ -1,5 +1,6 @@
-import type { License } from "@license-auditor/data";
+import { LICENSE_SOURCE, type License } from "@license-auditor/data";
 import type { PackageJsonType } from "../file-utils.js";
+import { addLicenseSource } from "./add-license-source.js";
 import { extractLicensesFromExpression } from "./extract-licenses-from-expression.js";
 import { findLicenseById } from "./find-license-by-id.js";
 import type { ResolvedLicenses } from "./licenses-with-path.js";
@@ -19,10 +20,13 @@ function handleOutdatedFormats(packageJsonField: unknown): License[] {
       if (!licenses.length) {
         licenses.push(...retrieveLicenseFromTypeField(l));
       }
-      return licenses;
+      return addLicenseSource(licenses, LICENSE_SOURCE.packageJsonLegacy);
     });
   }
-  return retrieveLicenseFromTypeField(packageJsonField);
+  return addLicenseSource(
+    retrieveLicenseFromTypeField(packageJsonField),
+    LICENSE_SOURCE.packageJsonLegacy,
+  );
 }
 
 function retrieveLicenseByField<T extends "license" | "licenses">(
@@ -33,13 +37,19 @@ function retrieveLicenseByField<T extends "license" | "licenses">(
     const licenseById = findLicenseById(packageJson[licenseField]);
     if (licenseById.length > 0) {
       return {
-        licenses: licenseById,
+        licenses: addLicenseSource(
+          licenseById,
+          licenseField === "license"
+            ? LICENSE_SOURCE.packageJsonLicense
+            : LICENSE_SOURCE.packageJsonLicenses,
+        ),
       };
     }
 
     const licenseExpressionParsed = parseLicenseLogicalExpression(
       packageJson[licenseField],
     );
+
     if (licenseExpressionParsed) {
       return {
         licenses: extractLicensesFromExpression(licenseExpressionParsed),
@@ -52,7 +62,10 @@ function retrieveLicenseByField<T extends "license" | "licenses">(
   if (typeof packageJson[licenseField] === "object") {
     const fromOutdatedFormat = handleOutdatedFormats(packageJson[licenseField]);
     return {
-      licenses: fromOutdatedFormat,
+      licenses: addLicenseSource(
+        fromOutdatedFormat,
+        LICENSE_SOURCE.packageJsonLegacy,
+      ),
     };
   }
 

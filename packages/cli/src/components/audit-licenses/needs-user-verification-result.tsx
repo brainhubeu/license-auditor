@@ -1,15 +1,18 @@
 import type { LicenseAuditResult } from "@license-auditor/data";
 import figures from "figures";
 import { Box, Text } from "ink";
-import { describeLicenseCount } from "../../utils/describe-license-count.js";
+import { pluralize } from "../../utils/pluralize.js";
 
 export default function NeedsUserVerificationResult({
   needsUserVerification,
   verbose,
-}: Omit<LicenseAuditResult, "notFound" | "groupedByStatus" | "overrides"> & {
+}: Omit<
+  LicenseAuditResult,
+  "notFound" | "groupedByStatus" | "overrides" | "errorResults"
+> & {
   verbose: boolean;
 }) {
-  const describePackagesCount = describeLicenseCount(
+  const describePackagesCount = pluralize(
     needsUserVerification.size,
     "package is",
     "packages are",

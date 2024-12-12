@@ -1,7 +1,7 @@
 import type { ConfigType, LicenseAuditResult } from "@license-auditor/data";
 import figures from "figures";
 import { Box, Text } from "ink";
-import { describeLicenseCount } from "../utils/describe-license-count.js";
+import { pluralize } from "../utils/pluralize.js";
 
 export function OverrideResult({
   configOverrides,
@@ -29,9 +29,8 @@ export function OverrideResult({
       <Box>
         <Text color="grey">{figures.warning} </Text>
         <Text>
-          Skipped audit for{" "}
-          {describeLicenseCount(overrideCount, "license", "licenses")} defined
-          in the config file overrides field.
+          Skipped audit for {pluralize(overrideCount, "license", "licenses")}{" "}
+          defined in the config file overrides field.
         </Text>
       </Box>
       {warns.length > 0 ? (

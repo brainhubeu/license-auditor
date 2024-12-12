@@ -45,6 +45,7 @@ export class ErrorBoundary extends React.Component<
 
   override render() {
     if (this.state.isCrashed) {
+      process.exitCode = 1;
       return (
         <Box flexDirection="column">
           <Text backgroundColor="red">
