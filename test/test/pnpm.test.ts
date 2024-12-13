@@ -228,7 +228,7 @@ describe("pnpm", () => {
 
         const { output, errorCode } = await runCliCommand({
           command: "npx",
-          args: [getCliPath(), "--json", "--production"],
+          args: [getCliPath(), "--json", "--production", "--verbose"],
           cwd: testDirectory,
         });
 
@@ -261,7 +261,7 @@ describe("pnpm", () => {
 
       const { output, errorCode } = await runCliCommand({
         command: "npx",
-        args: [getCliPath(), "--json", "--production"],
+        args: [getCliPath(), "--json", "--production", "--verbose"],
         cwd: testDirectory,
       });
 

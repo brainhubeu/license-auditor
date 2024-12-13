@@ -12,7 +12,6 @@ describe("yarn", () => {
     yarnFixture(
       "correctly resolves to 'package.json-license'",
       async ({ testDirectory }) => {
-        console.log({ testDirectory });
         await addToPackageJson(testDirectory, "test-dep", {
           version: "1.0.0",
           license: "MIT",
@@ -107,7 +106,7 @@ describe("yarn", () => {
 
         const { output, errorCode } = await runCliCommand({
           command: "npx",
-          args: [getCliPath(), "--json"],
+          args: [getCliPath(), "--json", "--verbose"],
           cwd: testDirectory,
         });
 
