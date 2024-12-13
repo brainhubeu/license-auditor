@@ -1,6 +1,6 @@
 {
   "name": "@brainhubeu/lac",
-  "version": "0.0.1-beta.1",
+  "version": "2.0.0-beta",
   "license": "MIT",
   "type": "module",
   "main": "./dist/cli.js",
@@ -49,5 +49,10 @@
   },
   "bin": {
     "lac": "dist/cli.js"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brainhubeu/license-auditor"
+  },
+  "keywords": ["license", "audit", "cli"]
 }
