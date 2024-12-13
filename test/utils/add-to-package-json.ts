@@ -30,10 +30,20 @@ export const addToPackageJson = async (
   );
 
   const installCommand = await getInstallCommand(testDirectory);
-  try {
-    await execAsync(installCommand, { cwd: testDirectory });
-  } catch (err) {
-    console.log("ERROR: ", err);
+  if (await exists(path.resolve(testDirectory, "pnpm-lock.yaml"))) {
+    try {
+      await execAsync(`${installCommand} --lockfile-only`, {
+        cwd: testDirectory,
+      });
+    } catch (err) {
+      console.log("ERROR: ", err);
+    }
+  } else {
+    try {
+      await execAsync(installCommand, { cwd: testDirectory });
+    } catch (err) {
+      console.log("ERROR: ", err);
+    }
   }
 
   await addPackage(testDirectory, depName, packageDetails, licenseFiles);
