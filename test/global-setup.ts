@@ -13,7 +13,7 @@ export const TEST_PROJECTS_DIRECTORY = path.resolve(
 );
 export const TEST_TEMP_DIRECTORY = path.resolve(__dirname, "./temp");
 
-const exists = async (path: string) => {
+export const exists = async (path: string) => {
   try {
     await fs.access(path);
     return true;
