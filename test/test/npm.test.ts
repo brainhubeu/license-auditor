@@ -444,7 +444,7 @@ describe("license-auditor", () => {
           cwd: testDirectory,
         });
 
-        expect(errorCode).toBe(0);
+        expect(errorCode).toBe(1);
         expect(output).toContain("Unable to resolve project dependencies.");
       },
     );
