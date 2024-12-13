@@ -1,7 +1,7 @@
 import * as fs from "node:fs/promises";
 
 import path from "node:path";
-import { getInstallCommand } from "../global-setup";
+import { exists, getInstallCommand } from "../global-setup";
 import { type Details, type LicenseFile, addPackage } from "./add-package";
 import { execAsync } from "./exec-async";
 
@@ -30,7 +30,11 @@ export const addToPackageJson = async (
   );
 
   const installCommand = await getInstallCommand(testDirectory);
-  await execAsync(installCommand, { cwd: testDirectory });
+  try {
+    await execAsync(installCommand, { cwd: testDirectory });
+  } catch (err) {
+    console.log("ERROR: ", err);
+  }
 
   await addPackage(testDirectory, depName, packageDetails, licenseFiles);
 };
