@@ -82,7 +82,7 @@ export async function mapLicensesToStatus(
         ),
       });
 
-      // we don't continue here because we want this package to appear in the blacklisted results
+      // we don't "continue" here because we want this package to appear in the blacklisted results
     }
 
     const statusOfAllLicenses = resolveLicenseStatus(licensesWithPath, config);

@@ -486,7 +486,7 @@ describe("license-auditor", () => {
           const packageDirectory = path.resolve(
             testDirectory,
             "node_modules",
-            "@a-library-without-package-json",
+            "@a-library-without-package-json"
           );
           await fsPromise.mkdir(packageDirectory, { recursive: true });
 
@@ -514,11 +514,11 @@ describe("license-auditor", () => {
           });
 
           expect(output).toContain(
-            "An error occurred while auditing licenses:",
+            "An error occurred while auditing licenses:"
           );
           expect(output).toContain("Unable to resolve project dependencies.");
         },
-        40000,
+        40000
       );
 
       // testErrorHandling(
@@ -552,5 +552,88 @@ describe("license-auditor", () => {
       // 	},
       // );
     });
+    describe("filter-regex flag", () => {
+      defaultTest(
+        "one package should be filtered with filter-regex flag",
+        async ({ testDirectory }) => {
+          await addPackage(
+            testDirectory,
+            "mismatch@testing-lib/lib1",
+            {
+              version: "1.0.0",
+              license: "",
+            },
+            [{ name: "LICENSE-MIT", content: "MIT" }]
+          );
+
+          await addPackage(
+            testDirectory,
+            "mismatchlib-test",
+            {
+              version: "1.0.0",
+              license: "",
+            },
+            [{ name: "LICENSE-MIT", content: "MIT" }]
+          );
+
+          const { output, errorCode } = await runCliCommand({
+            command: "npx",
+            args: [getCliPath(), "--filter-regex", "@testing-lib"],
+            cwd: testDirectory,
+          });
+
+          expect(errorCode).toBe(0);
+          expect(output).toContain("246 licenses are compliant");
+        }
+      );
+
+      defaultTest(
+        "two packages with same organization name should be filtered with filter-regex flag",
+        async ({ testDirectory }) => {
+          await addPackage(
+            testDirectory,
+            "mismatch@testing-lib/lib1",
+            {
+              version: "1.0.0",
+              license: "",
+            },
+            [{ name: "LICENSE-MIT", content: "MIT" }]
+          );
+
+          await addPackage(
+            testDirectory,
+            "mismatch@testing-lib/lib2",
+            {
+              version: "1.0.0",
+              license: "",
+            },
+            [{ name: "LICENSE-MIT", content: "MIT" }]
+          );
+
+          const { output, errorCode } = await runCliCommand({
+            command: "npx",
+            args: [getCliPath(), "--filter-regex", "@testing-lib"],
+            cwd: testDirectory,
+          });
+
+          expect(errorCode).toBe(0);
+          expect(output).toContain("245 licenses are compliant");
+        }
+      );
+    });
+
+    conflictingPeerDepsTest(
+      "conflicting peer deps",
+      async ({ testDirectory }) => {
+        const { output, errorCode } = await runCliCommand({
+          command: "npx",
+          args: [getCliPath()],
+          cwd: testDirectory,
+        });
+
+        expect(errorCode).toBe(1);
+        expect(output).toContain("Unable to resolve project dependencies.");
+      }
+    );
   });
 });

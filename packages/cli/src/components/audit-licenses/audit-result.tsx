@@ -11,6 +11,7 @@ import IncludingUnknownResult from "./including-unknown-result.js";
 import NeedsUserVerificationResult from "./needs-user-verification-result.js";
 import NoLicensesFoundResult from "./no-licenses-found-result.js";
 import NotFoundResult from "./not-found-result.js";
+import ResultsList from "./results-list.js";
 import SuccessResult from "./success-result.js";
 import VerboseView from "./verbose-view.js";
 
@@ -53,22 +54,28 @@ function ResultForStatus({
 
 interface AuditResultProps {
   result: LicenseAuditResult;
-  verbose: boolean;
-  filter: LicenseStatus | undefined;
-  warning?: string | null;
   overrides: Pick<ConfigType, "overrides">["overrides"];
+  warning?: string | null;
+  flags: {
+    verbose: boolean;
+    filter: LicenseStatus | undefined;
+    bail: number | undefined;
+  };
 }
 
 export default function AuditResult({
   result,
-  verbose,
-  filter,
-  warning,
   overrides,
+  warning,
+  flags: { verbose, filter, bail },
 }: AuditResultProps) {
-  //TODO handle errorResults here
   const hasNotFound = result.notFound.size > 0;
   const hasNeedsUserVerification = result.needsUserVerification.size > 0;
+  const hasErrorResults = result.errorResults.size > 0;
+  const blacklist = result.groupedByStatus.blacklist;
+
+  const bailValue = bail ?? Number.POSITIVE_INFINITY;
+  process.exitCode = blacklist.length > bailValue ? 1 : 0;
 
   return (
     <Box flexDirection="column">
@@ -89,6 +96,20 @@ export default function AuditResult({
         <NeedsUserVerificationResult
           needsUserVerification={result.needsUserVerification}
           verbose={verbose}
+        />
+      )}
+      {hasErrorResults && (
+        <ResultsList
+          message={["package returned error", "packages returned error"]}
+          results={[...result.errorResults.entries()].map(
+            ([packageName, { errorMessage }]) => ({
+              packageName,
+              message: errorMessage,
+              licenses: [],
+            }),
+          )}
+          type="error"
+          renderMessages={verbose}
         />
       )}
     </Box>
