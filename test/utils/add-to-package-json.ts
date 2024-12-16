@@ -1,7 +1,7 @@
 import * as fs from "node:fs/promises";
 
 import path from "node:path";
-import { exists, getInstallCommand } from "../global-setup";
+import { getInstallCommand } from "../global-setup";
 import { type Details, type LicenseFile, addPackage } from "./add-package";
 import { execAsync } from "./exec-async";
 
@@ -30,20 +30,10 @@ export const addToPackageJson = async (
   );
 
   const installCommand = await getInstallCommand(testDirectory);
-  if (await exists(path.resolve(testDirectory, "pnpm-lock.yaml"))) {
-    try {
-      await execAsync(`${installCommand} --lockfile-only`, {
-        cwd: testDirectory,
-      });
-    } catch (err) {
-      console.log("ERROR: ", err);
-    }
-  } else {
-    try {
-      await execAsync(installCommand, { cwd: testDirectory });
-    } catch (err) {
-      console.log("ERROR: ", err);
-    }
+  try {
+    await execAsync(installCommand, { cwd: testDirectory });
+  } catch (err) {
+    console.log("ERROR: ", err);
   }
 
   await addPackage(testDirectory, depName, packageDetails, licenseFiles);
