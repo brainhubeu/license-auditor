@@ -32,7 +32,7 @@ export const getInstallCommand = async (projectDirectory: string) => {
       "pnpm",
     );
 
-    return `${pnpmLocalPath} i`;
+    return `${pnpmLocalPath} i --no-frozen-lockfile`;
   }
 
   if (await exists(path.resolve(projectDirectory, "yarn.lock"))) {
