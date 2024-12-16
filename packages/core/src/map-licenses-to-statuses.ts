@@ -62,8 +62,8 @@ export async function mapLicensesToStatus(
         packagePath,
         verificationMessage: parseVerificationStatusToMessage(
           verificationStatus,
-          packageName,
           packagePath,
+          packageName,
         ),
       });
       continue;
@@ -77,8 +77,8 @@ export async function mapLicensesToStatus(
         packagePath,
         verificationMessage: parseVerificationStatusToMessage(
           "someButNotAllLicensesWhitelisted",
-          packageName,
           packagePath,
+          packageName,
         ),
       });
 
