@@ -62,8 +62,8 @@ export async function mapLicensesToStatus(
         packagePath,
         verificationMessage: parseVerificationStatusToMessage(
           verificationStatus,
-          packageName,
           packagePath,
+          packageName,
         ),
       });
       continue;
@@ -77,12 +77,12 @@ export async function mapLicensesToStatus(
         packagePath,
         verificationMessage: parseVerificationStatusToMessage(
           "someButNotAllLicensesWhitelisted",
-          packageName,
           packagePath,
+          packageName,
         ),
       });
 
-      // we don't continue here because we want this package to appear in the blacklisted results
+      // we don't "continue" here because we want this package to appear in the blacklisted results
     }
 
     const statusOfAllLicenses = resolveLicenseStatus(licensesWithPath, config);

@@ -1,6 +1,6 @@
 {
   "name": "@license-auditor/data",
-  "version": "0.0.1-beta.1",
+  "version": "2.0.0-beta",
   "license": "MIT",
   "publishConfig": {
     "access": "public"
@@ -10,7 +10,7 @@
   "scripts": {
     "build": "tsup-node",
     "dev": "tsc --watch -p tsconfig.json",
-    "update-licenses": "tsx update-licenses.ts"
+    "update-licenses": "tsx src/licenses/update-licenses.ts"
   },
   "dependencies": {
     "zod": "3.23.8"
