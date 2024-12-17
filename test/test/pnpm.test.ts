@@ -21,7 +21,7 @@ describe("pnpm", () => {
 
       expect(errorCode).toBe(0);
       expect(output).toContain("88 licenses are compliant");
-    }
+    },
   );
 
   describe("verificationStatus", async () => {
@@ -35,7 +35,7 @@ describe("pnpm", () => {
             version: "1.0.0",
             license: "MIT",
           },
-          [{ name: "LICENSE-MIT", content: "MIT" }]
+          [{ name: "LICENSE-MIT", content: "MIT" }],
         );
 
         const { output, errorCode } = await runCliCommand({
@@ -45,18 +45,18 @@ describe("pnpm", () => {
         });
 
         const jsonOutput: JsonResults = await readJsonFile(
-          path.join(testDirectory, "license-auditor.results.json")
+          path.join(testDirectory, "license-auditor.results.json"),
         );
 
         expect(errorCode).toBe(0);
         expect(output).toContain("247 licenses are compliant");
 
         const okStatus = jsonOutput.whitelist.find(
-          (result) => result.packageName === "testing-license-file@1.0.0"
+          (result) => result.packageName === "testing-license-file@1.0.0",
         );
 
         expect(okStatus?.verificationStatus).toBe("ok");
-      }
+      },
     );
 
     pnpmFixture(
@@ -74,7 +74,7 @@ describe("pnpm", () => {
         });
 
         const jsonOutput: JsonResults = await readJsonFile(
-          path.join(testDirectory, "license-auditor.results.json")
+          path.join(testDirectory, "license-auditor.results.json"),
         );
 
         expect(errorCode).toBe(0);
@@ -82,13 +82,13 @@ describe("pnpm", () => {
 
         const someButNotAllLicensesWhitelisted =
           jsonOutput.needsUserVerification.find(
-            (result) => result.packageName === "testing-license-file@1.0.0"
+            (result) => result.packageName === "testing-license-file@1.0.0",
           );
 
         expect(someButNotAllLicensesWhitelisted?.verificationMessage).toContain(
-          "Some but not all licenses are whitelisted for package"
+          "Some but not all licenses are whitelisted for package",
         );
-      }
+      },
     );
 
     pnpmFixture(
@@ -104,7 +104,7 @@ describe("pnpm", () => {
           [
             { name: "LICENSE-MIT", content: "MIT" },
             { name: "LICENSE", content: "nonsense" },
-          ]
+          ],
         );
 
         const { output, errorCode } = await runCliCommand({
@@ -114,7 +114,7 @@ describe("pnpm", () => {
         });
 
         const jsonOutput: JsonResults = await readJsonFile(
-          path.join(testDirectory, "license-auditor.results.json")
+          path.join(testDirectory, "license-auditor.results.json"),
         );
 
         expect(errorCode).toBe(0);
@@ -122,13 +122,13 @@ describe("pnpm", () => {
 
         const someButNotAllLicensesWhitelisted =
           jsonOutput.needsUserVerification.find(
-            (result) => result.packageName === "testing-license-file@1.0.0"
+            (result) => result.packageName === "testing-license-file@1.0.0",
           );
 
         expect(someButNotAllLicensesWhitelisted?.verificationMessage).toContain(
-          "We've found few license files"
+          "We've found few license files",
         );
-      }
+      },
     );
 
     pnpmFixture(
@@ -141,7 +141,7 @@ describe("pnpm", () => {
             version: "1.0.0",
             license: "MIT",
           },
-          [{ name: "LICENSE", content: "nonsense" }]
+          [{ name: "LICENSE", content: "nonsense" }],
         );
 
         const { output, errorCode } = await runCliCommand({
@@ -151,7 +151,7 @@ describe("pnpm", () => {
         });
 
         const jsonOutput: JsonResults = await readJsonFile(
-          path.join(testDirectory, "license-auditor.results.json")
+          path.join(testDirectory, "license-auditor.results.json"),
         );
 
         expect(errorCode).toBe(0);
@@ -159,13 +159,13 @@ describe("pnpm", () => {
 
         const licenseFileExistsButUnknownLicense =
           jsonOutput.needsUserVerification.find(
-            (result) => result.packageName === "testing-license-file@1.0.0"
+            (result) => result.packageName === "testing-license-file@1.0.0",
           );
 
         expect(
-          licenseFileExistsButUnknownLicense?.verificationMessage
+          licenseFileExistsButUnknownLicense?.verificationMessage,
         ).toContain("We’ve found a license file, but no matching licenses");
-      }
+      },
     );
 
     pnpmFixture(
@@ -183,19 +183,19 @@ describe("pnpm", () => {
         });
 
         const jsonOutput: JsonResults = await readJsonFile(
-          path.join(testDirectory, "license-auditor.results.json")
+          path.join(testDirectory, "license-auditor.results.json"),
         );
 
         expect(errorCode).toBe(0);
         expect(output).toContain("247 licenses are compliant");
         const licenseFileNotFound = jsonOutput.whitelist.find(
-          (result) => result.packageName === "testing-license-file@1.0.0"
+          (result) => result.packageName === "testing-license-file@1.0.0",
         );
 
         expect(licenseFileNotFound?.verificationStatus).toContain(
-          "licenseFileNotFound"
+          "licenseFileNotFound",
         );
-      }
+      },
     );
 
     describe("source", () => {
@@ -214,17 +214,17 @@ describe("pnpm", () => {
           });
 
           const jsonOutput: JsonResults = await readJsonFile(
-            path.join(testDirectory, "license-auditor.results.json")
+            path.join(testDirectory, "license-auditor.results.json"),
           );
 
           expect(errorCode).toBe(0);
           expect(output).toContain("247 licenses are compliant");
           const addedPackage = jsonOutput.whitelist.find(
-            (result) => result.packageName === "test-package@1.0.0"
+            (result) => result.packageName === "test-package@1.0.0",
           );
 
           expect(addedPackage?.licenses[0].source).toBe("package.json-license");
-        }
+        },
       );
 
       pnpmFixture(
@@ -242,20 +242,20 @@ describe("pnpm", () => {
           });
 
           const jsonOutput: JsonResults = await readJsonFile(
-            path.join(testDirectory, "license-auditor.results.json")
+            path.join(testDirectory, "license-auditor.results.json"),
           );
 
           expect(errorCode).toBe(0);
           expect(output).toContain("247 licenses are compliant");
 
           const addedPackage = jsonOutput.whitelist.find(
-            (result) => result.packageName === "test-package@1.0.0"
+            (result) => result.packageName === "test-package@1.0.0",
           );
 
           expect(addedPackage?.licenses[0].source).toBe(
-            "package.json-licenses"
+            "package.json-licenses",
           );
-        }
+        },
       );
 
       pnpmFixture(
@@ -273,18 +273,18 @@ describe("pnpm", () => {
           });
 
           const jsonOutput: JsonResults = await readJsonFile(
-            path.join(testDirectory, "license-auditor.results.json")
+            path.join(testDirectory, "license-auditor.results.json"),
           );
 
           expect(errorCode).toBe(0);
           expect(output).toContain("247 licenses are compliant");
 
           const addedPackage = jsonOutput.whitelist.find(
-            (result) => result.packageName === "test-package@1.0.0"
+            (result) => result.packageName === "test-package@1.0.0",
           );
 
           expect(addedPackage?.licenses[0].source).toBe("package.json-legacy");
-        }
+        },
       );
 
       pnpmFixture(
@@ -302,20 +302,20 @@ describe("pnpm", () => {
           });
 
           const jsonOutput: JsonResults = await readJsonFile(
-            path.join(testDirectory, "license-auditor.results.json")
+            path.join(testDirectory, "license-auditor.results.json"),
           );
 
           expect(errorCode).toBe(0);
           expect(output).toContain("247 licenses are compliant");
 
           const addedPackage = jsonOutput.whitelist.find(
-            (result) => result.packageName === "test-package@1.0.0"
+            (result) => result.packageName === "test-package@1.0.0",
           );
 
           expect(addedPackage?.licenses[0].source).toBe(
-            "package.json-license-expression"
+            "package.json-license-expression",
           );
-        }
+        },
       );
 
       pnpmFixture(
@@ -328,7 +328,7 @@ describe("pnpm", () => {
               version: "1.0.0",
               license: "",
             },
-            [{ name: "LICENSE", content: "MIT" }]
+            [{ name: "LICENSE", content: "MIT" }],
           );
 
           const { output, errorCode } = await runCliCommand({
@@ -338,20 +338,20 @@ describe("pnpm", () => {
           });
 
           const jsonOutput: JsonResults = await readJsonFile(
-            path.join(testDirectory, "license-auditor.results.json")
+            path.join(testDirectory, "license-auditor.results.json"),
           );
 
           expect(errorCode).toBe(0);
           expect(output).toContain("247 licenses are compliant");
 
           const addedPackage = jsonOutput.whitelist.find(
-            (result) => result.packageName === "test-package@1.0.0"
+            (result) => result.packageName === "test-package@1.0.0",
           );
 
           expect(addedPackage?.licenses[0].source).toBe(
-            "license-file-content-keywords"
+            "license-file-content-keywords",
           );
-        }
+        },
       );
 
       pnpmFixture(
@@ -370,7 +370,7 @@ describe("pnpm", () => {
                 content:
                   'MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n',
               },
-            ]
+            ],
           );
 
           const { output, errorCode } = await runCliCommand({
@@ -380,18 +380,18 @@ describe("pnpm", () => {
           });
 
           const jsonOutput: JsonResults = await readJsonFile(
-            path.join(testDirectory, "license-auditor.results.json")
+            path.join(testDirectory, "license-auditor.results.json"),
           );
 
           expect(errorCode).toBe(0);
           expect(output).toContain("247 licenses are compliant");
 
           const addedPackage = jsonOutput.whitelist.find(
-            (result) => result.packageName === "test-package@1.0.0"
+            (result) => result.packageName === "test-package@1.0.0",
           );
 
           expect(addedPackage?.licenses[0].source).toBe("license-file-content");
-        }
+        },
       );
     });
 
@@ -411,18 +411,18 @@ describe("pnpm", () => {
           });
 
           const jsonOutput: JsonResults = await readJsonFile(
-            path.join(testDirectory, "license-auditor.results.json")
+            path.join(testDirectory, "license-auditor.results.json"),
           );
 
           expect(errorCode).toBe(0);
           expect(output).toContain("89 licenses are compliant");
 
           const addedPackage = jsonOutput.whitelist.find(
-            (result) => result.packageName === "test-dep@1.0.0"
+            (result) => result.packageName === "test-dep@1.0.0",
           );
 
           expect(addedPackage).toBeDefined();
-        }
+        },
       );
 
       pnpmFixture("omits devDependencies", async ({ testDirectory }) => {
@@ -434,7 +434,7 @@ describe("pnpm", () => {
             license: "MIT",
           },
           [],
-          true
+          true,
         );
 
         const { output, errorCode } = await runCliCommand({
@@ -444,14 +444,14 @@ describe("pnpm", () => {
         });
 
         const jsonOutput: JsonResults = await readJsonFile(
-          path.join(testDirectory, "license-auditor.results.json")
+          path.join(testDirectory, "license-auditor.results.json"),
         );
 
         expect(errorCode).toBe(0);
         expect(output).toContain("88 licenses are compliant");
 
         const addedPackage = jsonOutput.whitelist.find(
-          (result) => result.packageName === "test-dep@1.0.0"
+          (result) => result.packageName === "test-dep@1.0.0",
         );
 
         expect(addedPackage).toBeUndefined();
