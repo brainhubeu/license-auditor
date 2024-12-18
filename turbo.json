@@ -36,6 +36,8 @@
     },
     "test:unit": {},
     "test:coverage": {},
-    "test:e2e": {}
+    "test:e2e": {},
+    "test:snapshot": {},
+    "test:snapshot:update": {}
   }
 }
