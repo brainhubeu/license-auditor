@@ -143,6 +143,8 @@ type License = {
 
 You can add License Auditor to your CI pipeline to ensure that the project's dependencies comply with the license policy. To do so, add the following command to your CI configuration:
 
+
+### GitHub Actions
 ```
   license-audit:
     runs-on: ubuntu-latest
@@ -169,6 +171,20 @@ You can add License Auditor to your CI pipeline to ensure that the project's dep
       - name: Run audit
         run: lac --default-config --bail 1
 ```
+
+
+### Gitlab CI
+```
+audit-licenses:
+  stage: audit-licenses
+  <<: *merge_request_job_template
+  script:
+    - npm i -g @brainhubeu/lac
+    - lac --default-config --bail 1
+```
+
+The `*merge_request_job_template` should contain base configuration for CI step specific to your project.
+
 
 ## Known issues
 
