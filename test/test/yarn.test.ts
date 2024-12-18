@@ -1,3 +1,4 @@
+import * as fs from "node:fs/promises";
 import * as path from "node:path";
 import type { JsonResults } from "@license-auditor/data";
 import { describe, expect } from "vitest";
@@ -265,5 +266,37 @@ describe("yarn", () => {
 
       expect(addedPackage).toBeUndefined();
     });
+  });
+
+  describe("error-handling", () => {
+    yarnFixture(
+      "Error message when configuration file is invalid",
+      async ({ testDirectory }) => {
+        const invalidConfig = `
+      		const config = {
+      		  blacklist: "this-should-be-an-array",
+      		  whitelist: 12345,
+      		  overrides: "this-should-be-an-object",
+      		};
+      		export default config;
+      	  `;
+        const configFilePath = path.resolve(
+          testDirectory,
+          "license-auditor.config.ts",
+        );
+        await fs.writeFile(configFilePath, invalidConfig);
+
+        const { output, errorCode } = await runCliCommand({
+          command: "npx",
+          args: [getCliPath()],
+          cwd: testDirectory,
+        });
+
+        expect(output).toContain("Invalid configuration file at");
+        expect(output).toContain("Expected array, received string");
+        expect(output).toContain("Expected array, received number");
+        expect(output).toContain("Expected object, received string");
+      },
+    );
   });
 });

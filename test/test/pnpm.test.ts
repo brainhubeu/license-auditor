@@ -1,5 +1,6 @@
 import * as path from "node:path";
 
+import * as fs from "node:fs/promises";
 import type { JsonResults } from "@license-auditor/data";
 import { describe, expect } from "vitest";
 import { pnpmFixture } from "../fixtures";
@@ -278,5 +279,58 @@ describe("pnpm", () => {
 
       expect(addedPackage).toBeUndefined();
     });
+  });
+
+  describe("error-handling", () => {
+    pnpmFixture(
+      "Error message when configuration file is invalid",
+      async ({ testDirectory }) => {
+        const invalidConfig = `
+      		const config = {
+      		  blacklist: "this-should-be-an-array",
+      		  whitelist: 12345,
+      		  overrides: "this-should-be-an-object",
+      		};
+      		export default config;
+      	  `;
+        const configFilePath = path.resolve(
+          testDirectory,
+          "license-auditor.config.ts",
+        );
+        await fs.writeFile(configFilePath, invalidConfig);
+
+        const { output, errorCode } = await runCliCommand({
+          command: "npx",
+          args: [getCliPath()],
+          cwd: testDirectory,
+        });
+
+        expect(output).toContain("Invalid configuration file at");
+        expect(output).toContain("Expected array, received string");
+        expect(output).toContain("Expected array, received number");
+        expect(output).toContain("Expected object, received string");
+      },
+    );
+
+    pnpmFixture(
+      "Errors include a library without package.json",
+      async ({ testDirectory }) => {
+        const packageDirectory = path.resolve(
+          testDirectory,
+          "node_modules",
+          "a-library-without-package-json",
+        );
+        await fs.mkdir(packageDirectory, { recursive: true });
+
+        const { output, errorCode } = await runCliCommand({
+          command: "npx",
+          args: [getCliPath(), "--verbose"],
+          cwd: testDirectory,
+        });
+
+        expect(output).toContain("1 package returned error:");
+        expect(output).toContain("package.json not found for package at");
+      },
+    );
   });
 });
