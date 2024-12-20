@@ -10,7 +10,10 @@ export async function findLicenses(
 ): Promise<LicensesWithPathAndStatus> {
   const packageJsonPath = path.join(packagePath, "package.json");
 
-  const licensesFromPackageJson = findLicenseInPackageJson(packageJson);
+  const licensesFromPackageJson = findLicenseInPackageJson(
+    packageJson,
+    packageJsonPath,
+  );
 
   const licensesFromPackageJsonWithPath = {
     ...licensesFromPackageJson,

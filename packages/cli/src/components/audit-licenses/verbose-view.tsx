@@ -67,7 +67,7 @@ export default function VerboseView({ result, filter }: VerboseViewProps) {
                 self.findIndex((l) => l.licenseId === license.licenseId) ===
                 index,
             )
-            .map((license) => license.licenseId)
+            .map((license) => `${license.licenseId}: ${license.licensePath}`)
             .join(", "),
       deprecated: detectedLicense.licenses.some(
         (license) => license.isDeprecatedLicenseId,

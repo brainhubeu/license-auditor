@@ -24,6 +24,7 @@ const baseLicense: Pick<
   | "detailsUrl"
   | "reference"
   | "name"
+  | "licensePath"
 > = {
   isDeprecatedLicenseId: false,
   isOsiApproved: true,
@@ -32,6 +33,7 @@ const baseLicense: Pick<
   detailsUrl: "",
   reference: "",
   name: "",
+  licensePath: "",
 };
 
 const generateTestPackage = ({

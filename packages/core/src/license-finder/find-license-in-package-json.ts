@@ -13,25 +13,34 @@ function retrieveLicenseFromTypeField(license: unknown): License[] {
   return [];
 }
 
-function handleOutdatedFormats(packageJsonField: unknown): License[] {
+function handleOutdatedFormats(
+  packageJsonField: unknown,
+  packageJsonPath: string,
+): License[] {
   if (Array.isArray(packageJsonField)) {
     return packageJsonField.flatMap((l) => {
       const licenses = findLicenseById(l);
       if (!licenses.length) {
         licenses.push(...retrieveLicenseFromTypeField(l));
       }
-      return addLicenseSource(licenses, LICENSE_SOURCE.packageJsonLegacy);
+      return addLicenseSource(
+        licenses,
+        LICENSE_SOURCE.packageJsonLegacy,
+        packageJsonPath,
+      );
     });
   }
   return addLicenseSource(
     retrieveLicenseFromTypeField(packageJsonField),
     LICENSE_SOURCE.packageJsonLegacy,
+    packageJsonPath,
   );
 }
 
 function retrieveLicenseByField<T extends "license" | "licenses">(
   packageJson: PackageJsonType,
   licenseField: T,
+  packageJsonPath: string,
 ): ResolvedLicenses {
   if (typeof packageJson[licenseField] === "string") {
     const licenseById = findLicenseById(packageJson[licenseField]);
@@ -42,6 +51,7 @@ function retrieveLicenseByField<T extends "license" | "licenses">(
           licenseField === "license"
             ? LICENSE_SOURCE.packageJsonLicense
             : LICENSE_SOURCE.packageJsonLicenses,
+          packageJsonPath,
         ),
       };
     }
@@ -52,7 +62,10 @@ function retrieveLicenseByField<T extends "license" | "licenses">(
 
     if (licenseExpressionParsed) {
       return {
-        licenses: extractLicensesFromExpression(licenseExpressionParsed),
+        licenses: extractLicensesFromExpression(
+          licenseExpressionParsed,
+          packageJsonPath,
+        ),
         licenseExpression: packageJson[licenseField],
         licenseExpressionParsed,
       };
@@ -60,11 +73,15 @@ function retrieveLicenseByField<T extends "license" | "licenses">(
   }
 
   if (typeof packageJson[licenseField] === "object") {
-    const fromOutdatedFormat = handleOutdatedFormats(packageJson[licenseField]);
+    const fromOutdatedFormat = handleOutdatedFormats(
+      packageJson[licenseField],
+      packageJsonPath,
+    );
     return {
       licenses: addLicenseSource(
         fromOutdatedFormat,
         LICENSE_SOURCE.packageJsonLegacy,
+        packageJsonPath,
       ),
     };
   }
@@ -76,12 +93,13 @@ function retrieveLicenseByField<T extends "license" | "licenses">(
 
 export function findLicenseInPackageJson(
   packageJson: PackageJsonType,
+  packageJsonPath: string,
 ): ResolvedLicenses {
   if (packageJson.license) {
-    return retrieveLicenseByField(packageJson, "license");
+    return retrieveLicenseByField(packageJson, "license", packageJsonPath);
   }
   if (packageJson.licenses) {
-    return retrieveLicenseByField(packageJson, "licenses");
+    return retrieveLicenseByField(packageJson, "licenses", packageJsonPath);
   }
   return {
     licenses: [],

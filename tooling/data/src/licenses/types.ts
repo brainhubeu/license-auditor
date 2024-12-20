@@ -14,7 +14,10 @@ export type License = z.infer<typeof LicenseSchema>;
 export type LicenseSource =
   (typeof LICENSE_SOURCE)[keyof typeof LICENSE_SOURCE];
 
-export type LicenseWithSource = License & { source: LicenseSource };
+export type LicenseWithSource = License & {
+  source: LicenseSource;
+  licensePath: string;
+};
 
 export type LicenseStatus = z.infer<typeof LicenseStatusSchema>;
 

@@ -11,12 +11,19 @@ describe("findLicenseInPackageJson", () => {
       license: "MIT",
     };
 
-    const result = findLicenseInPackageJson(packageJson);
+    const result = findLicenseInPackageJson(
+      packageJson,
+      "/path/to/package.json",
+    );
 
     const expectedLicense = licenseMap.get("MIT");
 
     expect(result.licenses).toEqual([
-      { ...expectedLicense, source: "package.json-license" },
+      {
+        ...expectedLicense,
+        source: "package.json-license",
+        licensePath: "/path/to/package.json",
+      },
     ]);
   });
 
@@ -36,14 +43,25 @@ describe("findLicenseInPackageJson", () => {
       ],
     };
 
-    const result = findLicenseInPackageJson(packageJson);
+    const result = findLicenseInPackageJson(
+      packageJson,
+      "/path/to/package.json",
+    );
 
     const mitLicense = licenseMap.get("MIT");
     const iscLicense = licenseMap.get("ISC");
 
     expect(result.licenses).toEqual([
-      { ...mitLicense, source: "package.json-legacy" },
-      { ...iscLicense, source: "package.json-legacy" },
+      {
+        ...mitLicense,
+        source: "package.json-legacy",
+        licensePath: "/path/to/package.json",
+      },
+      {
+        ...iscLicense,
+        source: "package.json-legacy",
+        licensePath: "/path/to/package.json",
+      },
     ]);
   });
 
@@ -54,14 +72,25 @@ describe("findLicenseInPackageJson", () => {
       licenses: ["MIT", "ISC"],
     };
 
-    const result = findLicenseInPackageJson(packageJson);
+    const result = findLicenseInPackageJson(
+      packageJson,
+      "/path/to/package.json",
+    );
 
     const mitLicense = licenseMap.get("MIT");
     const iscLicense = licenseMap.get("ISC");
 
     expect(result.licenses).toEqual([
-      { ...mitLicense, source: "package.json-legacy" },
-      { ...iscLicense, source: "package.json-legacy" },
+      {
+        ...mitLicense,
+        source: "package.json-legacy",
+        licensePath: "/path/to/package.json",
+      },
+      {
+        ...iscLicense,
+        source: "package.json-legacy",
+        licensePath: "/path/to/package.json",
+      },
     ]);
   });
 
@@ -71,7 +100,10 @@ describe("findLicenseInPackageJson", () => {
       version: "1.0.0",
     };
 
-    const result = findLicenseInPackageJson(packageJson);
+    const result = findLicenseInPackageJson(
+      packageJson,
+      "/path/to/package.json",
+    );
     expect(result.licenses).toEqual([]);
   });
 });

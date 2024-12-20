@@ -17,11 +17,22 @@ describe("extractLicensesFromExpression", () => {
     const mitLicense = licenseMap.get("MIT");
     const apacheLicense = licenseMap.get("Apache-2.0");
 
-    const result = extractLicensesFromExpression(parsedLicense);
+    const result = extractLicensesFromExpression(
+      parsedLicense,
+      "/path/to/package.json",
+    );
 
     expect(result).toEqual([
-      { ...mitLicense, source: "package.json-license-expression" },
-      { ...apacheLicense, source: "package.json-license-expression" },
+      {
+        ...mitLicense,
+        source: "package.json-license-expression",
+        licensePath: "/path/to/package.json",
+      },
+      {
+        ...apacheLicense,
+        source: "package.json-license-expression",
+        licensePath: "/path/to/package.json",
+      },
     ]);
   });
 
@@ -36,10 +47,17 @@ describe("extractLicensesFromExpression", () => {
 
     const mitLicense = licenseMap.get("MIT");
 
-    const result = extractLicensesFromExpression(parsedLicense);
+    const result = extractLicensesFromExpression(
+      parsedLicense,
+      "/path/to/package.json",
+    );
 
     expect(result).toEqual([
-      { ...mitLicense, source: "package.json-license-expression" },
+      {
+        ...mitLicense,
+        source: "package.json-license-expression",
+        licensePath: "/path/to/package.json",
+      },
     ]);
   });
 
@@ -55,11 +73,22 @@ describe("extractLicensesFromExpression", () => {
     const mitLicense = licenseMap.get("MIT");
     const iscLicense = licenseMap.get("ISC");
 
-    const result = extractLicensesFromExpression(parsedLicense);
+    const result = extractLicensesFromExpression(
+      parsedLicense,
+      "/path/to/package.json",
+    );
 
     expect(result).toEqual([
-      { ...mitLicense, source: "package.json-license-expression" },
-      { ...iscLicense, source: "package.json-license-expression" },
+      {
+        ...mitLicense,
+        source: "package.json-license-expression",
+        licensePath: "/path/to/package.json",
+      },
+      {
+        ...iscLicense,
+        source: "package.json-license-expression",
+        licensePath: "/path/to/package.json",
+      },
     ]);
   });
 
@@ -76,13 +105,28 @@ describe("extractLicensesFromExpression", () => {
     const iscLicense = licenseMap.get("ISC");
     const apacheLicense = licenseMap.get("Apache-2.0");
 
-    const result = extractLicensesFromExpression(parsedLicense);
+    const result = extractLicensesFromExpression(
+      parsedLicense,
+      "/path/to/package.json",
+    );
 
     // @ts-ignore
     expect(result).toEqual([
-      { ...mitLicense, source: "package.json-license-expression" },
-      { ...iscLicense, source: "package.json-license-expression" },
-      { ...apacheLicense, source: "package.json-license-expression" },
+      {
+        ...mitLicense,
+        source: "package.json-license-expression",
+        licensePath: "/path/to/package.json",
+      },
+      {
+        ...iscLicense,
+        source: "package.json-license-expression",
+        licensePath: "/path/to/package.json",
+      },
+      {
+        ...apacheLicense,
+        source: "package.json-license-expression",
+        licensePath: "/path/to/package.json",
+      },
     ]);
   });
 
@@ -97,7 +141,7 @@ describe("extractLicensesFromExpression", () => {
       right: { license: "Wrong-2.0" },
     } as Info;
 
-    extractLicensesFromExpression(parsedLicense);
+    extractLicensesFromExpression(parsedLicense, "/path/to/package.json");
 
     expect(consoleErrorSpy).toHaveBeenCalledWith(
       "Failed to find license:",
