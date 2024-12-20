@@ -14,6 +14,7 @@ describe("resolveLicenseStatus", () => {
     | "reference"
     | "source"
     | "name"
+    | "licensePath"
   > = {
     isDeprecatedLicenseId: false,
     isOsiApproved: true,
@@ -23,6 +24,7 @@ describe("resolveLicenseStatus", () => {
     reference: "",
     name: "",
     source: "package.json-license",
+    licensePath: "",
   };
 
   const mockConfig: ConfigType = {

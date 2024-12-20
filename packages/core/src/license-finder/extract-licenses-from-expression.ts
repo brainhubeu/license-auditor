@@ -4,6 +4,7 @@ import { findLicenseById } from "./find-license-by-id.js";
 
 export function extractLicensesFromExpression(
   licenseExpressionParsed: Info,
+  packageJsonPath: string,
 ): LicenseWithSource[] {
   const licenses = new Set<LicenseWithSource>();
 
@@ -14,6 +15,7 @@ export function extractLicensesFromExpression(
         licenses.add({
           ...license,
           source: LICENSE_SOURCE.packageJsonLicensesExpression,
+          licensePath: packageJsonPath,
         });
         return;
       }
