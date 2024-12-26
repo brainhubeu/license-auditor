@@ -14,4 +14,5 @@ export default defineConfig({
     js: "import { createRequire } from 'module'; const require = createRequire(import.meta.url);",
   },
   noExternal: ["@brainhubeu/license-auditor-core", "@license-auditor/data"],
+  shims: true,
 });

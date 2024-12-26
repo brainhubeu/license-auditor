@@ -17,11 +17,13 @@ export function retrieveLicenseFromLicenseFileContent(content: string): {
   const detectedLicense = detectedLicenses[0];
   if (detectedLicense && (detectedLicense.similarity ?? 0) > 0.75) {
     // threshold selected empirically based on our tests
-    const licenseArr = [...licenseMap]
-      .filter(([key]) => key === detectedLicense.licenseId)
-      .map((result) => LicenseSchema.parse(result[1]));
+    const foundLicense = licenseMap.get(detectedLicense.licenseId);
+    if (!foundLicense) {
+      throw new Error(`License detected but not found in license map: ${detectedLicense.licenseId}`);
+    }
+
     return {
-      licenses: addLicenseSource(licenseArr, LICENSE_SOURCE.licenseFileContent),
+      licenses: addLicenseSource([LicenseSchema.parse(foundLicense)], LICENSE_SOURCE.licenseFileContent),
     };
   }
 
