@@ -52,7 +52,7 @@ function findExternalDependencies({
   switch (packageManager) {
     case "npm":
     case "yarn":
-      return findNpmDependencies(projectRoot, production, verbose);
+      return findNpmDependencies(projectRoot, production);
     case "pnpm":
       return findPnpmDependencies(projectRoot, production, verbose);
     case "yarn-classic":

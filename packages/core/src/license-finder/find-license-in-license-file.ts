@@ -19,11 +19,16 @@ export function retrieveLicenseFromLicenseFileContent(content: string): {
     // threshold selected empirically based on our tests
     const foundLicense = licenseMap.get(detectedLicense.licenseId);
     if (!foundLicense) {
-      throw new Error(`License detected but not found in license map: ${detectedLicense.licenseId}`);
+      throw new Error(
+        `License detected but not found in license map: ${detectedLicense.licenseId}`,
+      );
     }
 
     return {
-      licenses: addLicenseSource([LicenseSchema.parse(foundLicense)], LICENSE_SOURCE.licenseFileContent),
+      licenses: addLicenseSource(
+        [LicenseSchema.parse(foundLicense)],
+        LICENSE_SOURCE.licenseFileContent,
+      ),
     };
   }
 
