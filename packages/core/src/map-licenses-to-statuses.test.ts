@@ -20,7 +20,6 @@ const baseLicense: Pick<
   | "isDeprecatedLicenseId"
   | "isOsiApproved"
   | "seeAlso"
-  | "referenceNumber"
   | "detailsUrl"
   | "reference"
   | "name"
@@ -28,7 +27,6 @@ const baseLicense: Pick<
   isDeprecatedLicenseId: false,
   isOsiApproved: true,
   seeAlso: [],
-  referenceNumber: 0,
   detailsUrl: "",
   reference: "",
   name: "",
