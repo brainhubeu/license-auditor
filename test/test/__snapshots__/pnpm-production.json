@@ -2,7 +2,7 @@
   "whitelist": [
     {
       "packageName": "@eslint-community/eslint-utils@4.4.1",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/testProjects/pnpm/node_modules/.pnpm/@eslint-community+eslint-utils@4.4.1_eslint@9.16.0/node_modules/@eslint-community/eslint-utils",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/@eslint-community+eslint-utils@4.4.1_eslint@9.16.0/node_modules/@eslint-community/eslint-utils",
       "status": "whitelist",
       "licenses": [
         {
@@ -30,14 +30,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/testProjects/pnpm/node_modules/.pnpm/@eslint-community+eslint-utils@4.4.1_eslint@9.16.0/node_modules/@eslint-community/eslint-utils/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/testProjects/pnpm/node_modules/.pnpm/@eslint-community+eslint-utils@4.4.1_eslint@9.16.0/node_modules/@eslint-community/eslint-utils/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/@eslint-community+eslint-utils@4.4.1_eslint@9.16.0/node_modules/@eslint-community/eslint-utils/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/@eslint-community+eslint-utils@4.4.1_eslint@9.16.0/node_modules/@eslint-community/eslint-utils/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "@eslint-community/regexpp@4.12.1",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/testProjects/pnpm/node_modules/.pnpm/@eslint-community+regexpp@4.12.1/node_modules/@eslint-community/regexpp",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/@eslint-community+regexpp@4.12.1/node_modules/@eslint-community/regexpp",
       "status": "whitelist",
       "licenses": [
         {
@@ -65,14 +65,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/testProjects/pnpm/node_modules/.pnpm/@eslint-community+regexpp@4.12.1/node_modules/@eslint-community/regexpp/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/testProjects/pnpm/node_modules/.pnpm/@eslint-community+regexpp@4.12.1/node_modules/@eslint-community/regexpp/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/@eslint-community+regexpp@4.12.1/node_modules/@eslint-community/regexpp/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/@eslint-community+regexpp@4.12.1/node_modules/@eslint-community/regexpp/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "@eslint/config-array@0.19.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/testProjects/pnpm/node_modules/.pnpm/@eslint+config-array@0.19.0/node_modules/@eslint/config-array",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/@eslint+config-array@0.19.0/node_modules/@eslint/config-array",
       "status": "whitelist",
       "licenses": [
         {
@@ -106,14 +106,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/testProjects/pnpm/node_modules/.pnpm/@eslint+config-array@0.19.0/node_modules/@eslint/config-array/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/testProjects/pnpm/node_modules/.pnpm/@eslint+config-array@0.19.0/node_modules/@eslint/config-array/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/@eslint+config-array@0.19.0/node_modules/@eslint/config-array/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/@eslint+config-array@0.19.0/node_modules/@eslint/config-array/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "@eslint/core@0.9.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/testProjects/pnpm/node_modules/.pnpm/@eslint+core@0.9.0/node_modules/@eslint/core",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/@eslint+core@0.9.0/node_modules/@eslint/core",
       "status": "whitelist",
       "licenses": [
         {
@@ -147,14 +147,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/testProjects/pnpm/node_modules/.pnpm/@eslint+core@0.9.0/node_modules/@eslint/core/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/testProjects/pnpm/node_modules/.pnpm/@eslint+core@0.9.0/node_modules/@eslint/core/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/@eslint+core@0.9.0/node_modules/@eslint/core/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/@eslint+core@0.9.0/node_modules/@eslint/core/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "@eslint/eslintrc@3.2.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/testProjects/pnpm/node_modules/.pnpm/@eslint+eslintrc@3.2.0/node_modules/@eslint/eslintrc",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/@eslint+eslintrc@3.2.0/node_modules/@eslint/eslintrc",
       "status": "whitelist",
       "licenses": [
         {
@@ -182,14 +182,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/testProjects/pnpm/node_modules/.pnpm/@eslint+eslintrc@3.2.0/node_modules/@eslint/eslintrc/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/testProjects/pnpm/node_modules/.pnpm/@eslint+eslintrc@3.2.0/node_modules/@eslint/eslintrc/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/@eslint+eslintrc@3.2.0/node_modules/@eslint/eslintrc/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/@eslint+eslintrc@3.2.0/node_modules/@eslint/eslintrc/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "@eslint/js@9.16.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/testProjects/pnpm/node_modules/.pnpm/@eslint+js@9.16.0/node_modules/@eslint/js",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/@eslint+js@9.16.0/node_modules/@eslint/js",
       "status": "whitelist",
       "licenses": [
         {
@@ -217,14 +217,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/testProjects/pnpm/node_modules/.pnpm/@eslint+js@9.16.0/node_modules/@eslint/js/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/testProjects/pnpm/node_modules/.pnpm/@eslint+js@9.16.0/node_modules/@eslint/js/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/@eslint+js@9.16.0/node_modules/@eslint/js/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/@eslint+js@9.16.0/node_modules/@eslint/js/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "@eslint/object-schema@2.1.4",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/testProjects/pnpm/node_modules/.pnpm/@eslint+object-schema@2.1.4/node_modules/@eslint/object-schema",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/@eslint+object-schema@2.1.4/node_modules/@eslint/object-schema",
       "status": "whitelist",
       "licenses": [
         {
@@ -258,14 +258,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/testProjects/pnpm/node_modules/.pnpm/@eslint+object-schema@2.1.4/node_modules/@eslint/object-schema/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/testProjects/pnpm/node_modules/.pnpm/@eslint+object-schema@2.1.4/node_modules/@eslint/object-schema/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/@eslint+object-schema@2.1.4/node_modules/@eslint/object-schema/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/@eslint+object-schema@2.1.4/node_modules/@eslint/object-schema/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "@eslint/plugin-kit@0.2.3",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/testProjects/pnpm/node_modules/.pnpm/@eslint+plugin-kit@0.2.3/node_modules/@eslint/plugin-kit",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/@eslint+plugin-kit@0.2.3/node_modules/@eslint/plugin-kit",
       "status": "whitelist",
       "licenses": [
         {
@@ -299,8 +299,8 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/testProjects/pnpm/node_modules/.pnpm/@eslint+plugin-kit@0.2.3/node_modules/@eslint/plugin-kit/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/testProjects/pnpm/node_modules/.pnpm/@eslint+plugin-kit@0.2.3/node_modules/@eslint/plugin-kit/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/@eslint+plugin-kit@0.2.3/node_modules/@eslint/plugin-kit/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/@eslint+plugin-kit@0.2.3/node_modules/@eslint/plugin-kit/LICENSE"
       ],
       "verificationStatus": "ok"
     },
@@ -1041,7 +1041,7 @@
     },
     {
       "packageName": "eslint@9.16.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/testProjects/pnpm/node_modules/.pnpm/eslint@9.16.0/node_modules/eslint",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/eslint@9.16.0/node_modules/eslint",
       "status": "whitelist",
       "licenses": [
         {
@@ -1069,14 +1069,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/testProjects/pnpm/node_modules/.pnpm/eslint@9.16.0/node_modules/eslint/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/testProjects/pnpm/node_modules/.pnpm/eslint@9.16.0/node_modules/eslint/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/eslint@9.16.0/node_modules/eslint/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/eslint@9.16.0/node_modules/eslint/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "eslint-scope@8.2.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/testProjects/pnpm/node_modules/.pnpm/eslint-scope@8.2.0/node_modules/eslint-scope",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/eslint-scope@8.2.0/node_modules/eslint-scope",
       "status": "whitelist",
       "licenses": [
         {
@@ -1104,14 +1104,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/testProjects/pnpm/node_modules/.pnpm/eslint-scope@8.2.0/node_modules/eslint-scope/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/testProjects/pnpm/node_modules/.pnpm/eslint-scope@8.2.0/node_modules/eslint-scope/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/eslint-scope@8.2.0/node_modules/eslint-scope/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/eslint-scope@8.2.0/node_modules/eslint-scope/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "eslint-visitor-keys@4.2.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/testProjects/pnpm/node_modules/.pnpm/eslint-visitor-keys@4.2.0/node_modules/eslint-visitor-keys",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/eslint-visitor-keys@4.2.0/node_modules/eslint-visitor-keys",
       "status": "whitelist",
       "licenses": [
         {
@@ -1145,8 +1145,8 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/testProjects/pnpm/node_modules/.pnpm/eslint-visitor-keys@4.2.0/node_modules/eslint-visitor-keys/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/testProjects/pnpm/node_modules/.pnpm/eslint-visitor-keys@4.2.0/node_modules/eslint-visitor-keys/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/eslint-visitor-keys@4.2.0/node_modules/eslint-visitor-keys/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/eslint-visitor-keys@4.2.0/node_modules/eslint-visitor-keys/LICENSE"
       ],
       "verificationStatus": "ok"
     },
