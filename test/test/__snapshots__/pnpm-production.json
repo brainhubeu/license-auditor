@@ -306,7 +306,7 @@
     },
     {
       "packageName": "accepts@2.0.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/accepts@2.0.0/node_modules/accepts",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/accepts@2.0.0/node_modules/accepts",
       "status": "whitelist",
       "licenses": [
         {
@@ -334,14 +334,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/accepts@2.0.0/node_modules/accepts/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/accepts@2.0.0/node_modules/accepts/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/accepts@2.0.0/node_modules/accepts/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/accepts@2.0.0/node_modules/accepts/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "array-flatten@3.0.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/array-flatten@3.0.0/node_modules/array-flatten",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/array-flatten@3.0.0/node_modules/array-flatten",
       "status": "whitelist",
       "licenses": [
         {
@@ -369,14 +369,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/array-flatten@3.0.0/node_modules/array-flatten/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/array-flatten@3.0.0/node_modules/array-flatten/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/array-flatten@3.0.0/node_modules/array-flatten/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/array-flatten@3.0.0/node_modules/array-flatten/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "body-parser@2.0.2",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/body-parser@2.0.2/node_modules/body-parser",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/body-parser@2.0.2/node_modules/body-parser",
       "status": "whitelist",
       "licenses": [
         {
@@ -404,14 +404,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/body-parser@2.0.2/node_modules/body-parser/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/body-parser@2.0.2/node_modules/body-parser/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/body-parser@2.0.2/node_modules/body-parser/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/body-parser@2.0.2/node_modules/body-parser/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "bytes@3.1.2",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/bytes@3.1.2/node_modules/bytes",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/bytes@3.1.2/node_modules/bytes",
       "status": "whitelist",
       "licenses": [
         {
@@ -439,14 +439,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/bytes@3.1.2/node_modules/bytes/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/bytes@3.1.2/node_modules/bytes/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/bytes@3.1.2/node_modules/bytes/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/bytes@3.1.2/node_modules/bytes/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "call-bind@1.0.7",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/call-bind@1.0.7/node_modules/call-bind",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/call-bind@1.0.7/node_modules/call-bind",
       "status": "whitelist",
       "licenses": [
         {
@@ -474,14 +474,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/call-bind@1.0.7/node_modules/call-bind/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/call-bind@1.0.7/node_modules/call-bind/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/call-bind@1.0.7/node_modules/call-bind/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/call-bind@1.0.7/node_modules/call-bind/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "content-disposition@1.0.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/content-disposition@1.0.0/node_modules/content-disposition",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/content-disposition@1.0.0/node_modules/content-disposition",
       "status": "whitelist",
       "licenses": [
         {
@@ -509,14 +509,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/content-disposition@1.0.0/node_modules/content-disposition/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/content-disposition@1.0.0/node_modules/content-disposition/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/content-disposition@1.0.0/node_modules/content-disposition/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/content-disposition@1.0.0/node_modules/content-disposition/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "content-type@1.0.5",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/content-type@1.0.5/node_modules/content-type",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/content-type@1.0.5/node_modules/content-type",
       "status": "whitelist",
       "licenses": [
         {
@@ -544,14 +544,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/content-type@1.0.5/node_modules/content-type/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/content-type@1.0.5/node_modules/content-type/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/content-type@1.0.5/node_modules/content-type/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/content-type@1.0.5/node_modules/content-type/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "cookie@0.7.1",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/cookie@0.7.1/node_modules/cookie",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/cookie@0.7.1/node_modules/cookie",
       "status": "whitelist",
       "licenses": [
         {
@@ -579,14 +579,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/cookie@0.7.1/node_modules/cookie/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/cookie@0.7.1/node_modules/cookie/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/cookie@0.7.1/node_modules/cookie/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/cookie@0.7.1/node_modules/cookie/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "cookie-signature@1.2.2",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/cookie-signature@1.2.2/node_modules/cookie-signature",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/cookie-signature@1.2.2/node_modules/cookie-signature",
       "status": "whitelist",
       "licenses": [
         {
@@ -614,14 +614,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/cookie-signature@1.2.2/node_modules/cookie-signature/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/cookie-signature@1.2.2/node_modules/cookie-signature/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/cookie-signature@1.2.2/node_modules/cookie-signature/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/cookie-signature@1.2.2/node_modules/cookie-signature/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "debug@3.1.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/debug@3.1.0/node_modules/debug",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/debug@3.1.0/node_modules/debug",
       "status": "whitelist",
       "licenses": [
         {
@@ -649,14 +649,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/debug@3.1.0/node_modules/debug/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/debug@3.1.0/node_modules/debug/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/debug@3.1.0/node_modules/debug/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/debug@3.1.0/node_modules/debug/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "debug@4.3.6",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/debug@4.3.6/node_modules/debug",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/debug@4.3.6/node_modules/debug",
       "status": "whitelist",
       "licenses": [
         {
@@ -684,14 +684,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/debug@4.3.6/node_modules/debug/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/debug@4.3.6/node_modules/debug/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/debug@4.3.6/node_modules/debug/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/debug@4.3.6/node_modules/debug/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "debug@2.6.9",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/debug@2.6.9/node_modules/debug",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/debug@2.6.9/node_modules/debug",
       "status": "whitelist",
       "licenses": [
         {
@@ -719,14 +719,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/debug@2.6.9/node_modules/debug/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/debug@2.6.9/node_modules/debug/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/debug@2.6.9/node_modules/debug/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/debug@2.6.9/node_modules/debug/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "define-data-property@1.1.4",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/define-data-property@1.1.4/node_modules/define-data-property",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/define-data-property@1.1.4/node_modules/define-data-property",
       "status": "whitelist",
       "licenses": [
         {
@@ -754,14 +754,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/define-data-property@1.1.4/node_modules/define-data-property/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/define-data-property@1.1.4/node_modules/define-data-property/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/define-data-property@1.1.4/node_modules/define-data-property/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/define-data-property@1.1.4/node_modules/define-data-property/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "depd@2.0.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/depd@2.0.0/node_modules/depd",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/depd@2.0.0/node_modules/depd",
       "status": "whitelist",
       "licenses": [
         {
@@ -789,14 +789,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/depd@2.0.0/node_modules/depd/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/depd@2.0.0/node_modules/depd/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/depd@2.0.0/node_modules/depd/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/depd@2.0.0/node_modules/depd/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "destroy@1.2.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/destroy@1.2.0/node_modules/destroy",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/destroy@1.2.0/node_modules/destroy",
       "status": "whitelist",
       "licenses": [
         {
@@ -824,14 +824,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/destroy@1.2.0/node_modules/destroy/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/destroy@1.2.0/node_modules/destroy/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/destroy@1.2.0/node_modules/destroy/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/destroy@1.2.0/node_modules/destroy/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "ee-first@1.1.1",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/ee-first@1.1.1/node_modules/ee-first",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/ee-first@1.1.1/node_modules/ee-first",
       "status": "whitelist",
       "licenses": [
         {
@@ -859,14 +859,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/ee-first@1.1.1/node_modules/ee-first/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/ee-first@1.1.1/node_modules/ee-first/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/ee-first@1.1.1/node_modules/ee-first/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/ee-first@1.1.1/node_modules/ee-first/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "encodeurl@2.0.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/encodeurl@2.0.0/node_modules/encodeurl",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/encodeurl@2.0.0/node_modules/encodeurl",
       "status": "whitelist",
       "licenses": [
         {
@@ -894,14 +894,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/encodeurl@2.0.0/node_modules/encodeurl/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/encodeurl@2.0.0/node_modules/encodeurl/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/encodeurl@2.0.0/node_modules/encodeurl/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/encodeurl@2.0.0/node_modules/encodeurl/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "encodeurl@1.0.2",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/encodeurl@1.0.2/node_modules/encodeurl",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/encodeurl@1.0.2/node_modules/encodeurl",
       "status": "whitelist",
       "licenses": [
         {
@@ -929,14 +929,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/encodeurl@1.0.2/node_modules/encodeurl/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/encodeurl@1.0.2/node_modules/encodeurl/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/encodeurl@1.0.2/node_modules/encodeurl/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/encodeurl@1.0.2/node_modules/encodeurl/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "es-define-property@1.0.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/es-define-property@1.0.0/node_modules/es-define-property",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/es-define-property@1.0.0/node_modules/es-define-property",
       "status": "whitelist",
       "licenses": [
         {
@@ -964,14 +964,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/es-define-property@1.0.0/node_modules/es-define-property/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/es-define-property@1.0.0/node_modules/es-define-property/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/es-define-property@1.0.0/node_modules/es-define-property/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/es-define-property@1.0.0/node_modules/es-define-property/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "es-errors@1.3.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/es-errors@1.3.0/node_modules/es-errors",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/es-errors@1.3.0/node_modules/es-errors",
       "status": "whitelist",
       "licenses": [
         {
@@ -999,14 +999,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/es-errors@1.3.0/node_modules/es-errors/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/es-errors@1.3.0/node_modules/es-errors/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/es-errors@1.3.0/node_modules/es-errors/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/es-errors@1.3.0/node_modules/es-errors/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "escape-html@1.0.3",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/escape-html@1.0.3/node_modules/escape-html",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/escape-html@1.0.3/node_modules/escape-html",
       "status": "whitelist",
       "licenses": [
         {
@@ -1034,8 +1034,8 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/escape-html@1.0.3/node_modules/escape-html/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/escape-html@1.0.3/node_modules/escape-html/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/escape-html@1.0.3/node_modules/escape-html/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/escape-html@1.0.3/node_modules/escape-html/LICENSE"
       ],
       "verificationStatus": "ok"
     },
@@ -1152,7 +1152,7 @@
     },
     {
       "packageName": "etag@1.8.1",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/etag@1.8.1/node_modules/etag",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/etag@1.8.1/node_modules/etag",
       "status": "whitelist",
       "licenses": [
         {
@@ -1180,14 +1180,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/etag@1.8.1/node_modules/etag/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/etag@1.8.1/node_modules/etag/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/etag@1.8.1/node_modules/etag/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/etag@1.8.1/node_modules/etag/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "express@5.0.1",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/express@5.0.1/node_modules/express",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/express@5.0.1/node_modules/express",
       "status": "whitelist",
       "licenses": [
         {
@@ -1215,14 +1215,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/express@5.0.1/node_modules/express/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/express@5.0.1/node_modules/express/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/express@5.0.1/node_modules/express/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/express@5.0.1/node_modules/express/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "finalhandler@2.0.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/finalhandler@2.0.0/node_modules/finalhandler",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/finalhandler@2.0.0/node_modules/finalhandler",
       "status": "whitelist",
       "licenses": [
         {
@@ -1250,14 +1250,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/finalhandler@2.0.0/node_modules/finalhandler/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/finalhandler@2.0.0/node_modules/finalhandler/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/finalhandler@2.0.0/node_modules/finalhandler/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/finalhandler@2.0.0/node_modules/finalhandler/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "forwarded@0.2.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/forwarded@0.2.0/node_modules/forwarded",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/forwarded@0.2.0/node_modules/forwarded",
       "status": "whitelist",
       "licenses": [
         {
@@ -1285,14 +1285,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/forwarded@0.2.0/node_modules/forwarded/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/forwarded@0.2.0/node_modules/forwarded/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/forwarded@0.2.0/node_modules/forwarded/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/forwarded@0.2.0/node_modules/forwarded/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "fresh@2.0.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/fresh@2.0.0/node_modules/fresh",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/fresh@2.0.0/node_modules/fresh",
       "status": "whitelist",
       "licenses": [
         {
@@ -1320,14 +1320,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/fresh@2.0.0/node_modules/fresh/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/fresh@2.0.0/node_modules/fresh/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/fresh@2.0.0/node_modules/fresh/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/fresh@2.0.0/node_modules/fresh/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "fresh@0.5.2",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/fresh@0.5.2/node_modules/fresh",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/fresh@0.5.2/node_modules/fresh",
       "status": "whitelist",
       "licenses": [
         {
@@ -1355,14 +1355,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/fresh@0.5.2/node_modules/fresh/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/fresh@0.5.2/node_modules/fresh/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/fresh@0.5.2/node_modules/fresh/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/fresh@0.5.2/node_modules/fresh/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "function-bind@1.1.2",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/function-bind@1.1.2/node_modules/function-bind",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/function-bind@1.1.2/node_modules/function-bind",
       "status": "whitelist",
       "licenses": [
         {
@@ -1390,14 +1390,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/function-bind@1.1.2/node_modules/function-bind/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/function-bind@1.1.2/node_modules/function-bind/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/function-bind@1.1.2/node_modules/function-bind/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/function-bind@1.1.2/node_modules/function-bind/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "get-intrinsic@1.2.4",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/get-intrinsic@1.2.4/node_modules/get-intrinsic",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/get-intrinsic@1.2.4/node_modules/get-intrinsic",
       "status": "whitelist",
       "licenses": [
         {
@@ -1425,14 +1425,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/get-intrinsic@1.2.4/node_modules/get-intrinsic/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/get-intrinsic@1.2.4/node_modules/get-intrinsic/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/get-intrinsic@1.2.4/node_modules/get-intrinsic/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/get-intrinsic@1.2.4/node_modules/get-intrinsic/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "gopd@1.1.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/gopd@1.1.0/node_modules/gopd",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/gopd@1.1.0/node_modules/gopd",
       "status": "whitelist",
       "licenses": [
         {
@@ -1460,14 +1460,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/gopd@1.1.0/node_modules/gopd/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/gopd@1.1.0/node_modules/gopd/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/gopd@1.1.0/node_modules/gopd/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/gopd@1.1.0/node_modules/gopd/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "has-property-descriptors@1.0.2",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/has-property-descriptors@1.0.2/node_modules/has-property-descriptors",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/has-property-descriptors@1.0.2/node_modules/has-property-descriptors",
       "status": "whitelist",
       "licenses": [
         {
@@ -1495,14 +1495,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/has-property-descriptors@1.0.2/node_modules/has-property-descriptors/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/has-property-descriptors@1.0.2/node_modules/has-property-descriptors/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/has-property-descriptors@1.0.2/node_modules/has-property-descriptors/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/has-property-descriptors@1.0.2/node_modules/has-property-descriptors/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "has-proto@1.1.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/has-proto@1.1.0/node_modules/has-proto",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/has-proto@1.1.0/node_modules/has-proto",
       "status": "whitelist",
       "licenses": [
         {
@@ -1530,14 +1530,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/has-proto@1.1.0/node_modules/has-proto/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/has-proto@1.1.0/node_modules/has-proto/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/has-proto@1.1.0/node_modules/has-proto/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/has-proto@1.1.0/node_modules/has-proto/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "has-symbols@1.1.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/has-symbols@1.1.0/node_modules/has-symbols",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/has-symbols@1.1.0/node_modules/has-symbols",
       "status": "whitelist",
       "licenses": [
         {
@@ -1565,14 +1565,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/has-symbols@1.1.0/node_modules/has-symbols/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/has-symbols@1.1.0/node_modules/has-symbols/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/has-symbols@1.1.0/node_modules/has-symbols/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/has-symbols@1.1.0/node_modules/has-symbols/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "hasown@2.0.2",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/hasown@2.0.2/node_modules/hasown",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/hasown@2.0.2/node_modules/hasown",
       "status": "whitelist",
       "licenses": [
         {
@@ -1600,14 +1600,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/hasown@2.0.2/node_modules/hasown/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/hasown@2.0.2/node_modules/hasown/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/hasown@2.0.2/node_modules/hasown/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/hasown@2.0.2/node_modules/hasown/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "http-errors@2.0.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/http-errors@2.0.0/node_modules/http-errors",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/http-errors@2.0.0/node_modules/http-errors",
       "status": "whitelist",
       "licenses": [
         {
@@ -1635,14 +1635,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/http-errors@2.0.0/node_modules/http-errors/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/http-errors@2.0.0/node_modules/http-errors/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/http-errors@2.0.0/node_modules/http-errors/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/http-errors@2.0.0/node_modules/http-errors/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "iconv-lite@0.5.2",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/iconv-lite@0.5.2/node_modules/iconv-lite",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/iconv-lite@0.5.2/node_modules/iconv-lite",
       "status": "whitelist",
       "licenses": [
         {
@@ -1670,14 +1670,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/iconv-lite@0.5.2/node_modules/iconv-lite/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/iconv-lite@0.5.2/node_modules/iconv-lite/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/iconv-lite@0.5.2/node_modules/iconv-lite/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/iconv-lite@0.5.2/node_modules/iconv-lite/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "iconv-lite@0.6.3",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/iconv-lite@0.6.3/node_modules/iconv-lite",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/iconv-lite@0.6.3/node_modules/iconv-lite",
       "status": "whitelist",
       "licenses": [
         {
@@ -1705,14 +1705,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/iconv-lite@0.6.3/node_modules/iconv-lite/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/iconv-lite@0.6.3/node_modules/iconv-lite/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/iconv-lite@0.6.3/node_modules/iconv-lite/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/iconv-lite@0.6.3/node_modules/iconv-lite/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "inherits@2.0.4",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/inherits@2.0.4/node_modules/inherits",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/inherits@2.0.4/node_modules/inherits",
       "status": "whitelist",
       "licenses": [
         {
@@ -1748,14 +1748,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/inherits@2.0.4/node_modules/inherits/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/inherits@2.0.4/node_modules/inherits/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/inherits@2.0.4/node_modules/inherits/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/inherits@2.0.4/node_modules/inherits/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "ipaddr.js@1.9.1",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/ipaddr.js@1.9.1/node_modules/ipaddr.js",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/ipaddr.js@1.9.1/node_modules/ipaddr.js",
       "status": "whitelist",
       "licenses": [
         {
@@ -1783,14 +1783,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/ipaddr.js@1.9.1/node_modules/ipaddr.js/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/ipaddr.js@1.9.1/node_modules/ipaddr.js/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/ipaddr.js@1.9.1/node_modules/ipaddr.js/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/ipaddr.js@1.9.1/node_modules/ipaddr.js/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "is-promise@4.0.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/is-promise@4.0.0/node_modules/is-promise",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/is-promise@4.0.0/node_modules/is-promise",
       "status": "whitelist",
       "licenses": [
         {
@@ -1818,14 +1818,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/is-promise@4.0.0/node_modules/is-promise/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/is-promise@4.0.0/node_modules/is-promise/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/is-promise@4.0.0/node_modules/is-promise/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/is-promise@4.0.0/node_modules/is-promise/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "media-typer@0.3.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/media-typer@0.3.0/node_modules/media-typer",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/media-typer@0.3.0/node_modules/media-typer",
       "status": "whitelist",
       "licenses": [
         {
@@ -1853,14 +1853,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/media-typer@0.3.0/node_modules/media-typer/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/media-typer@0.3.0/node_modules/media-typer/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/media-typer@0.3.0/node_modules/media-typer/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/media-typer@0.3.0/node_modules/media-typer/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "media-typer@1.1.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/media-typer@1.1.0/node_modules/media-typer",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/media-typer@1.1.0/node_modules/media-typer",
       "status": "whitelist",
       "licenses": [
         {
@@ -1888,14 +1888,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/media-typer@1.1.0/node_modules/media-typer/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/media-typer@1.1.0/node_modules/media-typer/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/media-typer@1.1.0/node_modules/media-typer/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/media-typer@1.1.0/node_modules/media-typer/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "merge-descriptors@2.0.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/merge-descriptors@2.0.0/node_modules/merge-descriptors",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/merge-descriptors@2.0.0/node_modules/merge-descriptors",
       "status": "whitelist",
       "licenses": [
         {
@@ -1923,14 +1923,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/merge-descriptors@2.0.0/node_modules/merge-descriptors/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/merge-descriptors@2.0.0/node_modules/merge-descriptors/license"
+        "<TEST_DIR>/node_modules/.pnpm/merge-descriptors@2.0.0/node_modules/merge-descriptors/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/merge-descriptors@2.0.0/node_modules/merge-descriptors/license"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "methods@1.1.2",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/methods@1.1.2/node_modules/methods",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/methods@1.1.2/node_modules/methods",
       "status": "whitelist",
       "licenses": [
         {
@@ -1958,14 +1958,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/methods@1.1.2/node_modules/methods/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/methods@1.1.2/node_modules/methods/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/methods@1.1.2/node_modules/methods/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/methods@1.1.2/node_modules/methods/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "mime-db@1.53.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/mime-db@1.53.0/node_modules/mime-db",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/mime-db@1.53.0/node_modules/mime-db",
       "status": "whitelist",
       "licenses": [
         {
@@ -1993,14 +1993,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/mime-db@1.53.0/node_modules/mime-db/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/mime-db@1.53.0/node_modules/mime-db/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/mime-db@1.53.0/node_modules/mime-db/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/mime-db@1.53.0/node_modules/mime-db/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "mime-db@1.52.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/mime-db@1.52.0/node_modules/mime-db",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/mime-db@1.52.0/node_modules/mime-db",
       "status": "whitelist",
       "licenses": [
         {
@@ -2028,14 +2028,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/mime-db@1.52.0/node_modules/mime-db/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/mime-db@1.52.0/node_modules/mime-db/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/mime-db@1.52.0/node_modules/mime-db/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/mime-db@1.52.0/node_modules/mime-db/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "mime-types@3.0.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/mime-types@3.0.0/node_modules/mime-types",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/mime-types@3.0.0/node_modules/mime-types",
       "status": "whitelist",
       "licenses": [
         {
@@ -2063,14 +2063,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/mime-types@3.0.0/node_modules/mime-types/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/mime-types@3.0.0/node_modules/mime-types/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/mime-types@3.0.0/node_modules/mime-types/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/mime-types@3.0.0/node_modules/mime-types/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "mime-types@2.1.35",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/mime-types@2.1.35/node_modules/mime-types",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/mime-types@2.1.35/node_modules/mime-types",
       "status": "whitelist",
       "licenses": [
         {
@@ -2098,14 +2098,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/mime-types@2.1.35/node_modules/mime-types/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/mime-types@2.1.35/node_modules/mime-types/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/mime-types@2.1.35/node_modules/mime-types/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/mime-types@2.1.35/node_modules/mime-types/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "ms@2.0.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/ms@2.0.0/node_modules/ms",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/ms@2.0.0/node_modules/ms",
       "status": "whitelist",
       "licenses": [
         {
@@ -2133,14 +2133,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/ms@2.0.0/node_modules/ms/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/ms@2.0.0/node_modules/ms/license.md"
+        "<TEST_DIR>/node_modules/.pnpm/ms@2.0.0/node_modules/ms/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/ms@2.0.0/node_modules/ms/license.md"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "ms@2.1.2",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/ms@2.1.2/node_modules/ms",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/ms@2.1.2/node_modules/ms",
       "status": "whitelist",
       "licenses": [
         {
@@ -2168,14 +2168,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/ms@2.1.2/node_modules/ms/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/ms@2.1.2/node_modules/ms/license.md"
+        "<TEST_DIR>/node_modules/.pnpm/ms@2.1.2/node_modules/ms/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/ms@2.1.2/node_modules/ms/license.md"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "ms@2.1.3",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/ms@2.1.3/node_modules/ms",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/ms@2.1.3/node_modules/ms",
       "status": "whitelist",
       "licenses": [
         {
@@ -2203,14 +2203,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/ms@2.1.3/node_modules/ms/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/ms@2.1.3/node_modules/ms/license.md"
+        "<TEST_DIR>/node_modules/.pnpm/ms@2.1.3/node_modules/ms/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/ms@2.1.3/node_modules/ms/license.md"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "negotiator@1.0.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/negotiator@1.0.0/node_modules/negotiator",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/negotiator@1.0.0/node_modules/negotiator",
       "status": "whitelist",
       "licenses": [
         {
@@ -2238,14 +2238,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/negotiator@1.0.0/node_modules/negotiator/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/negotiator@1.0.0/node_modules/negotiator/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/negotiator@1.0.0/node_modules/negotiator/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/negotiator@1.0.0/node_modules/negotiator/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "object-inspect@1.13.3",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/object-inspect@1.13.3/node_modules/object-inspect",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/object-inspect@1.13.3/node_modules/object-inspect",
       "status": "whitelist",
       "licenses": [
         {
@@ -2273,14 +2273,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/object-inspect@1.13.3/node_modules/object-inspect/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/object-inspect@1.13.3/node_modules/object-inspect/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/object-inspect@1.13.3/node_modules/object-inspect/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/object-inspect@1.13.3/node_modules/object-inspect/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "on-finished@2.4.1",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/on-finished@2.4.1/node_modules/on-finished",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/on-finished@2.4.1/node_modules/on-finished",
       "status": "whitelist",
       "licenses": [
         {
@@ -2308,14 +2308,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/on-finished@2.4.1/node_modules/on-finished/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/on-finished@2.4.1/node_modules/on-finished/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/on-finished@2.4.1/node_modules/on-finished/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/on-finished@2.4.1/node_modules/on-finished/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "once@1.4.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/once@1.4.0/node_modules/once",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/once@1.4.0/node_modules/once",
       "status": "whitelist",
       "licenses": [
         {
@@ -2351,14 +2351,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/once@1.4.0/node_modules/once/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/once@1.4.0/node_modules/once/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/once@1.4.0/node_modules/once/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/once@1.4.0/node_modules/once/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "parseurl@1.3.3",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/parseurl@1.3.3/node_modules/parseurl",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/parseurl@1.3.3/node_modules/parseurl",
       "status": "whitelist",
       "licenses": [
         {
@@ -2386,14 +2386,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/parseurl@1.3.3/node_modules/parseurl/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/parseurl@1.3.3/node_modules/parseurl/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/parseurl@1.3.3/node_modules/parseurl/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/parseurl@1.3.3/node_modules/parseurl/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "path-to-regexp@8.2.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/path-to-regexp@8.2.0/node_modules/path-to-regexp",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/path-to-regexp@8.2.0/node_modules/path-to-regexp",
       "status": "whitelist",
       "licenses": [
         {
@@ -2421,14 +2421,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/path-to-regexp@8.2.0/node_modules/path-to-regexp/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/path-to-regexp@8.2.0/node_modules/path-to-regexp/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/path-to-regexp@8.2.0/node_modules/path-to-regexp/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/path-to-regexp@8.2.0/node_modules/path-to-regexp/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "proxy-addr@2.0.7",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/proxy-addr@2.0.7/node_modules/proxy-addr",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/proxy-addr@2.0.7/node_modules/proxy-addr",
       "status": "whitelist",
       "licenses": [
         {
@@ -2456,14 +2456,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/proxy-addr@2.0.7/node_modules/proxy-addr/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/proxy-addr@2.0.7/node_modules/proxy-addr/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/proxy-addr@2.0.7/node_modules/proxy-addr/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/proxy-addr@2.0.7/node_modules/proxy-addr/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "qs@6.13.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/qs@6.13.0/node_modules/qs",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/qs@6.13.0/node_modules/qs",
       "status": "whitelist",
       "licenses": [
         {
@@ -2497,14 +2497,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/qs@6.13.0/node_modules/qs/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/qs@6.13.0/node_modules/qs/LICENSE.md"
+        "<TEST_DIR>/node_modules/.pnpm/qs@6.13.0/node_modules/qs/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/qs@6.13.0/node_modules/qs/LICENSE.md"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "range-parser@1.2.1",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/range-parser@1.2.1/node_modules/range-parser",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/range-parser@1.2.1/node_modules/range-parser",
       "status": "whitelist",
       "licenses": [
         {
@@ -2532,14 +2532,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/range-parser@1.2.1/node_modules/range-parser/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/range-parser@1.2.1/node_modules/range-parser/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/range-parser@1.2.1/node_modules/range-parser/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/range-parser@1.2.1/node_modules/range-parser/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "raw-body@3.0.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/raw-body@3.0.0/node_modules/raw-body",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/raw-body@3.0.0/node_modules/raw-body",
       "status": "whitelist",
       "licenses": [
         {
@@ -2567,14 +2567,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/raw-body@3.0.0/node_modules/raw-body/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/raw-body@3.0.0/node_modules/raw-body/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/raw-body@3.0.0/node_modules/raw-body/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/raw-body@3.0.0/node_modules/raw-body/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "router@2.0.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/router@2.0.0/node_modules/router",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/router@2.0.0/node_modules/router",
       "status": "whitelist",
       "licenses": [
         {
@@ -2602,14 +2602,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/router@2.0.0/node_modules/router/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/router@2.0.0/node_modules/router/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/router@2.0.0/node_modules/router/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/router@2.0.0/node_modules/router/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "safe-buffer@5.2.1",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/safe-buffer@5.2.1/node_modules/safe-buffer",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/safe-buffer@5.2.1/node_modules/safe-buffer",
       "status": "whitelist",
       "licenses": [
         {
@@ -2637,14 +2637,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/safe-buffer@5.2.1/node_modules/safe-buffer/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/safe-buffer@5.2.1/node_modules/safe-buffer/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/safe-buffer@5.2.1/node_modules/safe-buffer/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/safe-buffer@5.2.1/node_modules/safe-buffer/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "safer-buffer@2.1.2",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/safer-buffer@2.1.2/node_modules/safer-buffer",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/safer-buffer@2.1.2/node_modules/safer-buffer",
       "status": "whitelist",
       "licenses": [
         {
@@ -2672,14 +2672,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/safer-buffer@2.1.2/node_modules/safer-buffer/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/safer-buffer@2.1.2/node_modules/safer-buffer/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/safer-buffer@2.1.2/node_modules/safer-buffer/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/safer-buffer@2.1.2/node_modules/safer-buffer/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "send@1.1.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/send@1.1.0/node_modules/send",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/send@1.1.0/node_modules/send",
       "status": "whitelist",
       "licenses": [
         {
@@ -2707,14 +2707,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/send@1.1.0/node_modules/send/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/send@1.1.0/node_modules/send/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/send@1.1.0/node_modules/send/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/send@1.1.0/node_modules/send/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "serve-static@2.1.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/serve-static@2.1.0/node_modules/serve-static",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/serve-static@2.1.0/node_modules/serve-static",
       "status": "whitelist",
       "licenses": [
         {
@@ -2742,14 +2742,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/serve-static@2.1.0/node_modules/serve-static/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/serve-static@2.1.0/node_modules/serve-static/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/serve-static@2.1.0/node_modules/serve-static/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/serve-static@2.1.0/node_modules/serve-static/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "set-function-length@1.2.2",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/set-function-length@1.2.2/node_modules/set-function-length",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/set-function-length@1.2.2/node_modules/set-function-length",
       "status": "whitelist",
       "licenses": [
         {
@@ -2777,14 +2777,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/set-function-length@1.2.2/node_modules/set-function-length/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/set-function-length@1.2.2/node_modules/set-function-length/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/set-function-length@1.2.2/node_modules/set-function-length/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/set-function-length@1.2.2/node_modules/set-function-length/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "setprototypeof@1.2.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/setprototypeof@1.2.0/node_modules/setprototypeof",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/setprototypeof@1.2.0/node_modules/setprototypeof",
       "status": "whitelist",
       "licenses": [
         {
@@ -2820,14 +2820,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/setprototypeof@1.2.0/node_modules/setprototypeof/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/setprototypeof@1.2.0/node_modules/setprototypeof/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/setprototypeof@1.2.0/node_modules/setprototypeof/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/setprototypeof@1.2.0/node_modules/setprototypeof/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "side-channel@1.0.6",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/side-channel@1.0.6/node_modules/side-channel",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/side-channel@1.0.6/node_modules/side-channel",
       "status": "whitelist",
       "licenses": [
         {
@@ -2855,14 +2855,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/side-channel@1.0.6/node_modules/side-channel/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/side-channel@1.0.6/node_modules/side-channel/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/side-channel@1.0.6/node_modules/side-channel/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/side-channel@1.0.6/node_modules/side-channel/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "statuses@2.0.1",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/statuses@2.0.1/node_modules/statuses",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/statuses@2.0.1/node_modules/statuses",
       "status": "whitelist",
       "licenses": [
         {
@@ -2890,14 +2890,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/statuses@2.0.1/node_modules/statuses/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/statuses@2.0.1/node_modules/statuses/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/statuses@2.0.1/node_modules/statuses/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/statuses@2.0.1/node_modules/statuses/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "toidentifier@1.0.1",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/toidentifier@1.0.1/node_modules/toidentifier",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/toidentifier@1.0.1/node_modules/toidentifier",
       "status": "whitelist",
       "licenses": [
         {
@@ -2925,14 +2925,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/toidentifier@1.0.1/node_modules/toidentifier/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/toidentifier@1.0.1/node_modules/toidentifier/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/toidentifier@1.0.1/node_modules/toidentifier/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/toidentifier@1.0.1/node_modules/toidentifier/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "type-is@1.6.18",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/type-is@1.6.18/node_modules/type-is",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/type-is@1.6.18/node_modules/type-is",
       "status": "whitelist",
       "licenses": [
         {
@@ -2960,14 +2960,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/type-is@1.6.18/node_modules/type-is/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/type-is@1.6.18/node_modules/type-is/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/type-is@1.6.18/node_modules/type-is/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/type-is@1.6.18/node_modules/type-is/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "type-is@2.0.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/type-is@2.0.0/node_modules/type-is",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/type-is@2.0.0/node_modules/type-is",
       "status": "whitelist",
       "licenses": [
         {
@@ -2995,14 +2995,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/type-is@2.0.0/node_modules/type-is/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/type-is@2.0.0/node_modules/type-is/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/type-is@2.0.0/node_modules/type-is/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/type-is@2.0.0/node_modules/type-is/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "unpipe@1.0.0",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/unpipe@1.0.0/node_modules/unpipe",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/unpipe@1.0.0/node_modules/unpipe",
       "status": "whitelist",
       "licenses": [
         {
@@ -3030,14 +3030,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/unpipe@1.0.0/node_modules/unpipe/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/unpipe@1.0.0/node_modules/unpipe/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/unpipe@1.0.0/node_modules/unpipe/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/unpipe@1.0.0/node_modules/unpipe/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "utils-merge@1.0.1",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/utils-merge@1.0.1/node_modules/utils-merge",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/utils-merge@1.0.1/node_modules/utils-merge",
       "status": "whitelist",
       "licenses": [
         {
@@ -3065,14 +3065,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/utils-merge@1.0.1/node_modules/utils-merge/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/utils-merge@1.0.1/node_modules/utils-merge/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/utils-merge@1.0.1/node_modules/utils-merge/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/utils-merge@1.0.1/node_modules/utils-merge/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "vary@1.1.2",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/vary@1.1.2/node_modules/vary",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/vary@1.1.2/node_modules/vary",
       "status": "whitelist",
       "licenses": [
         {
@@ -3100,14 +3100,14 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/vary@1.1.2/node_modules/vary/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/vary@1.1.2/node_modules/vary/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/vary@1.1.2/node_modules/vary/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/vary@1.1.2/node_modules/vary/LICENSE"
       ],
       "verificationStatus": "ok"
     },
     {
       "packageName": "wrappy@1.0.2",
-      "packagePath": "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/wrappy@1.0.2/node_modules/wrappy",
+      "packagePath": "<TEST_DIR>/node_modules/.pnpm/wrappy@1.0.2/node_modules/wrappy",
       "status": "whitelist",
       "licenses": [
         {
@@ -3143,8 +3143,8 @@
         }
       ],
       "licensePath": [
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/wrappy@1.0.2/node_modules/wrappy/package.json",
-        "/Users/lukasz/Dev/brainhub/license-auditor/license-auditor/test/temp/testProject-695moa3upve/node_modules/.pnpm/wrappy@1.0.2/node_modules/wrappy/LICENSE"
+        "<TEST_DIR>/node_modules/.pnpm/wrappy@1.0.2/node_modules/wrappy/package.json",
+        "<TEST_DIR>/node_modules/.pnpm/wrappy@1.0.2/node_modules/wrappy/LICENSE"
       ],
       "verificationStatus": "ok"
     }

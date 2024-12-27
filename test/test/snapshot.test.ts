@@ -12,6 +12,8 @@ import { runCliCommand } from "../utils/run-cli-command";
 import "../utils/path-serializer";
 import { matchSnapshotRecursive } from "../utils/match-snapshot-recursive";
 
+const UPDATE_SNAPSHOTS = false;
+
 describe("snapshot testing", () => {
   monorepoFixture("monorepo project", async ({ testDirectory, expect }) => {
     const { errorCode } = await runCliCommand({
@@ -25,7 +27,11 @@ describe("snapshot testing", () => {
     const jsonOutput = await readJsonFile(
       path.join(testDirectory, "license-auditor.results.json"),
     );
-    matchSnapshotRecursive("./__snapshots__/monorepo.json", jsonOutput, false);
+    matchSnapshotRecursive(
+      "./__snapshots__/monorepo.json",
+      jsonOutput,
+      UPDATE_SNAPSHOTS,
+    );
   });
   monorepoFixture(
     "monorepo project production only",
@@ -44,7 +50,7 @@ describe("snapshot testing", () => {
       matchSnapshotRecursive(
         "./__snapshots__/monorepo-production.json",
         jsonOutput,
-        false,
+        UPDATE_SNAPSHOTS,
       );
     },
   );
@@ -61,7 +67,11 @@ describe("snapshot testing", () => {
     const jsonOutput = await readJsonFile(
       path.join(testDirectory, "license-auditor.results.json"),
     );
-    matchSnapshotRecursive("./__snapshots__/pnpm.json", jsonOutput, false);
+    matchSnapshotRecursive(
+      "./__snapshots__/pnpm.json",
+      jsonOutput,
+      UPDATE_SNAPSHOTS,
+    );
   });
 
   pnpmFixture(
@@ -81,7 +91,7 @@ describe("snapshot testing", () => {
       matchSnapshotRecursive(
         "./__snapshots__/pnpm-production.json",
         jsonOutput,
-        false,
+        UPDATE_SNAPSHOTS,
       );
     },
   );
@@ -98,7 +108,11 @@ describe("snapshot testing", () => {
     const jsonOutput = await readJsonFile(
       path.join(testDirectory, "license-auditor.results.json"),
     );
-    matchSnapshotRecursive("./__snapshots__/npm.json", jsonOutput, false);
+    matchSnapshotRecursive(
+      "./__snapshots__/npm.json",
+      jsonOutput,
+      UPDATE_SNAPSHOTS,
+    );
   });
 
   defaultTest(
@@ -118,7 +132,7 @@ describe("snapshot testing", () => {
       matchSnapshotRecursive(
         "./__snapshots__/npm-production.json",
         jsonOutput,
-        false,
+        UPDATE_SNAPSHOTS,
       );
     },
   );
@@ -135,7 +149,11 @@ describe("snapshot testing", () => {
     const jsonOutput = await readJsonFile(
       path.join(testDirectory, "license-auditor.results.json"),
     );
-    matchSnapshotRecursive("./__snapshots__/yarn.json", jsonOutput, false);
+    matchSnapshotRecursive(
+      "./__snapshots__/yarn.json",
+      jsonOutput,
+      UPDATE_SNAPSHOTS,
+    );
   });
 
   yarnFixture(
@@ -155,7 +173,7 @@ describe("snapshot testing", () => {
       matchSnapshotRecursive(
         "./__snapshots__/yarn-production.json",
         jsonOutput,
-        false,
+        UPDATE_SNAPSHOTS,
       );
     },
   );
