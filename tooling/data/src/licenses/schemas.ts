@@ -17,11 +17,11 @@ export const LicenseSchema = z.object({
   reference: z.string().url(),
   isDeprecatedLicenseId: z.boolean(),
   detailsUrl: z.string().url(),
-  referenceNumber: z.number(),
   name: z.string(),
   licenseId: LicenseIdSchema,
   seeAlso: z.array(z.string().url()),
   isOsiApproved: z.boolean(),
+  licenseText: z.string().optional().nullable(),
 });
 
 export const LicenseStatusSchema = z.union([

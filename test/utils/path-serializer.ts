@@ -1,7 +1,13 @@
 import { expect } from "vitest";
 import { TEST_TEMP_DIRECTORY } from "../global-setup";
 
-const pathSerializer = {
+export const replaceTestDirectory = (value: string) =>
+  value.replace(
+    new RegExp(`${TEST_TEMP_DIRECTORY}/testProject-[a-zA-Z0-9]+`, "g"),
+    "<TEST_DIR>",
+  );
+
+export const pathSerializer = {
   test: (val: unknown): boolean => {
     if (typeof val !== "string" && typeof val !== "object") {
       return false;
@@ -13,10 +19,7 @@ const pathSerializer = {
 
   serialize: (val: unknown): string => {
     const stringified = JSON.stringify(val, null, 2);
-    return stringified.replace(
-      new RegExp(`${TEST_TEMP_DIRECTORY}/testProject-[a-zA-Z0-9]+`, "g"),
-      "<TEST_DIR>",
-    );
+    return replaceTestDirectory(stringified);
   },
 };
 

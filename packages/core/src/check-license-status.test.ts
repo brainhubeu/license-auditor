@@ -13,14 +13,12 @@ describe("checkLicenseStatus", () => {
     | "isDeprecatedLicenseId"
     | "detailsUrl"
     | "reference"
-    | "referenceNumber"
     | "seeAlso"
   > = {
     isOsiApproved: false,
     isDeprecatedLicenseId: false,
     detailsUrl: "",
     reference: "",
-    referenceNumber: 0,
     seeAlso: [],
   };
 
