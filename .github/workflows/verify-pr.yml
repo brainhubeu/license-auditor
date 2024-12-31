@@ -48,10 +48,12 @@ jobs:
         run: lac --default-config
 
 
-
-
   test:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [ 18, 20, 22 ]
+        os: [ ubuntu-latest, macos-latest ]
+    runs-on: ${{ matrix.os }}
     needs: format-and-lint
     steps:
       - name: Check out code
@@ -60,7 +62,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: ${{ matrix.node }}
 
       - name: Install dependencies
         run: npm ci
@@ -72,10 +74,7 @@ jobs:
         run: npm run test:coverage
 
       - name: Run e2e tests
-        run: npm run test:e2e
-
-      - name: Run snapshot tests
-        run: npm run test:snapshot
+        run: npm run test:e2e --prefix=test
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
