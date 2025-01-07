@@ -83,10 +83,10 @@ export function useReadConfiguration({
                 .map(
                   (e) =>
                     `Invalid value in path: ${formatIssuePath(
-                      e.path
-                    )} - error "${e.code}". ${e.message}`
+                      e.path,
+                    )} - error "${e.code}". ${e.message}`,
                 )
-                .join("\n")}`
+                .join("\n")}`,
           )
           .join("\n");
 

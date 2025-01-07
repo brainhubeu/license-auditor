@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, expect, it } from "vitest";
 import { ConfigSchema } from "./schemas.js";
 
 describe("ConfigSchema", () => {
@@ -56,10 +56,10 @@ describe("ConfigSchema", () => {
     expect(result.success).toBe(false);
     expect(result.error?.issues.length).toBe(2);
     expect(result.error?.issues[0]?.message).toBe(
-      "Invalid license with value: unlicense. Did you mean: Unlicense?"
+      "Invalid license with value: unlicense. Did you mean: Unlicense?",
     );
     expect(result.error?.issues[1]?.message).toBe(
-      "Invalid license with value: mIT. Did you mean: MIT?"
+      "Invalid license with value: mIT. Did you mean: MIT?",
     );
   });
 
@@ -74,7 +74,7 @@ describe("ConfigSchema", () => {
     expect(result.success).toBe(false);
     expect(result.error?.issues.length).toBe(1);
     expect(result.error?.issues[0]?.message).toBe(
-      "Invalid license with value: 5."
+      "Invalid license with value: 5.",
     );
   });
 });
