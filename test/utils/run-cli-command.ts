@@ -7,7 +7,10 @@ export type CliCommand = {
   env?: Record<string, string>;
 };
 
-export async function runCliCommand(command: CliCommand, options: { cols?: number } = {}) {
+export async function runCliCommand(
+  command: CliCommand,
+  options: { cols?: number } = {},
+) {
   return new Promise<{ output: string; errorCode: number }>(
     (resolve, reject) => {
       try {

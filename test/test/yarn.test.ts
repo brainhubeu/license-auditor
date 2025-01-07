@@ -286,16 +286,25 @@ describe("yarn", () => {
         );
         await fs.writeFile(configFilePath, invalidConfig);
 
-        const { output, errorCode } = await runCliCommand({
-          command: "npx",
-          args: [getCliPath()],
-          cwd: testDirectory,
-        }, { cols: 200 });
+        const { output, errorCode } = await runCliCommand(
+          {
+            command: "npx",
+            args: [getCliPath()],
+            cwd: testDirectory,
+          },
+          { cols: 200 },
+        );
 
         expect(output).toContain("Invalid configuration file at");
-        expect(output).toContain("Invalid value in path: blacklist - error \"invalid_type\". Expected array, received string");
-        expect(output).toContain("Invalid value in path: whitelist - error \"invalid_type\". Expected array, received number");
-        expect(output).toContain("Invalid value in path: overrides - error \"invalid_type\". Expected object, received string");
+        expect(output).toContain(
+          'Invalid value in path: blacklist - error "invalid_type". Expected array, received string',
+        );
+        expect(output).toContain(
+          'Invalid value in path: whitelist - error "invalid_type". Expected array, received number',
+        );
+        expect(output).toContain(
+          'Invalid value in path: overrides - error "invalid_type". Expected object, received string',
+        );
       },
     );
   });
