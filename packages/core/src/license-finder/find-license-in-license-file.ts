@@ -10,7 +10,10 @@ import { addLicenseSource } from "./add-license-source.js";
 import { detectLicenses } from "./detect-from-license-content.js";
 import type { LicensesWithPathAndStatus } from "./licenses-with-path.js";
 
-export function retrieveLicenseFromLicenseFileContent(content: string): {
+export function retrieveLicenseFromLicenseFileContent(
+  content: string,
+  licensePath: string,
+): {
   licenses: LicenseWithSource[];
 } {
   const detectedLicenses = detectLicenses(content);
@@ -21,7 +24,11 @@ export function retrieveLicenseFromLicenseFileContent(content: string): {
       .filter(([key]) => key === detectedLicense.licenseId)
       .map((result) => LicenseSchema.parse(result[1]));
     return {
-      licenses: addLicenseSource(licenseArr, LICENSE_SOURCE.licenseFileContent),
+      licenses: addLicenseSource(
+        licenseArr,
+        LICENSE_SOURCE.licenseFileContent,
+        licensePath,
+      ),
     };
   }
 
@@ -38,6 +45,7 @@ export function retrieveLicenseFromLicenseFileContent(content: string): {
     licenses: addLicenseSource(
       licenseArr,
       LICENSE_SOURCE.licenseFileContextKeywords,
+      licensePath,
     ),
   };
 }
@@ -54,7 +62,7 @@ export async function findLicenseInLicenseFile(filePath: string): Promise<{
       };
     }
 
-    const result = retrieveLicenseFromLicenseFileContent(content);
+    const result = retrieveLicenseFromLicenseFileContent(content, filePath);
 
     return {
       licenses: result.licenses,
