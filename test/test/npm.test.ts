@@ -195,7 +195,7 @@ describe("license-auditor", () => {
           command: "npx",
           args: [getCliPath(), "--verbose", "--json"],
           cwd: testDirectory,
-        });
+        }, { cols: 200 });
 
         const jsonOutput = await readJsonFile(
           path.join(testDirectory, "license-auditor.results.json"),
@@ -391,12 +391,12 @@ describe("license-auditor", () => {
           command: "npx",
           args: [getCliPath()],
           cwd: testDirectory,
-        });
+        }, { cols: 200 });
 
         expect(output).toContain("Invalid configuration file at");
-        expect(output).toContain("Expected array, received string");
-        expect(output).toContain("Expected array, received number");
-        expect(output).toContain("Expected object, received string");
+        expect(output).toContain("Invalid value in path: blacklist - error \"invalid_type\". Expected array, received string");
+        expect(output).toContain("Invalid value in path: whitelist - error \"invalid_type\". Expected array, received number");
+        expect(output).toContain("Invalid value in path: overrides - error \"invalid_type\". Expected object, received string");
       },
     );
 
