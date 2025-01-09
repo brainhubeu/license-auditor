@@ -1,27 +1,21 @@
 import { existsSync } from "node:fs";
-import type {
-  LicenseId,
-  // licenses as defaultLicenses,
+import {
+  type LicenseId,
+  licenses as defaultLicenses,
 } from "@license-auditor/data";
 import envPaths from "env-paths";
 
-const resolveLicenses = async (): Promise<
-  { licenseId: string; licenseText: string }[]
-> => {
+const resolveLicenses = async (): Promise<typeof defaultLicenses> => {
   const paths = envPaths("license-auditor");
   const licensesPath = `${paths.cache}/licenses.js`;
 
   if (existsSync(licensesPath)) {
-    const fullLicenses = (await import(licensesPath)) as {
-      licenses: { licenseId: string; licenseText: string }[];
-    };
+    const fullLicenses = (await import(licensesPath)) as typeof defaultLicenses;
 
-    return fullLicenses.licenses;
+    return fullLicenses;
   }
 
-  throw Error("Licenses not found");
-
-  // return defaultLicenses;
+  return defaultLicenses;
 };
 
 /**
