@@ -22,7 +22,7 @@ export const options = z.object({
   production: z
     .boolean()
     .describe(`Don't check licenses in development dependencies`),
-  defaultConfig: z // pacsalCase options are converted to kebab-case, so the flag is actually --default-config
+  defaultConfig: z // camelCase options are converted to kebab-case, so the flag is actually --default-config
     .boolean()
     .describe("Run audit with default whitelist/blacklist configuration"),
   filterRegex: z

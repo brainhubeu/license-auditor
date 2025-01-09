@@ -1,8 +1,11 @@
-import { writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, unlinkSync, writeFileSync } from "node:fs";
+import envPaths from "env-paths";
 
+const paths = envPaths("license-auditor");
+const licensesFilePath = `${paths.cache}/licenses.js`;
 const url =
   "https://raw.githubusercontent.com/spdx/license-list-data/main/json/licenses.json";
-const outputFile = "./src/licenses/licenses.ts";
+// const defaultOutputFile = "./src/licenses/licenses.ts";
 
 // licenses are chosen arbitrarily, based on their popularity in our projects
 const licensesToFetchContentFor = [
@@ -26,9 +29,13 @@ const licensesToFetchContentFor = [
   "MPL-2.0",
 ];
 
-// pulls the licenses from spdx and transforms them into an object
-// needed so TS can properly infer types in union types
-(async () => {
+export async function updateLicenses({
+  outputFile,
+  fetchAllLicenseTexts,
+}: {
+  outputFile?: string;
+  fetchAllLicenseTexts?: boolean;
+}) {
   try {
     console.log("Fetching license list...");
     const response = await fetch(url);
@@ -47,6 +54,7 @@ const licensesToFetchContentFor = [
       );
       try {
         if (
+          fetchAllLicenseTexts ||
           licensesToFetchContentFor.includes(
             // biome-ignore lint/style/noNonNullAssertion: we can be sure that the licenses field is a dense array
             licensesData.licenses[i]!.licenseId,
@@ -65,21 +73,43 @@ const licensesToFetchContentFor = [
         }
       } catch (error) {
         console.log(
-          // biome-ignore lint/style/noNonNullAssertion: we can be sure that the licenses field is a dense array
-          `Failed to fetch license contents for "${licensesData.licenses[i]!.licenseId}"`,
+          `Failed to fetch license contents for "${
+            // biome-ignore lint/style/noNonNullAssertion: we can be sure that the licenses field is a dense array
+            licensesData.licenses[i]!.licenseId
+          }"`,
         );
         failedFetches++;
       }
     }
 
-    const content = `export const licensesData = ${JSON.stringify(licensesData, null, 2)} as const;`;
+    const content = `export const licensesData = ${JSON.stringify(
+      licensesData,
+      null,
+      2,
+    )};`;
 
-    writeFileSync(outputFile, content);
+    if (!(outputFile || existsSync(paths.cache))) {
+      mkdirSync(paths.cache, { recursive: true });
+    }
+
+    writeFileSync(outputFile || licensesFilePath, content);
     console.log(
-      `licenses.ts has been updated.${failedFetches ? ` ${failedFetches} licenses failed to fetch.` : ""}`,
+      `licenses.ts has been updated.${
+        failedFetches ? ` ${failedFetches} licenses failed to fetch.` : ""
+      }`,
     );
   } catch (error) {
     console.error("Error fetching licenses:", error);
     process.exit(1);
   }
-})();
+}
+
+export function deleteLicenses() {
+  if (existsSync(licensesFilePath)) {
+    unlinkSync(licensesFilePath);
+  }
+}
+
+// pulls the licenses from spdx and transforms them into an object
+// needed so TS can properly infer types in union types
+// (async () => updateLicenses({ outputFile: defaultOutputFile }))();

@@ -10,13 +10,13 @@ describe("detectFromLicenseContent", () => {
     });
   });
   describe("detectFromLicenseContent", () => {
-    it("detects license from license content", () => {
+    it("detects license from license content", async () => {
       const licenseContents = licenseMap.get("MIT")?.licenseText;
 
       if (!licenseContents) {
         throw new Error("MIT doesn't have license text");
       }
-      expect(detectLicenses(licenseContents)[0]?.licenseId).toBe("MIT");
+      expect((await detectLicenses(licenseContents))[0]?.licenseId).toBe("MIT");
     });
   });
 });
