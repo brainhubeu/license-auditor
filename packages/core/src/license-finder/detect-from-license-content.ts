@@ -1,4 +1,28 @@
-import { type LicenseId, licenses } from "@license-auditor/data";
+import { existsSync } from "node:fs";
+import type {
+  LicenseId,
+  // licenses as defaultLicenses,
+} from "@license-auditor/data";
+import envPaths from "env-paths";
+
+const resolveLicenses = async (): Promise<
+  { licenseId: string; licenseText: string }[]
+> => {
+  const paths = envPaths("license-auditor");
+  const licensesPath = `${paths.cache}/licenses.js`;
+
+  if (existsSync(licensesPath)) {
+    const fullLicenses = (await import(licensesPath)) as {
+      licenses: { licenseId: string; licenseText: string }[];
+    };
+
+    return fullLicenses.licenses;
+  }
+
+  throw Error("Licenses not found");
+
+  // return defaultLicenses;
+};
 
 /**
  * Tokenizes text into words, removes punctuation and whitespaces
@@ -49,19 +73,22 @@ const createLibrary = (
   );
 };
 
-const licensesLibrary = createLibrary(
-  licenses.reduce<Record<string, string>>((acc, license) => {
-    if (license.licenseText) {
-      acc[license.licenseId as LicenseId] = license.licenseText;
-    }
-    return acc;
-  }, {}),
-);
-const calculateSimilarity = getCalculateSimilarity(licensesLibrary);
-
-export function detectLicenses(
+export async function detectLicenses(
   licenseContent: string,
-): { licenseId: LicenseId; similarity: number }[] {
+): Promise<{ licenseId: LicenseId; similarity: number }[]> {
+  const licenses = await resolveLicenses();
+
+  const licensesLibrary = createLibrary(
+    licenses.reduce<Record<string, string>>((acc, license) => {
+      if (license.licenseText) {
+        acc[license.licenseId as LicenseId] = license.licenseText;
+      }
+      return acc;
+    }, {}),
+  );
+
+  const calculateSimilarity = getCalculateSimilarity(licensesLibrary);
+
   const similarities = calculateSimilarity(licenseContent);
   return similarities.sort((a, b) => b.similarity - a.similarity);
 }

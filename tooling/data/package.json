@@ -13,6 +13,7 @@
     "update-licenses": "tsx src/licenses/update-licenses.ts"
   },
   "dependencies": {
+    "env-paths": "3.0.0",
     "zod": "3.23.8"
   },
   "devDependencies": {

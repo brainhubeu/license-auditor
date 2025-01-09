@@ -10,13 +10,13 @@ import { addLicenseSource } from "./add-license-source.js";
 import { detectLicenses } from "./detect-from-license-content.js";
 import type { LicensesWithPathAndStatus } from "./licenses-with-path.js";
 
-export function retrieveLicenseFromLicenseFileContent(
+export async function retrieveLicenseFromLicenseFileContent(
   content: string,
   licensePath: string,
-): {
+): Promise<{
   licenses: LicenseWithSource[];
-} {
-  const detectedLicenses = detectLicenses(content);
+}> {
+  const detectedLicenses = await detectLicenses(content);
   const detectedLicense = detectedLicenses[0];
   if (detectedLicense && (detectedLicense.similarity ?? 0) > 0.75) {
     // threshold selected empirically based on our tests
@@ -62,7 +62,10 @@ export async function findLicenseInLicenseFile(filePath: string): Promise<{
       };
     }
 
-    const result = retrieveLicenseFromLicenseFileContent(content, filePath);
+    const result = await retrieveLicenseFromLicenseFileContent(
+      content,
+      filePath,
+    );
 
     return {
       licenses: result.licenses,

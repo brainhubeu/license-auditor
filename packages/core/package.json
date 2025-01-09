@@ -26,6 +26,7 @@
     "@license-auditor/data": "*",
     "@total-typescript/ts-reset": "0.6.1",
     "detect-package-manager": "3.0.2",
+    "env-paths": "3.0.0",
     "fast-glob": "3.3.2",
     "lodash.flattendeep": "4.4.0",
     "spdx-expression-parse": "4.0.0",
