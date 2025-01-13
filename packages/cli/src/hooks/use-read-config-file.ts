@@ -26,6 +26,18 @@ interface UseReadConfigurationProps {
   useDefaults?: boolean;
 }
 
+const formatIssuePath = (path: (string | number)[]) => {
+  let formattedPath = "";
+  for (const part of path) {
+    if (typeof part === "string") {
+      formattedPath += `${formattedPath ? "." : ""}${part}`;
+    } else {
+      formattedPath += `[${part}]`;
+    }
+  }
+  return formattedPath;
+};
+
 export function useReadConfiguration({
   useDefaults,
 }: UseReadConfigurationProps) {
@@ -46,7 +58,7 @@ export function useReadConfiguration({
 
       const configFile = await readConfiguration();
 
-      if (!configFile) {
+      if (!configFile || configFile.isEmpty) {
         setError({
           message: "Configuration file not found",
           type: ReadConfigErrorType.NotFound,
@@ -54,15 +66,42 @@ export function useReadConfiguration({
         return;
       }
 
-      const parsed = ConfigFileSchema.safeParse(configFile);
+      const parsed = ConfigSchema.safeParse(configFile.config);
+
       if (parsed.error) {
+        const { fieldErrors } = parsed.error.flatten((issue) => ({
+          path: issue.path,
+          message: issue.message,
+          code: issue.code,
+        }));
+
+        const errorMessage = Object.entries(fieldErrors)
+          .filter(([, error]) => error)
+          .map(
+            ([_, error]) =>
+              `${error
+                .map(
+                  (e) =>
+                    `Invalid value in path: ${formatIssuePath(
+                      e.path,
+                    )} - error "${e.code}". ${e.message}`,
+                )
+                .join("\n")}`,
+          )
+          .join("\n");
+
         setError({
-          message: `Invalid configuration file at ${configFile.filepath}: ${parsed.error.message}`,
+          message: `Invalid configuration file at ${configFile.filepath}.\n${errorMessage}`,
           type: ReadConfigErrorType.Invalid,
         });
+        return;
       }
 
-      setConfigFile(parsed.data);
+      setConfigFile({
+        config: parsed.data,
+        filepath: configFile.filepath,
+        isEmpty: configFile.isEmpty,
+      });
     }
     void assignConfigFile();
   }, [useDefaults]);
