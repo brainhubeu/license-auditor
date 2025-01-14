@@ -52,7 +52,7 @@ jobs:
       matrix:
         node: [18, 20, 22]
         os: [ubuntu-latest, macos-latest]
-        yarn: [1.22.19, 3.5.1]
+        yarn: [1.22.22, 3.x]
         pnpm: [7.30.0, 8.6.0]
     runs-on: ${{ matrix.os }}
     needs: format-and-lint
@@ -67,7 +67,8 @@ jobs:
 
       - name: Install Yarn ${{ matrix.yarn }}
         run: |
-          npm install --global yarn@${{ matrix.yarn }}
+          npm install --global yarn
+          yarn set version ${{ matrix.yarn }}
 
       - name: Install PNPM ${{ matrix.pnpm }}
         run: |
