@@ -65,6 +65,9 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
+      - name: Enable corepack
+        run: corepack enable
+
       - name: Set Yarn version ${{ matrix.yarn }}
         run: |
           yarn set version ${{ matrix.yarn }}
