@@ -65,9 +65,8 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
-      - name: Install Yarn ${{ matrix.yarn }}
+      - name: Set Yarn version ${{ matrix.yarn }}
         run: |
-          npm install --global yarn
           yarn set version ${{ matrix.yarn }}
 
       - name: Install PNPM ${{ matrix.pnpm }}
