@@ -41,18 +41,19 @@ jobs:
         run: npm run build
 
       - name: Install lac
-        run:  npm i -g @brainhubeu/lac
+        run: npm i -g @brainhubeu/lac
 
       - name: Run audit
-      #Add `--bail 1` flag when it will be available on npm
+        #Add `--bail 1` flag when it will be available on npm
         run: lac --default-config
-
 
   test:
     strategy:
       matrix:
-        node: [ 18, 20, 22 ]
-        os: [ ubuntu-latest, macos-latest ]
+        node: [18, 20, 22]
+        os: [ubuntu-latest, macos-latest]
+        yarn: [1.22.19, 3.5.1]
+        pnpm: [7.30.0, 8.6.0]
     runs-on: ${{ matrix.os }}
     needs: format-and-lint
     steps:
@@ -64,8 +65,23 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
+      - name: Install Yarn ${{ matrix.yarn }}
+        run: |
+          npm install --global yarn@${{ matrix.yarn }}
+
+      - name: Install PNPM ${{ matrix.pnpm }}
+        run: |
+          npm install --global pnpm@${{ matrix.pnpm }}
+
       - name: Install dependencies
-        run: npm ci
+        run: |
+          if [ -f "yarn.lock" ]; then
+            yarn install
+          elif [ -f "pnpm-lock.yaml" ]; then
+            pnpm install
+          else
+            npm ci
+          fi
 
       - name: Build
         run: npm run build
