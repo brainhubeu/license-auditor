@@ -1,8 +1,10 @@
-import { writeFileSync } from "node:fs";
+import * as fs from "node:fs/promises";
+import * as path from "node:path";
 
 const url =
   "https://raw.githubusercontent.com/spdx/license-list-data/main/json/licenses.json";
 const outputFile = "./src/licenses/licenses.ts";
+const licenseCacheDirectory = "./license-cache";
 
 // licenses are chosen arbitrarily, based on their popularity in our projects
 const licensesToFetchContentFor = [
@@ -25,6 +27,36 @@ const licensesToFetchContentFor = [
   "Zlib",
   "MPL-2.0",
 ];
+const LOAD_ALL_LICENSES = true;
+
+const getCachedLicenseData = async (licenseId: string, detailsUrl: string) => {
+  let cachedLicenseData: {
+    licenseText: string;
+    standardLicenseTemplate: string;
+  } | null = null;
+  try {
+    cachedLicenseData = JSON.parse(
+      await fs.readFile(path.join(licenseCacheDirectory, licenseId), "utf-8"),
+    );
+  } catch (error) {}
+  if (!cachedLicenseData) {
+    console.log(`No cache for ${licenseId}`);
+    const licenseData = (await (await fetch(detailsUrl)).json()) as {
+      licenseText: string;
+      standardLicenseTemplate: string;
+    };
+
+    await fs.mkdir(licenseCacheDirectory, { recursive: true });
+    await fs.writeFile(
+      path.join(licenseCacheDirectory, licenseId),
+      JSON.stringify(licenseData),
+    );
+
+    return licenseData;
+  }
+
+  return cachedLicenseData;
+};
 
 // pulls the licenses from spdx and transforms them into an object
 // needed so TS can properly infer types in union types
@@ -34,9 +66,11 @@ const licensesToFetchContentFor = [
     const response = await fetch(url);
     const licensesData = (await response.json()) as {
       licenses: {
+        name: string;
         licenseId: string;
         detailsUrl: string;
         licenseText?: string | null;
+        standardLicenseTemplate?: string | null;
       }[];
     };
 
@@ -50,15 +84,20 @@ const licensesToFetchContentFor = [
           licensesToFetchContentFor.includes(
             // biome-ignore lint/style/noNonNullAssertion: we can be sure that the licenses field is a dense array
             licensesData.licenses[i]!.licenseId,
-          )
+          ) ||
+          LOAD_ALL_LICENSES
         ) {
-          const licenseData =
-            (await // biome-ignore lint/style/noNonNullAssertion: we can be sure that the licenses field is a dense array
-            (await fetch(licensesData.licenses[i]!.detailsUrl)).json()) as {
-              licenseText: string;
-            };
+          const licenseData = await getCachedLicenseData(
+            // biome-ignore lint/style/noNonNullAssertion: we can be sure that the licenses field is a dense array
+            licensesData.licenses[i]!.licenseId,
+            // biome-ignore lint/style/noNonNullAssertion: we can be sure that the licenses field is a dense array
+            licensesData.licenses[i]!.detailsUrl,
+          );
           // biome-ignore lint/style/noNonNullAssertion: we can be sure that the licenses field is a dense array
           licensesData.licenses[i]!.licenseText = licenseData.licenseText;
+          // biome-ignore lint/style/noNonNullAssertion: we can be sure that the licenses field is a dense array
+          licensesData.licenses[i]!.standardLicenseTemplate =
+            licenseData.standardLicenseTemplate;
         } else {
           // biome-ignore lint/style/noNonNullAssertion: we can be sure that the licenses field is a dense array
           licensesData.licenses[i]!.licenseText = null;
@@ -72,9 +111,28 @@ const licensesToFetchContentFor = [
       }
     }
 
-    const content = `export const licensesData = ${JSON.stringify(licensesData, null, 2)} as const;`;
+    const knownLicenseIds = licensesData.licenses
+      .map((license) => `"${license.licenseId.replace(/"/g, '\\"')}"`)
+      .join(" | ");
+    const knownLicenseNames = licensesData.licenses
+      .map((license) => `"${license.name.replace(/"/g, '\\"')}"`)
+      .join(" | ");
 
-    writeFileSync(outputFile, content);
+    const content = `type LicenseData = {
+  reference: string;
+  isDeprecatedLicenseId: boolean;
+  detailsUrl: string;
+  referenceNumber: number;
+  name: ${knownLicenseNames};
+  licenseId: ${knownLicenseIds};
+  seeAlso: string[];
+  isOsiApproved: boolean;
+  licenseText?: string | null;
+  standardLicenseTemplate?: string | null;    
+};
+export const licensesData: { licenseListVersion: string, licenses: LicenseData[], releaseDate: string } = ${JSON.stringify(licensesData, null, 2)} as const;`;
+
+    await fs.writeFile(outputFile, content);
     console.log(
       `licenses.ts has been updated.${failedFetches ? ` ${failedFetches} licenses failed to fetch.` : ""}`,
     );
