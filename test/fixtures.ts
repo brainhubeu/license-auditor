@@ -105,7 +105,21 @@ export const pnpmFixture = test.extend<TestContext>({
       verbatimSymlinks: true,
     });
 
-    await use(testDirectory);
+    const packageManagers = ["7.30.0", "8.6.0", "9.14.4"];
+    for (const packageManager of packageManagers) {
+      const packageJsonPath = path.join(testDirectory, "package.json");
+      const packageJson = JSON.parse(
+        await fs.readFile(packageJsonPath, "utf8"),
+      );
+      packageJson.packageManager = `pnpm@${packageManager}`;
+      await fs.writeFile(
+        packageJsonPath,
+        JSON.stringify(packageJson, null, 2),
+        "utf8",
+      );
+
+      await use(testDirectory);
+    }
 
     await fs.rm(testDirectory, { recursive: true });
   },
@@ -122,7 +136,21 @@ export const yarnFixture = test.extend<TestContext>({
       recursive: true,
     });
 
-    await use(testDirectory);
+    const packageManagers = ["1.22.22", "3.8.7"];
+    for (const packageManager of packageManagers) {
+      const packageJsonPath = path.join(testDirectory, "package.json");
+      const packageJson = JSON.parse(
+        await fs.readFile(packageJsonPath, "utf8"),
+      );
+      packageJson.packageManager = `yarn@${packageManager}`;
+      await fs.writeFile(
+        packageJsonPath,
+        JSON.stringify(packageJson, null, 2),
+        "utf8",
+      );
+
+      await use(testDirectory);
+    }
 
     await fs.rm(testDirectory, { recursive: true });
   },
