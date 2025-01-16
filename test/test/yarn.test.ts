@@ -2,7 +2,7 @@ import * as fs from "node:fs/promises";
 import * as path from "node:path";
 import type { JsonResults } from "@license-auditor/data";
 import { describe, expect } from "vitest";
-import { yarnFixture, yarnWithInvalidGithubDepFixture } from "../fixtures";
+import { yarnFixture } from "../fixtures";
 import { addToPackageJson } from "../utils/add-to-package-json";
 import { getCliPath } from "../utils/get-cli-path";
 import { readJsonFile } from "../utils/read-json-file";

@@ -1,0 +1,41 @@
+on:
+  schedule:
+    - cron: 0 12 * * *
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        node: [18, 20, 22]
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    needs: format-and-lint
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Run tests and generate coverage
+        run: npm run test:coverage
+
+      - name: Run e2e tests
+        run: npm run test:e2e --prefix=test
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }} # Required for private repos
+          # todo: use lcov-result-merge to combine more results
+          files: ./packages/core/coverage/lcov.info
+          flags: unit
+          fail_ci_if_error: true

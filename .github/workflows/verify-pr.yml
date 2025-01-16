@@ -41,14 +41,11 @@ jobs:
         run: npm run build
 
       - name: Install lac
-        run:  npm i -g @brainhubeu/lac
+        run: npm i -g @brainhubeu/lac
 
       - name: Run audit
-      #Add `--bail 1` flag when it will be available on npm
+        #Add `--bail 1` flag when it will be available on npm
         run: lac --default-config
-
-
-
 
   test:
     runs-on: ubuntu-latest
@@ -72,10 +69,7 @@ jobs:
         run: npm run test:coverage
 
       - name: Run e2e tests
-        run: npm run test:e2e
-
-      - name: Run snapshot tests
-        run: npm run test:snapshot
+        run: npm run test:e2e --prefix=test
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4

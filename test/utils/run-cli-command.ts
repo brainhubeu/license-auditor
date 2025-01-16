@@ -22,7 +22,7 @@ export async function runCliCommand(command: CliCommand) {
         });
 
         cli.onExit((code) => {
-          resolve({ output: output.join("\n"), errorCode: code.exitCode });
+          resolve({ output: output.join(""), errorCode: code.exitCode });
         });
       } catch (error) {
         reject(error);
