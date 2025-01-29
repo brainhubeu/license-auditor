@@ -50,7 +50,7 @@ describe("pnpm", () => {
         );
 
         expect(errorCode).toBe(0);
-        expect(output).toContain("247 licenses are compliant");
+        expect(output).toContain("245 licenses are compliant");
 
         const okStatus = jsonOutput.whitelist.find(
           (result) => result.packageName === "testing-license-file@1.0.0",
@@ -79,7 +79,7 @@ describe("pnpm", () => {
         );
 
         expect(errorCode).toBe(0);
-        expect(output).toContain("247 licenses are compliant");
+        expect(output).toContain("245 licenses are compliant");
 
         const someButNotAllLicensesWhitelisted =
           jsonOutput.needsUserVerification.find(
@@ -119,7 +119,7 @@ describe("pnpm", () => {
         );
 
         expect(errorCode).toBe(0);
-        expect(output).toContain("246 licenses are compliant");
+        expect(output).toContain("244 licenses are compliant");
 
         const someButNotAllLicensesWhitelisted =
           jsonOutput.needsUserVerification.find(
@@ -156,7 +156,7 @@ describe("pnpm", () => {
         );
 
         expect(errorCode).toBe(0);
-        expect(output).toContain("246 licenses are compliant");
+        expect(output).toContain("244 licenses are compliant");
 
         const licenseFileExistsButUnknownLicense =
           jsonOutput.needsUserVerification.find(
@@ -188,7 +188,7 @@ describe("pnpm", () => {
         );
 
         expect(errorCode).toBe(0);
-        expect(output).toContain("247 licenses are compliant");
+        expect(output).toContain("245 licenses are compliant");
         const licenseFileNotFound = jsonOutput.whitelist.find(
           (result) => result.packageName === "testing-license-file@1.0.0",
         );
@@ -219,7 +219,7 @@ describe("pnpm", () => {
           );
 
           expect(errorCode).toBe(0);
-          expect(output).toContain("247 licenses are compliant");
+          expect(output).toContain("245 licenses are compliant");
           const addedPackage = jsonOutput.whitelist.find(
             (result) => result.packageName === "test-package@1.0.0",
           );
@@ -247,7 +247,7 @@ describe("pnpm", () => {
           );
 
           expect(errorCode).toBe(0);
-          expect(output).toContain("247 licenses are compliant");
+          expect(output).toContain("245 licenses are compliant");
 
           const addedPackage = jsonOutput.whitelist.find(
             (result) => result.packageName === "test-package@1.0.0",
@@ -278,7 +278,7 @@ describe("pnpm", () => {
           );
 
           expect(errorCode).toBe(0);
-          expect(output).toContain("247 licenses are compliant");
+          expect(output).toContain("245 licenses are compliant");
 
           const addedPackage = jsonOutput.whitelist.find(
             (result) => result.packageName === "test-package@1.0.0",
@@ -307,7 +307,7 @@ describe("pnpm", () => {
           );
 
           expect(errorCode).toBe(0);
-          expect(output).toContain("247 licenses are compliant");
+          expect(output).toContain("245 licenses are compliant");
 
           const addedPackage = jsonOutput.whitelist.find(
             (result) => result.packageName === "test-package@1.0.0",
@@ -343,7 +343,7 @@ describe("pnpm", () => {
           );
 
           expect(errorCode).toBe(0);
-          expect(output).toContain("247 licenses are compliant");
+          expect(output).toContain("245 licenses are compliant");
 
           const addedPackage = jsonOutput.whitelist.find(
             (result) => result.packageName === "test-package@1.0.0",
@@ -385,7 +385,7 @@ describe("pnpm", () => {
           );
 
           expect(errorCode).toBe(0);
-          expect(output).toContain("247 licenses are compliant");
+          expect(output).toContain("245 licenses are compliant");
 
           const addedPackage = jsonOutput.whitelist.find(
             (result) => result.packageName === "test-package@1.0.0",

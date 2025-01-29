@@ -4,6 +4,7 @@ import { licensesData } from "./licenses.js";
 import { findBestMatch } from "string-similarity";
 
 export const licenses = licensesData.licenses;
+const licenseIds = licenses.map(({ licenseId }) => licenseId);
 export const licenseMap = new Map(
   licenses.map((license) => [license.licenseId, license]),
 );
@@ -11,9 +12,9 @@ export const licenseMap = new Map(
 // https://github.com/colinhacks/zod/issues/3651#issuecomment-2236638517
 export const LicenseIdSchema = z.union(
   [
-    z.literal(licenses[0].licenseId),
-    z.literal(licenses[1].licenseId),
-    ...licenses.slice(2).map(({ licenseId }) => z.literal(licenseId)),
+    z.literal(licenseIds[0] ?? "0BSD"),
+    z.literal(licenseIds[1] ?? "3D-Slicer-1.0"),
+    ...licenseIds.slice(2).map((licenseId) => z.literal(licenseId)),
   ],
   {
     errorMap: (issue, ctx) => {

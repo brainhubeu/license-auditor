@@ -2,10 +2,12 @@ import { readFile, readdir } from "node:fs/promises";
 import * as path from "node:path";
 import {
   LICENSE_SOURCE,
+  type License,
   LicenseSchema,
   type LicenseWithSource,
   licenseMap,
 } from "@license-auditor/data";
+import { matchLicense } from "../spdx-license-matcher/spdx-license-matcher.js";
 import { addLicenseSource } from "./add-license-source.js";
 import { detectLicenses } from "./detect-from-license-content.js";
 import type { LicensesWithPathAndStatus } from "./licenses-with-path.js";
@@ -26,6 +28,29 @@ export function retrieveLicenseFromLicenseFileContent(
     return {
       licenses: addLicenseSource(
         licenseArr,
+        LICENSE_SOURCE.licenseFileContent,
+        licensePath,
+      ),
+    };
+  }
+
+  const licensesFromTemplate: License[] = [];
+
+  for (const [_licenseId, licenseContent] of licenseMap) {
+    if (!licenseContent.standardLicenseTemplate) {
+      continue;
+    }
+    const match = matchLicense(licenseContent.standardLicenseTemplate, content);
+
+    if (match) {
+      licensesFromTemplate.concat(licenseContent);
+    }
+  }
+
+  if (licensesFromTemplate.length > 0) {
+    return {
+      licenses: addLicenseSource(
+        licensesFromTemplate,
         LICENSE_SOURCE.licenseFileContent,
         licensePath,
       ),
