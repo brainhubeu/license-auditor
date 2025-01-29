@@ -104,8 +104,10 @@ const getCachedLicenseData = async (licenseId: string, detailsUrl: string) => {
         }
       } catch (error) {
         console.log(
-          // biome-ignore lint/style/noNonNullAssertion: we can be sure that the licenses field is a dense array
-          `Failed to fetch license contents for "${licensesData.licenses[i]!.licenseId}"`,
+          `Failed to fetch license contents for "${
+            // biome-ignore lint/style/noNonNullAssertion: we can be sure that the licenses field is a dense array
+            licensesData.licenses[i]!.licenseId
+          }"`,
         );
         failedFetches++;
       }
@@ -127,14 +129,21 @@ const getCachedLicenseData = async (licenseId: string, detailsUrl: string) => {
   licenseId: ${knownLicenseIds};
   seeAlso: string[];
   isOsiApproved: boolean;
+  isFsfLibre?: boolean;
   licenseText?: string | null;
   standardLicenseTemplate?: string | null;    
 };
-export const licensesData: { licenseListVersion: string, licenses: LicenseData[], releaseDate: string } = ${JSON.stringify(licensesData, null, 2)} as const;`;
+export const licensesData: { licenseListVersion: string, licenses: LicenseData[], releaseDate: string } = ${JSON.stringify(
+      licensesData,
+      null,
+      2,
+    )} as const;`;
 
     await fs.writeFile(outputFile, content);
     console.log(
-      `licenses.ts has been updated.${failedFetches ? ` ${failedFetches} licenses failed to fetch.` : ""}`,
+      `licenses.ts has been updated.${
+        failedFetches ? ` ${failedFetches} licenses failed to fetch.` : ""
+      }`,
     );
   } catch (error) {
     console.error("Error fetching licenses:", error);

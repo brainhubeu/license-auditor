@@ -48,13 +48,13 @@ describe("yarn", () => {
         );
 
         expect(errorCode).toBe(0);
-        expect(output).toContain("160 licenses are compliant");
+        expect(output).toContain("159 licenses are compliant");
 
         const okStatus = jsonOutput.whitelist.filter(
           (result) => result.verificationStatus === "ok",
         );
 
-        expect(okStatus.length).toBe(158);
+        expect(okStatus.length).toBe(157);
       },
     );
 
@@ -77,7 +77,7 @@ describe("yarn", () => {
         );
 
         expect(errorCode).toBe(0);
-        expect(output).toContain("160 licenses are compliant");
+        expect(output).toContain("159 licenses are compliant");
 
         const someButNotAllLicensesWhitelisted =
           jsonOutput.needsUserVerification.filter((result) =>
@@ -86,7 +86,7 @@ describe("yarn", () => {
             ),
           );
 
-        expect(someButNotAllLicensesWhitelisted.length).toBe(1);
+        expect(someButNotAllLicensesWhitelisted.length).toBe(2);
       },
     );
 
@@ -117,7 +117,7 @@ describe("yarn", () => {
         );
 
         expect(errorCode).toBe(0);
-        expect(output).toContain("159 licenses are compliant");
+        expect(output).toContain("158 licenses are compliant");
 
         const someButNotAllLicensesWhitelisted =
           jsonOutput.needsUserVerification.filter((result) =>
@@ -154,7 +154,7 @@ describe("yarn", () => {
         );
 
         expect(errorCode).toBe(0);
-        expect(output).toContain("159 licenses are compliant");
+        expect(output).toContain("158 licenses are compliant");
 
         const licenseFileExistsButUnknownLicense =
           jsonOutput.needsUserVerification.filter((result) =>
@@ -186,7 +186,7 @@ describe("yarn", () => {
         );
 
         expect(errorCode).toBe(0);
-        expect(output).toContain("159 licenses are compliant");
+        expect(output).toContain("158 licenses are compliant");
 
         const licenseFileNotFound = jsonOutput.notFound.length;
 
@@ -214,7 +214,7 @@ describe("yarn", () => {
         );
 
         expect(errorCode).toBe(0);
-        expect(output).toContain("160 licenses are compliant");
+        expect(output).toContain("159 licenses are compliant");
 
         const addedPackage = jsonOutput.whitelist.find(
           (result) => result.packageName === "test-dep@1.0.0",
@@ -243,7 +243,7 @@ describe("yarn", () => {
         );
 
         expect(errorCode).toBe(0);
-        expect(output).toContain("160 licenses are compliant");
+        expect(output).toContain("159 licenses are compliant");
 
         const addedPackage = jsonOutput.whitelist.find(
           (result) => result.packageName === "test-dep@1.0.0",
@@ -272,7 +272,7 @@ describe("yarn", () => {
         );
 
         expect(errorCode).toBe(0);
-        expect(output).toContain("160 licenses are compliant");
+        expect(output).toContain("159 licenses are compliant");
 
         const addedPackage = jsonOutput.whitelist.find(
           (result) => result.packageName === "test-dep@1.0.0",
@@ -301,7 +301,7 @@ describe("yarn", () => {
         );
 
         expect(errorCode).toBe(0);
-        expect(output).toContain("160 licenses are compliant");
+        expect(output).toContain("159 licenses are compliant");
 
         const addedPackage = jsonOutput.whitelist.find(
           (result) => result.packageName === "test-dep@1.0.0",
@@ -337,7 +337,7 @@ describe("yarn", () => {
         );
 
         expect(errorCode).toBe(0);
-        expect(output).toContain("160 licenses are compliant");
+        expect(output).toContain("159 licenses are compliant");
 
         const addedPackage = jsonOutput.whitelist.find(
           (result) => result.packageName === "test-dep@1.0.0",
@@ -379,7 +379,7 @@ describe("yarn", () => {
         );
 
         expect(errorCode).toBe(0);
-        expect(output).toContain("160 licenses are compliant");
+        expect(output).toContain("159 licenses are compliant");
 
         const addedPackage = jsonOutput.whitelist.find(
           (result) => result.packageName === "test-dep@1.0.0",

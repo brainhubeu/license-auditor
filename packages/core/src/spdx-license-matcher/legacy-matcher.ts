@@ -20,10 +20,11 @@ function normalizeCase(text: string): string {
  * Various types of quotes are considered equivalent.
  */
 function normalizePunctuation(text: string): string {
+  let input = text;
   // Normalize hyphens and dashes
-  text = text.replace(/[-‐‑‒–—―]/g, "-");
+  input = input.replace(/[-‐‑‒–—―]/g, "-");
   // Normalize quotes
-  text = text.replace(/[‘’‚‛“”„‟"']/g, '"');
+  input = input.replace(/[‘’‚‛“”„‟"']/g, '"');
   return text;
 }
 
@@ -88,7 +89,7 @@ function normalizeSpelling(text: string): string {
   };
 
   const pattern = new RegExp(
-    "\\b(" + Object.keys(equivalents).join("|") + ")\\b",
+    `\\b(${Object.keys(equivalents).join("|")})\\b`,
     "gi",
   );
   return text.replace(
@@ -132,38 +133,40 @@ function removeLicenseTitles(text: string): string {
  * Ignore any text after 'END OF TERMS AND CONDITIONS' or similar markers.
  */
 function removeTextAfterLicenseEnd(text: string): string {
+  let input = text;
   const patterns = [
     /end of terms and conditions/gi,
     /end of license agreement/gi,
     /end of license/gi,
   ];
   for (const pattern of patterns) {
-    const match = text.match(pattern);
+    const match = input.match(pattern);
     if (match) {
-      const index = text.indexOf(match[0]);
-      text = text.substring(0, index + match[0].length);
+      const index = input.indexOf(match[0]);
+      input = input.substring(0, index + match[0].length);
       break;
     }
   }
-  return text;
+  return input;
 }
 
 /**
  * Process the license text according to the guidelines.
  */
 function preprocessLicenseText(text: string): string {
-  text = normalizeWhitespace(text);
-  text = normalizeCase(text);
-  text = normalizePunctuation(text);
-  text = removeCodeComments(text);
-  text = removeBulletsAndNumbering(text);
-  text = normalizeSpelling(text);
-  text = normalizeCopyrightSymbols(text);
-  text = removeCopyrightNotices(text);
-  text = removeLicenseTitles(text);
-  text = removeTextAfterLicenseEnd(text);
-  text = normalizeWhitespace(text);
-  return text.trim();
+  let input = text;
+  input = normalizeWhitespace(input);
+  input = normalizeCase(input);
+  input = normalizePunctuation(input);
+  input = removeCodeComments(input);
+  input = removeBulletsAndNumbering(input);
+  input = normalizeSpelling(input);
+  input = normalizeCopyrightSymbols(input);
+  input = removeCopyrightNotices(input);
+  input = removeLicenseTitles(input);
+  input = removeTextAfterLicenseEnd(input);
+  input = normalizeWhitespace(input);
+  return input.trim();
 }
 
 /**
@@ -197,6 +200,7 @@ interface TemplateNode {
 /**
  * Parse the license template into a structure that can be used for matching.
  */
+// biome-ignore lint/complexity/noExcessiveCognitiveComplexity: complexity needed
 function parseLicenseTemplate(template: string): TemplateNode[] {
   const nodes: TemplateNode[] = [];
   let index = 0;
@@ -209,7 +213,7 @@ function parseLicenseTemplate(template: string): TemplateNode[] {
       // No more rules, remaining text is a text node
       const textContent = template.substring(index);
       if (optionalStack.length > 0) {
-        optionalStack[optionalStack.length - 1]?.nodes!.push({
+        optionalStack[optionalStack.length - 1]?.nodes?.push({
           type: "text",
           content: textContent,
         });
@@ -222,7 +226,7 @@ function parseLicenseTemplate(template: string): TemplateNode[] {
       // Text before the rule
       const textContent = template.substring(index, startRule);
       if (optionalStack.length > 0) {
-        optionalStack[optionalStack.length - 1]?.nodes!.push({
+        optionalStack[optionalStack.length - 1]?.nodes?.push({
           type: "text",
           content: textContent,
         });
@@ -233,7 +237,7 @@ function parseLicenseTemplate(template: string): TemplateNode[] {
     // Now at the start of a rule
     const endRule = template.indexOf(">>", startRule);
     if (endRule < 0) {
-      throw new Error("Unclosed rule starting at position " + startRule);
+      throw new Error(`Unclosed rule starting at position ${startRule}`);
     }
     const ruleContent = template.substring(startRule + 2, endRule);
     const ruleFields = ruleContent.split(";");
@@ -255,22 +259,24 @@ function parseLicenseTemplate(template: string): TemplateNode[] {
       }
       // Required fields: name, original, match
       if (
-        !attributes["name"] ||
-        !attributes["original"] ||
-        !attributes["match"]
+        // biome-ignore lint/complexity/useLiteralKeys: needed to access the attribute
+        !(attributes["name"] && attributes["original"] && attributes["match"])
       ) {
         throw new Error(
-          "Variable rule missing required attributes at position " + startRule,
+          `Variable rule missing required attributes at position ${startRule}`,
         );
       }
       const variableNode: TemplateNode = {
         type: "variable",
+        // biome-ignore lint/complexity/useLiteralKeys: needed to access the attribute
         name: attributes["name"],
+        // biome-ignore lint/complexity/useLiteralKeys: needed to access the attribute
         original: attributes["original"],
+        // biome-ignore lint/complexity/useLiteralKeys: needed to access the attribute
         match: attributes["match"],
       };
       if (optionalStack.length > 0) {
-        optionalStack[optionalStack.length - 1]?.nodes!.push(variableNode);
+        optionalStack[optionalStack.length - 1]?.nodes?.push(variableNode);
       } else {
         nodes.push(variableNode);
       }
@@ -282,7 +288,7 @@ function parseLicenseTemplate(template: string): TemplateNode[] {
         nodes: [],
       };
       if (optionalStack.length > 0) {
-        optionalStack[optionalStack.length - 1]?.nodes!.push(optionalNode);
+        optionalStack[optionalStack.length - 1]?.nodes?.push(optionalNode);
       } else {
         nodes.push(optionalNode);
       }
@@ -291,13 +297,13 @@ function parseLicenseTemplate(template: string): TemplateNode[] {
     } else if (typeField === "endOptional") {
       // End of an optional section
       if (optionalStack.length === 0) {
-        throw new Error("Unmatched endOptional at position " + startRule);
+        throw new Error(`Unmatched endOptional at position + ${startRule}`);
       }
       optionalStack.pop();
       index = endRule + 2;
     } else {
       throw new Error(
-        'Unknown rule type "' + typeField + '" at position ' + startRule,
+        `Unknown rule type "${typeField}" at position ${startRule}`,
       );
     }
   }
@@ -315,6 +321,7 @@ function buildLicenseRegex(nodes: TemplateNode[]): string {
 
   for (const node of nodes) {
     if (node.type === "text") {
+      // biome-ignore lint/style/noNonNullAssertion: needed
       let content = node.content!;
       // Normalize the content similarly to how we normalize the license text
       content = normalizeCase(content);
@@ -326,6 +333,7 @@ function buildLicenseRegex(nodes: TemplateNode[]): string {
       pattern += content;
     } else if (node.type === "variable") {
       // Use the match expression
+      // biome-ignore lint/style/noNonNullAssertion: needed
       let matchExpr = node.match!;
       // Semicolons are escaped with \; in the match field, unescape them
       matchExpr = matchExpr.replace(/\\;/g, ";");
@@ -337,6 +345,7 @@ function buildLicenseRegex(nodes: TemplateNode[]): string {
       pattern += `(${matchExpr})`;
     } else if (node.type === "optional") {
       // Build the regex pattern for the optional content
+      // biome-ignore lint/style/noNonNullAssertion: needed
       const optionalPattern = buildLicenseRegex(node.nodes!);
       // Make it optional
       pattern += `(?:${optionalPattern})?`;
