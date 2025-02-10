@@ -1,0 +1,67 @@
+html {
+  scroll-behavior: smooth;
+}
+
+.shadow {
+  position: absolute;
+  background: hsl(var(--primary) / 40%);
+  border-radius: 24px;
+  z-index: -1;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  filter: blur(100px);
+  will-change: transform;
+}
+
+@keyframes shadow-slide {
+  from {
+    background: hsl(var(--primary) / 20%);
+    right: 460px;
+  }
+  to {
+    background: hsl(var(--primary) / 80%);
+    right: 160px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .shadow {
+    top: 0px;
+    left: 0px;
+  }
+
+  @keyframes shadow-slide {
+    from {
+      background: hsl(var(--primary) / 20%);
+      right: 460px;
+    }
+    to {
+      background: hsl(var(--primary) / 50%);
+      right: 160px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .shadow {
+    background: hsl(var(--primary) / 40%);
+    left: 50%;
+    top: 50%;
+    height: 85%;
+    width: 85%;
+    transform: translate(-50%, -50%);
+  }
+
+  @keyframes shadow-slide {
+    from {
+      background: hsl(var(--primary) / 20%);
+      right: 280px;
+    }
+    to {
+      background: hsl(var(--primary) / 30%);
+      right: 100px;
+    }
+  }
+}
