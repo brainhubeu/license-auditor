@@ -6,7 +6,7 @@ export const Created = () => {
           <p className="text-sm font-semibold tracking-wider mb-4">
             CREATED BY
           </p>
-          <a href="https://brainhub.eu" target="_blank">
+          <a href="https://brainhub.eu" target="_blank" rel="noreferrer">
             <img src="/brainhub_logo.svg" alt="logo" className="w-40" />
           </a>
         </div>

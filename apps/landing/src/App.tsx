@@ -2,11 +2,11 @@ import { Hero } from "./components/Hero";
 import { Navbar } from "./components/Navbar";
 import { ScrollToTop } from "./components/ScrollToTop";
 import "./App.css";
+import { Created } from "./components/Created";
 import { Explanations } from "./components/Explanation";
-import { Usage } from "./components/Usage";
 import { PackageManagers } from "./components/PackageManagers";
 import { Parameters } from "./components/Parameters";
-import { Created } from "./components/Created";
+import { Usage } from "./components/Usage";
 
 function App() {
   return (

@@ -1,8 +1,10 @@
 name: Deploy Landing Page to GitHub Pages
 
 on:
+  pull_request:
+    branches: ["gh-pages"]
   push:
-    branches: [gh-pages"]
+    branches: ["gh-pages"]
   workflow_dispatch:
 
 permissions:

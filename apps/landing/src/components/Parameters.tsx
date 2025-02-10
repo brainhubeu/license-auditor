@@ -1,13 +1,13 @@
-import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import {
-  SearchIcon,
-  MapPinIcon,
   FileCode2Icon,
-  RocketIcon,
-  SettingsIcon,
   FilterIcon,
+  MapPinIcon,
+  RocketIcon,
+  SearchIcon,
+  SettingsIcon,
   ShieldIcon,
 } from "lucide-react";
+import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
 
 interface ServiceProps {
   title: string;
@@ -116,7 +116,7 @@ export const Parameters = () => {
                     </div>
                   </CardHeader>
                 </Card>
-              )
+              ),
             )}
           </div>
         </div>
