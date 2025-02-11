@@ -1,3 +1,34 @@
+interface RiskProps {
+  key: string;
+  description: string;
+  additionalText?: string;
+}
+
+const risksList: RiskProps[] = [
+  {
+    key: "Legal Compliance",
+    description:
+      "Every package has a license that dictates how it can be used, modified, and shared.",
+    additionalText:
+      "Using a package with the wrong license can lead to legal issues or even lawsuits.",
+  },
+  {
+    key: "Commercial & Distribution Restrictions",
+    description:
+      "Some licenses, like GPL, may require you to open-source your own code if you use or modify the package. Others, like MIT, offer more flexibility.",
+  },
+  {
+    key: "Security & Trust",
+    description:
+      "Packages with unclear or restrictive licenses can introduce security risks or complicate maintenance and updates.",
+  },
+  {
+    key: "Community & Ethics",
+    description:
+      "Respecting open-source licenses fosters a healthy community and encourages continued collaboration.",
+  },
+];
+
 export const Explanations = () => {
   return (
     <section className="container py-8 sm:py-32">
@@ -10,10 +41,31 @@ export const Explanations = () => {
           legal pitfalls
         </h2>
 
-        <p className="text-muted-foreground text-xl mt-4 mb-8 max-w-4xl">
-          License Auditor scans your project dependencies and identifies license
-          risks — helping you stay secure and legally safe with minimal effort.
-        </p>
+        <div className="text-muted-foreground text-xl max-w-4xl">
+          <p className="mt-4 mb-8">
+            License Auditor scans your project dependencies and identifies
+            license risks — helping you stay secure and legally safe with
+            minimal effort.
+          </p>
+          <span className="">Why should you care?</span>
+          <ul className="list-disc mt-2">
+            {risksList.map(({ key, description, additionalText }) => {
+              return (
+                <li className="mb-2">
+                  <span className="font-bold mr-2">{key}:</span>
+                  {description}
+                  <span className="ml-1 font-bold">{additionalText}</span>
+                </li>
+              );
+            })}
+          </ul>
+
+          <p className="mt-8">
+            By checking licenses carefully, you ensure that your project remains
+            legally compliant and secure while respecting the work of other
+            developers.
+          </p>
+        </div>
       </div>
     </section>
   );
