@@ -10,7 +10,7 @@ export const About = () => {
               href="https://brainhub.eu"
               className="w-[300px] h-full flex items-center justify-center"
             >
-              <img src="/brainhub_logo.svg" alt="" />
+              <img src="brainhub_logo.svg" alt="" />
             </a>
           </div>
 
