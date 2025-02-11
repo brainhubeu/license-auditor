@@ -39,7 +39,7 @@
     "node": ">=20"
   },
   "packageManager": "npm@10.8.2",
-  "workspaces": ["packages/*", "tooling/*", "test"],
+  "workspaces": ["packages/*", "tooling/*", "test", "apps/*"],
   "bin": {
     "license-auditor": "packages/cli/dist/cli.js"
   },
