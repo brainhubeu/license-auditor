@@ -41,8 +41,8 @@ export const Hero = () => {
         </div>
       </div>
       <div className="relative w-full">
-        <img src="/outcome.svg" alt="logo" className="w-full" />
-        <div className="shadow"></div>
+        <img src="outcome.svg" alt="logo" className="w-full" />
+        <div className="shadow" />
       </div>
     </section>
   );

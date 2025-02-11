@@ -1,4 +1,4 @@
-import { Statistics } from "./Statistics";
+import { Statistics } from "./statistics";
 
 export const About = () => {
   return (

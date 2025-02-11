@@ -27,7 +27,7 @@ export const Usage = () => {
               terminal. Use filtering options to focus on critical issues and
               export results to JSON for further analysis.
             </CardDescription>
-            <img src="/local_code.svg" alt="Local" className="mt-4" />
+            <img src="local_code.svg" alt="Local" className="mt-4" />
           </CardHeader>
         </Card>
 
@@ -39,7 +39,7 @@ export const Usage = () => {
               License Auditor into your CI pipeline. Automatically scan
               dependencies during every build.
             </CardDescription>
-            <img src="/cloud_code.svg" alt="Cloud" className="mt-4" />
+            <img src="cloud_code.svg" alt="Cloud" className="mt-4" />
           </CardHeader>
         </Card>
       </div>

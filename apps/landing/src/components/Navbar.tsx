@@ -35,10 +35,6 @@ const routeList: RouteProps[] = [
     href: "#packageManagers",
     label: "Package Managers",
   },
-  // {
-  //   href: "#about",
-  //   label: "Brainhub",
-  // },
 ];
 
 export const Navbar = () => {
@@ -60,6 +56,8 @@ export const Navbar = () => {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
                 className="mr-2"
+                aria-label="License Auditor"
+                role="img"
               >
                 <rect
                   x="2"
@@ -148,11 +146,11 @@ export const Navbar = () => {
 
           {/* desktop */}
           <nav className="hidden md:flex gap-2">
-            {routeList.map((route: RouteProps, i) => (
+            {routeList.map((route: RouteProps) => (
               <a
                 rel="noreferrer noopener"
                 href={route.href}
-                key={i}
+                key={route.label}
                 className={`text-[17px] ${buttonVariants({
                   variant: "ghost",
                 })}`}

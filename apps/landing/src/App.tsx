@@ -1,12 +1,12 @@
-import { Hero } from "./components/Hero";
-import { Navbar } from "./components/Navbar";
-import { ScrollToTop } from "./components/ScrollToTop";
+import { Hero } from "./components/hero";
+import { Navbar } from "./components/navbar";
+import { ScrollToTop } from "./components/scroll-to-top";
 import "./App.css";
-import { Created } from "./components/Created";
-import { Explanations } from "./components/Explanation";
-import { PackageManagers } from "./components/PackageManagers";
-import { Parameters } from "./components/Parameters";
-import { Usage } from "./components/Usage";
+import { Created } from "./components/created";
+import { Explanations } from "./components/explanation";
+import { PackageManagers } from "./components/package-managers";
+import { Parameters } from "./components/parameters";
+import { Usage } from "./components/usage";
 
 function App() {
   return (

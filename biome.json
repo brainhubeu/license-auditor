@@ -60,7 +60,7 @@
       }
     },
     {
-      "include": ["packages/cli"],
+      "include": ["packages/cli", "apps/landing"],
       "linter": {
         "rules": {
           "style": {
