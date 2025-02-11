@@ -1,7 +1,7 @@
-import { ThemeProvider } from "@/components/theme-provider.tmp.tsx";
+import { ThemeProvider } from "@/components/theme-provider.tsx";
 import React from "react";
 import reactDom from "react-dom/client";
-import App from "./app.tmp.tsx";
+import App from "./app.tsx";
 import "./index.css";
 
 const rootElement = document.getElementById("root");
