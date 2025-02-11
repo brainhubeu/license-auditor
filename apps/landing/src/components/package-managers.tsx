@@ -7,15 +7,15 @@ interface PackageManagersType {
 
 const packageManagers: PackageManagersType[] = [
   {
-    url: "/npm_icon.svg",
+    url: "npm_icon.svg",
     title: "npm",
   },
   {
-    url: "/pnpm_icon.svg",
+    url: "pnpm_icon.svg",
     title: "pnpm",
   },
   {
-    url: "/yarn_icon.svg",
+    url: "yarn_icon.svg",
     title: "yarn",
   },
 ];
