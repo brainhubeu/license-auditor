@@ -51,7 +51,7 @@ export const Explanations = () => {
           <ul className="list-disc mt-2">
             {risksList.map(({ key, description, additionalText }) => {
               return (
-                <li className="mb-2">
+                <li key={key} className="mb-2">
                   <span className="font-bold mr-2">{key}:</span>
                   {description}
                   <span className="ml-1 font-bold">{additionalText}</span>
