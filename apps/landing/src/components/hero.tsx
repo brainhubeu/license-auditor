@@ -1,6 +1,7 @@
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 import { Button } from "./ui/button";
 import { buttonVariants } from "./ui/button";
+import { HeroTerminal } from "./terminals";
 
 export const Hero = () => {
   return (
@@ -40,8 +41,8 @@ export const Hero = () => {
           </a>
         </div>
       </div>
-      <div className="relative w-full">
-        <img src="outcome.svg" alt="logo" className="w-full" />
+      <div className="relative w-full md:mt-6">
+        <HeroTerminal />
         <div className="shadow" />
       </div>
     </section>
