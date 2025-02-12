@@ -66,10 +66,6 @@ export const Explanations = () => {
             developers.
           </p>
         </div>
-        <p className="text-muted-foreground text-xl mt-4 mb-8 max-w-4xl">
-          License Auditor scans your project dependencies and identifies license
-          risks — helping you stay secure and legally safe with minimal effort.
-        </p>
       </div>
     </section>
   );
