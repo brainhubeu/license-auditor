@@ -1,15 +1,17 @@
 import { Terminal } from "./ui/terminal";
 
 const BrainhubLink = () => (
-  <a 
+  <a
     href="https://github.com/brainhubeu"
     className="text-primary"
     target="_blank"
+    rel="noreferrer"
   >
     @brainhubeu
   </a>
-)
+);
 
+// biome-ignore format: it doesn't work for <pre>
 export const HeroTerminal = () => (
   <Terminal>
     <div>✓ 256 licenses are compliant</div>
@@ -29,6 +31,7 @@ export const HeroTerminal = () => (
   </Terminal>
 )
 
+// biome-ignore format: it doesn't work for <pre>
 export const LocalCodeTerminal = () => (
   <Terminal>
     <div className="opacity-60"># initialize config</div>
@@ -39,6 +42,7 @@ export const LocalCodeTerminal = () => (
   </Terminal>
 )
 
+// biome-ignore format: it doesn't work for <pre>
 export const CiCdTerminal = () => (
   <Terminal>
     <div className="text-zinc-500"><span className="text-primary">license-audit</span>:</div>

@@ -1,7 +1,7 @@
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
+import { HeroTerminal } from "./terminals";
 import { Button } from "./ui/button";
 import { buttonVariants } from "./ui/button";
-import { HeroTerminal } from "./terminals";
 
 export const Hero = () => {
   return (
