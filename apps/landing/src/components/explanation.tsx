@@ -47,7 +47,7 @@ export const Explanations = () => {
             license risks — helping you stay secure and legally safe with
             minimal effort.
           </p>
-          <span className="">Why should you care?</span>
+          <span className="text-2xl font-bold">Why should you care?</span>
           <ul className="list-disc ml-4 mt-2">
             {risksList.map(({ key, description, additionalText }) => {
               return (
