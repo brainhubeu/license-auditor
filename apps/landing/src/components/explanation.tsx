@@ -48,7 +48,7 @@ export const Explanations = () => {
             minimal effort.
           </p>
           <span className="">Why should you care?</span>
-          <ul className="list-disc mt-2">
+          <ul className="list-disc ml-4 mt-2">
             {risksList.map(({ key, description, additionalText }) => {
               return (
                 <li key={key} className="mb-2">
@@ -66,6 +66,10 @@ export const Explanations = () => {
             developers.
           </p>
         </div>
+        <p className="text-muted-foreground text-xl mt-4 mb-8 max-w-4xl">
+          License Auditor scans your project dependencies and identifies license
+          risks — helping you stay secure and legally safe with minimal effort.
+        </p>
       </div>
     </section>
   );
