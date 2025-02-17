@@ -31,7 +31,7 @@ const risksList: RiskProps[] = [
 
 export const Explanations = () => {
   return (
-    <section className="container py-8 sm:py-32">
+    <section className="container py-8 sm:py-32" id="explanation">
       <div className="flex flex-col gap-8 place-items-center">
         <h2 className="text-3xl md:text-4xl font-bold">
           Audit licenses,{" "}

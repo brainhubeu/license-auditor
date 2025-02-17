@@ -23,8 +23,8 @@ export const Hero = () => {
         </p>
 
         <div className="space-y-4 md:space-y-0 md:space-x-4">
-          <a href="#usage">
-            <Button className="w-full md:w-1/3">Get Started</Button>
+          <a href="#explanation">
+            <Button className="w-full md:w-1/3">Discover More</Button>
           </a>
 
           <a
@@ -35,7 +35,7 @@ export const Hero = () => {
               variant: "outline",
             })}`}
           >
-            Github Repository
+            Explore Code
             <GitHubLogoIcon className="ml-2 w-5 h-5" />
           </a>
         </div>
