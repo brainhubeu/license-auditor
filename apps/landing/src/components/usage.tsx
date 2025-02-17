@@ -19,10 +19,17 @@ export const Usage = () => {
             added to your project.
           </p>
           <p className="text-muted-foreground text-xl mt-4 mb-8">
-            Check out the steps below or head to our <a href="https://github.com/brainhubeu/license-auditor/tree/master?tab=readme-ov-file#license-auditor" target="_blank" className="text-primary/90 font-bold hover:text-primary">README</a> file for further details.
+            Check out the steps below or head to our{" "}
+            <a
+              href="https://github.com/brainhubeu/license-auditor/tree/master?tab=readme-ov-file#license-auditor"
+              target="_blank"
+              className="text-primary/90 font-bold hover:text-primary"
+            >
+              README
+            </a>{" "}
+            file for further details.
           </p>
         </div>
-
       </div>
       <div className="grid lg:grid-cols-2 gap-8">
         <Card className="transition-all duration-300 hover:shadow-lg hover:shadow-primary/25">
