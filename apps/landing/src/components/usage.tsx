@@ -12,11 +12,17 @@ export const Usage = () => {
           Options
         </h2>
 
-        <p className="text-muted-foreground text-xl mt-4 mb-8 max-w-4xl">
-          You can use License Auditor in your CI/CD pipeline, in your local
-          machine. Be notified when a new dependency with a license risk is
-          added to your project.
-        </p>
+        <div>
+          <p className="text-muted-foreground text-xl mt-4 mb-8 max-w-4xl">
+            You can use License Auditor in your CI/CD pipeline, in your local
+            machine. Be notified when a new dependency with a license risk is
+            added to your project.
+          </p>
+          <p className="text-muted-foreground text-xl mt-4 mb-8">
+            Check out the steps below or head to our <a href="https://github.com/brainhubeu/license-auditor/tree/master?tab=readme-ov-file#license-auditor" target="_blank" className="text-primary/90 font-bold hover:text-primary">README</a> file for further details.
+          </p>
+        </div>
+
       </div>
       <div className="grid lg:grid-cols-2 gap-8">
         <Card className="transition-all duration-300 hover:shadow-lg hover:shadow-primary/25">
