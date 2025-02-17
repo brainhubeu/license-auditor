@@ -1,3 +1,4 @@
+import { CiCdTerminal, LocalCodeTerminal } from "./terminals";
 import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
 
 export const Usage = () => {
@@ -41,7 +42,7 @@ export const Usage = () => {
               terminal. Use filtering options to focus on critical issues and
               export results to JSON for further analysis.
             </CardDescription>
-            <img src="local_code.svg" alt="Local" className="mt-4" />
+            <LocalCodeTerminal />
           </CardHeader>
         </Card>
 
@@ -53,7 +54,7 @@ export const Usage = () => {
               License Auditor into your CI pipeline. Automatically scan
               dependencies during every build.
             </CardDescription>
-            <img src="cloud_code.svg" alt="Cloud" className="mt-4" />
+            <CiCdTerminal />
           </CardHeader>
         </Card>
       </div>
