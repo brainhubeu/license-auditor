@@ -23,6 +23,7 @@ export const Usage = () => {
             <a
               href="https://github.com/brainhubeu/license-auditor/tree/master?tab=readme-ov-file#license-auditor"
               target="_blank"
+              rel="noreferrer"
               className="text-primary/90 font-bold hover:text-primary"
             >
               README
