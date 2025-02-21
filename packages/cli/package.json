@@ -8,7 +8,6 @@
   "types": "./dist/types.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/cli.js",
       "types": "./dist/types.d.ts"
     }
   },
