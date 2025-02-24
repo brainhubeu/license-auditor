@@ -3,12 +3,9 @@
   "version": "2.0.0-beta",
   "license": "MIT",
   "type": "module",
-  "main": "./dist/cli.js",
-  "module": "./dist/cli.js",
   "types": "./dist/types.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/cli.js",
       "types": "./dist/types.d.ts"
     }
   },
