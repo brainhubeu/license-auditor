@@ -12,7 +12,7 @@ import type { LicensesWithPathAndStatus } from "./licenses-with-path.js";
 
 export function retrieveLicenseFromLicenseFileContent(
   content: string,
-  licensePath: string
+  licensePath: string,
 ): {
   licenses: LicenseWithSource[];
 } {
@@ -23,7 +23,7 @@ export function retrieveLicenseFromLicenseFileContent(
     const foundLicense = licenseMap.get(detectedLicense.licenseId);
     if (!foundLicense) {
       throw new Error(
-        `License detected but not found in license map: ${detectedLicense.licenseId}`
+        `License detected but not found in license map: ${detectedLicense.licenseId}`,
       );
     }
 
@@ -31,7 +31,7 @@ export function retrieveLicenseFromLicenseFileContent(
       licenses: addLicenseSource(
         [LicenseSchema.parse(foundLicense)],
         LICENSE_SOURCE.licenseFileContent,
-        licensePath
+        licensePath,
       ),
     };
   }
@@ -41,7 +41,7 @@ export function retrieveLicenseFromLicenseFileContent(
   const licenseArr = [...licenseMap]
     .filter(
       ([key, value]) =>
-        contentTokens.includes(key) || contentTokens.includes(value.name)
+        contentTokens.includes(key) || contentTokens.includes(value.name),
     )
     .map((result) => LicenseSchema.parse(result[1]));
 
@@ -49,7 +49,7 @@ export function retrieveLicenseFromLicenseFileContent(
     licenses: addLicenseSource(
       licenseArr,
       LICENSE_SOURCE.licenseFileContextKeywords,
-      licensePath
+      licensePath,
     ),
   };
 }
@@ -79,11 +79,11 @@ export async function findLicenseInLicenseFile(filePath: string): Promise<{
 }
 
 export async function parseLicenseFiles(
-  packagePath: string
+  packagePath: string,
 ): Promise<LicensesWithPathAndStatus> {
   const files = await readdir(packagePath);
   const licenseFiles = files.filter((file) =>
-    /^LICENSE(-[\w.-]+)?(\.md|\.txt)?$/i.test(file)
+    /^LICENSE(-[\w.-]+)?(\.md|\.txt)?$/i.test(file),
   );
 
   if (licenseFiles.length === 0 || !licenseFiles[0]) {
@@ -103,7 +103,7 @@ export async function parseLicenseFiles(
 
 async function handleSingleLicenseFile(
   licenseFile: string,
-  packagePath: string
+  packagePath: string,
 ): Promise<LicensesWithPathAndStatus> {
   const licensePath = path.join(packagePath, licenseFile);
   const licenseFromLicenseFile = await findLicenseInLicenseFile(licensePath);
@@ -125,7 +125,7 @@ async function handleSingleLicenseFile(
 
 async function handleMultipleLicenseFiles(
   licenseFiles: string[],
-  packagePath: string
+  packagePath: string,
 ): Promise<LicensesWithPathAndStatus> {
   const allLicenses: LicenseWithSource[] = [];
   let unknownOrUncertainLicensesFiles = 0; // number of license files that were not matched by the content, but only by the keywords or not at all, which is risky and potentially require manual verification
@@ -136,7 +136,7 @@ async function handleMultipleLicenseFiles(
     if (
       licenseFromLicenseFile.licenses.some(
         (license) =>
-          license.source === LICENSE_SOURCE.licenseFileContextKeywords
+          license.source === LICENSE_SOURCE.licenseFileContextKeywords,
       ) ||
       !licenseFromLicenseFile.licenses.length
     ) {
