@@ -9,6 +9,191 @@ import { readJsonFile } from "../utils/read-json-file";
 import { runCliCommand } from "../utils/run-cli-command";
 
 describe("yarn", () => {
+  yarnFixture(
+    "audits compliant packages correctly",
+    async ({ testDirectory }) => {
+      const { output, errorCode } = await runCliCommand({
+        command: "npx",
+        args: [getCliPath(), "--production"],
+        cwd: testDirectory,
+      });
+
+      expect(errorCode).toBe(0);
+      expect(output).toContain("66 licenses are compliant");
+    },
+  );
+
+  describe("verificationStatus", () => {
+    yarnFixture(
+      "'ok' status is evaluated correctly",
+      async ({ testDirectory }) => {
+        await addToPackageJson(
+          testDirectory,
+          "test-dep",
+          {
+            version: "1.0.0",
+            license: "MIT",
+          },
+          [{ name: "LICENSE-MIT", content: "MIT" }],
+        );
+
+        const { output, errorCode } = await runCliCommand({
+          command: "npx",
+          args: [getCliPath(), "--json"],
+          cwd: testDirectory,
+        });
+
+        const jsonOutput: JsonResults = await readJsonFile(
+          path.join(testDirectory, "license-auditor.results.json"),
+        );
+
+        expect(errorCode).toBe(0);
+        expect(output).toContain("160 licenses are compliant");
+
+        const okStatus = jsonOutput.whitelist.filter(
+          (result) => result.verificationStatus === "ok",
+        );
+
+        expect(okStatus.length).toBe(158);
+      },
+    );
+
+    yarnFixture(
+      "'someButNotAllLicensesWhitelisted' status is evaluated correctly",
+      async ({ testDirectory }) => {
+        await addToPackageJson(testDirectory, "test-dep", {
+          version: "1.0.0",
+          license: "(MIT or BlueOak-1.0.0)",
+        });
+
+        const { output, errorCode } = await runCliCommand({
+          command: "npx",
+          args: [getCliPath(), "--json"],
+          cwd: testDirectory,
+        });
+
+        const jsonOutput: JsonResults = await readJsonFile(
+          path.join(testDirectory, "license-auditor.results.json"),
+        );
+
+        expect(errorCode).toBe(0);
+        expect(output).toContain("160 licenses are compliant");
+
+        const someButNotAllLicensesWhitelisted =
+          jsonOutput.needsUserVerification.filter((result) =>
+            result.verificationMessage.startsWith(
+              "Some but not all licenses are whitelisted for package",
+            ),
+          );
+
+        expect(someButNotAllLicensesWhitelisted.length).toBe(1);
+      },
+    );
+
+    yarnFixture(
+      "'licenseFilesExistButSomeAreUncertain' status is evaluated correctly",
+      async ({ testDirectory }) => {
+        await addToPackageJson(
+          testDirectory,
+          "test-dep",
+          {
+            version: "1.0.0",
+            license: "MIT",
+          },
+          [
+            { name: "LICENSE-MIT", content: "MIT" },
+            { name: "LICENSE", content: "nonsense" },
+          ],
+        );
+
+        const { output, errorCode } = await runCliCommand({
+          command: "npx",
+          args: [getCliPath(), "--json"],
+          cwd: testDirectory,
+        });
+
+        const jsonOutput: JsonResults = await readJsonFile(
+          path.join(testDirectory, "license-auditor.results.json"),
+        );
+
+        expect(errorCode).toBe(0);
+        expect(output).toContain("159 licenses are compliant");
+
+        const someButNotAllLicensesWhitelisted =
+          jsonOutput.needsUserVerification.filter((result) =>
+            result.verificationMessage.startsWith(
+              "We've found few license files",
+            ),
+          );
+
+        expect(someButNotAllLicensesWhitelisted.length).toBe(1);
+      },
+    );
+
+    yarnFixture(
+      "'licenseFileExistsButUnknownLicense' status is evaluated correctly",
+      async ({ testDirectory }) => {
+        await addToPackageJson(
+          testDirectory,
+          "test-dep",
+          {
+            version: "1.0.0",
+            license: "MIT",
+          },
+          [{ name: "LICENSE", content: "nonsense" }],
+        );
+
+        const { output, errorCode } = await runCliCommand({
+          command: "npx",
+          args: [getCliPath(), "--json"],
+          cwd: testDirectory,
+        });
+
+        const jsonOutput: JsonResults = await readJsonFile(
+          path.join(testDirectory, "license-auditor.results.json"),
+        );
+
+        expect(errorCode).toBe(0);
+        expect(output).toContain("159 licenses are compliant");
+
+        const licenseFileExistsButUnknownLicense =
+          jsonOutput.needsUserVerification.filter((result) =>
+            result.verificationMessage.startsWith(
+              "We’ve found a license file, but no matching licenses",
+            ),
+          );
+
+        expect(licenseFileExistsButUnknownLicense.length).toBe(1);
+      },
+    );
+
+    yarnFixture(
+      "'licenseFileNotFound' status is evaluated correctly",
+      async ({ testDirectory }) => {
+        await addToPackageJson(testDirectory, "test-dep", {
+          version: "1.0.0",
+          license: "",
+        });
+
+        const { output, errorCode } = await runCliCommand({
+          command: "npx",
+          args: [getCliPath(), "--json"],
+          cwd: testDirectory,
+        });
+
+        const jsonOutput: JsonResults = await readJsonFile(
+          path.join(testDirectory, "license-auditor.results.json"),
+        );
+
+        expect(errorCode).toBe(0);
+        expect(output).toContain("159 licenses are compliant");
+
+        const licenseFileNotFound = jsonOutput.notFound.length;
+
+        expect(licenseFileNotFound).toBe(1);
+      },
+    );
+  });
   describe("source", () => {
     yarnFixture(
       "correctly resolves to 'package.json-license'",
@@ -286,17 +471,26 @@ describe("yarn", () => {
         );
         await fs.writeFile(configFilePath, invalidConfig);
 
-        const { output, errorCode } = await runCliCommand({
-          command: "npx",
-          args: [getCliPath()],
-          cwd: testDirectory,
-        });
+        const { output, errorCode } = await runCliCommand(
+          {
+            command: "npx",
+            args: [getCliPath()],
+            cwd: testDirectory,
+          },
+          { cols: 200 },
+        );
 
         expect(errorCode).toBe(1);
         expect(output).toContain("Invalid configuration file at");
-        expect(output).toContain("Expected array, received string");
-        expect(output).toContain("Expected array, received number");
-        expect(output).toContain("Expected object, received string");
+        expect(output).toContain(
+          'Invalid value in path: blacklist - error "invalid_type". Expected array, received string',
+        );
+        expect(output).toContain(
+          'Invalid value in path: whitelist - error "invalid_type". Expected array, received number',
+        );
+        expect(output).toContain(
+          'Invalid value in path: overrides - error "invalid_type". Expected object, received string',
+        );
       },
     );
   });
