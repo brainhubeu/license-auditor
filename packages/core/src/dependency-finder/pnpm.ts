@@ -10,7 +10,7 @@ export async function findPnpmDependencies(
   production?: boolean | undefined,
   verbose?: boolean | undefined,
 ): Promise<DependenciesResult> {
-  const output = await execCommand(
+  const { stdout: output } = await execCommand(
     production ? findPnpmProdDepsCommand : findPnpmDepsCommand,
     projectRoot,
     verbose,
