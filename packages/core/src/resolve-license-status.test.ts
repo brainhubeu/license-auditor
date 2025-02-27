@@ -9,7 +9,6 @@ describe("resolveLicenseStatus", () => {
     | "isDeprecatedLicenseId"
     | "isOsiApproved"
     | "seeAlso"
-    | "referenceNumber"
     | "detailsUrl"
     | "reference"
     | "source"
@@ -19,7 +18,6 @@ describe("resolveLicenseStatus", () => {
     isDeprecatedLicenseId: false,
     isOsiApproved: true,
     seeAlso: [],
-    referenceNumber: 0,
     detailsUrl: "",
     reference: "",
     name: "",

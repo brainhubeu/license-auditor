@@ -83,7 +83,7 @@ describe("license-auditor", () => {
       });
 
       expect(errorCode).toBe(0);
-      expect(output).toContain("Results incomplete because of an error.");
+      expect(output).toContain("170 licenses are compliant");
     });
 
     describe("parse license files", () => {
@@ -981,8 +981,8 @@ describe("license-auditor", () => {
         cwd: testDirectory,
       });
 
-      expect(errorCode).toBe(1);
-      expect(output).toContain("Unable to resolve project dependencies.");
+      expect(errorCode).toBe(0);
+      expect(output).toContain("7 licenses are compliant");
     },
   );
 });

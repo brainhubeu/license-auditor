@@ -2,7 +2,7 @@ import * as fs from "node:fs/promises";
 import * as path from "node:path";
 import type { JsonResults } from "@license-auditor/data";
 import { describe, expect } from "vitest";
-import { yarnFixture } from "../fixtures";
+import { yarnFixture, yarnWithInvalidGithubDepFixture } from "../fixtures";
 import { addToPackageJson } from "../utils/add-to-package-json";
 import { getCliPath } from "../utils/get-cli-path";
 import { readJsonFile } from "../utils/read-json-file";
@@ -209,12 +209,12 @@ describe("yarn", () => {
           cwd: testDirectory,
         });
 
+        expect(errorCode).toBe(0);
+        expect(output).toContain("160 licenses are compliant");
+
         const jsonOutput: JsonResults = await readJsonFile(
           path.join(testDirectory, "license-auditor.results.json"),
         );
-
-        expect(errorCode).toBe(0);
-        expect(output).toContain("160 licenses are compliant");
 
         const addedPackage = jsonOutput.whitelist.find(
           (result) => result.packageName === "test-dep@1.0.0",
@@ -238,12 +238,12 @@ describe("yarn", () => {
           cwd: testDirectory,
         });
 
+        expect(errorCode).toBe(0);
+        expect(output).toContain("160 licenses are compliant");
+
         const jsonOutput: JsonResults = await readJsonFile(
           path.join(testDirectory, "license-auditor.results.json"),
         );
-
-        expect(errorCode).toBe(0);
-        expect(output).toContain("160 licenses are compliant");
 
         const addedPackage = jsonOutput.whitelist.find(
           (result) => result.packageName === "test-dep@1.0.0",
@@ -267,12 +267,12 @@ describe("yarn", () => {
           cwd: testDirectory,
         });
 
+        expect(errorCode).toBe(0);
+        expect(output).toContain("160 licenses are compliant");
+
         const jsonOutput: JsonResults = await readJsonFile(
           path.join(testDirectory, "license-auditor.results.json"),
         );
-
-        expect(errorCode).toBe(0);
-        expect(output).toContain("160 licenses are compliant");
 
         const addedPackage = jsonOutput.whitelist.find(
           (result) => result.packageName === "test-dep@1.0.0",
@@ -296,12 +296,12 @@ describe("yarn", () => {
           cwd: testDirectory,
         });
 
+        expect(errorCode).toBe(0);
+        expect(output).toContain("160 licenses are compliant");
+
         const jsonOutput: JsonResults = await readJsonFile(
           path.join(testDirectory, "license-auditor.results.json"),
         );
-
-        expect(errorCode).toBe(0);
-        expect(output).toContain("160 licenses are compliant");
 
         const addedPackage = jsonOutput.whitelist.find(
           (result) => result.packageName === "test-dep@1.0.0",
@@ -332,12 +332,12 @@ describe("yarn", () => {
           cwd: testDirectory,
         });
 
+        expect(errorCode).toBe(0);
+        expect(output).toContain("160 licenses are compliant");
+
         const jsonOutput: JsonResults = await readJsonFile(
           path.join(testDirectory, "license-auditor.results.json"),
         );
-
-        expect(errorCode).toBe(0);
-        expect(output).toContain("160 licenses are compliant");
 
         const addedPackage = jsonOutput.whitelist.find(
           (result) => result.packageName === "test-dep@1.0.0",
@@ -374,12 +374,12 @@ describe("yarn", () => {
           cwd: testDirectory,
         });
 
+        expect(errorCode).toBe(0);
+        expect(output).toContain("160 licenses are compliant");
+
         const jsonOutput: JsonResults = await readJsonFile(
           path.join(testDirectory, "license-auditor.results.json"),
         );
-
-        expect(errorCode).toBe(0);
-        expect(output).toContain("160 licenses are compliant");
 
         const addedPackage = jsonOutput.whitelist.find(
           (result) => result.packageName === "test-dep@1.0.0",
@@ -405,12 +405,12 @@ describe("yarn", () => {
           cwd: testDirectory,
         });
 
+        expect(errorCode).toBe(0);
+        expect(output).toContain("67 licenses are compliant");
+
         const jsonOutput: JsonResults = await readJsonFile(
           path.join(testDirectory, "license-auditor.results.json"),
         );
-
-        expect(errorCode).toBe(0);
-        expect(output).toContain("67 licenses are compliant");
 
         const addedPackage = jsonOutput.whitelist.find(
           (result) => result.packageName === "test-dep@1.0.0",
@@ -438,12 +438,12 @@ describe("yarn", () => {
         cwd: testDirectory,
       });
 
+      expect(errorCode).toBe(0);
+      expect(output).toContain("66 licenses are compliant");
+
       const jsonOutput: JsonResults = await readJsonFile(
         path.join(testDirectory, "license-auditor.results.json"),
       );
-
-      expect(errorCode).toBe(0);
-      expect(output).toContain("66 licenses are compliant");
 
       const addedPackage = jsonOutput.whitelist.find(
         (result) => result.packageName === "test-dep@1.0.0",
@@ -480,6 +480,7 @@ describe("yarn", () => {
           { cols: 200 },
         );
 
+        expect(errorCode).toBe(1);
         expect(output).toContain("Invalid configuration file at");
         expect(output).toContain(
           'Invalid value in path: blacklist - error "invalid_type". Expected array, received string',
