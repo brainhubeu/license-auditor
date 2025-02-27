@@ -20,7 +20,7 @@ describe("yarn", () => {
 
       expect(errorCode).toBe(0);
       expect(output).toContain("66 licenses are compliant");
-    }
+    },
   );
 
   describe("verificationStatus", () => {
@@ -34,7 +34,7 @@ describe("yarn", () => {
             version: "1.0.0",
             license: "MIT",
           },
-          [{ name: "LICENSE-MIT", content: "MIT" }]
+          [{ name: "LICENSE-MIT", content: "MIT" }],
         );
 
         const { output, errorCode } = await runCliCommand({
@@ -44,18 +44,18 @@ describe("yarn", () => {
         });
 
         const jsonOutput: JsonResults = await readJsonFile(
-          path.join(testDirectory, "license-auditor.results.json")
+          path.join(testDirectory, "license-auditor.results.json"),
         );
 
         expect(errorCode).toBe(0);
-        expect(output).toContain("159 licenses are compliant");
+        expect(output).toContain("160 licenses are compliant");
 
         const okStatus = jsonOutput.whitelist.filter(
-          (result) => result.verificationStatus === "ok"
+          (result) => result.verificationStatus === "ok",
         );
 
-        expect(okStatus.length).toBe(157);
-      }
+        expect(okStatus.length).toBe(158);
+      },
     );
 
     yarnFixture(
@@ -73,21 +73,21 @@ describe("yarn", () => {
         });
 
         const jsonOutput: JsonResults = await readJsonFile(
-          path.join(testDirectory, "license-auditor.results.json")
+          path.join(testDirectory, "license-auditor.results.json"),
         );
 
         expect(errorCode).toBe(0);
-        expect(output).toContain("159 licenses are compliant");
+        expect(output).toContain("160 licenses are compliant");
 
         const someButNotAllLicensesWhitelisted =
           jsonOutput.needsUserVerification.filter((result) =>
             result.verificationMessage.startsWith(
-              "Some but not all licenses are whitelisted for package"
-            )
+              "Some but not all licenses are whitelisted for package",
+            ),
           );
 
-        expect(someButNotAllLicensesWhitelisted.length).toBe(2);
-      }
+        expect(someButNotAllLicensesWhitelisted.length).toBe(1);
+      },
     );
 
     yarnFixture(
@@ -103,7 +103,7 @@ describe("yarn", () => {
           [
             { name: "LICENSE-MIT", content: "MIT" },
             { name: "LICENSE", content: "nonsense" },
-          ]
+          ],
         );
 
         const { output, errorCode } = await runCliCommand({
@@ -113,21 +113,21 @@ describe("yarn", () => {
         });
 
         const jsonOutput: JsonResults = await readJsonFile(
-          path.join(testDirectory, "license-auditor.results.json")
+          path.join(testDirectory, "license-auditor.results.json"),
         );
 
         expect(errorCode).toBe(0);
-        expect(output).toContain("158 licenses are compliant");
+        expect(output).toContain("159 licenses are compliant");
 
         const someButNotAllLicensesWhitelisted =
           jsonOutput.needsUserVerification.filter((result) =>
             result.verificationMessage.startsWith(
-              "We've found few license files"
-            )
+              "We've found few license files",
+            ),
           );
 
         expect(someButNotAllLicensesWhitelisted.length).toBe(1);
-      }
+      },
     );
 
     yarnFixture(
@@ -140,7 +140,7 @@ describe("yarn", () => {
             version: "1.0.0",
             license: "MIT",
           },
-          [{ name: "LICENSE", content: "nonsense" }]
+          [{ name: "LICENSE", content: "nonsense" }],
         );
 
         const { output, errorCode } = await runCliCommand({
@@ -150,21 +150,21 @@ describe("yarn", () => {
         });
 
         const jsonOutput: JsonResults = await readJsonFile(
-          path.join(testDirectory, "license-auditor.results.json")
+          path.join(testDirectory, "license-auditor.results.json"),
         );
 
         expect(errorCode).toBe(0);
-        expect(output).toContain("158 licenses are compliant");
+        expect(output).toContain("159 licenses are compliant");
 
         const licenseFileExistsButUnknownLicense =
           jsonOutput.needsUserVerification.filter((result) =>
             result.verificationMessage.startsWith(
-              "We’ve found a license file, but no matching licenses"
-            )
+              "We’ve found a license file, but no matching licenses",
+            ),
           );
 
         expect(licenseFileExistsButUnknownLicense.length).toBe(1);
-      }
+      },
     );
 
     yarnFixture(
@@ -182,16 +182,16 @@ describe("yarn", () => {
         });
 
         const jsonOutput: JsonResults = await readJsonFile(
-          path.join(testDirectory, "license-auditor.results.json")
+          path.join(testDirectory, "license-auditor.results.json"),
         );
 
         expect(errorCode).toBe(0);
-        expect(output).toContain("158 licenses are compliant");
+        expect(output).toContain("159 licenses are compliant");
 
         const licenseFileNotFound = jsonOutput.notFound.length;
 
         expect(licenseFileNotFound).toBe(1);
-      }
+      },
     );
   });
   describe("source", () => {
@@ -213,15 +213,15 @@ describe("yarn", () => {
         expect(output).toContain("160 licenses are compliant");
 
         const jsonOutput: JsonResults = await readJsonFile(
-          path.join(testDirectory, "license-auditor.results.json")
+          path.join(testDirectory, "license-auditor.results.json"),
         );
 
         const addedPackage = jsonOutput.whitelist.find(
-          (result) => result.packageName === "test-dep@1.0.0"
+          (result) => result.packageName === "test-dep@1.0.0",
         );
 
         expect(addedPackage?.licenses[0].source).toBe("package.json-license");
-      }
+      },
     );
 
     yarnFixture(
@@ -242,15 +242,15 @@ describe("yarn", () => {
         expect(output).toContain("160 licenses are compliant");
 
         const jsonOutput: JsonResults = await readJsonFile(
-          path.join(testDirectory, "license-auditor.results.json")
+          path.join(testDirectory, "license-auditor.results.json"),
         );
 
         const addedPackage = jsonOutput.whitelist.find(
-          (result) => result.packageName === "test-dep@1.0.0"
+          (result) => result.packageName === "test-dep@1.0.0",
         );
 
         expect(addedPackage?.licenses[0].source).toBe("package.json-licenses");
-      }
+      },
     );
 
     yarnFixture(
@@ -271,15 +271,15 @@ describe("yarn", () => {
         expect(output).toContain("160 licenses are compliant");
 
         const jsonOutput: JsonResults = await readJsonFile(
-          path.join(testDirectory, "license-auditor.results.json")
+          path.join(testDirectory, "license-auditor.results.json"),
         );
 
         const addedPackage = jsonOutput.whitelist.find(
-          (result) => result.packageName === "test-dep@1.0.0"
+          (result) => result.packageName === "test-dep@1.0.0",
         );
 
         expect(addedPackage?.licenses[0].source).toBe("package.json-legacy");
-      }
+      },
     );
 
     yarnFixture(
@@ -300,17 +300,17 @@ describe("yarn", () => {
         expect(output).toContain("160 licenses are compliant");
 
         const jsonOutput: JsonResults = await readJsonFile(
-          path.join(testDirectory, "license-auditor.results.json")
+          path.join(testDirectory, "license-auditor.results.json"),
         );
 
         const addedPackage = jsonOutput.whitelist.find(
-          (result) => result.packageName === "test-dep@1.0.0"
+          (result) => result.packageName === "test-dep@1.0.0",
         );
 
         expect(addedPackage?.licenses[0].source).toBe(
-          "package.json-license-expression"
+          "package.json-license-expression",
         );
-      }
+      },
     );
 
     yarnFixture(
@@ -323,7 +323,7 @@ describe("yarn", () => {
             version: "1.0.0",
             license: "",
           },
-          [{ name: "LICENSE", content: "MIT" }]
+          [{ name: "LICENSE", content: "MIT" }],
         );
 
         const { output, errorCode } = await runCliCommand({
@@ -336,17 +336,17 @@ describe("yarn", () => {
         expect(output).toContain("160 licenses are compliant");
 
         const jsonOutput: JsonResults = await readJsonFile(
-          path.join(testDirectory, "license-auditor.results.json")
+          path.join(testDirectory, "license-auditor.results.json"),
         );
 
         const addedPackage = jsonOutput.whitelist.find(
-          (result) => result.packageName === "test-dep@1.0.0"
+          (result) => result.packageName === "test-dep@1.0.0",
         );
 
         expect(addedPackage?.licenses[0].source).toBe(
-          "license-file-content-keywords"
+          "license-file-content-keywords",
         );
-      }
+      },
     );
 
     yarnFixture(
@@ -365,7 +365,7 @@ describe("yarn", () => {
               content:
                 'MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n',
             },
-          ]
+          ],
         );
 
         const { output, errorCode } = await runCliCommand({
@@ -378,15 +378,15 @@ describe("yarn", () => {
         expect(output).toContain("160 licenses are compliant");
 
         const jsonOutput: JsonResults = await readJsonFile(
-          path.join(testDirectory, "license-auditor.results.json")
+          path.join(testDirectory, "license-auditor.results.json"),
         );
 
         const addedPackage = jsonOutput.whitelist.find(
-          (result) => result.packageName === "test-dep@1.0.0"
+          (result) => result.packageName === "test-dep@1.0.0",
         );
 
         expect(addedPackage?.licenses[0].source).toBe("license-file-content");
-      }
+      },
     );
   });
 
@@ -409,15 +409,15 @@ describe("yarn", () => {
         expect(output).toContain("67 licenses are compliant");
 
         const jsonOutput: JsonResults = await readJsonFile(
-          path.join(testDirectory, "license-auditor.results.json")
+          path.join(testDirectory, "license-auditor.results.json"),
         );
 
         const addedPackage = jsonOutput.whitelist.find(
-          (result) => result.packageName === "test-dep@1.0.0"
+          (result) => result.packageName === "test-dep@1.0.0",
         );
 
         expect(addedPackage).toBeDefined();
-      }
+      },
     );
 
     yarnFixture("omits devDependencies", async ({ testDirectory }) => {
@@ -429,7 +429,7 @@ describe("yarn", () => {
           license: "MIT",
         },
         [],
-        true
+        true,
       );
 
       const { output, errorCode } = await runCliCommand({
@@ -442,11 +442,11 @@ describe("yarn", () => {
       expect(output).toContain("66 licenses are compliant");
 
       const jsonOutput: JsonResults = await readJsonFile(
-        path.join(testDirectory, "license-auditor.results.json")
+        path.join(testDirectory, "license-auditor.results.json"),
       );
 
       const addedPackage = jsonOutput.whitelist.find(
-        (result) => result.packageName === "test-dep@1.0.0"
+        (result) => result.packageName === "test-dep@1.0.0",
       );
 
       expect(addedPackage).toBeUndefined();
@@ -467,7 +467,7 @@ describe("yarn", () => {
       	  `;
         const configFilePath = path.resolve(
           testDirectory,
-          "license-auditor.config.ts"
+          "license-auditor.config.ts",
         );
         await fs.writeFile(configFilePath, invalidConfig);
 
@@ -477,21 +477,21 @@ describe("yarn", () => {
             args: [getCliPath()],
             cwd: testDirectory,
           },
-          { cols: 200 }
+          { cols: 200 },
         );
 
         expect(errorCode).toBe(1);
         expect(output).toContain("Invalid configuration file at");
         expect(output).toContain(
-          'Invalid value in path: blacklist - error "invalid_type". Expected array, received string'
+          'Invalid value in path: blacklist - error "invalid_type". Expected array, received string',
         );
         expect(output).toContain(
-          'Invalid value in path: whitelist - error "invalid_type". Expected array, received number'
+          'Invalid value in path: whitelist - error "invalid_type". Expected array, received number',
         );
         expect(output).toContain(
-          'Invalid value in path: overrides - error "invalid_type". Expected object, received string'
+          'Invalid value in path: overrides - error "invalid_type". Expected object, received string',
         );
-      }
+      },
     );
   });
 });

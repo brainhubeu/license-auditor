@@ -35,8 +35,8 @@ describe("license-auditor", () => {
         });
 
         expect(errorCode).toBe(0);
-        expect(output).toContain("243 licenses are compliant");
-        expect(output).toContain("3 packages are requiring manual checking");
+        expect(output).toContain("245 licenses are compliant");
+        expect(output).toContain("2 packages are requiring manual checking");
       },
     );
 
@@ -55,9 +55,9 @@ describe("license-auditor", () => {
         });
 
         expect(errorCode).toBe(0);
-        expect(output).toContain("243 licenses are compliant");
-        expect(output).toContain("4 licenses are unknown");
-        expect(output).toContain("3 packages are requiring manual checking");
+        expect(output).toContain("245 licenses are compliant");
+        expect(output).toContain("1 license is unknown");
+        expect(output).toContain("2 packages are requiring manual checking");
       },
     );
 
@@ -111,7 +111,7 @@ describe("license-auditor", () => {
           );
 
           expect(errorCode).toBe(0);
-          expect(output).toContain("244 licenses are compliant");
+          expect(output).toContain("246 licenses are compliant");
 
           expect(
             getWhitelistedLicenses(
@@ -160,7 +160,7 @@ describe("license-auditor", () => {
           );
 
           expect(errorCode).toBe(0);
-          expect(output).toContain("4 packages are requiring manual checking");
+          expect(output).toContain("3 packages are requiring manual checking");
 
           expect(
             getNeedsUserVerificationLicenses(jsonOutput, [
@@ -206,7 +206,7 @@ describe("license-auditor", () => {
 
         expect(errorCode).toBe(0);
         expect(output).toContain("1 package is missing license information");
-        expect(output).toContain("3 packages are requiring manual checking");
+        expect(output).toContain("2 packages are requiring manual checking");
         expect(output).toContain(
           "We’ve found a license file, but no matching licenses in",
         );
@@ -251,8 +251,8 @@ describe("license-auditor", () => {
         );
 
         expect(errorCode).toBe(0);
-        expect(output).toContain("244 licenses are compliant");
-        expect(output).toContain("3 packages are requiring manual checking");
+        expect(output).toContain("246 licenses are compliant");
+        expect(output).toContain("2 packages are requiring manual checking");
 
         expect(
           getWhitelistedLicenses(jsonOutput, ["testing-license-file"]),
@@ -302,7 +302,7 @@ describe("license-auditor", () => {
         );
 
         expect(errorCode).toBe(0);
-        expect(output).toContain("4 packages are requiring manual checking");
+        expect(output).toContain("3 packages are requiring manual checking");
         expect(output).toContain(
           "Some but not all licenses are whitelisted for package",
         );
@@ -469,7 +469,7 @@ describe("license-auditor", () => {
         });
 
         expect(errorCode).toBe(0);
-        expect(output).toContain("244 licenses are compliant");
+        expect(output).toContain("246 licenses are compliant");
       },
     );
 
@@ -503,7 +503,7 @@ describe("license-auditor", () => {
         });
 
         expect(errorCode).toBe(0);
-        expect(output).toContain("243 licenses are compliant");
+        expect(output).toContain("245 licenses are compliant");
       },
     );
   });
@@ -543,7 +543,7 @@ describe("license-auditor", () => {
         );
 
         expect(errorCode).toBe(0);
-        expect(output).toContain("244 licenses are compliant");
+        expect(output).toContain("246 licenses are compliant");
 
         const okStatus = jsonOutput.whitelist.find(
           (result) => result.packageName === "testing-license-file@1.0.0",
@@ -572,7 +572,7 @@ describe("license-auditor", () => {
         );
 
         expect(errorCode).toBe(0);
-        expect(output).toContain("244 licenses are compliant");
+        expect(output).toContain("246 licenses are compliant");
 
         const someButNotAllLicensesWhitelisted =
           jsonOutput.needsUserVerification.find(
@@ -612,7 +612,7 @@ describe("license-auditor", () => {
         );
 
         expect(errorCode).toBe(0);
-        expect(output).toContain("243 licenses are compliant");
+        expect(output).toContain("245 licenses are compliant");
 
         const someButNotAllLicensesWhitelisted =
           jsonOutput.needsUserVerification.find(
@@ -650,7 +650,7 @@ describe("license-auditor", () => {
         );
 
         expect(errorCode).toBe(0);
-        expect(output).toContain("243 licenses are compliant");
+        expect(output).toContain("245 licenses are compliant");
 
         const licenseFileExistsButUnknownLicense =
           jsonOutput.needsUserVerification.find(
@@ -682,7 +682,7 @@ describe("license-auditor", () => {
         );
 
         expect(errorCode).toBe(0);
-        expect(output).toContain("244 licenses are compliant");
+        expect(output).toContain("246 licenses are compliant");
         const licenseFileNotFound = jsonOutput.whitelist.find(
           (result) => result.packageName === "testing-license-file@1.0.0",
         );
@@ -712,7 +712,7 @@ describe("license-auditor", () => {
           );
 
           expect(errorCode).toBe(0);
-          expect(output).toContain("244 licenses are compliant");
+          expect(output).toContain("246 licenses are compliant");
           const addedPackage = jsonOutput.whitelist.find(
             (result) => result.packageName === "test-package@1.0.0",
           );
@@ -740,7 +740,7 @@ describe("license-auditor", () => {
           );
 
           expect(errorCode).toBe(0);
-          expect(output).toContain("244 licenses are compliant");
+          expect(output).toContain("246 licenses are compliant");
 
           const addedPackage = jsonOutput.whitelist.find(
             (result) => result.packageName === "test-package@1.0.0",
@@ -771,7 +771,7 @@ describe("license-auditor", () => {
           );
 
           expect(errorCode).toBe(0);
-          expect(output).toContain("244 licenses are compliant");
+          expect(output).toContain("246 licenses are compliant");
 
           const addedPackage = jsonOutput.whitelist.find(
             (result) => result.packageName === "test-package@1.0.0",
@@ -800,7 +800,7 @@ describe("license-auditor", () => {
           );
 
           expect(errorCode).toBe(0);
-          expect(output).toContain("244 licenses are compliant");
+          expect(output).toContain("246 licenses are compliant");
 
           const addedPackage = jsonOutput.whitelist.find(
             (result) => result.packageName === "test-package@1.0.0",
@@ -836,7 +836,7 @@ describe("license-auditor", () => {
           );
 
           expect(errorCode).toBe(0);
-          expect(output).toContain("244 licenses are compliant");
+          expect(output).toContain("246 licenses are compliant");
 
           const addedPackage = jsonOutput.whitelist.find(
             (result) => result.packageName === "test-package@1.0.0",
@@ -878,7 +878,7 @@ describe("license-auditor", () => {
           );
 
           expect(errorCode).toBe(0);
-          expect(output).toContain("244 licenses are compliant");
+          expect(output).toContain("246 licenses are compliant");
 
           const addedPackage = jsonOutput.whitelist.find(
             (result) => result.packageName === "test-package@1.0.0",
