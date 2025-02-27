@@ -102,6 +102,7 @@ export const pnpmFixture = test.extend<TestContext>({
     );
     await fs.cp(path.resolve(TEST_PROJECTS_DIRECTORY, "pnpm"), testDirectory, {
       recursive: true,
+      verbatimSymlinks: true,
     });
 
     await use(testDirectory);

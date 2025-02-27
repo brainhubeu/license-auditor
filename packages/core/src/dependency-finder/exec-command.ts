@@ -2,14 +2,19 @@ import { exec } from "node:child_process";
 
 import { ExecCommandException } from "../exceptions/index.js";
 
+type ExecCommandResult = {
+  stdout: string;
+  stderr: string;
+};
+
 export async function execCommand(
   command: string,
   cwd: string,
   verbose?: boolean | undefined,
-): Promise<string> {
+): Promise<ExecCommandResult> {
   return new Promise((resolve, reject) => {
     exec(command, { cwd }, (error, stdout, stderr) => {
-      if (error || (stderr && !stderr.includes("Debugger attached"))) {
+      if (error) {
         reject(
           new ExecCommandException(
             error?.stack && verbose
@@ -24,7 +29,7 @@ export async function execCommand(
         );
       }
 
-      resolve(stdout);
+      resolve({ stdout, stderr });
     });
   });
 }

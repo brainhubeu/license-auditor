@@ -5,7 +5,7 @@ import type {
 } from "../licenses/types.js";
 
 export interface DependenciesResult {
-  dependencies: string[];
+  dependencies: string[]; // array of absolute paths (e.g. /Users/johndoe/project/node_modules/left-pad)
   warning?: string;
 }
 

@@ -8,7 +8,7 @@
   "files": {
     "ignoreUnknown": false,
     "ignore": ["dist", "build"],
-    "maxSize": 2000000000
+    "maxSize": 1000000000000
   },
   "formatter": {
     "enabled": true,

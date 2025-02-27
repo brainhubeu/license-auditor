@@ -4,11 +4,11 @@
   "main": "index.js",
   "scripts": {
     "test:e2e": "vitest run --config ./vitest.config.ts",
-    "test:snapshot": "vitest run --config ./vitest.config.ts ./test/snapshot.test.ts",
-    "test:snapshot:update": "vitest run --config ./vitest.config.ts ./test/snapshot.test.ts -u"
+    "test:snapshot": "vitest run --config ./vitest.config.ts ./test/snapshot.test.ts"
   },
   "private": true,
   "devDependencies": {
+    "differrer": "1.1.2",
     "pnpm": "9.14.4",
     "typescript": "5.6.2",
     "vitest": "2.1.5",
