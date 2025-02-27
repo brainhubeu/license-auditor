@@ -67,6 +67,9 @@ export const matchSnapshotRecursive = (
   updateSnapshot?: boolean,
 ) => {
   const testState = expect.getState();
+  if (!testState.testPath) {
+    return;
+  }
   const currentDirectory = path.dirname(testState.testPath);
   const snapshotFilePath = path.join(currentDirectory, snapshotPath);
 
