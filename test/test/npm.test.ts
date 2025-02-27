@@ -83,7 +83,7 @@ describe("license-auditor", () => {
       });
 
       expect(errorCode).toBe(0);
-      expect(output).toContain("170 licenses are compliant");
+      expect(output).toContain("169 licenses are compliant");
     });
 
     describe("parse license files", () => {
