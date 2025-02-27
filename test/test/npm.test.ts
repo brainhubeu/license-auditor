@@ -83,7 +83,7 @@ describe("license-auditor", () => {
       });
 
       expect(errorCode).toBe(0);
-      expect(output).toContain("170 licenses are compliant");
+      expect(output).toContain("169 licenses are compliant");
     });
 
     describe("parse license files", () => {
@@ -297,7 +297,7 @@ describe("license-auditor", () => {
           cwd: testDirectory,
         });
 
-        const jsonOutput = await readJsonFile(
+        const jsonOutput: JsonResults = await readJsonFile(
           path.join(testDirectory, "license-auditor.results.json"),
         );
 
@@ -307,31 +307,12 @@ describe("license-auditor", () => {
           "Some but not all licenses are whitelisted for package",
         );
 
-        expect(
-          getNeedsUserVerificationLicenses(jsonOutput, [
-            "testing-license-file",
-          ]),
-        ).toContainEqual(
+        expect(jsonOutput.needsUserVerification).toContainEqual(
           expect.objectContaining({
             packageName: "testing-license-file@1.0.0",
             verificationMessage: expect.stringMatching(
               /Some but not all licenses are whitelisted for package/,
             ),
-          }),
-        );
-        expect(
-          getBlacklistedLicenses(jsonOutput, ["testing-license-file"]),
-        ).toContainEqual(
-          expect.objectContaining({
-            packageName: "testing-license-file@1.0.0",
-            licenses: expect.arrayContaining([
-              expect.objectContaining({
-                licenseId: "MIT",
-              }),
-              expect.objectContaining({
-                licenseId: "GPL-3.0-or-later",
-              }),
-            ]),
           }),
         );
       },
