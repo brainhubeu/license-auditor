@@ -1,6 +1,80 @@
 {
   "whitelist": [
     {
+      "packageName": "accepts@2.0.0",
+      "packagePath": "<TEST_DIR>/node_modules/accepts",
+      "status": "whitelist",
+      "licenses": [
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "isFsfLibre": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/accepts/package.json",
+          "source": "package.json-license"
+        },
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/accepts/LICENSE",
+          "source": "license-file-content"
+        }
+      ],
+      "licensePath": [
+        "<TEST_DIR>/node_modules/accepts/package.json",
+        "<TEST_DIR>/node_modules/accepts/LICENSE"
+      ],
+      "verificationStatus": "ok"
+    },
+    {
+      "packageName": "array-flatten@3.0.0",
+      "packagePath": "<TEST_DIR>/node_modules/array-flatten",
+      "status": "whitelist",
+      "licenses": [
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "isFsfLibre": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/array-flatten/package.json",
+          "source": "package.json-license"
+        },
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/array-flatten/LICENSE",
+          "source": "license-file-content"
+        }
+      ],
+      "licensePath": [
+        "<TEST_DIR>/node_modules/array-flatten/package.json",
+        "<TEST_DIR>/node_modules/array-flatten/LICENSE"
+      ],
+      "verificationStatus": "ok"
+    },
+    {
       "packageName": "body-parser@2.0.2",
       "packagePath": "<TEST_DIR>/node_modules/body-parser",
       "status": "whitelist",
@@ -34,80 +108,6 @@
       "licensePath": [
         "<TEST_DIR>/node_modules/body-parser/package.json",
         "<TEST_DIR>/node_modules/body-parser/LICENSE"
-      ],
-      "verificationStatus": "ok"
-    },
-    {
-      "packageName": "debug@3.1.0",
-      "packagePath": "<TEST_DIR>/node_modules/body-parser/node_modules/debug",
-      "status": "whitelist",
-      "licenses": [
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "isFsfLibre": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/body-parser/node_modules/debug/package.json",
-          "source": "package.json-license"
-        },
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/body-parser/node_modules/debug/LICENSE",
-          "source": "license-file-content"
-        }
-      ],
-      "licensePath": [
-        "<TEST_DIR>/node_modules/body-parser/node_modules/debug/package.json",
-        "<TEST_DIR>/node_modules/body-parser/node_modules/debug/LICENSE"
-      ],
-      "verificationStatus": "ok"
-    },
-    {
-      "packageName": "media-typer@0.3.0",
-      "packagePath": "<TEST_DIR>/node_modules/body-parser/node_modules/media-typer",
-      "status": "whitelist",
-      "licenses": [
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "isFsfLibre": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/body-parser/node_modules/media-typer/package.json",
-          "source": "package.json-license"
-        },
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/body-parser/node_modules/media-typer/LICENSE",
-          "source": "license-file-content"
-        }
-      ],
-      "licensePath": [
-        "<TEST_DIR>/node_modules/body-parser/node_modules/media-typer/package.json",
-        "<TEST_DIR>/node_modules/body-parser/node_modules/media-typer/LICENSE"
       ],
       "verificationStatus": "ok"
     },
@@ -223,6 +223,80 @@
       "verificationStatus": "ok"
     },
     {
+      "packageName": "debug@3.1.0",
+      "packagePath": "<TEST_DIR>/node_modules/body-parser/node_modules/debug",
+      "status": "whitelist",
+      "licenses": [
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "isFsfLibre": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/body-parser/node_modules/debug/package.json",
+          "source": "package.json-license"
+        },
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/body-parser/node_modules/debug/LICENSE",
+          "source": "license-file-content"
+        }
+      ],
+      "licensePath": [
+        "<TEST_DIR>/node_modules/body-parser/node_modules/debug/package.json",
+        "<TEST_DIR>/node_modules/body-parser/node_modules/debug/LICENSE"
+      ],
+      "verificationStatus": "ok"
+    },
+    {
+      "packageName": "media-typer@0.3.0",
+      "packagePath": "<TEST_DIR>/node_modules/body-parser/node_modules/media-typer",
+      "status": "whitelist",
+      "licenses": [
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "isFsfLibre": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/body-parser/node_modules/media-typer/package.json",
+          "source": "package.json-license"
+        },
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/body-parser/node_modules/media-typer/LICENSE",
+          "source": "license-file-content"
+        }
+      ],
+      "licensePath": [
+        "<TEST_DIR>/node_modules/body-parser/node_modules/media-typer/package.json",
+        "<TEST_DIR>/node_modules/body-parser/node_modules/media-typer/LICENSE"
+      ],
+      "verificationStatus": "ok"
+    },
+    {
       "packageName": "type-is@1.6.18",
       "packagePath": "<TEST_DIR>/node_modules/body-parser/node_modules/type-is",
       "status": "whitelist",
@@ -260,8 +334,8 @@
       "verificationStatus": "ok"
     },
     {
-      "packageName": "array-flatten@3.0.0",
-      "packagePath": "<TEST_DIR>/node_modules/array-flatten",
+      "packageName": "bytes@3.1.2",
+      "packagePath": "<TEST_DIR>/node_modules/bytes",
       "status": "whitelist",
       "licenses": [
         {
@@ -274,7 +348,7 @@
           "isOsiApproved": true,
           "isFsfLibre": true,
           "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/array-flatten/package.json",
+          "licensePath": "<TEST_DIR>/node_modules/bytes/package.json",
           "source": "package.json-license"
         },
         {
@@ -286,13 +360,13 @@
           "seeAlso": ["https://opensource.org/license/mit/"],
           "isOsiApproved": true,
           "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/array-flatten/LICENSE",
+          "licensePath": "<TEST_DIR>/node_modules/bytes/LICENSE",
           "source": "license-file-content"
         }
       ],
       "licensePath": [
-        "<TEST_DIR>/node_modules/array-flatten/package.json",
-        "<TEST_DIR>/node_modules/array-flatten/LICENSE"
+        "<TEST_DIR>/node_modules/bytes/package.json",
+        "<TEST_DIR>/node_modules/bytes/LICENSE"
       ],
       "verificationStatus": "ok"
     },
@@ -334,8 +408,8 @@
       "verificationStatus": "ok"
     },
     {
-      "packageName": "bytes@3.1.2",
-      "packagePath": "<TEST_DIR>/node_modules/bytes",
+      "packageName": "content-disposition@1.0.0",
+      "packagePath": "<TEST_DIR>/node_modules/content-disposition",
       "status": "whitelist",
       "licenses": [
         {
@@ -348,7 +422,7 @@
           "isOsiApproved": true,
           "isFsfLibre": true,
           "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/bytes/package.json",
+          "licensePath": "<TEST_DIR>/node_modules/content-disposition/package.json",
           "source": "package.json-license"
         },
         {
@@ -360,13 +434,50 @@
           "seeAlso": ["https://opensource.org/license/mit/"],
           "isOsiApproved": true,
           "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/bytes/LICENSE",
+          "licensePath": "<TEST_DIR>/node_modules/content-disposition/LICENSE",
           "source": "license-file-content"
         }
       ],
       "licensePath": [
-        "<TEST_DIR>/node_modules/bytes/package.json",
-        "<TEST_DIR>/node_modules/bytes/LICENSE"
+        "<TEST_DIR>/node_modules/content-disposition/package.json",
+        "<TEST_DIR>/node_modules/content-disposition/LICENSE"
+      ],
+      "verificationStatus": "ok"
+    },
+    {
+      "packageName": "content-type@1.0.5",
+      "packagePath": "<TEST_DIR>/node_modules/content-type",
+      "status": "whitelist",
+      "licenses": [
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "isFsfLibre": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/content-type/package.json",
+          "source": "package.json-license"
+        },
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/content-type/LICENSE",
+          "source": "license-file-content"
+        }
+      ],
+      "licensePath": [
+        "<TEST_DIR>/node_modules/content-type/package.json",
+        "<TEST_DIR>/node_modules/content-type/LICENSE"
       ],
       "verificationStatus": "ok"
     },
@@ -482,8 +593,8 @@
       "verificationStatus": "ok"
     },
     {
-      "packageName": "content-disposition@1.0.0",
-      "packagePath": "<TEST_DIR>/node_modules/content-disposition",
+      "packageName": "define-data-property@1.1.4",
+      "packagePath": "<TEST_DIR>/node_modules/define-data-property",
       "status": "whitelist",
       "licenses": [
         {
@@ -496,7 +607,7 @@
           "isOsiApproved": true,
           "isFsfLibre": true,
           "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/content-disposition/package.json",
+          "licensePath": "<TEST_DIR>/node_modules/define-data-property/package.json",
           "source": "package.json-license"
         },
         {
@@ -508,50 +619,13 @@
           "seeAlso": ["https://opensource.org/license/mit/"],
           "isOsiApproved": true,
           "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/content-disposition/LICENSE",
+          "licensePath": "<TEST_DIR>/node_modules/define-data-property/LICENSE",
           "source": "license-file-content"
         }
       ],
       "licensePath": [
-        "<TEST_DIR>/node_modules/content-disposition/package.json",
-        "<TEST_DIR>/node_modules/content-disposition/LICENSE"
-      ],
-      "verificationStatus": "ok"
-    },
-    {
-      "packageName": "content-type@1.0.5",
-      "packagePath": "<TEST_DIR>/node_modules/content-type",
-      "status": "whitelist",
-      "licenses": [
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "isFsfLibre": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/content-type/package.json",
-          "source": "package.json-license"
-        },
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/content-type/LICENSE",
-          "source": "license-file-content"
-        }
-      ],
-      "licensePath": [
-        "<TEST_DIR>/node_modules/content-type/package.json",
-        "<TEST_DIR>/node_modules/content-type/LICENSE"
+        "<TEST_DIR>/node_modules/define-data-property/package.json",
+        "<TEST_DIR>/node_modules/define-data-property/LICENSE"
       ],
       "verificationStatus": "ok"
     },
@@ -667,117 +741,6 @@
       "verificationStatus": "ok"
     },
     {
-      "packageName": "es-define-property@1.0.0",
-      "packagePath": "<TEST_DIR>/node_modules/es-define-property",
-      "status": "whitelist",
-      "licenses": [
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "isFsfLibre": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/es-define-property/package.json",
-          "source": "package.json-license"
-        },
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/es-define-property/LICENSE",
-          "source": "license-file-content"
-        }
-      ],
-      "licensePath": [
-        "<TEST_DIR>/node_modules/es-define-property/package.json",
-        "<TEST_DIR>/node_modules/es-define-property/LICENSE"
-      ],
-      "verificationStatus": "ok"
-    },
-    {
-      "packageName": "define-data-property@1.1.4",
-      "packagePath": "<TEST_DIR>/node_modules/define-data-property",
-      "status": "whitelist",
-      "licenses": [
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "isFsfLibre": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/define-data-property/package.json",
-          "source": "package.json-license"
-        },
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/define-data-property/LICENSE",
-          "source": "license-file-content"
-        }
-      ],
-      "licensePath": [
-        "<TEST_DIR>/node_modules/define-data-property/package.json",
-        "<TEST_DIR>/node_modules/define-data-property/LICENSE"
-      ],
-      "verificationStatus": "ok"
-    },
-    {
-      "packageName": "escape-html@1.0.3",
-      "packagePath": "<TEST_DIR>/node_modules/escape-html",
-      "status": "whitelist",
-      "licenses": [
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "isFsfLibre": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/escape-html/package.json",
-          "source": "package.json-license"
-        },
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/escape-html/LICENSE",
-          "source": "license-file-content"
-        }
-      ],
-      "licensePath": [
-        "<TEST_DIR>/node_modules/escape-html/package.json",
-        "<TEST_DIR>/node_modules/escape-html/LICENSE"
-      ],
-      "verificationStatus": "ok"
-    },
-    {
       "packageName": "encodeurl@2.0.0",
       "packagePath": "<TEST_DIR>/node_modules/encodeurl",
       "status": "whitelist",
@@ -811,6 +774,43 @@
       "licensePath": [
         "<TEST_DIR>/node_modules/encodeurl/package.json",
         "<TEST_DIR>/node_modules/encodeurl/LICENSE"
+      ],
+      "verificationStatus": "ok"
+    },
+    {
+      "packageName": "es-define-property@1.0.0",
+      "packagePath": "<TEST_DIR>/node_modules/es-define-property",
+      "status": "whitelist",
+      "licenses": [
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "isFsfLibre": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/es-define-property/package.json",
+          "source": "package.json-license"
+        },
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/es-define-property/LICENSE",
+          "source": "license-file-content"
+        }
+      ],
+      "licensePath": [
+        "<TEST_DIR>/node_modules/es-define-property/package.json",
+        "<TEST_DIR>/node_modules/es-define-property/LICENSE"
       ],
       "verificationStatus": "ok"
     },
@@ -852,8 +852,8 @@
       "verificationStatus": "ok"
     },
     {
-      "packageName": "accepts@2.0.0",
-      "packagePath": "<TEST_DIR>/node_modules/accepts",
+      "packageName": "escape-html@1.0.3",
+      "packagePath": "<TEST_DIR>/node_modules/escape-html",
       "status": "whitelist",
       "licenses": [
         {
@@ -866,7 +866,7 @@
           "isOsiApproved": true,
           "isFsfLibre": true,
           "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/accepts/package.json",
+          "licensePath": "<TEST_DIR>/node_modules/escape-html/package.json",
           "source": "package.json-license"
         },
         {
@@ -878,13 +878,13 @@
           "seeAlso": ["https://opensource.org/license/mit/"],
           "isOsiApproved": true,
           "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/accepts/LICENSE",
+          "licensePath": "<TEST_DIR>/node_modules/escape-html/LICENSE",
           "source": "license-file-content"
         }
       ],
       "licensePath": [
-        "<TEST_DIR>/node_modules/accepts/package.json",
-        "<TEST_DIR>/node_modules/accepts/LICENSE"
+        "<TEST_DIR>/node_modules/escape-html/package.json",
+        "<TEST_DIR>/node_modules/escape-html/LICENSE"
       ],
       "verificationStatus": "ok"
     },
@@ -922,6 +922,43 @@
       "licensePath": [
         "<TEST_DIR>/node_modules/etag/package.json",
         "<TEST_DIR>/node_modules/etag/LICENSE"
+      ],
+      "verificationStatus": "ok"
+    },
+    {
+      "packageName": "express@5.0.1",
+      "packagePath": "<TEST_DIR>/node_modules/express",
+      "status": "whitelist",
+      "licenses": [
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "isFsfLibre": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/express/package.json",
+          "source": "package.json-license"
+        },
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/express/LICENSE",
+          "source": "license-file-content"
+        }
+      ],
+      "licensePath": [
+        "<TEST_DIR>/node_modules/express/package.json",
+        "<TEST_DIR>/node_modules/express/LICENSE"
       ],
       "verificationStatus": "ok"
     },
@@ -1033,43 +1070,6 @@
       "licensePath": [
         "<TEST_DIR>/node_modules/finalhandler/node_modules/encodeurl/package.json",
         "<TEST_DIR>/node_modules/finalhandler/node_modules/encodeurl/LICENSE"
-      ],
-      "verificationStatus": "ok"
-    },
-    {
-      "packageName": "express@5.0.1",
-      "packagePath": "<TEST_DIR>/node_modules/express",
-      "status": "whitelist",
-      "licenses": [
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "isFsfLibre": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/express/package.json",
-          "source": "package.json-license"
-        },
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/express/LICENSE",
-          "source": "license-file-content"
-        }
-      ],
-      "licensePath": [
-        "<TEST_DIR>/node_modules/express/package.json",
-        "<TEST_DIR>/node_modules/express/LICENSE"
       ],
       "verificationStatus": "ok"
     },
@@ -1222,154 +1222,6 @@
       "verificationStatus": "ok"
     },
     {
-      "packageName": "has-symbols@1.0.3",
-      "packagePath": "<TEST_DIR>/node_modules/has-symbols",
-      "status": "whitelist",
-      "licenses": [
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "isFsfLibre": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/has-symbols/package.json",
-          "source": "package.json-license"
-        },
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/has-symbols/LICENSE",
-          "source": "license-file-content"
-        }
-      ],
-      "licensePath": [
-        "<TEST_DIR>/node_modules/has-symbols/package.json",
-        "<TEST_DIR>/node_modules/has-symbols/LICENSE"
-      ],
-      "verificationStatus": "ok"
-    },
-    {
-      "packageName": "hasown@2.0.2",
-      "packagePath": "<TEST_DIR>/node_modules/hasown",
-      "status": "whitelist",
-      "licenses": [
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "isFsfLibre": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/hasown/package.json",
-          "source": "package.json-license"
-        },
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/hasown/LICENSE",
-          "source": "license-file-content"
-        }
-      ],
-      "licensePath": [
-        "<TEST_DIR>/node_modules/hasown/package.json",
-        "<TEST_DIR>/node_modules/hasown/LICENSE"
-      ],
-      "verificationStatus": "ok"
-    },
-    {
-      "packageName": "http-errors@2.0.0",
-      "packagePath": "<TEST_DIR>/node_modules/http-errors",
-      "status": "whitelist",
-      "licenses": [
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "isFsfLibre": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/http-errors/package.json",
-          "source": "package.json-license"
-        },
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/http-errors/LICENSE",
-          "source": "license-file-content"
-        }
-      ],
-      "licensePath": [
-        "<TEST_DIR>/node_modules/http-errors/package.json",
-        "<TEST_DIR>/node_modules/http-errors/LICENSE"
-      ],
-      "verificationStatus": "ok"
-    },
-    {
-      "packageName": "iconv-lite@0.5.2",
-      "packagePath": "<TEST_DIR>/node_modules/iconv-lite",
-      "status": "whitelist",
-      "licenses": [
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "isFsfLibre": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/iconv-lite/package.json",
-          "source": "package.json-license"
-        },
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/iconv-lite/LICENSE",
-          "source": "license-file-content"
-        }
-      ],
-      "licensePath": [
-        "<TEST_DIR>/node_modules/iconv-lite/package.json",
-        "<TEST_DIR>/node_modules/iconv-lite/LICENSE"
-      ],
-      "verificationStatus": "ok"
-    },
-    {
       "packageName": "gopd@1.0.1",
       "packagePath": "<TEST_DIR>/node_modules/gopd",
       "status": "whitelist",
@@ -1403,6 +1255,43 @@
       "licensePath": [
         "<TEST_DIR>/node_modules/gopd/package.json",
         "<TEST_DIR>/node_modules/gopd/LICENSE"
+      ],
+      "verificationStatus": "ok"
+    },
+    {
+      "packageName": "has-proto@1.0.3",
+      "packagePath": "<TEST_DIR>/node_modules/has-proto",
+      "status": "whitelist",
+      "licenses": [
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "isFsfLibre": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/has-proto/package.json",
+          "source": "package.json-license"
+        },
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/has-proto/LICENSE",
+          "source": "license-file-content"
+        }
+      ],
+      "licensePath": [
+        "<TEST_DIR>/node_modules/has-proto/package.json",
+        "<TEST_DIR>/node_modules/has-proto/LICENSE"
       ],
       "verificationStatus": "ok"
     },
@@ -1444,8 +1333,8 @@
       "verificationStatus": "ok"
     },
     {
-      "packageName": "has-proto@1.0.3",
-      "packagePath": "<TEST_DIR>/node_modules/has-proto",
+      "packageName": "http-errors@2.0.0",
+      "packagePath": "<TEST_DIR>/node_modules/http-errors",
       "status": "whitelist",
       "licenses": [
         {
@@ -1458,7 +1347,7 @@
           "isOsiApproved": true,
           "isFsfLibre": true,
           "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/has-proto/package.json",
+          "licensePath": "<TEST_DIR>/node_modules/http-errors/package.json",
           "source": "package.json-license"
         },
         {
@@ -1470,13 +1359,124 @@
           "seeAlso": ["https://opensource.org/license/mit/"],
           "isOsiApproved": true,
           "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/has-proto/LICENSE",
+          "licensePath": "<TEST_DIR>/node_modules/http-errors/LICENSE",
           "source": "license-file-content"
         }
       ],
       "licensePath": [
-        "<TEST_DIR>/node_modules/has-proto/package.json",
-        "<TEST_DIR>/node_modules/has-proto/LICENSE"
+        "<TEST_DIR>/node_modules/http-errors/package.json",
+        "<TEST_DIR>/node_modules/http-errors/LICENSE"
+      ],
+      "verificationStatus": "ok"
+    },
+    {
+      "packageName": "has-symbols@1.0.3",
+      "packagePath": "<TEST_DIR>/node_modules/has-symbols",
+      "status": "whitelist",
+      "licenses": [
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "isFsfLibre": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/has-symbols/package.json",
+          "source": "package.json-license"
+        },
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/has-symbols/LICENSE",
+          "source": "license-file-content"
+        }
+      ],
+      "licensePath": [
+        "<TEST_DIR>/node_modules/has-symbols/package.json",
+        "<TEST_DIR>/node_modules/has-symbols/LICENSE"
+      ],
+      "verificationStatus": "ok"
+    },
+    {
+      "packageName": "iconv-lite@0.5.2",
+      "packagePath": "<TEST_DIR>/node_modules/iconv-lite",
+      "status": "whitelist",
+      "licenses": [
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "isFsfLibre": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/iconv-lite/package.json",
+          "source": "package.json-license"
+        },
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/iconv-lite/LICENSE",
+          "source": "license-file-content"
+        }
+      ],
+      "licensePath": [
+        "<TEST_DIR>/node_modules/iconv-lite/package.json",
+        "<TEST_DIR>/node_modules/iconv-lite/LICENSE"
+      ],
+      "verificationStatus": "ok"
+    },
+    {
+      "packageName": "hasown@2.0.2",
+      "packagePath": "<TEST_DIR>/node_modules/hasown",
+      "status": "whitelist",
+      "licenses": [
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "isFsfLibre": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/hasown/package.json",
+          "source": "package.json-license"
+        },
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/hasown/LICENSE",
+          "source": "license-file-content"
+        }
+      ],
+      "licensePath": [
+        "<TEST_DIR>/node_modules/hasown/package.json",
+        "<TEST_DIR>/node_modules/hasown/LICENSE"
       ],
       "verificationStatus": "ok"
     },
@@ -1637,43 +1637,6 @@
       "verificationStatus": "ok"
     },
     {
-      "packageName": "mime-db@1.53.0",
-      "packagePath": "<TEST_DIR>/node_modules/mime-db",
-      "status": "whitelist",
-      "licenses": [
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "isFsfLibre": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/mime-db/package.json",
-          "source": "package.json-license"
-        },
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/mime-db/LICENSE",
-          "source": "license-file-content"
-        }
-      ],
-      "licensePath": [
-        "<TEST_DIR>/node_modules/mime-db/package.json",
-        "<TEST_DIR>/node_modules/mime-db/LICENSE"
-      ],
-      "verificationStatus": "ok"
-    },
-    {
       "packageName": "merge-descriptors@2.0.0",
       "packagePath": "<TEST_DIR>/node_modules/merge-descriptors",
       "status": "whitelist",
@@ -1707,6 +1670,43 @@
       "licensePath": [
         "<TEST_DIR>/node_modules/merge-descriptors/package.json",
         "<TEST_DIR>/node_modules/merge-descriptors/license"
+      ],
+      "verificationStatus": "ok"
+    },
+    {
+      "packageName": "mime-db@1.53.0",
+      "packagePath": "<TEST_DIR>/node_modules/mime-db",
+      "status": "whitelist",
+      "licenses": [
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "isFsfLibre": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/mime-db/package.json",
+          "source": "package.json-license"
+        },
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/mime-db/LICENSE",
+          "source": "license-file-content"
+        }
+      ],
+      "licensePath": [
+        "<TEST_DIR>/node_modules/mime-db/package.json",
+        "<TEST_DIR>/node_modules/mime-db/LICENSE"
       ],
       "verificationStatus": "ok"
     },
@@ -1822,6 +1822,43 @@
       "verificationStatus": "ok"
     },
     {
+      "packageName": "ms@2.1.2",
+      "packagePath": "<TEST_DIR>/node_modules/ms",
+      "status": "whitelist",
+      "licenses": [
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "isFsfLibre": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/ms/package.json",
+          "source": "package.json-license"
+        },
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/ms/license.md",
+          "source": "license-file-content"
+        }
+      ],
+      "licensePath": [
+        "<TEST_DIR>/node_modules/ms/package.json",
+        "<TEST_DIR>/node_modules/ms/license.md"
+      ],
+      "verificationStatus": "ok"
+    },
+    {
       "packageName": "object-inspect@1.13.3",
       "packagePath": "<TEST_DIR>/node_modules/object-inspect",
       "status": "whitelist",
@@ -1892,43 +1929,6 @@
       "licensePath": [
         "<TEST_DIR>/node_modules/on-finished/package.json",
         "<TEST_DIR>/node_modules/on-finished/LICENSE"
-      ],
-      "verificationStatus": "ok"
-    },
-    {
-      "packageName": "ms@2.1.2",
-      "packagePath": "<TEST_DIR>/node_modules/ms",
-      "status": "whitelist",
-      "licenses": [
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "isFsfLibre": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/ms/package.json",
-          "source": "package.json-license"
-        },
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/ms/license.md",
-          "source": "license-file-content"
-        }
-      ],
-      "licensePath": [
-        "<TEST_DIR>/node_modules/ms/package.json",
-        "<TEST_DIR>/node_modules/ms/license.md"
       ],
       "verificationStatus": "ok"
     },
@@ -2052,49 +2052,6 @@
       "verificationStatus": "ok"
     },
     {
-      "packageName": "qs@6.13.0",
-      "packagePath": "<TEST_DIR>/node_modules/qs",
-      "status": "whitelist",
-      "licenses": [
-        {
-          "reference": "https://spdx.org/licenses/BSD-3-Clause.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/BSD-3-Clause.json",
-          "name": "BSD 3-Clause \"New\" or \"Revised\" License",
-          "licenseId": "BSD-3-Clause",
-          "seeAlso": [
-            "https://opensource.org/licenses/BSD-3-Clause",
-            "https://www.eclipse.org/org/documents/edl-v10.php"
-          ],
-          "isOsiApproved": true,
-          "isFsfLibre": true,
-          "licenseText": "Copyright (c) <year> <owner>. \n\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:\n\n1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.\n\n2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.\n\n3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/qs/package.json",
-          "source": "package.json-license"
-        },
-        {
-          "reference": "https://spdx.org/licenses/BSD-3-Clause.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/BSD-3-Clause.json",
-          "name": "BSD 3-Clause \"New\" or \"Revised\" License",
-          "licenseId": "BSD-3-Clause",
-          "seeAlso": [
-            "https://opensource.org/licenses/BSD-3-Clause",
-            "https://www.eclipse.org/org/documents/edl-v10.php"
-          ],
-          "isOsiApproved": true,
-          "licenseText": "Copyright (c) <year> <owner>. \n\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:\n\n1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.\n\n2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.\n\n3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/qs/LICENSE.md",
-          "source": "license-file-content"
-        }
-      ],
-      "licensePath": [
-        "<TEST_DIR>/node_modules/qs/package.json",
-        "<TEST_DIR>/node_modules/qs/LICENSE.md"
-      ],
-      "verificationStatus": "ok"
-    },
-    {
       "packageName": "proxy-addr@2.0.7",
       "packagePath": "<TEST_DIR>/node_modules/proxy-addr",
       "status": "whitelist",
@@ -2165,6 +2122,49 @@
       "licensePath": [
         "<TEST_DIR>/node_modules/range-parser/package.json",
         "<TEST_DIR>/node_modules/range-parser/LICENSE"
+      ],
+      "verificationStatus": "ok"
+    },
+    {
+      "packageName": "qs@6.13.0",
+      "packagePath": "<TEST_DIR>/node_modules/qs",
+      "status": "whitelist",
+      "licenses": [
+        {
+          "reference": "https://spdx.org/licenses/BSD-3-Clause.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/BSD-3-Clause.json",
+          "name": "BSD 3-Clause \"New\" or \"Revised\" License",
+          "licenseId": "BSD-3-Clause",
+          "seeAlso": [
+            "https://opensource.org/licenses/BSD-3-Clause",
+            "https://www.eclipse.org/org/documents/edl-v10.php"
+          ],
+          "isOsiApproved": true,
+          "isFsfLibre": true,
+          "licenseText": "Copyright (c) <year> <owner>. \n\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:\n\n1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.\n\n2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.\n\n3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/qs/package.json",
+          "source": "package.json-license"
+        },
+        {
+          "reference": "https://spdx.org/licenses/BSD-3-Clause.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/BSD-3-Clause.json",
+          "name": "BSD 3-Clause \"New\" or \"Revised\" License",
+          "licenseId": "BSD-3-Clause",
+          "seeAlso": [
+            "https://opensource.org/licenses/BSD-3-Clause",
+            "https://www.eclipse.org/org/documents/edl-v10.php"
+          ],
+          "isOsiApproved": true,
+          "licenseText": "Copyright (c) <year> <owner>. \n\nRedistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:\n\n1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.\n\n2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.\n\n3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/qs/LICENSE.md",
+          "source": "license-file-content"
+        }
+      ],
+      "licensePath": [
+        "<TEST_DIR>/node_modules/qs/package.json",
+        "<TEST_DIR>/node_modules/qs/LICENSE.md"
       ],
       "verificationStatus": "ok"
     },
@@ -2280,6 +2280,80 @@
       "verificationStatus": "ok"
     },
     {
+      "packageName": "safe-buffer@5.2.1",
+      "packagePath": "<TEST_DIR>/node_modules/safe-buffer",
+      "status": "whitelist",
+      "licenses": [
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "isFsfLibre": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/safe-buffer/package.json",
+          "source": "package.json-license"
+        },
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/safe-buffer/LICENSE",
+          "source": "license-file-content"
+        }
+      ],
+      "licensePath": [
+        "<TEST_DIR>/node_modules/safe-buffer/package.json",
+        "<TEST_DIR>/node_modules/safe-buffer/LICENSE"
+      ],
+      "verificationStatus": "ok"
+    },
+    {
+      "packageName": "safer-buffer@2.1.2",
+      "packagePath": "<TEST_DIR>/node_modules/safer-buffer",
+      "status": "whitelist",
+      "licenses": [
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "isFsfLibre": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/safer-buffer/package.json",
+          "source": "package.json-license"
+        },
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/safer-buffer/LICENSE",
+          "source": "license-file-content"
+        }
+      ],
+      "licensePath": [
+        "<TEST_DIR>/node_modules/safer-buffer/package.json",
+        "<TEST_DIR>/node_modules/safer-buffer/LICENSE"
+      ],
+      "verificationStatus": "ok"
+    },
+    {
       "packageName": "send@1.1.0",
       "packagePath": "<TEST_DIR>/node_modules/send",
       "status": "whitelist",
@@ -2317,43 +2391,6 @@
       "verificationStatus": "ok"
     },
     {
-      "packageName": "ms@2.1.3",
-      "packagePath": "<TEST_DIR>/node_modules/send/node_modules/ms",
-      "status": "whitelist",
-      "licenses": [
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "isFsfLibre": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/send/node_modules/ms/package.json",
-          "source": "package.json-license"
-        },
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/send/node_modules/ms/license.md",
-          "source": "license-file-content"
-        }
-      ],
-      "licensePath": [
-        "<TEST_DIR>/node_modules/send/node_modules/ms/package.json",
-        "<TEST_DIR>/node_modules/send/node_modules/ms/license.md"
-      ],
-      "verificationStatus": "ok"
-    },
-    {
       "packageName": "fresh@0.5.2",
       "packagePath": "<TEST_DIR>/node_modules/send/node_modules/fresh",
       "status": "whitelist",
@@ -2387,6 +2424,43 @@
       "licensePath": [
         "<TEST_DIR>/node_modules/send/node_modules/fresh/package.json",
         "<TEST_DIR>/node_modules/send/node_modules/fresh/LICENSE"
+      ],
+      "verificationStatus": "ok"
+    },
+    {
+      "packageName": "ms@2.1.3",
+      "packagePath": "<TEST_DIR>/node_modules/send/node_modules/ms",
+      "status": "whitelist",
+      "licenses": [
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "isFsfLibre": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/send/node_modules/ms/package.json",
+          "source": "package.json-license"
+        },
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/send/node_modules/ms/license.md",
+          "source": "license-file-content"
+        }
+      ],
+      "licensePath": [
+        "<TEST_DIR>/node_modules/send/node_modules/ms/package.json",
+        "<TEST_DIR>/node_modules/send/node_modules/ms/license.md"
       ],
       "verificationStatus": "ok"
     },
@@ -2465,43 +2539,6 @@
       "verificationStatus": "ok"
     },
     {
-      "packageName": "safe-buffer@5.2.1",
-      "packagePath": "<TEST_DIR>/node_modules/safe-buffer",
-      "status": "whitelist",
-      "licenses": [
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "isFsfLibre": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/safe-buffer/package.json",
-          "source": "package.json-license"
-        },
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/safe-buffer/LICENSE",
-          "source": "license-file-content"
-        }
-      ],
-      "licensePath": [
-        "<TEST_DIR>/node_modules/safe-buffer/package.json",
-        "<TEST_DIR>/node_modules/safe-buffer/LICENSE"
-      ],
-      "verificationStatus": "ok"
-    },
-    {
       "packageName": "setprototypeof@1.2.0",
       "packagePath": "<TEST_DIR>/node_modules/setprototypeof",
       "status": "whitelist",
@@ -2547,43 +2584,6 @@
       "verificationStatus": "ok"
     },
     {
-      "packageName": "statuses@2.0.1",
-      "packagePath": "<TEST_DIR>/node_modules/statuses",
-      "status": "whitelist",
-      "licenses": [
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "isFsfLibre": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/statuses/package.json",
-          "source": "package.json-license"
-        },
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/statuses/LICENSE",
-          "source": "license-file-content"
-        }
-      ],
-      "licensePath": [
-        "<TEST_DIR>/node_modules/statuses/package.json",
-        "<TEST_DIR>/node_modules/statuses/LICENSE"
-      ],
-      "verificationStatus": "ok"
-    },
-    {
       "packageName": "side-channel@1.0.6",
       "packagePath": "<TEST_DIR>/node_modules/side-channel",
       "status": "whitelist",
@@ -2621,6 +2621,80 @@
       "verificationStatus": "ok"
     },
     {
+      "packageName": "statuses@2.0.1",
+      "packagePath": "<TEST_DIR>/node_modules/statuses",
+      "status": "whitelist",
+      "licenses": [
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "isFsfLibre": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/statuses/package.json",
+          "source": "package.json-license"
+        },
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/statuses/LICENSE",
+          "source": "license-file-content"
+        }
+      ],
+      "licensePath": [
+        "<TEST_DIR>/node_modules/statuses/package.json",
+        "<TEST_DIR>/node_modules/statuses/LICENSE"
+      ],
+      "verificationStatus": "ok"
+    },
+    {
+      "packageName": "toidentifier@1.0.1",
+      "packagePath": "<TEST_DIR>/node_modules/toidentifier",
+      "status": "whitelist",
+      "licenses": [
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "isFsfLibre": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/toidentifier/package.json",
+          "source": "package.json-license"
+        },
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/toidentifier/LICENSE",
+          "source": "license-file-content"
+        }
+      ],
+      "licensePath": [
+        "<TEST_DIR>/node_modules/toidentifier/package.json",
+        "<TEST_DIR>/node_modules/toidentifier/LICENSE"
+      ],
+      "verificationStatus": "ok"
+    },
+    {
       "packageName": "type-is@2.0.0",
       "packagePath": "<TEST_DIR>/node_modules/type-is",
       "status": "whitelist",
@@ -2654,6 +2728,43 @@
       "licensePath": [
         "<TEST_DIR>/node_modules/type-is/package.json",
         "<TEST_DIR>/node_modules/type-is/LICENSE"
+      ],
+      "verificationStatus": "ok"
+    },
+    {
+      "packageName": "unpipe@1.0.0",
+      "packagePath": "<TEST_DIR>/node_modules/unpipe",
+      "status": "whitelist",
+      "licenses": [
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "isFsfLibre": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/unpipe/package.json",
+          "source": "package.json-license"
+        },
+        {
+          "reference": "https://spdx.org/licenses/MIT.html",
+          "isDeprecatedLicenseId": false,
+          "detailsUrl": "https://spdx.org/licenses/MIT.json",
+          "name": "MIT License",
+          "licenseId": "MIT",
+          "seeAlso": ["https://opensource.org/license/mit/"],
+          "isOsiApproved": true,
+          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
+          "licensePath": "<TEST_DIR>/node_modules/unpipe/LICENSE",
+          "source": "license-file-content"
+        }
+      ],
+      "licensePath": [
+        "<TEST_DIR>/node_modules/unpipe/package.json",
+        "<TEST_DIR>/node_modules/unpipe/LICENSE"
       ],
       "verificationStatus": "ok"
     },
@@ -2732,43 +2843,6 @@
       "verificationStatus": "ok"
     },
     {
-      "packageName": "unpipe@1.0.0",
-      "packagePath": "<TEST_DIR>/node_modules/unpipe",
-      "status": "whitelist",
-      "licenses": [
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "isFsfLibre": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/unpipe/package.json",
-          "source": "package.json-license"
-        },
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/unpipe/LICENSE",
-          "source": "license-file-content"
-        }
-      ],
-      "licensePath": [
-        "<TEST_DIR>/node_modules/unpipe/package.json",
-        "<TEST_DIR>/node_modules/unpipe/LICENSE"
-      ],
-      "verificationStatus": "ok"
-    },
-    {
       "packageName": "wrappy@1.0.2",
       "packagePath": "<TEST_DIR>/node_modules/wrappy",
       "status": "whitelist",
@@ -2810,80 +2884,6 @@
       "licensePath": [
         "<TEST_DIR>/node_modules/wrappy/package.json",
         "<TEST_DIR>/node_modules/wrappy/LICENSE"
-      ],
-      "verificationStatus": "ok"
-    },
-    {
-      "packageName": "toidentifier@1.0.1",
-      "packagePath": "<TEST_DIR>/node_modules/toidentifier",
-      "status": "whitelist",
-      "licenses": [
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "isFsfLibre": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/toidentifier/package.json",
-          "source": "package.json-license"
-        },
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/toidentifier/LICENSE",
-          "source": "license-file-content"
-        }
-      ],
-      "licensePath": [
-        "<TEST_DIR>/node_modules/toidentifier/package.json",
-        "<TEST_DIR>/node_modules/toidentifier/LICENSE"
-      ],
-      "verificationStatus": "ok"
-    },
-    {
-      "packageName": "safer-buffer@2.1.2",
-      "packagePath": "<TEST_DIR>/node_modules/safer-buffer",
-      "status": "whitelist",
-      "licenses": [
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "isFsfLibre": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/safer-buffer/package.json",
-          "source": "package.json-license"
-        },
-        {
-          "reference": "https://spdx.org/licenses/MIT.html",
-          "isDeprecatedLicenseId": false,
-          "detailsUrl": "https://spdx.org/licenses/MIT.json",
-          "name": "MIT License",
-          "licenseId": "MIT",
-          "seeAlso": ["https://opensource.org/license/mit/"],
-          "isOsiApproved": true,
-          "licenseText": "MIT License\n\nCopyright (c) <year> <copyright holders>\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.\n",
-          "licensePath": "<TEST_DIR>/node_modules/safer-buffer/LICENSE",
-          "source": "license-file-content"
-        }
-      ],
-      "licensePath": [
-        "<TEST_DIR>/node_modules/safer-buffer/package.json",
-        "<TEST_DIR>/node_modules/safer-buffer/LICENSE"
       ],
       "verificationStatus": "ok"
     }
